@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nzbget
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: nzbget
+      version: 12.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/nzbget-testing
+      tag: v21.2-r2333
+    env:
+      TZ: "Europe/Bucharest"
+    ingress:
+      main:
+        primary: true
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+        hosts:
+        - host: "nzbget.${SECRET_DOMAIN}"
+          paths:
+          - path: /
+            pathType: Prefix
+        tls:
+        - hosts:
+          - "nzbget.${SECRET_DOMAIN}"
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+    persistence:
+      config:
+        enabled: true
+        existingClaim: nzbget-config-v3
+      downloads:
+        enabled: true
+        existingClaim: nzbget-downloads-v3
+        mountPath: /downloads
+      media:
+        enabled: true
+        existingClaim: media-nfs
+        mountPath: /media
+    resources:
+      limits:
+        cpu: 10000m
+        memory: 32Gi
+      requests:
+        cpu: 300m
+        memory: 128Mi
+    prometheus:
+      podMonitor:
+        enabled: true
+        interval: 10m
+        scrapeTimeout: 2m
