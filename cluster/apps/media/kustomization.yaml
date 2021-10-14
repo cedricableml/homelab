@@ -9,14 +9,14 @@ resources:
 - nzbget
 - overseerr
 - jellyfin
-# - plex
 - prowlarr
-# - qbittorrent
 - radarr
 - readarr
 - readarr-audiobooks
-# - resilio
+- resilio
 - sonarr
 - tautulli
 - calibre
 - calibre-web
+# - qbittorrent
+# - plex
