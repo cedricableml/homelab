@@ -53,17 +53,3 @@ resource "cloudflare_access_policy" "policy" {
     email_domain  = [var.email_domain]
   }
 }
-
-resource "cloudflare_access_policy" "requests" {
-  zone_id        = var.zone_id
-  application_id = cloudflare_access_application.app["plex-requests"].id
-
-  name       = "allow github & gsuite for requests"
-  precedence = "20"
-  decision   = "allow"
-
-  include {
-    #    login_method = [cloudflare_access_identity_provider.github_oauth.id, cloudflare_access_identity_provider.gsuite.id]
-    login_method = [cloudflare_access_identity_provider.gsuite.id]
-  }
-}
