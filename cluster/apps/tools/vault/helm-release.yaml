@@ -8,6 +8,7 @@ spec:
   interval: 5m
   chart:
     spec:
+      # renovate: registryUrl=https://helm.releases.hashicorp.com
       chart: vault
       version: 0.16.1
       sourceRef:
@@ -15,40 +16,38 @@ spec:
         name: hashicorp-charts
         namespace: flux-system
   values:
-    vault:
-      ui:
+    ui:
+      enabled: true
+    csi:
+      enabled: true
+    injector:
+      enabled: false
+    server:
+      image:
+        repository: "vault"
+        tag: "1.8.4"
+        pullPolicy: IfNotPresent
+      extraSecretEnvironmentVars:
+        - envName: VAULT_PG_CONNECTION_URL
+          secretName: vault-secret
+          secretKey: VAULT_PG_CONNECTION_URL
+        - envName: AWS_SECRET_ACCESS_KEY
+          secretName: vault-secret
+          secretKey: AWS_SECRET_ACCESS_KEY
+        - envName: AWS_SECRET_ACCESS_KEY
+          secretName: vault-secret
+          secretKey: AWS_SECRET_ACCESS_KEY
+        - envName: AWS_ACCESS_KEY_ID
+          secretName: vault-secret
+          secretKey: AWS_ACCESS_KEY_ID
+        - envName: AWS_DEFAULT_REGION
+          secretName: vault-secret
+          secretKey: AWS_DEFAULT_REGION
+        - envName: VAULT_AWSKMS_SEAL_KEY_ID
+          secretName: vault-secret
+          secretKey: VAULT_AWSKMS_SEAL_KEY_ID
+      ha:
         enabled: true
-      csi:
-        enabled: true
-      server:
-        image:
-          repository: "vault"
-          tag: "1.8.4"
-          pullPolicy: IfNotPresent
-        ha:
-          enabled: true
-        injector:
-          enabled: true
-        extraSecretEnvironmentVars:
-          - envName: VAULT_PG_CONNECTION_URL
-            secretName: vault-secret
-            secretKey: VAULT_PG_CONNECTION_URL
-          - envName: AWS_SECRET_ACCESS_KEY
-            secretName: vault-secret
-            secretKey: AWS_SECRET_ACCESS_KE
-          - envName: AWS_SECRET_ACCESS_KEY
-            secretName: vault-secret
-            secretKey: AWS_SECRET_ACCESS_KEY
-          - envName: AWS_ACCESS_KEY_ID
-            secretName: vault-secret
-            secretKey: AWS_ACCESS_KEY_ID
-          - envName: AWS_DEFAULT_REGION
-            secretName: vault-secret
-            secretKey: AWS_DEFAULT_REGION
-          - envName: VAULT_AWSKMS_SEAL_KEY_ID
-            secretName: vault-secret
-            secretKey: VAULT_AWSKMS_SEAL_KEY_ID
-
         config: |
           ui = true
           listener "tcp" {
@@ -63,24 +62,24 @@ spec:
           }
           service_registration "kubernetes" {}
           seal "awskms" {}
-        ingress:
-          enabled: true
-          annotations:
-            traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-            external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-            external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
-          hosts:
-            - host: "vault.${SECRET_DOMAIN}"
-              paths: [ / ]
-          tls:
-            - hosts: [ "vault.${SECRET_DOMAIN}" ]
-        resources:
-          requests:
-            memory: 256Mi
-            cpu: 100m
-          limits:
-            memory: 512MI
-            cpu: 0.5
-        dataStorage:
-          size: 5Gi
-          storageClass: longhorn
+      ingress:
+        enabled: true
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+        hosts:
+          - host: "vault.${SECRET_DOMAIN}"
+            paths: [ / ]
+        tls:
+          - hosts: [ "vault.${SECRET_DOMAIN}" ]
+      resources:
+        requests:
+          memory: 256Mi
+          cpu: 100m
+        limits:
+          memory: 512Mi
+          cpu: 500m
+      dataStorage:
+        size: 5Gi
+        storageClass: longhorn
