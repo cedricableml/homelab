@@ -14,3 +14,4 @@ resources:
 - backup.yaml
 - linkerd.yaml
 - tools.yaml
+- databases.yaml
