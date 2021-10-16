@@ -36,7 +36,7 @@ spec:
         - secret:
             name: pgo-minio-creds
       global:
-        repo1-path: /pgbackrest/postgres-operator/hippo-s3/repo1
+        repo1-path: /pgbackrest/postgres-operator/pg-ha/repo1
       repos:
         - name: repo1
           s3:
