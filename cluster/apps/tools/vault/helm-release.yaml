@@ -27,6 +27,15 @@ spec:
         repository: "vault"
         tag: "1.8.4"
         pullPolicy: IfNotPresent
+      affinity: |
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: {{ template "vault.name" . }}
+                  app.kubernetes.io/instance: "{{ .Release.Name }}"
+                  component: server
+              topologyKey: kubernetes.io/hostname
       extraSecretEnvironmentVars:
         - envName: VAULT_PG_CONNECTION_URL
           secretName: vault-secret
