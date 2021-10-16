@@ -25,22 +25,28 @@ spec:
       interval: 5m
   values:
     initContainers:
-    - name: velero-plugin-for-gcp
-      image: velero/velero-plugin-for-gcp:v1.3.0
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.3.0
       imagePullPolicy: IfNotPresent
       volumeMounts:
       - mountPath: /target
         name: plugins
     deployRestic: false
+    serviceMonitor:
+      enabled: true
     configuration:
-      provider: gcp
+      provider: aws
       backupStorageLocation:
-        name: gcp
+        name: aws
         default: true
-        provider: velero.io/gcp
-        bucket: "${SECRET_VELERO_BACKUP_BUCKET}"
+        provider: velero.io/aws
+        bucket: velero
+        config:
+          region: minio
+          s3ForcePathStyle: true
+          s3Url: http://minio.tools.svc:9000
     credentials:
-      existingSecret: gcp-credentials
+      existingSecret: minio-credentials
     schedules:
       backup-all:
         disabled: false
