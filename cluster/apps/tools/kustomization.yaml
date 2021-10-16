@@ -5,5 +5,5 @@ resources:
   - changedetection-io
   - filebrowser
   - minio
-#  - postgresql-ha
-#  - vault
+  - postgresql-ha
+  - vault
