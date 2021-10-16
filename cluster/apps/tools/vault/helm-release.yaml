@@ -5,6 +5,13 @@ metadata:
   name: vault
   namespace: tools
 spec:
+  install:
+    disableWait: true
+    remediation:
+      retries: 30
+  upgrade:
+    remediation:
+      retries: 30
   interval: 5m
   chart:
     spec:
