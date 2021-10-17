@@ -11,6 +11,7 @@ locals {
     "hass",
     "hajimari",
     "k8sapi",
+    "k8sdash",
     "longhorn",
     "minio",
     "nzbget",
