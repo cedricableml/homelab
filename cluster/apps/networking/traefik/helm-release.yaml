@@ -26,6 +26,7 @@ spec:
       spec:
         loadBalancerIP: "${SVC_TRAEFIK_ADDRESS}"
       annotations:
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/hostname: "traefik.${SECRET_DOMAIN}"
     logs:
       general:
