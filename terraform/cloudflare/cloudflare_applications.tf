@@ -22,7 +22,7 @@ locals {
     "resilio",
     "searx",
     "sonarr",
-    # "storage",
+    "storage",
     "tautulli",
     "unifi",
     "vault",
