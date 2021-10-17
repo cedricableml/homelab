@@ -10,6 +10,7 @@ locals {
     "grafana",
     "hass",
     "hajimari",
+    "k8sapi",
     "longhorn",
     "minio",
     "nzbget",
