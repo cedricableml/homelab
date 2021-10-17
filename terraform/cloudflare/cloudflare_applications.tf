@@ -24,6 +24,7 @@ locals {
     "sonarr",
     # "storage",
     "tautulli",
+    "unifi",
     "vault",
     "vpn"
   ]
