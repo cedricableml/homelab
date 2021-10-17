@@ -36,4 +36,5 @@ spec:
   - ".*error: ssh: handshake.*"
   - ".*error: context deadline exceeded.*"
   - ".*failed to download repository index: failed to fetch.*"
+  - ".*docker.beryju.org on .*: no such host.*"
   suspend: false
