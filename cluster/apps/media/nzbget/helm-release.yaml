@@ -48,7 +48,7 @@ spec:
         existingClaim: nzbget-config-v3
       downloads:
         enabled: true
-        existingClaim: nzbget-downloads-v3
+        existingClaim: nzbget-downloads-v4
         mountPath: /downloads
       media:
         enabled: true
