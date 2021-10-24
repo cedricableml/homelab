@@ -17,6 +17,15 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: "type"
+                  operator: In
+                  values: ["storage"]
     image:
       repository: vexorian/dizquetv
       tag: 1.5.0
@@ -60,13 +69,13 @@ spec:
         tls:
           - hosts:
               - "dizquetv.${SECRET_DOMAIN}"
-    additionalVolumeMounts:
-      - name: quicksync
-        mountPath: /dev/dri
-    additionalVolumes:
-      - name: quicksync
-        hostPath:
-          path: /dev/dri
+#    additionalVolumeMounts:
+#      - name: quicksync
+#        mountPath: /dev/dri
+#    additionalVolumes:
+#      - name: quicksync
+#        hostPath:
+#          path: /dev/dri
     podSecurityContext:
       fsGroup: 568
     persistence:
