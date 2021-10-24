@@ -5,11 +5,9 @@ locals {
     "calibre-web",
     "dizque",
     "filebrowser",
-    "filestash",
     "change-detection",
     "grafana",
     "hass",
-    "hajimari",
     "k8sapi",
     "k8sdash",
     "longhorn",
@@ -21,14 +19,11 @@ locals {
     "radarr",
     "readarr",
     "readarr-audiobooks",
-    "resilio",
-    "searx",
     "sonarr",
     "storage",
     "tautulli",
     "unifi",
     "vault",
-    "vpn"
   ]
 }
 
