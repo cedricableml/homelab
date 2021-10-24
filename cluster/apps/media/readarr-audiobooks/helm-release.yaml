@@ -46,8 +46,12 @@ spec:
         existingClaim: readarr-audiobooks-config-v3
       media:
         enabled: true
-        existingClaim: media-nfs
-        mountPath: /media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${STORAGE_ADDRESS}"
+            path: /storage/media/audiobooks
+        mountPath: /media/audiobooks
       backup:
         enabled: true
         type: custom

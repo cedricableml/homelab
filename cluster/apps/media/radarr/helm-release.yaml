@@ -46,8 +46,12 @@ spec:
         existingClaim: radarr-config-v3
       media:
         enabled: true
-        existingClaim: media-nfs
-        mountPath: /media
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${STORAGE_ADDRESS}"
+            path: /storage/media/movies
+        mountPath: /media/movies
       backup:
         enabled: true
         type: custom

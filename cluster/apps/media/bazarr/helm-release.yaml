@@ -47,7 +47,11 @@ spec:
         existingClaim: bazarr-config-v3
       media:
         enabled: true
-        existingClaim: media-nfs
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${STORAGE_ADDRESS}"
+            path: /storage/media
         mountPath: /media
     resources:
       requests:
