@@ -82,6 +82,25 @@ spec:
             port: 10001
             protocol: UDP
     ingress:
+      portal-local:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+          traefik.ingress.kubernetes.io/service.serversscheme: https
+        hosts:
+          - host: "unifi.local.${SECRET_DOMAIN}"
+            paths:
+              - ## Path. Helm template can be passed.
+                path: /
+                pathType: Prefix
+                service:
+                  name: unifi
+                  port: 8443
+        tls:
+          - hosts:
+              - "unifi.local.${SECRET_DOMAIN}"
       portal:
         enabled: true
         ingressClassName: "traefik"
