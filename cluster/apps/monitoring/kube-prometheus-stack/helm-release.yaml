@@ -52,6 +52,12 @@ spec:
           routes:
           - receiver: "null"
             match:
+              alertname: KubeCPUOvercommit
+          - receiver: "null"
+            match:
+              alertname: PrometheusRuleFailures
+          - receiver: "null"
+            match:
               alertname: Watchdog
           - receiver: "slack"
             match_re:
