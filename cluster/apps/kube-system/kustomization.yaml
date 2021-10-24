@@ -9,4 +9,5 @@ resources:
 - kured
 - metrics-server
 - node-feature-discovery
+- node-problem-detector
 - reloader
