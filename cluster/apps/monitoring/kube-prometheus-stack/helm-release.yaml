@@ -134,7 +134,7 @@ spec:
         - 10.250.1.101
         - 10.250.1.102
     kubeProxy:
-      enabled: true
+      enabled: false
       endpoints:
         - 10.250.1.100
         - 10.250.1.101
