@@ -8,3 +8,5 @@ resources:
 - wildcard-certificate
 - blocky
 - cloudflared
+- searx
+- wg-access-server
