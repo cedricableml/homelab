@@ -33,7 +33,7 @@
       net.ipv4.ip_forward = 1
       net.bridge.bridge-nf-call-iptables = 1
   when:
-   - bridge_nf_call_iptables_result.stat.exists
+    - bridge_nf_call_iptables_result.stat.exists
   register: sysctl_network
 
 - name: Reload Kubernetes network configuration

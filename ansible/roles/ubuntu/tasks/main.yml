@@ -14,7 +14,7 @@
 
 - include: network.yml
   tags:
-   - network
+    - network
 
 - include: filesystem.yml
   tags:
@@ -22,8 +22,8 @@
 
 - include: unattended-upgrades.yml
   tags:
-   - unattended-upgrades
+    - unattended-upgrades
 
 - include: user.yml
   tags:
-   - user
+    - user
