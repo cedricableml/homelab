@@ -10,3 +10,4 @@ resources:
   - promtail
   - blackbox-exporter
   - pushgateway
+  - unifi-poller
