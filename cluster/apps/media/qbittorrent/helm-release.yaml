@@ -67,8 +67,7 @@ spec:
       prometheusRule:
         enabled: true
     podSecurityContext:
-      supplementalGroups:
-        - 568
+      fsGroup: 568
     persistence:
       config:
         enabled: true
