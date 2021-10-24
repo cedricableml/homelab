@@ -9,4 +9,3 @@ resources:
 - speedtest-exporter
 - promtail
 - blackbox-exporter
-#- thanos
