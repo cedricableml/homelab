@@ -7,3 +7,4 @@ resources:
 - notification-controller
 - source-controller
 - prometheus-rule.yaml
+- pod-monitor.yaml
