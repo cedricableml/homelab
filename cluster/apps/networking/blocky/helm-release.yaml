@@ -17,6 +17,18 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - blocky
+              topologyKey: kubernetes.io/hostname
     image:
       repository: ghcr.io/0xerr0r/blocky
       tag: v0.16
