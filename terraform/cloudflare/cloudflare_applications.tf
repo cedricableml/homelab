@@ -24,6 +24,7 @@ locals {
     "tautulli",
     "unifi",
     "vault",
+    "edgerouter",
   ]
 }
 
