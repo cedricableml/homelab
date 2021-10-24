@@ -19,17 +19,17 @@ spec:
   values:
     updateStrategy: RollingUpdate
     extraEnvVars:
-    - name: slackHookUrl
-      valueFrom:
-        secretKeyRef:
-          name: kured-slack-secret
-          key: webhook
+      - name: slackHookUrl
+        valueFrom:
+          secretKeyRef:
+            name: kured-slack-secret
+            key: webhook
     configuration:
       startTime: "4:00"
       endTime: "6:00"
       timeZone: "Europe/Bucharest"
     tolerations:
-    - key: "node-role.kubernetes.io/master"
-      operator: "Exists"
+      - key: "node-role.kubernetes.io/master"
+        operator: "Exists"
     metrics:
       create: true

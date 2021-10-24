@@ -8,11 +8,11 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   endpoints:
-  - dnsName: "storage.${SECRET_DOMAIN}"
-    recordTTL: 180
-    recordType: CNAME
-    targets:
-    - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+    - dnsName: "storage.${SECRET_DOMAIN}"
+      recordTTL: 180
+      recordType: CNAME
+      targets:
+        - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
 ---
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
@@ -23,11 +23,11 @@ metadata:
   namespace: networking
 spec:
   endpoints:
-  - dnsName: "k8sapi.${SECRET_DOMAIN}"
-    recordTTL: 180
-    recordType: CNAME
-    targets:
-    - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+    - dnsName: "k8sapi.${SECRET_DOMAIN}"
+      recordTTL: 180
+      recordType: CNAME
+      targets:
+        - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
 ---
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
@@ -38,8 +38,8 @@ metadata:
   namespace: networking
 spec:
   endpoints:
-  - dnsName: "bastion.${SECRET_DOMAIN}"
-    recordTTL: 180
-    recordType: CNAME
-    targets:
-    - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+    - dnsName: "bastion.${SECRET_DOMAIN}"
+      recordTTL: 180
+      recordType: CNAME
+      targets:
+        - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"

@@ -31,13 +31,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-        - host: "bazarr.${SECRET_DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "bazarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "bazarr.${SECRET_DOMAIN}"
+          - hosts:
+              - "bazarr.${SECRET_DOMAIN}"
 
     podSecurityContext:
       fsGroup: 568
@@ -62,6 +62,6 @@ spec:
         interval: 10m
         scrapeTimeout: 2m
       volumeMounts:
-      - name: config
-        mountPath: /config
-        readOnly: true
+        - name: config
+          mountPath: /config
+          readOnly: true

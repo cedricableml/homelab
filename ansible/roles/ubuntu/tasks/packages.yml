@@ -34,6 +34,6 @@
   retries: 5
   until: apt_install_common is success
   when:
-  - packages.apt_install is defined
-  - packages.apt_install is iterable
-  - packages.apt_install | length > 0
+    - packages.apt_install is defined
+    - packages.apt_install is iterable
+    - packages.apt_install | length > 0

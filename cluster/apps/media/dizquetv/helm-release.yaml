@@ -36,13 +36,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-        - host: "dizque.${SECRET_DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "dizque.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "dizque.${SECRET_DOMAIN}"
+          - hosts:
+              - "dizque.${SECRET_DOMAIN}"
       api:
         enabled: true
         ingressClassName: "traefik"
@@ -51,22 +51,22 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
           external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
         hosts:
-        - host: "dizquetv.${SECRET_DOMAIN}"
-          paths:
-          - path: /api
-            pathType: Prefix
-          - path: /video
-            pathType: Prefix
+          - host: "dizquetv.${SECRET_DOMAIN}"
+            paths:
+              - path: /api
+                pathType: Prefix
+              - path: /video
+                pathType: Prefix
         tls:
-        - hosts:
-          - "dizquetv.${SECRET_DOMAIN}"
+          - hosts:
+              - "dizquetv.${SECRET_DOMAIN}"
     additionalVolumeMounts:
-    - name: quicksync
-      mountPath: /dev/dri
+      - name: quicksync
+        mountPath: /dev/dri
     additionalVolumes:
-    - name: quicksync
-      hostPath:
-        path: /dev/dri
+      - name: quicksync
+        hostPath:
+          path: /dev/dri
     podSecurityContext:
       fsGroup: 568
     persistence:

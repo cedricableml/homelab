@@ -7,19 +7,19 @@ metadata:
 spec:
   type: github
   events:
-  - "ping"
-  - "push"
+    - "ping"
+    - "push"
   secretRef:
     name: github-webhook-token
   resources:
-  - kind: GitRepository
-    name: flux-system
-  - kind: Kustomization
-    apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-    name: apps
-  - kind: Kustomization
-    apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-    name: core
-  - kind: Kustomization
-    apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-    name: crds
+    - kind: GitRepository
+      name: flux-system
+    - kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+      name: apps
+    - kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+      name: core
+    - kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+      name: crds

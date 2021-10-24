@@ -24,10 +24,10 @@ spec:
       JELLYFIN_CACHE_DIR: "/config/cache"
     podSecurityContext:
       supplementalGroups:
-      - 44
-      - 109
-      - 100
-      - 568
+        - 44
+        - 109
+        - 100
+        - 568
     service:
       main:
         type: LoadBalancer
@@ -42,13 +42,13 @@ spec:
           external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         hosts:
-        - host: "jellyfin.local.${SECRET_DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "jellyfin.local.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "jellyfin.local.${SECRET_DOMAIN}"
+          - hosts:
+              - "jellyfin.local.${SECRET_DOMAIN}"
     persistence:
       config:
         enabled: true

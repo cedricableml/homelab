@@ -6,18 +6,18 @@ on: # yamllint disable-line rule:truthy
   workflow_dispatch:
   push:
     branches:
-    - main
+      - main
   pull_request:
 
 jobs:
   yamllint:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
-    - name: yamllint
-      uses: reviewdog/action-yamllint@v1
-      with:
-        yamllint_flags: "-c .github/yamllint.config.yaml ./cluster"
+      - uses: actions/checkout@v2
+      - name: yamllint
+        uses: reviewdog/action-yamllint@v1
+        with:
+          yamllint_flags: "-c .github/yamllint.config.yaml ./cluster"
 #  bash:
 #    runs-on: ubuntu-20.04
 #    steps:

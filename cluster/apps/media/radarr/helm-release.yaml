@@ -31,13 +31,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-        - host: "radarr.${SECRET_DOMAIN}"
-          paths:
-          - path: /
-            pathType: Prefix
+          - host: "radarr.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
-        - hosts:
-          - "radarr.${SECRET_DOMAIN}"
+          - hosts:
+              - "radarr.${SECRET_DOMAIN}"
     podSecurityContext:
       fsGroup: 568
     persistence:

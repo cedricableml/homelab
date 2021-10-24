@@ -95,9 +95,11 @@ spec:
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
           - host: "vault.${SECRET_DOMAIN}"
-            paths: [ / ]
+            paths:
+              - /
         tls:
-          - hosts: [ "vault.${SECRET_DOMAIN}" ]
+          - hosts:
+              - "vault.${SECRET_DOMAIN}"
       resources:
         requests:
           memory: 256Mi

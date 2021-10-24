@@ -30,8 +30,8 @@ spec:
           paths:
             - /
       tls:
-      - hosts:
-        - "loki.local.${SECRET_DOMAIN}"
+        - hosts:
+            - "loki.local.${SECRET_DOMAIN}"
     serviceMonitor:
       enabled: true
     config:
@@ -50,28 +50,28 @@ spec:
     #
     # SMART Failures
     #
-    - name: smart-failure
-      rules:
-      - alert: SmartFailures
-        expr: |
-          sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
-        for: 10s
-        labels:
-          severity: critical
-          category: logs
-        annotations:
-          summary: "SMART has reported failures a drive on {{$hostname}}"
-    #
-    # *arr applications
-    #
-    - name: arr
-      rules:
-      - alert: ArrDatabaseIsLocked
-        expr: |
-          sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-        for: 10s
-        labels:
-          severity: critical
-          category: logs
-        annotations:
-          summary: "{{$app}} is experiencing locked database issues"
+      - name: smart-failure
+        rules:
+          - alert: SmartFailures
+            expr: |
+              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "SMART has reported failures a drive on {{$hostname}}"
+      #
+      # *arr applications
+      #
+      - name: arr
+        rules:
+          - alert: ArrDatabaseIsLocked
+            expr: |
+              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "{{$app}} is experiencing locked database issues"

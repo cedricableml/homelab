@@ -38,9 +38,6 @@ spec:
       kubeletRootDir: /var/lib/kubelet
     env:
       TZ: "Europe/Bucharest"
-    # envFrom:
-    # - secretRef:
-    #     name: home-assistant
     ingress:
       enabled: true
       ingressClassName: "traefik"
@@ -48,10 +45,5 @@ spec:
       annotations:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
-
-      ## Set this to true in order to enable TLS on the ingress record
-      ## A side effect of this will be that the backend service will be connected at port 443
       tls: true
-
-      ## If TLS is set to true, you must declare what secret will store the key/certificate for TLS
       tlsSecret: "longhorn-${SECRET_DOMAIN}"
