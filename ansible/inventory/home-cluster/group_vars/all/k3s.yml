@@ -18,6 +18,12 @@ k3s_use_unsupported_config: true
 # set to kube-vip/keepalived IP
 k3s_registration_address: 10.250.14.200
 
+kube-apiserver-arg:
+  - "oidc-issuer-url=https://dex.{{ lookup('env', 'SECRET_DOMAIN') }}"
+  - "oidc-client-id=dex-k8s-authenticator"
+  - "oidc-username-claim=email"
+  - "oidc-groups-claim=groups"
+
 #
 # Uncomment the config below on new installations
 # Comment after install and run `task ansible:purge-manifests`

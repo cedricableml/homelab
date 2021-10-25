@@ -72,8 +72,10 @@ spec:
             clientID: ${SECRET_GOOGLE_OAUTH_CLIENT_ID}
             clientSecret: ${SECRET_GOOGLE_OAUTH_CLIENT_SECRET}
             redirectURI: https://dex.${SECRET_DOMAIN}/callback
-            groups:
-              - admins@${SECRET_EMAIL_DOMAIN}
+            hostedDomains:
+              - ${SECRET_EMAIL_DOMAIN}
+#            groups:
+#              - admins@${SECRET_EMAIL_DOMAIN}
       staticClients:
         - id: dex-k8s-authenticator
           name: dex-k8s-authenticator
