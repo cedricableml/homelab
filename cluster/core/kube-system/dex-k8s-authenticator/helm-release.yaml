@@ -36,7 +36,7 @@ spec:
           short_description: "Homelab"
           description: "Homelab"
           client_secret: ${SECRET_DEX_K8S_AUTHENTICATOR_CLIENT_SECRET}
-          issuer: https://dex:${SECRET_DOMAIN}
+          issuer: https://dex.${SECRET_DOMAIN}
           k8s_master_uri: https://${KUBE_VIP_ADDRESS}:6443
           client_id: dex-k8s-authenticator
           redirect_uri: https://login.${SECRET_DOMAIN}/callback/
