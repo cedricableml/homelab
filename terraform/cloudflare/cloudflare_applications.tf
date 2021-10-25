@@ -25,6 +25,8 @@ locals {
     "unifi",
     "vault",
     "edgerouter",
+    "login",
+    "dex",
   ]
 }
 

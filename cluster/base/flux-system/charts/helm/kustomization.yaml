@@ -29,3 +29,5 @@ resources:
   - weaveworks-kured-charts.yaml
   - wg-access-server-charts.yaml
   - hajimari-charts.yaml
+  - mintel-dex-charts.yaml
+  - dex-charts.yaml
