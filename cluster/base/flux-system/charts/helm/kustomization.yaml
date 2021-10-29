@@ -31,3 +31,4 @@ resources:
   - hajimari-charts.yaml
   - mintel-dex-charts.yaml
   - dex-charts.yaml
+  - nextcloud-charts.yaml
