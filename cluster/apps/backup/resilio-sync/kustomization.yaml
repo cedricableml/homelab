@@ -6,3 +6,4 @@ resources:
   - volume.yaml
   - configmap.yaml
   - ingress.yaml
+  - service.yaml
