@@ -56,7 +56,7 @@ spec:
         memory: "512M"
 
     nextcloud:
-      host: cloud.${FAMILY_DOMAIN}
+      host: cloud.${SECRET_DOMAIN}
 
       existingSecret:
         enabled: true
