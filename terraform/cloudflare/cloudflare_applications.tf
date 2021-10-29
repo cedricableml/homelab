@@ -27,8 +27,6 @@ locals {
     "edgerouter",
     "login",
     "dex",
-    "sync1",
-    "sync2",
   ]
 }
 
