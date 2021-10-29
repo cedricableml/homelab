@@ -22,6 +22,16 @@ spec:
         app.kubernetes.io/instance: resilio-sync
         app.kubernetes.io/name: resilio-sync
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - preference:
+                matchExpressions:
+                  - key: type
+                    operator: In
+                    values:
+                      - storage
+              weight: 1
       containers:
         - image: ghcr.io/linuxserver/resilio-sync:version-2.7.2.1375
           name: resilio-sync-user1
