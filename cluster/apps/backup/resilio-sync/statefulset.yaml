@@ -82,11 +82,11 @@ spec:
         - name: user1-data
           nfs:
             path: /storage/media/sync1
-            server: ${STORAGE_ADDR}
+            server: ${STORAGE_ADDRESS}
         - name: user2-data
           nfs:
             path: /storage/media/sync2
-            server: ${STORAGE_ADDR}
+            server: ${STORAGE_ADDRESS}
       dnsConfig:
         options:
           - name: ndots
