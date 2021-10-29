@@ -83,7 +83,7 @@ spec:
       volumes:
         - name: config
           persistentVolumeClaim:
-            claimName: resilio-sync-config-v1
+            claimName: resilio-sync-config-v2
         - name: sync-conf-user1
           configMap:
             name: resilio-sync-user1-conf
