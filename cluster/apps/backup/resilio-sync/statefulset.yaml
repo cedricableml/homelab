@@ -91,11 +91,11 @@ spec:
             name: resilio-sync-user2-conf
         - name: user1-data
           nfs:
-            path: /storage/media/sync1
+            path: /storage/sync1
             server: ${STORAGE_ADDRESS}
         - name: user2-data
           nfs:
-            path: /storage/media/sync2
+            path: /storage/sync2
             server: ${STORAGE_ADDRESS}
       dnsConfig:
         options:
