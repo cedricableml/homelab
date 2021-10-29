@@ -5,6 +5,8 @@ metadata:
   namespace: flux-system
   name: cluster-settings
 data:
+  CLUSTER_CIDR: "10.42.0.0/16"
+  SERVICE_CIDR: "10.43.0.0/16"
   GATEWAY_ADDRESS: "10.250.0.1"
   KUBE_VIP_ADDRESS: "10.250.14.200"
   METALLB_RANGE: "10.250.14.1-10.250.14.199"

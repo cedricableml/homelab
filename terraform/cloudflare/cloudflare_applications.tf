@@ -27,6 +27,7 @@ locals {
     "edgerouter",
     "login",
     "dex",
+    "cloud",
   ]
 }
 
