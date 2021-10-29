@@ -1,0 +1,93 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: resilio-sync
+  namespace: backup
+  labels:
+    app.kubernetes.io/instance: resilio-sync
+    app.kubernetes.io/name: resilio-sync
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: resilio-sync
+      app.kubernetes.io/name: resilio-sync
+  updateStrategy:
+    type: RollingUpdate
+  serviceName: resilio-sync
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: resilio-sync
+        app.kubernetes.io/name: resilio-sync
+    spec:
+      containers:
+        - image: ghcr.io/linuxserver/resilio-sync:version-2.7.2.1375
+          name: resilio-sync-user1
+          env:
+            - name: TZ
+              value: "Europe/Bucharest"
+            - name: PUID
+              value: "568"
+            - name: PGID
+              value: "568"
+          ports:
+            - containerPort: 8888
+              name: http-user1
+            - containerPort: 55555
+              name: com-user1
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              subPath: user1
+            - name: sync-conf-user1
+              mountPath: /config/sync.conf
+              subPath: sync.conf
+            - name: user1-data
+              mountPath: /sync
+        - image: ghcr.io/linuxserver/resilio-sync:version-2.7.2.1375
+          name: resilio-sync-user2
+          env:
+            - name: TZ
+              value: "Europe/Bucharest"
+            - name: PUID
+              value: "568"
+            - name: PGID
+              value: "568"
+          ports:
+            - containerPort: 8889
+              name: http-user2
+            - containerPort: 55556
+              name: com-user2
+          volumeMounts:
+            - name: config
+              mountPath: /config
+              subPath: user2
+            - name: sync-conf-user2
+              mountPath: /config/sync.conf
+              subPath: sync.conf
+            - name: user2-data
+              mountPath: /sync
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: resilio-sync-config-v1
+        - name: sync-conf-user1
+          configMap:
+            name: resilio-sync-user1-conf
+        - name: sync-conf-user2
+          configMap:
+            name: resilio-sync-user2-conf
+        - name: user1-data
+          nfs:
+            path: /storage/media/sync1
+            server: ${STORAGE_ADDR}
+        - name: user2-data
+          nfs:
+            path: /storage/media/sync2
+            server: ${STORAGE_ADDR}
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
