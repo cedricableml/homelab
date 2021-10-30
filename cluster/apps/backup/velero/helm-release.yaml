@@ -54,6 +54,7 @@ spec:
           region: minio
           s3ForcePathStyle: true
           s3Url: http://minio.tools.svc:9000
+          publicUrl: "https://minio.${SECRET_DOMAIN}"
     credentials:
       existingSecret: minio-credentials
     schedules:
