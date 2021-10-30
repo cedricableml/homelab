@@ -13,7 +13,7 @@ spec:
     bucket: velero-restic
     prefix: homelab-velero
   config:
-    region: default
+    region: eu-central-1
     s3ForcePathStyle: "true"
     s3Url: "http://s3.eu-central-1.wasabisys.com"
     signatureVersion: "1"
@@ -28,4 +28,5 @@ spec:
   schedule: "10 6 * * 0"
   useOwnerReferencesInBackup: true
   template:
+    storageLocation: wasabi
     ttl: "336h"
