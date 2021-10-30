@@ -17,6 +17,16 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - preference:
+              matchExpressions:
+                - key: type
+                  operator: In
+                  values:
+                    - storage
+            weight: 1
     image:
       repository: ghcr.io/k8s-at-home/prowlarr
       tag: v0.1.2.1039
