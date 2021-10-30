@@ -58,7 +58,7 @@ spec:
     credentials:
       existingSecret: minio-credentials
     schedules:
-      backup-all:
+      backup-minio:
         disabled: false
         schedule: "30 4 * * *"
         useOwnerReferencesInBackup: true

@@ -16,6 +16,21 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+      pre.hook.backup.velero.io/container: fsfreeze
+      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
+      post.hook.backup.velero.io/container: fsfreeze
+      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
+    additionalContainers:
+      fsfreeze:
+        name: fsfreeze
+        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
+        volumeMounts:
+          - name: config
+            mountPath: /config
+        securityContext:
+          privileged: true
     image:
       repository: jellyfin/jellyfin
       tag: 10.7.7
