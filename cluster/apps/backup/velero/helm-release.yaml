@@ -63,4 +63,4 @@ spec:
         schedule: "30 4 * * *"
         useOwnerReferencesInBackup: true
         template:
-          ttl: "240h"
+          ttl: "48h"
