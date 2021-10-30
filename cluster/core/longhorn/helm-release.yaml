@@ -22,6 +22,7 @@ spec:
       defaultDataLocality: "best-effort"
       backupTarget: "nfs://10.250.1.100:/storage/backups/longhorn"
       defaultReplicaCount: 2
+      replicaAutoBalance: "best-effort"
       volumeAttachmentRecoveryPolicy: immediate
       nodeDownPodDeletionPolicy: delete-deployment-pod
     persistence:
