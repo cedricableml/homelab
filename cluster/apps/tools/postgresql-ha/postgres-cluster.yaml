@@ -44,9 +44,8 @@ spec:
       repos:
         - name: repo1
           schedules:
-            full: "* * * * *"
-#            full: "0 1 * * *"
-#            incremental: "0 */4 * * *"
+            full: "0 1 * * *"
+            incremental: "0 */4 * * *"
           s3:
             bucket: "pg-ha-backups"
             endpoint: minio.tools.svc:9000
