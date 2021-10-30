@@ -8,43 +8,15 @@ spec:
   credential:
     key: cloud
     name: wasabi-credentials
-  # Name of the object store plugin to use to connect to this location.
-  #
-  # Required.
   provider: velero.io/aws
   objectStorage:
-    # The bucket in which to store backups.
-    #
-    # Required.
     bucket: velero-restic
-
-    # The prefix within the bucket under which to store backups.
-    #
-    # Optional.
     prefix: homelab-velero
   config:
-    # Whether to use path-style addressing instead of virtual hosted bucket addressing. Set to "true"
-    # if using a local storage service like MinIO.
-    #
-    # Optional (defaults to "false").
+    region: default
     s3ForcePathStyle: "true"
-
-    # You can specify the AWS S3 URL here for explicitness, but Velero can already generate it from
-    # "region" and "bucket". This field is primarily for local storage services like MinIO.
-    #
-    # Optional.
     s3Url: "http://s3.eu-central-1.wasabisys.com"
-
-    # Version of the signature algorithm used to create signed URLs that are used by velero CLI to
-    # download backups or fetch logs. Possible versions are "1" and "4". Usually the default version
-    # 4 is correct, but some S3-compatible providers like Quobyte only support version 1.
-    #
-    # Optional (defaults to "4").
     signatureVersion: "1"
-
-    # AWS profile within the credentials file to use for the backup storage location.
-    #
-    # Optional (defaults to "default").
     profile: "default"
 ---
 apiVersion: velero.io/v1
