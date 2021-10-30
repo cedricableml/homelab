@@ -24,6 +24,16 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    deployRestic: true
+    restic:
+      podVolumePath: /var/lib/kubelet/pods
+      privileged: false
+      resources:
+        requests:
+          memory: 200Mi
+          cpu: 15m
+        limits:
+          memory: 3000Mi
     initContainers:
       - name: velero-plugin-for-aws
         image: velero/velero-plugin-for-aws:v1.3.0
@@ -31,7 +41,6 @@ spec:
         volumeMounts:
           - mountPath: /target
             name: plugins
-    deployRestic: false
     serviceMonitor:
       enabled: true
     configuration:
