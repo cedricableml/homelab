@@ -43,6 +43,10 @@ spec:
         repo1-path: /pgbackrest/postgres-operator/pg-ha/repo1
       repos:
         - name: repo1
+          schedules:
+            full: "* * * * *"
+#            full: "0 1 * * *"
+#            incremental: "0 */4 * * *"
           s3:
             bucket: "pg-ha-backups"
             endpoint: "http://minio.tools.svc:9000"
