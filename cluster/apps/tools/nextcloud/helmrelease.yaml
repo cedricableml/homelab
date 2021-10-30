@@ -20,13 +20,12 @@ spec:
     affinity:
       nodeAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
-          - preference:
+          - weight: 1
+            preference:
               matchExpressions:
-                - key: type
+                - key: "type"
                   operator: In
-                  values:
-                    - storage
-            weight: 1
+                  values: ["storage"]
     image:
       repository: nextcloud
       tag: "22.2.0"
