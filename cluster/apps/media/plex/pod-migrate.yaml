@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: plex-migrate
+  namespace: media
+spec:
+  nodeSelector:
+    type: storage
+  containers:
+    - name: ubuntu
+      image: ubuntu:latest
+      command: ["/bin/bash", "-c", "--"]
+      args: ["while true; do sleep 30; done;"]
+      volumeMounts:
+        - mountPath: /old
+          name: plex-old
+        - mountPath: /new
+          name: plex-new
+  volumes:
+    - name: plex-new
+      persistentVolumeClaim:
+        claimName: plex-library-config-v1
+    - name: plex-old
+      hostPath:
+        path: /var/lib/plexmediaserver
