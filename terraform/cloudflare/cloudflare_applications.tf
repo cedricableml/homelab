@@ -27,12 +27,12 @@ locals {
     "edgerouter",
     "login",
     "dex",
-#    "cloud",
+    #    "cloud",
   ]
 }
 
 resource "cloudflare_access_application" "app" {
-  for_each = { for app in local.apps : app => app }
+  for_each = {for app in local.apps : app => app}
 
   zone_id                   = var.zone_id
   name                      = each.value
@@ -53,6 +53,6 @@ resource "cloudflare_access_policy" "policy" {
   decision   = "allow"
 
   include {
-    email_domain  = [var.email_domain]
+    email_domain = [var.email_domain]
   }
 }
