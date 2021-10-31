@@ -27,7 +27,8 @@ locals {
     "edgerouter",
     "login",
     "dex",
-    #    "cloud",
+    "falcosidekick-ui",
+    "falcosidekick",
   ]
 }
 
