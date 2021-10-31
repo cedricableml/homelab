@@ -113,12 +113,6 @@ spec:
               enabled: true
     kubelet:
       enabled: true
-      serviceMonitor:
-        metricRelabelings:
-          - action: replace
-            sourceLabels:
-              - node
-            targetLabel: instance
     kubeApiServer:
       enabled: true
     kubeControllerManager:
