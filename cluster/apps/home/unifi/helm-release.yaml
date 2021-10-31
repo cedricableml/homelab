@@ -24,6 +24,15 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: "type"
+                  operator: In
+                  values: ["storage"]
     image:
       repository: jacobalberty/unifi
       tag: v6.4.54
