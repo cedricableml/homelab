@@ -45,7 +45,7 @@ spec:
       repository: ghcr.io/linuxserver/calibre
       tag: version-v5.29.0
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     persistence:
       config:
         enabled: true

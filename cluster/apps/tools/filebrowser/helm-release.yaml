@@ -46,7 +46,7 @@ spec:
       FB_ROOT: "/media"
       FB_LOG: "stdout"
       FB_NOAUTH: "true"
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     service:
       main:
         ports:

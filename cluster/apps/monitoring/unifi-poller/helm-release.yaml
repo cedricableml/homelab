@@ -21,7 +21,7 @@ spec:
       repository: ghcr.io/k8s-at-home/unpoller
       tag: 2.1.3
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
 #      UP_UNIFI_DEFAULT_ROLE: "unifipoller"
       UP_UNIFI_DEFAULT_URL: "https://unifi.home:8443"
       UP_UNIFI_DEFAULT_VERIFY_SSL: false

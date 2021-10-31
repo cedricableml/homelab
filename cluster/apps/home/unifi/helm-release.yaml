@@ -38,7 +38,7 @@ spec:
       tag: v6.4.54
     podSecurityContext:
       fsGroup: 2000
-    timezone: Europe/Bucharest
+    timezone: ${TZ}
     service:
       main:
         type: LoadBalancer

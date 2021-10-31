@@ -37,7 +37,6 @@ spec:
       VAR_BLOCKY_URL: "http://blocky.networking.svc.cluster.local:4000"
       GF_AUTH_GOOGLE_CLIENT_ID: "${SECRET_GOOGLE_OAUTH_CLIENT_ID}"
       GF_AUTH_GOOGLE_CLIENT_SECRET: "${SECRET_GOOGLE_OAUTH_CLIENT_SECRET}"
-    adminPassword: "${SECRET_GRAFANA_PASSWORD}"
     grafana.ini:
       server:
         root_url: "https://grafana.${SECRET_DOMAIN}"

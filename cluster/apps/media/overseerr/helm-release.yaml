@@ -36,7 +36,7 @@ spec:
       repository: ghcr.io/sct/overseerr
       tag: 1.27.0
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     ingress:
       main:
         primary: true

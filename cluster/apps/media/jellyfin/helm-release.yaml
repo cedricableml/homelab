@@ -35,7 +35,7 @@ spec:
       repository: jellyfin/jellyfin
       tag: 10.7.7
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
       JELLYFIN_CACHE_DIR: "/config/cache"
     podSecurityContext:
       supplementalGroups:

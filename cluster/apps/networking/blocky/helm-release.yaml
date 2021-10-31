@@ -38,7 +38,7 @@ spec:
       strategy: RollingUpdate
       replicas: 3
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     metrics:
       enabled: true
       serviceMonitor:

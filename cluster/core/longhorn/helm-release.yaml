@@ -38,7 +38,7 @@ spec:
       # kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
       kubeletRootDir: /var/lib/kubelet
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     ingress:
       enabled: true
       ingressClassName: "traefik"

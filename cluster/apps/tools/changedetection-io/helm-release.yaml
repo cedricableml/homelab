@@ -22,7 +22,7 @@ spec:
     env:
       BASE_URL: "https://change-detection.${SECRET_DOMAIN}"
       WEBDRIVER_URL: http://localhost:4444/wd/hub
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     service:
       main:
         ports:

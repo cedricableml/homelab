@@ -45,7 +45,7 @@ spec:
       repository: ghcr.io/k8s-at-home/radarr
       tag: v3.2.2.5080
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
     ingress:
       main:
         primary: true

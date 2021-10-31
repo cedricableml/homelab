@@ -45,7 +45,7 @@ spec:
       repository: ghcr.io/linuxserver/calibre-web
       tag: version-0.6.13
     env:
-      TZ: "Europe/Bucharest"
+      TZ: "${TZ}"
       DOCKER_MODS: "linuxserver/calibre-web:calibre"
     persistence:
       config:
