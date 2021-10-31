@@ -195,7 +195,7 @@ spec:
           volumeClaimTemplate:
             metadata:
               annotations:
-                velero.io/exclude-from-backup: true
+                velero.io/exclude-from-backup: "true"
             spec:
               storageClassName: "longhorn"
               resources:

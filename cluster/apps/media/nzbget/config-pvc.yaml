@@ -5,7 +5,7 @@ metadata:
   name: nzbget-downloads-v4
   namespace: media
   annotations:
-    velero.io/exclude-from-backup: true
+    velero.io/exclude-from-backup: "true"
 spec:
   accessModes:
     - ReadWriteOnce
