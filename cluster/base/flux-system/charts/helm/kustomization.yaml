@@ -13,6 +13,7 @@ resources:
   - ingress-nginx-charts.yaml
   - jetstack-charts.yaml
   - k8s-at-home-charts.yaml
+  - falco-security-charts.yaml
   - kasten-charts.yaml
   - kubernetes-sigs-descheduler-charts.yaml
   - lwolf-charts.yaml
