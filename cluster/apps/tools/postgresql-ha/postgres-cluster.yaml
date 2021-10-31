@@ -48,7 +48,7 @@ spec:
             incremental: "0 */4 * * *"
           s3:
             bucket: "pg-ha-backups"
-            endpoint: "s3.local.${SECRET_DOMAIN}"
+            endpoint: minio.tools.svc:9000
             region: "minio"
   proxy:
     pgBouncer:
