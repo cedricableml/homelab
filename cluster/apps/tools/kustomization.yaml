@@ -7,4 +7,3 @@ resources:
   - minio
   - postgresql-ha
   - vault
-#  - nextcloud
