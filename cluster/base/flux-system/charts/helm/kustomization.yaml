@@ -33,3 +33,4 @@ resources:
   - mintel-dex-charts.yaml
   - dex-charts.yaml
   - nextcloud-charts.yaml
+  - newrelic-charts.yaml
