@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       # renovate: registryUrl=https://helm-charts.newrelic.com
-      chart: newrelic/nri-bundle
+      chart: nri-bundle
       version: 3.2.2
       sourceRef:
         kind: HelmRepository
