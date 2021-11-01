@@ -37,7 +37,6 @@ spec:
     pixie-chart:
       enabled: true
       deployOLM: false
-      olmOperatorNamespace: operators
       deployKey: "${SECRET_NEWRELIC_PIXIE_DEPLOYKEY}"
       clusterName: homelab
       pod:
