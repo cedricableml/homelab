@@ -20,7 +20,7 @@ spec:
     global:
       cluster: homelab
       licenseKey: "${SECRET_NEWRELIC_LICENSE_KEY}"
-      lowDataMode: false
+      lowDataMode: true
     newrelic-infrastructure:
       privileged: true
     ksm:
@@ -36,5 +36,15 @@ spec:
       apiKey: "${SECRET_NEWRELIC_PIXIE_APIKEY}"
     pixie-chart:
       enabled: true
+      deployOLM: false
+      olmOperatorNamespace: operators
       deployKey: "${SECRET_NEWRELIC_PIXIE_DEPLOYKEY}"
       clusterName: homelab
+      pod:
+        resources:
+          limits:
+            cpu: 500m
+            memory: 7Gi
+          requests:
+            cpu: 100m
+            memory: 5Gi
