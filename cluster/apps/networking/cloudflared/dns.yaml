@@ -17,6 +17,36 @@ spec:
 apiVersion: externaldns.k8s.io/v1alpha1
 kind: DNSEndpoint
 metadata:
+  name: nuc1
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+spec:
+  endpoints:
+    - dnsName: "nuc1.${SECRET_DOMAIN}"
+      recordTTL: 180
+      recordType: CNAME
+      targets:
+        - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
+  name: nuc2
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+spec:
+  endpoints:
+    - dnsName: "nuc2.${SECRET_DOMAIN}"
+      recordTTL: 180
+      recordType: CNAME
+      targets:
+        - "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+---
+apiVersion: externaldns.k8s.io/v1alpha1
+kind: DNSEndpoint
+metadata:
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
   name: k8sapi
