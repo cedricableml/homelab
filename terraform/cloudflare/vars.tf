@@ -8,11 +8,6 @@ variable "cloudflare_account_id" {
   sensitive = true
 }
 
-variable "cloudflare_api_key" {
-  type      = string
-  sensitive = true
-}
-
 variable "cloudflare_argo_tunnel_secret" {
   type      = string
   sensitive = true

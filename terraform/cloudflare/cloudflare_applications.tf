@@ -197,6 +197,17 @@ resource "cloudflare_access_policy" "gsuite" {
       email_domain = [var.email_domain]
     }
   }
+}
+
+resource "cloudflare_access_policy" "cert" {
+  for_each = {for app in local.apps : app.subdomain => app}
+
+  zone_id        = var.zone_id
+  application_id = cloudflare_access_application.app[each.value.subdomain].id
+
+  name       = "allow mtls cert"
+  precedence = "20"
+  decision   = "allow"
 
   dynamic "include" {
     for_each = each.value.certificate == true ? [1] : []
@@ -204,14 +215,6 @@ resource "cloudflare_access_policy" "gsuite" {
       certificate = true
     }
   }
-
-#  include {
-#    email_domain = [var.email_domain]
-#  }
-#
-#  include {
-#    certificate = true
-#  }
 }
 
 resource "cloudflare_access_mutual_tls_certificate" "mtls" {
