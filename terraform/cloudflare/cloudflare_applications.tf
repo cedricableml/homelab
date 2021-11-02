@@ -170,3 +170,9 @@ resource "cloudflare_access_policy" "gsuite" {
     }
   }
 }
+
+resource "cloudflare_access_service_token" "token" {
+  for_each = {for app in local.apps : app.subdomain => app}
+  account_id = var.cloudflare_account_id
+  name       = each.value.subdomain
+}
