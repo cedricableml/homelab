@@ -18,6 +18,10 @@ data:
         proxyType: socks
     - hostname: "storage.${SECRET_DOMAIN}"
       service: ssh://10.250.1.100:22
+    - hostname: "nuc1.${SECRET_DOMAIN}"
+      service: ssh://10.250.1.101:22
+    - hostname: "nuc2.${SECRET_DOMAIN}"
+      service: ssh://10.250.1.102:22
     - hostname: "bastion.${SECRET_DOMAIN}"
       service: bastion
     - hostname: "*.${SECRET_DOMAIN}"

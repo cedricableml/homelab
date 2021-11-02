@@ -100,6 +100,16 @@ locals {
       gsuite    = true
     },
     {
+      subdomain = "nuc1"
+      type      = "ssh"
+      gsuite    = true
+    },
+    {
+      subdomain = "nuc2"
+      type      = "ssh"
+      gsuite    = true
+    },
+    {
       subdomain = "tautulli"
       type      = "self_hosted"
       gsuite    = true
