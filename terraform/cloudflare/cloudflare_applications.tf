@@ -169,14 +169,25 @@ resource "cloudflare_access_policy" "gsuite" {
       email_domain = [var.email_domain]
     }
   }
-
-  include {
-    any_valid_service_token = true
-  }
 }
 
 resource "cloudflare_access_service_token" "token" {
   for_each = {for app in local.apps : app.subdomain => app}
   account_id = var.cloudflare_account_id
   name       = each.value.subdomain
+}
+
+resource "cloudflare_access_policy" "token" {
+  for_each = {for app in local.apps : app.subdomain => app}
+
+  zone_id        = var.zone_id
+  application_id = cloudflare_access_application.app[each.value.subdomain].id
+
+  name       = "allow any service token"
+  precedence = "5"
+  decision   = "allow"
+
+  include {
+    service_token = [each.value.subdomain]
+  }
 }
