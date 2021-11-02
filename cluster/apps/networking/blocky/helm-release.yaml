@@ -74,6 +74,9 @@ spec:
         refreshPeriod: 60
         blackLists:
           ads:
+          # https://energized.pro/
+          - https://energized.pro/ultimate/formats/filter
+          - https://energized.pro/extensions/regional/formats/filter
           # https://oisd.nl/
           - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
           # filter
