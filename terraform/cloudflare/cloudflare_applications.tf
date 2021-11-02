@@ -1,143 +1,143 @@
 locals {
   apps = [
     {
-      subdomain   = "bazarr"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "bazarr"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "calibre"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "calibre"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "calibre-web"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "calibre-web"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "dizque"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "dizque"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "filebrowser"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "filebrowser"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "change-detection"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "change-detection"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "grafana"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "grafana"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "hass"
-      type        = "self_hosted"
-      gsuite      = true
-    },{
-      subdomain   = "k8sapi"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "hass"
+      type      = "self_hosted"
+      gsuite    = true
+    }, {
+      subdomain = "k8sapi"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "longhorn"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "longhorn"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "minio"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "minio"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "nzbget"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "nzbget"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "plex-requests"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "plex-requests"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "prowlarr"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "prowlarr"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "qbittorrent"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "qbittorrent"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "radarr"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "radarr"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "readarr"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "readarr"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "readarr-audiobooks"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "readarr-audiobooks"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "sonarr"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "sonarr"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "storage"
-      type        = "ssh"
-      gsuite      = true
+      subdomain = "storage"
+      type      = "ssh"
+      gsuite    = true
     },
     {
-      subdomain   = "tautulli"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "tautulli"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "unifi"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "unifi"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "vault"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "vault"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "edgerouter"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "edgerouter"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "login"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "login"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "dex"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "dex"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "falcosidekick-ui"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "falcosidekick-ui"
+      type      = "self_hosted"
+      gsuite    = true
     },
     {
-      subdomain   = "falcosidekick"
-      type        = "self_hosted"
-      gsuite      = true
+      subdomain = "falcosidekick"
+      type      = "self_hosted"
+      gsuite    = true
     },
   ]
 }
@@ -172,7 +172,7 @@ resource "cloudflare_access_policy" "gsuite" {
 }
 
 resource "cloudflare_access_service_token" "token" {
-  for_each = {for app in local.apps : app.subdomain => app}
+  for_each   = {for app in local.apps : app.subdomain => app}
   account_id = var.cloudflare_account_id
   name       = each.value.subdomain
 }
