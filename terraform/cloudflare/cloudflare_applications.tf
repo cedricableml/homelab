@@ -185,9 +185,9 @@ resource "cloudflare_access_policy" "token" {
 
   name       = "allow any service token"
   precedence = "5"
-  decision   = "allow"
+  decision   = "non_identity"
 
   include {
-    service_token = [each.value.subdomain]
+    service_token = [cloudflare_access_service_token.token[each.value.subdomain].id]
   }
 }
