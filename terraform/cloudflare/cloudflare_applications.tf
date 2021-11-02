@@ -169,6 +169,10 @@ resource "cloudflare_access_policy" "gsuite" {
       email_domain = [var.email_domain]
     }
   }
+
+  include {
+    any_valid_service_token = true
+  }
 }
 
 resource "cloudflare_access_service_token" "token" {
