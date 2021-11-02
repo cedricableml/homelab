@@ -218,7 +218,7 @@ resource "cloudflare_access_policy" "cert" {
 }
 
 resource "cloudflare_access_mutual_tls_certificate" "mtls" {
-  account_id           = var.cloudflare_account_id
+  zone_id              = var.zone_id
   name                 = "Root CA"
   certificate          = var.ca_pem
 #  associated_hostnames = [".*.${var.domain}"]
