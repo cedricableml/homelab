@@ -28,7 +28,7 @@ spec:
                   values: ["storage"]
     image:
       repository: ghcr.io/home-assistant/home-assistant
-      tag: 2021.10.7
+      tag: 2021.11.0
     env:
       TZ: "${TZ}"
     hostNetwork: true
