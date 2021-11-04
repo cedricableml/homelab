@@ -94,6 +94,11 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
+        # Ref: https://grafana.com/grafana/dashboards/1860
+        nodeexporter:
+          gnetId: 1860
+          revision: 23
+          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/13502
         minio:
           gnetId: 13502
