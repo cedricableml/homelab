@@ -50,9 +50,14 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
+          - host: "requests.${SECRET_DOMAIN_CASA}"
+            paths:
+              - path: /
+                pathType: Prefix
         tls:
           - hosts:
               - "plex-requests.${SECRET_DOMAIN}"
+              - "requests.${SECRET_DOMAIN_CASA}"
     persistence:
       config:
         enabled: true

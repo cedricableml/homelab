@@ -65,6 +65,11 @@ locals {
       gsuite    = true
     },
     {
+      subdomain = "requests"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
       subdomain = "prowlarr"
       type      = "self_hosted"
       gsuite    = true
