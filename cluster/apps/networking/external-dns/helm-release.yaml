@@ -33,6 +33,7 @@ spec:
     txtPrefix: "k8s."
     domainFilters:
       - "${SECRET_DOMAIN}"
+      - "${SECRET_DOMAIN_CASA}"
     crd:
       create: false
       apiversion: externaldns.k8s.io/v1alpha1

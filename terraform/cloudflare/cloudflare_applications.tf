@@ -201,3 +201,32 @@ resource "cloudflare_access_policy" "token" {
     service_token = [cloudflare_access_service_token.token[each.value.subdomain].id]
   }
 }
+
+resource "cloudflare_access_application" "app_casa" {
+  for_each = {for app in local.apps : app.subdomain => app}
+
+  zone_id                   = var.zone_id
+  name                      = each.value.subdomain
+  domain                    = "${each.value.subdomain}.${var.domain_casa}"
+  type                      = each.value.type
+  session_duration          = "240h"
+  auto_redirect_to_identity = true
+}
+
+resource "cloudflare_access_policy" "gsuite_casa" {
+  for_each = {for app in local.apps : app.subdomain => app}
+
+  zone_id        = var.zone_id
+  application_id = cloudflare_access_application.app_casa[each.value.subdomain].id
+
+  name       = "allow ${var.email_domain}"
+  precedence = "10"
+  decision   = "allow"
+
+  dynamic "include" {
+    for_each = each.value.gsuite == true ? [1] : []
+    content {
+      email_domain = [var.email_domain]
+    }
+  }
+}
