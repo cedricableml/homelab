@@ -94,6 +94,11 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
+        temperature:
+          # Ref: https://grafana.com/grafana/dashboards/12950
+          gnetId: 12950
+          revision: 2
+          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/1860
         nodeexporter:
           gnetId: 1860
