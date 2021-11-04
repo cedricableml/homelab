@@ -28,6 +28,11 @@ variable "zone_id" {
   sensitive = true
 }
 
+variable "zone_id_casa" {
+  type      = string
+  sensitive = true
+}
+
 variable "email_domain" {
   type      = string
   sensitive = true

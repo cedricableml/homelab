@@ -205,7 +205,7 @@ resource "cloudflare_access_policy" "token" {
 resource "cloudflare_access_application" "app_casa" {
   for_each = {for app in local.apps : app.subdomain => app}
 
-  zone_id                   = var.zone_id
+  zone_id                   = var.zone_id_casa
   name                      = each.value.subdomain
   domain                    = "${each.value.subdomain}.${var.domain_casa}"
   type                      = each.value.type
@@ -216,7 +216,7 @@ resource "cloudflare_access_application" "app_casa" {
 resource "cloudflare_access_policy" "gsuite_casa" {
   for_each = {for app in local.apps : app.subdomain => app}
 
-  zone_id        = var.zone_id
+  zone_id        = var.zone_id_casa
   application_id = cloudflare_access_application.app_casa[each.value.subdomain].id
 
   name       = "allow ${var.email_domain}"
