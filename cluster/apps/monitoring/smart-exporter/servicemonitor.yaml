@@ -1,0 +1,19 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: smart-exporter
+  namespace: monitoring
+  labels:
+    app.kubernetes.io/name: smart-exporter
+spec:
+  endpoints:
+    - path: /
+      targetPort: 9902
+  jobLabel: smart-exporter
+  namespaceSelector:
+    matchNames:
+      - monitoring
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: smart-exporter

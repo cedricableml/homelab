@@ -94,8 +94,13 @@ spec:
             url: http://loki:3100
     dashboards:
       default:
+        # Ref: https://grafana.com/grafana/dashboards/14062
+        smart:
+          gnetId: 14062
+          revision: 2
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/13177
         ipmi:
-          # Ref: https://grafana.com/grafana/dashboards/13177
           gnetId: 13177
           revision: 1
           datasource: Prometheus
