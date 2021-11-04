@@ -64,14 +64,14 @@ spec:
             paths:
               - path: /
                 pathType: Prefix
-          - host: "dizque.${SECRET_DOMAIN_CASA}"
+          - host: "tv.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - "dizque.${SECRET_DOMAIN}"
-              - "dizque.${SECRET_DOMAIN_CASA}"
+              - "tv.${SECRET_DOMAIN_CASA}"
       api:
         enabled: true
         ingressClassName: "traefik"

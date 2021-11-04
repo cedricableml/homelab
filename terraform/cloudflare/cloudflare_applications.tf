@@ -154,6 +154,11 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "tv"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
 }
 
