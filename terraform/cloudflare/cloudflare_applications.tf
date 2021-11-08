@@ -135,16 +135,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "login"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "dex"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "falcosidekick-ui"
       type      = "self_hosted"
       gsuite    = true
