@@ -53,6 +53,8 @@ spec:
         mode: console
       grafana_net:
         url: https://grafana.net
+      auth:
+        oauth_auto_login: true
       auth.basic:
         enabled: false
         disable_login_form: true
