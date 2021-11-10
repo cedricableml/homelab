@@ -18,6 +18,8 @@ spec:
       interval: 5m
   values:
     defaultSettings:
+      guaranteedEngineManagerCPU: 1
+      guaranteedReplicaManagerCPU: 1
       defaultDataPath: "/longhorn"
       defaultDataLocality: "best-effort"
       backupTarget: "nfs://10.250.1.100:/storage/backups/longhorn"
