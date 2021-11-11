@@ -46,15 +46,15 @@ spec:
           - name: "nuc1"
             devices:
               - name: "nvme0n1p3"
-#          - name: "nuc2"
-#            devices:
-#              - name: "nvme0n1p3"
+          - name: "nuc2"
+            devices:
+              - name: "nvme0n1p3"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
           failureDomain: host
           replicated:
-            size: 2
+            size: 3
         storageClass:
           enabled: true
           name: ceph-block
