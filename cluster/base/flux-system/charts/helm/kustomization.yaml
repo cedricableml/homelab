@@ -34,3 +34,4 @@ resources:
   - dex-charts.yaml
   - nextcloud-charts.yaml
   - newrelic-charts.yaml
+  - rook-ceph-charts.yaml
