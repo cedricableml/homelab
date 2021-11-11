@@ -52,7 +52,8 @@ spec:
     cephBlockPools:
       - name: ceph-blockpool
         spec:
-          failureDomain: host
+          useAllNodes: false
+          useAllDevices: false
           replicated:
             size: 3
         storageClass:
