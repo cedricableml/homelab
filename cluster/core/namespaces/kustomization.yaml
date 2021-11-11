@@ -17,3 +17,4 @@ resources:
   - databases.yaml
   - falco-system.yaml
   - newrelic.yaml
+  - rook-ceph.yaml
