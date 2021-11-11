@@ -5,6 +5,13 @@ metadata:
   name: rook-ceph-cluster
   namespace: rook-ceph
 spec:
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
   interval: 5m
   chart:
     spec:
