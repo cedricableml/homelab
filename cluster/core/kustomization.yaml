@@ -9,3 +9,4 @@ resources:
   - longhorn
   - metallb
   - olm
+  - rook-ceph
