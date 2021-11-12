@@ -15,7 +15,7 @@ spec:
   config:
     region: eu-central-1
 #    s3ForcePathStyle: "true"
-    s3Url: "http://s3.eu-central-1.wasabisys.com"
+    s3Url: "https://s3.eu-central-1.wasabisys.com"
     signatureVersion: "1"
     profile: "default"
 ---
