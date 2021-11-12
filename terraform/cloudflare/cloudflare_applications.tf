@@ -16,11 +16,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "dizque"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "filebrowser"
       type      = "self_hosted"
       gsuite    = true
@@ -56,11 +51,6 @@ locals {
     },
     {
       subdomain = "nzbget"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "plex-requests"
       type      = "self_hosted"
       gsuite    = true
     },
@@ -149,37 +139,14 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "rook"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
 }
 
-resource "cloudflare_access_application" "app" {
-  for_each = {for app in local.apps : app.subdomain => app}
-
-  zone_id                   = var.zone_id
-  name                      = each.value.subdomain
-  domain                    = "${each.value.subdomain}.${var.domain}"
-  type                      = each.value.type
-  session_duration          = "240h"
-  auto_redirect_to_identity = true
-}
-
-resource "cloudflare_access_policy" "gsuite" {
-  for_each = {for app in local.apps : app.subdomain => app}
-
-  zone_id        = var.zone_id
-  application_id = cloudflare_access_application.app[each.value.subdomain].id
-
-  name       = "allow ${var.email_domain}"
-  precedence = "10"
-  decision   = "allow"
-
-  dynamic "include" {
-    for_each = each.value.gsuite == true ? [1] : []
-    content {
-      email_domain = [var.email_domain]
-    }
-  }
-}
 
 resource "cloudflare_access_service_token" "token" {
   for_each   = {for app in local.apps : app.subdomain => app}
