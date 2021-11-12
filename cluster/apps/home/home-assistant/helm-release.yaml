@@ -72,7 +72,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: home-assistant-config-v3
+        existingClaim: home-assistant-config-v4
         volumeMounts:
           - name: config
             mountPath: /config

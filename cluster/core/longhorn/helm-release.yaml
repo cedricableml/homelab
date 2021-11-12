@@ -17,19 +17,30 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    longhornManager:
+      nodeSelector:
+        type: storage
+    longhornDriver:
+      nodeSelector:
+        type: storage
+    longhornUI:
+      nodeSelector:
+        type: storage
     defaultSettings:
+      systemManagedComponentsNodeSelector:
+        type: storage
       guaranteedEngineManagerCPU: 1
       guaranteedReplicaManagerCPU: 1
       defaultDataPath: "/longhorn"
       defaultDataLocality: "best-effort"
       backupTarget: "nfs://10.250.1.100:/storage/backups/longhorn"
-      defaultReplicaCount: 2
+      defaultReplicaCount:
       replicaAutoBalance: "best-effort"
       volumeAttachmentRecoveryPolicy: immediate
       nodeDownPodDeletionPolicy: delete-deployment-pod
     persistence:
-      defaultClass: true
-      defaultClassReplicaCount: 2
+      defaultClass: false
+      defaultClassReplicaCount: 1
       defaultDataLocality: "best-effort"
       defaultClassDataLocality: "best-effort"
       reclaimPolicy: Retain
