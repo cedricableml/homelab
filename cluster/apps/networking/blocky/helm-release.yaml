@@ -71,7 +71,7 @@ spec:
       clientLookup:
         upstream: tcp+udp:${GATEWAY_ADDRESS}
       blocking:
-        refreshPeriod: 60
+        refreshPeriod: 600
         blackLists:
           ads:
           # https://energized.pro/
