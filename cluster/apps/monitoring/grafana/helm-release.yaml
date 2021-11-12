@@ -55,6 +55,7 @@ spec:
         url: https://grafana.net
       auth:
         oauth_auto_login: true
+      users:
         auto_assign_org: true
         auto_assign_org_role: Admin
       auth.basic:
