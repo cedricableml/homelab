@@ -45,6 +45,8 @@ spec:
       enabled: true
     configuration:
       provider: aws
+      extraEnvVars:
+        TZ: "${TZ}"
       backupStorageLocation:
         name: aws
         default: true
