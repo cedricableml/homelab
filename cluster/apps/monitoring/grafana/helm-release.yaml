@@ -202,7 +202,7 @@ spec:
       create: true
       autoMount: true
     persistence:
-      enabled: true
+      enabled: false
       storageClassName: ceph-block
       size: 10Gi
       accessModes:
