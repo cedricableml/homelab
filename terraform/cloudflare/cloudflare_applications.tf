@@ -158,7 +158,7 @@ resource "cloudflare_access_policy" "token" {
   for_each = {for app in local.apps : app.subdomain => app}
 
   zone_id        = var.zone_id
-  application_id = cloudflare_access_application.app[each.value.subdomain].id
+  application_id = cloudflare_access_application.app_casa[each.value.subdomain].id
 
   name       = "allow any service token"
   precedence = "5"
