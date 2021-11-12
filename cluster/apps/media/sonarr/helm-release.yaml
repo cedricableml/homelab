@@ -52,7 +52,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config-v3
+        existingClaim: sonarr-config-v4
       media:
         enabled: true
         type: custom
