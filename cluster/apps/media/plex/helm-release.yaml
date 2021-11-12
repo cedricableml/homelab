@@ -64,8 +64,10 @@ spec:
       requests:
         cpu: 2500m
         memory: 2Gi
+        gpu.intel.com/i915: 1
       limits:
         memory: 16000Mi
+        gpu.intel.com/i915: 1
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-promtail"
       backup.velero.io/backup-volumes: config
