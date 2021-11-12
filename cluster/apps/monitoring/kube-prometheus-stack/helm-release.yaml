@@ -86,7 +86,7 @@ spec:
         storage:
           volumeClaimTemplate:
             spec:
-              storageClassName: "longhorn"
+              storageClassName: "ceph-block"
               resources:
                 requests:
                   storage: 1Gi
@@ -191,7 +191,7 @@ spec:
               annotations:
                 velero.io/exclude-from-backup: "true"
             spec:
-              storageClassName: "longhorn"
+              storageClassName: "ceph-block"
               resources:
                 requests:
                   storage: 20Gi

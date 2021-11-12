@@ -126,11 +126,6 @@ spec:
           gnetId: 14127
           revision: 1
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13032
-        longhorn:
-          gnetId: 13032
-          revision: 0
-          datasource: Prometheus
         unifi-client-insights:
           gnetId: 11315
           revision: 8
@@ -208,7 +203,7 @@ spec:
       autoMount: true
     persistence:
       enabled: true
-      storageClassName: longhorn
+      storageClassName: ceph-block
       size: 10Gi
       accessModes:
         - ReadWriteOnce

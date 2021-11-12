@@ -4,8 +4,6 @@ kind: PersistentVolumeClaim
 metadata:
   name: filebrowser-config-v1
   namespace: tools
-  labels:
-    kasten.io/backup-volume: "enabled"
 spec:
   accessModes:
     - ReadWriteOnce
@@ -13,3 +11,16 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: filebrowser-config-v2
+  namespace: tools
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: ceph-block
