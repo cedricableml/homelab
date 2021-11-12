@@ -14,7 +14,7 @@ spec:
     prefix: homelab-velero
   config:
     region: eu-central-1
-    s3ForcePathStyle: "true"
+#    s3ForcePathStyle: "true"
     s3Url: "http://s3.eu-central-1.wasabisys.com"
     signatureVersion: "1"
     profile: "default"
