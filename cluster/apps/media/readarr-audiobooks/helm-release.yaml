@@ -52,7 +52,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: readarr-audiobooks-config-v3
+        existingClaim: readarr-audiobooks-config-v4
       media:
         enabled: true
         type: custom
