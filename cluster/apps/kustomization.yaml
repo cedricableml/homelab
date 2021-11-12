@@ -12,4 +12,4 @@ resources:
   - system-upgrade
   - tools
   - operators
-  - falco-system
+#  - falco-system
