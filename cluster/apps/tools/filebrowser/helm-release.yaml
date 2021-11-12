@@ -75,7 +75,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: filebrowser-config-v1
+        existingClaim: filebrowser-config-v2
       media:
         enabled: true
         type: custom

@@ -50,7 +50,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: calibre-web-config
+        existingClaim: calibre-web-config-v2
       library:
         enabled: true
         existingClaim: calibre-library
