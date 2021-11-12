@@ -27,7 +27,7 @@ spec:
     deployRestic: true
     restic:
       podVolumePath: /var/lib/kubelet/pods
-      privileged: false
+      privileged: true
       resources:
         requests:
           memory: 200Mi
