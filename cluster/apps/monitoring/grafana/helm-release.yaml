@@ -41,7 +41,7 @@ spec:
       GF_AUTH_GOOGLE_CLIENT_SECRET: "${SECRET_GOOGLE_OAUTH_CLIENT_SECRET}"
     grafana.ini:
       server:
-        root_url: "https://grafana.${SECRET_DOMAIN}"
+        root_url: "https://grafana.${SECRET_DOMAIN_CASA}"
       paths:
         data: /var/lib/grafana/data
         logs: /var/log/grafana
@@ -212,10 +212,10 @@ spec:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
       hosts:
-        - "grafana.${SECRET_DOMAIN}"
+        - "grafana.${SECRET_DOMAIN_CASA}"
       tls:
         - hosts:
-            - "grafana.${SECRET_DOMAIN}"
+            - "grafana.${SECRET_DOMAIN_CASA}"
     serviceAccount:
       create: true
       autoMount: true

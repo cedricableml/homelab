@@ -95,11 +95,11 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         annotations:
-          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN_CASA}"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
           traefik.ingress.kubernetes.io/service.serversscheme: https
         hosts:
-          - host: "unifi.local.${SECRET_DOMAIN}"
+          - host: "unifi.local.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
@@ -108,7 +108,7 @@ spec:
                   port: 8443
         tls:
           - hosts:
-              - "unifi.local.${SECRET_DOMAIN}"
+              - "unifi.local.${SECRET_DOMAIN_CASA}"
       portal:
         enabled: true
         ingressClassName: "traefik"
@@ -117,7 +117,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           traefik.ingress.kubernetes.io/service.serversscheme: https
         hosts:
-          - host: "unifi.${SECRET_DOMAIN}"
+          - host: "unifi.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
@@ -133,7 +133,7 @@ spec:
                   port: 8443
         tls:
           - hosts:
-              - "unifi.${SECRET_DOMAIN}"
+              - "unifi.${SECRET_DOMAIN_CASA}"
               - "unifi.${SECRET_DOMAIN_CASA}"
     probes:
       liveness:

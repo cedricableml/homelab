@@ -64,13 +64,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-          - host: "qbittorrent.${SECRET_DOMAIN}"
+          - host: "qbittorrent.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "qbittorrent.${SECRET_DOMAIN}"
+              - "qbittorrent.${SECRET_DOMAIN_CASA}"
     metrics:
       enabled: true
       exporter:

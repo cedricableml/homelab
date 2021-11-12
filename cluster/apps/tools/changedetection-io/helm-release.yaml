@@ -20,7 +20,7 @@ spec:
       tag: "0.39"
     nameOverride: changedetection-io
     env:
-      BASE_URL: "https://change-detection.${SECRET_DOMAIN}"
+      BASE_URL: "https://change-detection.${SECRET_DOMAIN_CASA}"
       WEBDRIVER_URL: http://localhost:4444/wd/hub
       TZ: "${TZ}"
     service:
@@ -37,16 +37,16 @@ spec:
           hajimari.io/icon: "web-sync"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-            #          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
+            #          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN_CASA}"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-          - host: "change-detection.${SECRET_DOMAIN}"
+          - host: "change-detection.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "change-detection.${SECRET_DOMAIN}"
+              - "change-detection.${SECRET_DOMAIN_CASA}"
     persistence:
       config:
         enabled: true

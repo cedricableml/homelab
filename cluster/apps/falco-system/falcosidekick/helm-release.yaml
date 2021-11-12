@@ -41,12 +41,12 @@ spec:
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
         external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
       hosts:
-        - host: "falcosidekick.${SECRET_DOMAIN}"
+        - host: "falcosidekick.${SECRET_DOMAIN_CASA}"
           paths:
             - path: /
       tls:
         - hosts:
-            - "falcosidekick.${SECRET_DOMAIN}"
+            - "falcosidekick.${SECRET_DOMAIN_CASA}"
     webui:
       enabled: true
       darkmode: true
@@ -56,7 +56,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
         hosts:
-          - host: "falcosidekick-ui.${SECRET_DOMAIN}"
+          - host: "falcosidekick-ui.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /ui
               - path: /events

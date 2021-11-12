@@ -12,19 +12,19 @@ data:
     loglevel: "info"
     transport-loglevel: "info"
     ingress:
-    - hostname: "k8sapi.${SECRET_DOMAIN}"
+    - hostname: "k8sapi.${SECRET_DOMAIN_CASA}"
       service: tcp://kubernetes.default:443
       originRequest:
         proxyType: socks
-    - hostname: "storage.${SECRET_DOMAIN}"
+    - hostname: "storage.${SECRET_DOMAIN_CASA}"
       service: ssh://10.250.1.100:22
-    - hostname: "nuc1.${SECRET_DOMAIN}"
+    - hostname: "nuc1.${SECRET_DOMAIN_CASA}"
       service: ssh://10.250.1.101:22
-    - hostname: "nuc2.${SECRET_DOMAIN}"
+    - hostname: "nuc2.${SECRET_DOMAIN_CASA}"
       service: ssh://10.250.1.102:22
-    - hostname: "bastion.${SECRET_DOMAIN}"
+    - hostname: "bastion.${SECRET_DOMAIN_CASA}"
       service: bastion
-    - hostname: "*.${SECRET_DOMAIN}"
+    - hostname: "*.${SECRET_DOMAIN_CASA}"
       service: https://traefik.networking
       originRequest:
         noTLSVerify: true

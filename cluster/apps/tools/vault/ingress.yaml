@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: traefik
   rules:
-    - host: "vault.${SECRET_DOMAIN}"
+    - host: "vault.${SECRET_DOMAIN_CASA}"
       http:
         paths:
           - backend:
@@ -23,7 +23,7 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - "vault.${SECRET_DOMAIN}"
+        - "vault.${SECRET_DOMAIN_CASA}"
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -31,13 +31,13 @@ metadata:
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
-    external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN}"
+    external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN_CASA}"
   name: vault-local
   namespace: tools
 spec:
   ingressClassName: traefik
   rules:
-    - host: "vault.local.${SECRET_DOMAIN}"
+    - host: "vault.local.${SECRET_DOMAIN_CASA}"
       http:
         paths:
           - backend:
@@ -49,4 +49,4 @@ spec:
             pathType: ImplementationSpecific
   tls:
     - hosts:
-        - "vault.local.${SECRET_DOMAIN}"
+        - "vault.local.${SECRET_DOMAIN_CASA}"

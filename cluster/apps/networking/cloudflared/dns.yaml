@@ -8,7 +8,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   endpoints:
-    - dnsName: "storage.${SECRET_DOMAIN}"
+    - dnsName: "storage.${SECRET_DOMAIN_CASA}"
       recordTTL: 180
       recordType: CNAME
       targets:
@@ -23,7 +23,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   endpoints:
-    - dnsName: "nuc1.${SECRET_DOMAIN}"
+    - dnsName: "nuc1.${SECRET_DOMAIN_CASA}"
       recordTTL: 180
       recordType: CNAME
       targets:
@@ -38,7 +38,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
 spec:
   endpoints:
-    - dnsName: "nuc2.${SECRET_DOMAIN}"
+    - dnsName: "nuc2.${SECRET_DOMAIN_CASA}"
       recordTTL: 180
       recordType: CNAME
       targets:
@@ -53,7 +53,7 @@ metadata:
   namespace: networking
 spec:
   endpoints:
-    - dnsName: "k8sapi.${SECRET_DOMAIN}"
+    - dnsName: "k8sapi.${SECRET_DOMAIN_CASA}"
       recordTTL: 180
       recordType: CNAME
       targets:
@@ -68,7 +68,7 @@ metadata:
   namespace: networking
 spec:
   endpoints:
-    - dnsName: "bastion.${SECRET_DOMAIN}"
+    - dnsName: "bastion.${SECRET_DOMAIN_CASA}"
       recordTTL: 180
       recordType: CNAME
       targets:

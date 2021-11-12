@@ -36,7 +36,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "edgerouter.${SECRET_DOMAIN}"
+    - host: "edgerouter.${SECRET_DOMAIN_CASA}"
       http:
         paths:
           - backend:
@@ -48,4 +48,4 @@ spec:
             pathType: Prefix
   tls:
     - hosts:
-        - "edgerouter.${SECRET_DOMAIN}"
+        - "edgerouter.${SECRET_DOMAIN_CASA}"

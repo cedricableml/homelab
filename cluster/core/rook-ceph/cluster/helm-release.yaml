@@ -32,11 +32,11 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         host:
-          name: "rook.${SECRET_DOMAIN}"
+          name: "rook.${SECRET_DOMAIN_CASA}"
           path: "/"
         tls:
           - hosts:
-              - "rook.${SECRET_DOMAIN}"
+              - "rook.${SECRET_DOMAIN_CASA}"
     cephClusterSpec:
       dashboard:
         enabled: true
