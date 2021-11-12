@@ -146,7 +146,7 @@ spec:
       data:
         enabled: true
         accessMode: ReadWriteOnce
-        existingClaim: unifi-config-v3
+        existingClaim: unifi-config-v4
         mountPath: /unifi
     jvmMaxHeapSize: 8192M
     resources:
