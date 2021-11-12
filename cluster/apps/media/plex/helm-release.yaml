@@ -17,15 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: "type"
-                  operator: In
-                  values: ["nuc1", "nuc2"]
     image:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.24.5.5173-8dcc73a59
