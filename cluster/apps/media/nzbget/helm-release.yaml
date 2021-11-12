@@ -69,7 +69,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: nzbget-config-v3
+        existingClaim: nzbget-config-v4
       downloads:
         enabled: true
         existingClaim: nzbget-downloads-v4
