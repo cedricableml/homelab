@@ -17,7 +17,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: trakt-sync-sonarr
-              image: busybox
+              image: curlimages/curl
               args:
                 - /bin/sh
                 - -c
@@ -30,7 +30,7 @@ spec:
                 - POST
                 - http://sonarr:8989/api/v3/command/?apikey=${SONARR_API_KEY}
             - name: trakt-sync-radarr
-              image: busybox
+              image: curlimages/curl
               args:
                 - /bin/sh
                 - -c
