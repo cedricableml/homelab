@@ -30,6 +30,7 @@ spec:
             - add
             - ${HOMELAB_VLAN_CIDR}
             - ${SECRET_CLOUDFLARE_TUNNEL_ID_1}
+            - ; exit 0
           volumeMounts:
             - name: config
               mountPath: /etc/cloudflared/config
