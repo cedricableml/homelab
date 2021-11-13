@@ -3,7 +3,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   namespace: media
-  name: sonarr-radarr-trakt-sync
+  name: arr-list-sync
 spec:
   schedule: "* * * * *"
   concurrencyPolicy: "Forbid"
