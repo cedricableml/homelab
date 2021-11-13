@@ -4,3 +4,6 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+  - trakt-sync-cron.yaml
+  - trakt-sync-pytrakt-secret.yaml
+  - trakt-sync-env-secret.yaml
