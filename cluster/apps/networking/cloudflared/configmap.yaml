@@ -28,10 +28,6 @@ data:
       service: https://traefik.networking
       originRequest:
         noTLSVerify: true
-    - hostname: "*.${SECRET_DOMAIN_CASA}"
-      service: https://traefik.networking
-      originRequest:
-        noTLSVerify: true
     - service: http_status:404
     credentials-file: /etc/cloudflared/creds/credentials.json
     # Serves the metrics server under /metrics and the readiness server under /ready
