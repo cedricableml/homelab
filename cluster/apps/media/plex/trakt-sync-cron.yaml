@@ -59,9 +59,9 @@ spec:
             - name: trakt-sync
               image: ghcr.io/taxel/plextraktsync:0.16.4
               volumeMounts:
-                - mountPath: /app/config/config.json
+                - mountPath: /app/config
                   name: config
-                - mountPath: /app/config/.pytrakt.json
+                - mountPath: /app/config
                   name: pytrakt-json
               envFrom:
                 - secretRef:
