@@ -16,6 +16,25 @@ spec:
       annotations:
         configmap.reloader.stakater.com/reload: "cloudflared"
     spec:
+      initContainers:
+        - name: cloudflared-route-ip-add
+          image: cloudflare/cloudflared:2021.11.0
+          args:
+            - tunnel
+            - --config
+            - /etc/cloudflared/config/config.yaml
+            - route
+            - ip
+            - add
+            - ${HOMELAB_VLAN_CIDR}
+            - ${SECRET_CLOUDFLARE_TUNNEL_ID_1}
+          volumeMounts:
+            - name: config
+              mountPath: /etc/cloudflared/config
+              readOnly: true
+            - name: creds
+              mountPath: /etc/cloudflared/creds
+              readOnly: true
       containers:
         - name: cloudflared
           image: cloudflare/cloudflared:2021.11.0
