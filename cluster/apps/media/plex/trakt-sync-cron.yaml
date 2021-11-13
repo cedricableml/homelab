@@ -1,43 +1,4 @@
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: plex-trakt-sync-config
-  namespace: media
-data:
-  config.json: |
-    {
-        "log_debug_messages": false,
-        "logging": {
-            "append": false
-        },
-        "cache": {
-            "path": "$PTS_CACHE_DIR/trakt_cache"
-        },
-        "sync": {
-            "trakt_to_plex": {
-                "watched_status": true,
-                "ratings": true,
-                "liked_lists": true,
-                "watchlist": true
-            },
-            "plex_to_trakt": {
-                "watched_status": true,
-                "ratings": true,
-                "collection": true
-            }
-        },
-        "watch": {
-            "username_filter": false
-        },
-        "xbmc-providers": {
-            "movies": "imdb",
-            "shows": "tvdb"
-        },
-        "excluded-libraries": [
-        ]
-    }
----
 apiVersion: batch/v1
 kind: CronJob
 metadata:
@@ -60,16 +21,11 @@ spec:
               image: ghcr.io/taxel/plextraktsync:0.16.4
               volumeMounts:
                 - mountPath: /app/config
-                  name: config
-                - mountPath: /app/config
                   name: pytrakt-json
               envFrom:
                 - secretRef:
                     name: plex-trakt-sync-env
           volumes:
-            - name: config
-              configMap:
-                name: plex-trakt-sync-config
             - name: pytrakt-json
               secret:
                 secretName: plex-trakt-sync-pytrakt-json
