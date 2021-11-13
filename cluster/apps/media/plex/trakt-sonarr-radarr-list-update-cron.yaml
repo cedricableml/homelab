@@ -34,7 +34,11 @@ spec:
               args:
                 - /bin/sh
                 - -c
-                - curl -d
+                - curl
+                - -d
                 - '{name: "ImportListSync"}'
-                - -H "Content-Type: application/json" -X POST
+                - -H
+                - "Content-Type: application/json"
+                - -X
+                - POST
                 - http://radarr:7878/api/v3/command/?apikey=${RADARR_API_KEY}
