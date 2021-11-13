@@ -16,3 +16,5 @@ resources:
   - qbittorrent
   - plex
   - arr-misc
+  - calibre
+  - calibre-web
