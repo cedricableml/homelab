@@ -3,6 +3,11 @@ output "cloudflare_argo_tunnel_1" {
   sensitive = true
 }
 
+output "cloudflare_argo_tunnel_2" {
+  value     = cloudflare_argo_tunnel.tunnel2
+  sensitive = true
+}
+
 output "service_tokens" {
   value     = tomap({
     for idx, token in cloudflare_access_service_token.token : idx =>
