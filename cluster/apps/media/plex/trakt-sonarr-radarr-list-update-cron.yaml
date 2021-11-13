@@ -22,11 +22,11 @@ spec:
                 - "/bin/sh"
                 - "-ec"
                 - |
-                  curl -d '{name: "ImportListSync"}' -H "Content-Type: application/json" -X POST http://sonarr:8989/api/v3/command/?apikey=${SONARR_API_KEY}
+                  curl -d '{name: "ImportListSync"}' -H "Content-Type: application/json" -X POST http://sonarr:8989/api/v3/command/?apikey=${SECRET_SONARR_API_KEY}
             - name: trakt-sync-radarr
               image: curlimages/curl
               args:
                 - "/bin/sh"
                 - "-ec"
                 - |
-                  curl -d '{name: "ImportListSync"}' -H "Content-Type: application/json" -X POST http://radarr:7878/api/v3/command/?apikey=${RADARR_API_KEY}
+                  curl -d '{name: "ImportListSync"}' -H "Content-Type: application/json" -X POST http://radarr:7878/api/v3/command/?apikey=${SECRET_RADARR_API_KEY}
