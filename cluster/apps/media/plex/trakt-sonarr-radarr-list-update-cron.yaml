@@ -1,0 +1,40 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: media
+  name: sonarr-radarr-trakt-sync
+spec:
+  schedule: "1 * * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 5
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: trakt-sync-sonarr
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - curl
+                - -d
+                - '{name: "ImportListSync"}'
+                - -H
+                - "Content-Type: application/json"
+                - -X
+                - POST
+                - http://sonarr:8989/api/v3/command/?apikey=${SONARR_API_KEY}
+            - name: trakt-sync-radarr
+              image: busybox
+              args:
+                - /bin/sh
+                - -c
+                - curl -d
+                - '{name: "ImportListSync"}'
+                - -H "Content-Type: application/json" -X POST
+                - http://radarr:7878/api/v3/command/?apikey=${RADARR_API_KEY}
