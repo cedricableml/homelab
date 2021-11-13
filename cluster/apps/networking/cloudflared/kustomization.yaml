@@ -5,5 +5,6 @@ resources:
   - deployment.yaml
   - dns.yaml
   - configmap.yaml
-  - secret.enc.yaml
   - pdb.yaml
+  - secret-cert.yaml
+  - secret-creds.yaml

@@ -21,6 +21,8 @@ spec:
           image: cloudflare/cloudflared:2021.11.0
           args:
             - tunnel
+            - --origincert
+            - /etc/cloudflared/certs/cert.pem
             - --config
             - /etc/cloudflared/config/config.yaml
             - route
@@ -35,11 +37,16 @@ spec:
             - name: creds
               mountPath: /etc/cloudflared/creds
               readOnly: true
+            - name: certs
+              mountPath: /etc/cloudflared/certs
+              readOnly: true
       containers:
         - name: cloudflared
           image: cloudflare/cloudflared:2021.11.0
           args:
             - tunnel
+            - --origincert
+            - /etc/cloudflared/certs/cert.pem
             - --config
             - /etc/cloudflared/config/config.yaml
             - run
@@ -57,7 +64,13 @@ spec:
             - name: creds
               mountPath: /etc/cloudflared/creds
               readOnly: true
+            - name: certs
+              mountPath: /etc/cloudflared/certs
+              readOnly: true
       volumes:
+        - name: certs
+          secret:
+            secretName: cloudflared-certs
         - name: creds
           secret:
             secretName: cloudflared-credentials
