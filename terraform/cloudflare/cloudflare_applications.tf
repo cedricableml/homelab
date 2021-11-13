@@ -154,16 +154,6 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
-    {
-      subdomain = "calibre"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "calibre-web"
-      type      = "self_hosted"
-      gsuite    = true
-    },
   ]
 }
 
