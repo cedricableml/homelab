@@ -16,21 +16,21 @@ spec:
         spec:
           restartPolicy: Never
           containers:
-            - name: trakt-sync-sonarr
+            - name: arr-list-sync-sonarr
               image: curlimages/curl
               args:
                 - "/bin/sh"
                 - "-ec"
                 - |
                   curl --fail -d '{"name": "ImportListSync"}' -H "Content-Type: application/json" -X POST http://sonarr:8989/api/v3/command/?apikey=${SECRET_SONARR_API_KEY}
-            - name: trakt-sync-radarr
+            - name: arr-list-sync-radarr
               image: curlimages/curl
               args:
                 - "/bin/sh"
                 - "-ec"
                 - |
                   curl --fail -d '{"name": "ImportListSync"}' -H "Content-Type: application/json" -X POST http://radarr:7878/api/v3/command/?apikey=${SECRET_RADARR_API_KEY}
-            - name: trakt-sync-readarr
+            - name: arr-list-sync-readarr
               image: curlimages/curl
               args:
                 - "/bin/sh"
