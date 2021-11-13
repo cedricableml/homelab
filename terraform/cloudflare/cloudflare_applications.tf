@@ -144,6 +144,16 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "alert-manager"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
+      subdomain = "prometheus"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
 }
 
