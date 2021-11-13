@@ -8,6 +8,8 @@ data:
   config.yaml: |
     # Name of the tunnel you want to run
     tunnel: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}"
+    warp-routing:
+      enabled: true
     no-tls-verify: true
     loglevel: "info"
     transport-loglevel: "info"
