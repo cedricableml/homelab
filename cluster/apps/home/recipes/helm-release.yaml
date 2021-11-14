@@ -84,19 +84,6 @@ spec:
               - "recipes.${SECRET_DOMAIN_CASA}"
     podAnnotations:
       secret.reloader.stakater.com/reload: "recipes"
-    persistence:
-      mediafiles:
-        enabled: false
-        existingClaim: recipes-mediafiles
-        volumeMounts:
-          - name: mediafiles
-            mountPath: /opt/recipes/mediafiles
-      staticfiles:
-        enabled: false
-        existingClaim: recipes-staticfiles
-        volumeMounts:
-          - name: staticfiles
-            mountPath: /opt/recipes/staticfiles
     resources:
       requests:
         memory: 100Mi
