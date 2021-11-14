@@ -27,6 +27,8 @@ spec:
       tag: 1.0.1
     nameOverride: recipes
     env:
+      ALLOWED_HOSTS: "*"
+      DEBUG: 0
       DB_ENGINE: django.db.backends.postgresql
       POSTGRES_HOST: pg-ha-pgbouncer.databases
       POSTGRES_PORT: 5432
