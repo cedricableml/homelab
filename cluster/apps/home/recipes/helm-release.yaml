@@ -35,7 +35,7 @@ spec:
       POSTGRES_DB: recipes
       POSTGRES_USER: recipes
       REVERSE_PROXY_AUTH: 1
-      SIGNUP_ENABLED: 1
+      SIGNUP_ENABLED: true
       PROXY_HEADER: Cf-Access-Authenticated-User-Email
       TZ: "${TZ}"
     envFrom:
