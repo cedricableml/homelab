@@ -175,6 +175,6 @@ resource "cloudflare_access_application" "app_casa" {
   name                      = each.value.subdomain
   domain                    = "${each.value.subdomain}.${var.domain_casa}"
   type                      = each.value.type
-  session_duration          = "240h"
-  auto_redirect_to_identity = true
+  session_duration          = "336h"
+  auto_redirect_to_identity = false
 }
