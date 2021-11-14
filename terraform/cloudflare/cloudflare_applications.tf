@@ -213,7 +213,7 @@ resource "cloudflare_access_policy" "gsuite_casa" {
   }
 }
 
-resource "cloudflare_access_policy" "pin_calibre-web" {
+resource "cloudflare_access_policy" "everyone_calibre-web" {
   zone_id        = var.zone_id_casa
   application_id = cloudflare_access_application.app_casa["calibre-web"].id
 
