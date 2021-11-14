@@ -41,8 +41,8 @@ spec:
       PROXY_HEADER: Cf-Access-Authenticated-User-Email
 
       S3_BUCKET_NAME: recipes-mediafiles
-      S3_REGION_NAME: default
-      S3_ENDPOINT_URL: http://minio.tools:9000
+      S3_REGION_NAME: eu-central-1
+      S3_ENDPOINT_URL: https://s3.eu-central-1.wasabisys.com
 
       # Email Settings, see https://docs.djangoproject.com/en/3.2/ref/settings/#email-host
       # Required for email confirmation and password reset (automatically activates if host is set)
