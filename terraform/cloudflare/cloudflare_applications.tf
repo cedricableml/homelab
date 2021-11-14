@@ -220,7 +220,6 @@ resource "cloudflare_access_policy" "pin_calibre-web" {
   name       = "allow group with pin"
   precedence = "20"
   decision   = "allow"
-  provider   = cloudflare_access_identity_provider.pin_login.id
 
   include {
     group = ["everyone"]
