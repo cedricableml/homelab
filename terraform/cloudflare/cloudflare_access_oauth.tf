@@ -8,3 +8,9 @@ resource "cloudflare_access_identity_provider" "gsuite" {
     apps_domain   = var.email_domain
   }
 }
+
+resource "cloudflare_access_identity_provider" "pin_login" {
+  account_id = var.cloudflare_account_id
+  name       = "PIN login"
+  type       = "onetimepin"
+}
