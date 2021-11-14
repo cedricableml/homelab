@@ -32,6 +32,8 @@ spec:
       POSTGRES_PORT: 5432
       POSTGRES_DB: recipes
       POSTGRES_USER: recipes
+      REVERSE_PROXY_AUTH: 1
+      PROXY_HEADER: Cf-Access-Authenticated-User-Email
       TZ: "${TZ}"
     envFrom:
       - secretRef:
