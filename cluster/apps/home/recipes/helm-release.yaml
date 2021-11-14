@@ -27,7 +27,10 @@ spec:
       tag: 1.0.1
     nameOverride: recipes
     env:
+      TIMEZONE: "${TZ}"
       ALLOWED_HOSTS: "*"
+      ENABLE_SIGNUP: 1
+      ENABLE_METRICS: 1
       DEBUG: 0
       DB_ENGINE: django.db.backends.postgresql
       POSTGRES_HOST: pg-ha-pgbouncer.databases
@@ -36,7 +39,20 @@ spec:
       POSTGRES_USER: recipes
       REVERSE_PROXY_AUTH: 1
       PROXY_HEADER: Cf-Access-Authenticated-User-Email
-      TZ: "${TZ}"
+
+      S3_BUCKET_NAME: recipes-mediafiles
+      S3_REGION_NAME: default
+      S3_ENDPOINT_URL: http://minio.tools:9000
+
+      # Email Settings, see https://docs.djangoproject.com/en/3.2/ref/settings/#email-host
+      # Required for email confirmation and password reset (automatically activates if host is set)
+      EMAIL_HOST: smtp.sendgrid.net
+      EMAIL_PORT: 465
+      EMAIL_HOST_USER: apikey
+      # EMAIL_USE_TLS=1
+      EMAIL_USE_SSL: 1
+      #DEFAULT_FROM_EMAIL: # email sender address (default 'webmaster@localhost')
+      # ACCOUNT_EMAIL_SUBJECT_PREFIX= # prefix used for account related emails (default "[Tandoor Recipes] ")
     envFrom:
       - secretRef:
           name: recipes
