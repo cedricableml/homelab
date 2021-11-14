@@ -222,6 +222,6 @@ resource "cloudflare_access_policy" "everyone_calibre-web" {
   decision   = "allow"
 
   include {
-    group = ["everyone"]
+    group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
   }
 }
