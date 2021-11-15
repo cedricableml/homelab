@@ -8,5 +8,4 @@ resources:
   - system-upgrade
   - longhorn
   - metallb
-  - olm
   - rook-ceph
