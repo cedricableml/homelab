@@ -16,8 +16,8 @@ spec:
       interval: 5m
   values:
     image:
-      repository: ghcr.io/ellie/atuin
-      tag: 0.7.1
+      repository: ellieh/atuin
+      tag: latest
     nameOverride: atuin
     env:
       ATUIN_HOST: 0.0.0.0
