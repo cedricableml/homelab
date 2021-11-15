@@ -7,3 +7,5 @@ data:
   delete_annotation_name_key: "delete-clustername"
   enable_pod_antiaffinity: "true"
   enable_pod_disruption_budget: "true"
+  pod_environment_configmap: databases/zalando-env
+  pod_environment_secret: zalando-s3
