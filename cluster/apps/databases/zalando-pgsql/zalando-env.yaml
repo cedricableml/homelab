@@ -5,11 +5,11 @@ metadata:
   name: zalando-env
   namespace: databases
 data:
-  BACKUP_SCHEDULE: "* */12 * * * *"
+  BACKUP_SCHEDULE: "* * * * * *"
   BACKUP_NUM_TO_RETAIN: "3"
   USE_WALG_BACKUP: "true"
   WALG_DISABLE_S3_SSE: "true"
-  USE_WALG_RESTORE: "false"
+  USE_WALG_RESTORE: "true"
   AWS_ENDPOINT: "http://minio.tools:9000"
   AWS_REGION: default
   LOGICAL_BACKUP_S3_BUCKET: zalando-homelab-pgsql-backup
