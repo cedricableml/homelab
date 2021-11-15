@@ -5,7 +5,7 @@ metadata:
   name: zalando-env
   namespace: databases
 data:
-  BACKUP_SCHEDULE: "* */12 * * * *" # Every 12 hours
+  BACKUP_SCHEDULE: "* * * * * *"
   BACKUP_NUM_TO_RETAIN: "3"
   USE_WALG_BACKUP: "true"
   WALG_DISABLE_S3_SSE: "true"

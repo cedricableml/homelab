@@ -29,5 +29,4 @@ spec:
   enableMasterLoadBalancer: true
   enableConnectionPooler: true
   enableLogicalBackup: true
-  logicalBackupSchedule: "00 05 * * *"
-  logical_backup_s3_bucket: zalando-homelab-pgsql-backup
+  logicalBackupSchedule: "* * * * *"
