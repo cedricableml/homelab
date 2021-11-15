@@ -5,13 +5,15 @@ metadata:
   name: zalando-env
   namespace: databases
 data:
+  USE_WALG_BACKUP: "true"
+  USE_WALG_RESTORE: "true"
+#  CLONE_USE_WALE_RESTORE: "true"
   BACKUP_SCHEDULE: "* * * * * *"
   BACKUP_NUM_TO_RETAIN: "3"
-  USE_WALG_BACKUP: "true"
   WALG_DISABLE_S3_SSE: "true"
-  USE_WALG_RESTORE: "true"
+  WALE_DISABLE_S3_SSE: "true"
+  WAL_BUCKET_SCOPE_PREFIX: ""
+  WALG_BUCKET_SCOPE_PREFIX: ""
   AWS_ENDPOINT: "http://minio.tools:9000"
   AWS_REGION: default
-  LOGICAL_BACKUP_S3_BUCKET: zalando-homelab-pgsql-backup
-  logical_backup_s3_bucket: zalando-homelab-pgsql-backup
   AWS_S3_FORCE_PATH_STYLE: "true"

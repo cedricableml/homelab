@@ -9,7 +9,7 @@ configuration:
     wal_s3_bucket: zalando-homelab-pgsql-backup
     aws_region: default
   kubernetes:
-    delete_annotation_name_key: "delete-clustername"
+#    delete_annotation_name_key: "delete-clustername"
     enable_pod_antiaffinity: true
     enable_pod_disruption_budget: true
     pod_environment_configmap: databases/zalando-env
