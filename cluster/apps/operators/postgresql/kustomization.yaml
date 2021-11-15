@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - operator.yaml
   - secret.enc.yaml
+  - svc-ing.yaml
