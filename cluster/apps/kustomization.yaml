@@ -12,5 +12,5 @@ resources:
   - networking
   - system-upgrade
   - tools
-#  - operators
+  - operators
 #  - falco-system
