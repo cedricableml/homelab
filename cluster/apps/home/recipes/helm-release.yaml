@@ -33,7 +33,7 @@ spec:
       ENABLE_METRICS: 1
       DEBUG: 0
       DB_ENGINE: django.db.backends.postgresql
-      POSTGRES_HOST: pg-ha-pgbouncer.databases
+      POSTGRES_HOST: homelab-pgsql-pooler.databases
       POSTGRES_PORT: 5432
       POSTGRES_DB: recipes
       POSTGRES_USER: recipes
