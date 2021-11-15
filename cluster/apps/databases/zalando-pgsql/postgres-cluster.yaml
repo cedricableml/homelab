@@ -11,7 +11,7 @@ spec:
     storageClass: ceph-block-retain
   numberOfInstances: 2
   postgresql:
-    version: "14"
+    version: "13"
   users:
     vault:
       - superuser
