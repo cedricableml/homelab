@@ -1,0 +1,9 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-operator
+data:
+  delete_annotation_name_key: "delete-clustername"
+  enable_pod_antiaffinity: "true"
+  enable_pod_disruption_budget: "true"
