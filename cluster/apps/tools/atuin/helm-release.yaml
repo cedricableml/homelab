@@ -1,0 +1,66 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: atuin
+  namespace: tools
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: /charts/kah-common/
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: ghcr.io/ellie/atuin
+      tag: 0.7.1
+    nameOverride: atuin
+    env:
+      ATUIN_HOST: 0.0.0.0
+      ATUIN_PORT: 8888
+      ATUIN_OPEN_REGISTRATION: true
+    envFrom:
+      - secretRef:
+          name: atuin-env
+    args:
+      - server
+      - start
+    service:
+      main:
+        enabled: true
+        ports:
+          http:
+            enabled: true
+            port: 8888
+    ingress:
+      main:
+        enabled: true
+        primary: true
+        ingressClassName: "traefik"
+        annotations:
+          traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
+          external-dns.alpha.kubernetes.io/target: "traefik.${SECRET_DOMAIN_CASA}"
+#          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+        hosts:
+          - host: "atuin.local.${SECRET_DOMAIN_CASA}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  port: 8888
+        tls:
+          - hosts:
+              - "atuin.local.${SECRET_DOMAIN_CASA}"
+    podAnnotations:
+      secret.reloader.stakater.com/reload: "atuin-env"
+    resources:
+      requests:
+        memory: 100Mi
+        cpu: 100m
+      limits:
+        memory: 750Mi
