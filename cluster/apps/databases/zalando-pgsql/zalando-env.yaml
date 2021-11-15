@@ -12,4 +12,5 @@ data:
   USE_WALG_RESTORE: "false"
   AWS_ENDPOINT: "http://minio.tools:9000"
   AWS_REGION: default
+  LOGICAL_BACKUP_S3_BUCKET: zalando-homelab-pgsql-backup
   AWS_S3_FORCE_PATH_STYLE: "true"
