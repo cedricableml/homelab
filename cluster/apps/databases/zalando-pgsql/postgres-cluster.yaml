@@ -1,0 +1,30 @@
+---
+apiVersion: "acid.zalan.do/v1"
+kind: postgresql
+metadata:
+  name: homelab-pgsql
+  namespace: databases
+spec:
+  teamId: "homelab"
+  volume:
+    size: 10Gi
+    storageClass: ceph-block-retain
+  numberOfInstances: 2
+  postgresql:
+    version: "14"
+  users:
+    vault:
+      - superuser
+      - createdb
+    atuin:
+      - superuser
+      - createdb
+    recipes:
+      - superuser
+      - createdb
+  databases:
+    vault: vault
+    atuin: atuin
+    recipes: recipes
+  enableMasterLoadBalancer: true
+  enableConnectionPooler: true
