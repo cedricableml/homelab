@@ -28,5 +28,4 @@ spec:
     recipes: recipes
   enableMasterLoadBalancer: true
   enableConnectionPooler: true
-  enableLogicalBackup: true
-  logicalBackupSchedule: "* * * * *"
+  enableLogicalBackup: false
