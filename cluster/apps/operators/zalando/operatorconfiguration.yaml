@@ -1,0 +1,24 @@
+---
+apiVersion: "acid.zalan.do/v1"
+kind: OperatorConfiguration
+metadata:
+  name: postgresql-operator-configuration
+  namespace: operators
+configuration:
+  aws_or_gcp:
+    wal_s3_bucket: zalando-homelab-pgsql-backup
+    aws_region: default
+  kubernetes:
+    delete_annotation_name_key: "delete-clustername"
+    enable_pod_antiaffinity: true
+    enable_pod_disruption_budget: true
+    pod_environment_configmap: databases/zalando-env
+    pod_environment_secret: zalando-s3
+#  logical_backup:
+#    logical_backup_provider: aws
+#    logical_backup_s3_access_key_id:
+#    logical_backup_s3_secret_access_key:
+#    logical_backup_s3_bucket: zalando-homelab-pgsql-backup
+#    logical_backup_s3_endpoint: http://minio.tools:9000
+#    logical_backup_s3_region: default
+#    logical_backup_s3_sse: ""
