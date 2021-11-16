@@ -188,3 +188,12 @@ resource "cloudflare_access_application" "app_casa" {
   session_duration          = "336h"
   auto_redirect_to_identity = false
 }
+
+resource "cloudflare_access_application" "kobo" {
+  zone_id                   = var.zone_id_casa
+  name                      = "kobo"
+  domain                    = "kobo.${var.domain_casa}"
+  type                      = "self_hosted"
+  session_duration          = "336h"
+  auto_redirect_to_identity = false
+}

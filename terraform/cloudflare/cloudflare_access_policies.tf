@@ -56,3 +56,16 @@ resource "cloudflare_access_policy" "everyone_requests" {
     group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
   }
 }
+
+resource "cloudflare_access_policy" "public_kobo" {
+  zone_id        = var.zone_id_casa
+  application_id = cloudflare_access_application.kobo.id
+
+  name       = "make public"
+  precedence = "10"
+  decision   = "allow"
+
+  include {
+    everyone = true
+  }
+}
