@@ -63,7 +63,7 @@ resource "cloudflare_access_policy" "public_kobo" {
 
   name       = "make public"
   precedence = "10"
-  decision   = "allow"
+  decision   = "bypass"
 
   include {
     everyone = true
