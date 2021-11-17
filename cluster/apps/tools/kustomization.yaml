@@ -6,4 +6,4 @@ resources:
   - filebrowser
   - minio
   - vault
-#  - atuin
+  - atuin
