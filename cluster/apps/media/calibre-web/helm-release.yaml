@@ -68,6 +68,21 @@ spec:
         tls:
           - hosts:
               - "calibre-web.${SECRET_DOMAIN_CASA}"
+      secondary:
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+        hosts:
+          - host: "calibre-web.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "calibre-web.${SECRET_DOMAIN}"
+
 
     resources:
       requests:

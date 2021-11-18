@@ -1,5 +1,5 @@
 resource "cloudflare_access_policy" "token" {
-  for_each = {for app in local.apps : app.subdomain => app}
+  for_each = {for app in local.apps_casa : app.subdomain => app}
 
   zone_id        = var.zone_id
   application_id = cloudflare_access_application.app_casa[each.value.subdomain].id
@@ -14,7 +14,7 @@ resource "cloudflare_access_policy" "token" {
 }
 
 resource "cloudflare_access_policy" "gsuite_casa" {
-  for_each = {for app in local.apps : app.subdomain => app}
+  for_each = {for app in local.apps_casa : app.subdomain => app}
 
   zone_id        = var.zone_id_casa
   application_id = cloudflare_access_application.app_casa[each.value.subdomain].id
@@ -31,9 +31,35 @@ resource "cloudflare_access_policy" "gsuite_casa" {
   }
 }
 
+#resource "cloudflare_access_policy" "everyone_calibre-web" {
+#  zone_id        = var.zone_id_casa
+#  application_id = cloudflare_access_application.app_casa["calibre-web"].id
+#
+#  name       = "allow group with pin"
+#  precedence = "20"
+#  decision   = "allow"
+#
+#  include {
+#    group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
+#  }
+#}
+#
+#resource "cloudflare_access_policy" "everyone_requests" {
+#  zone_id        = var.zone_id_casa
+#  application_id = cloudflare_access_application.app_casa["requests"].id
+#
+#  name       = "allow group with pin"
+#  precedence = "20"
+#  decision   = "allow"
+#
+#  include {
+#    group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
+#  }
+#}
+
 resource "cloudflare_access_policy" "everyone_calibre-web" {
-  zone_id        = var.zone_id_casa
-  application_id = cloudflare_access_application.app_casa["calibre-web"].id
+  zone_id        = var.zone_id
+  application_id = cloudflare_access_application.app_secondary["calibre-web"].id
 
   name       = "allow group with pin"
   precedence = "20"
@@ -45,8 +71,8 @@ resource "cloudflare_access_policy" "everyone_calibre-web" {
 }
 
 resource "cloudflare_access_policy" "everyone_requests" {
-  zone_id        = var.zone_id_casa
-  application_id = cloudflare_access_application.app_casa["requests"].id
+  zone_id        = var.zone_id
+  application_id = cloudflare_access_application.app_secondary["requests"].id
 
   name       = "allow group with pin"
   precedence = "20"

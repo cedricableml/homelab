@@ -1,5 +1,5 @@
 locals {
-  apps = [
+  apps_casa = [
     {
       subdomain = "bazarr"
       type      = "self_hosted"
@@ -165,20 +165,43 @@ locals {
 #      gsuite    = true
 #    },
   ]
+  apps_secondary = [
+    {
+      subdomain = "calibre-web"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
+      subdomain = "requests"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+  ]
 }
 
 resource "cloudflare_access_service_token" "token" {
-  for_each   = {for app in local.apps : app.subdomain => app}
+  for_each   = {for app in local.apps_casa : app.subdomain => app}
   account_id = var.cloudflare_account_id
   name       = each.value.subdomain
 }
 
 resource "cloudflare_access_application" "app_casa" {
-  for_each = {for app in local.apps : app.subdomain => app}
+  for_each = {for app in local.apps_casa : app.subdomain => app}
 
   zone_id                   = var.zone_id_casa
   name                      = each.value.subdomain
   domain                    = "${each.value.subdomain}.${var.domain_casa}"
+  type                      = each.value.type
+  session_duration          = "336h"
+  auto_redirect_to_identity = false
+}
+
+resource "cloudflare_access_application" "app_secondary" {
+  for_each = {for app in local.apps_secondary : app.subdomain => app}
+
+  zone_id                   = var.zone_id
+  name                      = each.value.subdomain
+  domain                    = "${each.value.subdomain}.${var.domain}"
   type                      = each.value.type
   session_duration          = "336h"
   auto_redirect_to_identity = false
