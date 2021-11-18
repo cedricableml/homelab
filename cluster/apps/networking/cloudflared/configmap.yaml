@@ -28,6 +28,8 @@ data:
       service: bastion
     - hostname: "*.${SECRET_DOMAIN_CASA}"
       service: https://traefik.networking
+    - hostname: "*.${SECRET_DOMAIN}"
+      service: https://traefik.networking
       originRequest:
         noTLSVerify: true
     - service: http_status:404
