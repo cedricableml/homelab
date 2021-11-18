@@ -57,7 +57,7 @@ resource "cloudflare_access_policy" "gsuite_casa" {
 #  }
 #}
 
-resource "cloudflare_access_policy" "everyone_calibre-web" {
+resource "cloudflare_access_policy" "everyone_calibre-web_secondary" {
   zone_id        = var.zone_id
   application_id = cloudflare_access_application.app_secondary["calibre-web"].id
 
@@ -70,7 +70,7 @@ resource "cloudflare_access_policy" "everyone_calibre-web" {
   }
 }
 
-resource "cloudflare_access_policy" "everyone_requests" {
+resource "cloudflare_access_policy" "everyone_requests_secondary" {
   zone_id        = var.zone_id
   application_id = cloudflare_access_application.app_secondary["requests"].id
 
