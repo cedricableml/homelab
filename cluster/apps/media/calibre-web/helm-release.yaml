@@ -20,6 +20,8 @@ spec:
     podSecurityContext:
       supplementalGroups:
         - 568
+        - 1001
+        - 65539
 
     image:
       repository: ghcr.io/linuxserver/calibre-web
