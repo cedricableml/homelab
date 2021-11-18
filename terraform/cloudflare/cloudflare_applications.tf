@@ -40,11 +40,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "longhorn"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "minio"
       type      = "self_hosted"
       gsuite    = true
