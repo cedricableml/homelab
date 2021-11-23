@@ -154,11 +154,11 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
-    {
-      subdomain = "jellyfin"
-      type      = "self_hosted"
-      gsuite    = true
-    },
+    #{
+    #  subdomain = "jellyfin"
+    #  type      = "self_hosted"
+    #  gsuite    = true
+    #},
 #    {
 #      subdomain = "plex"
 #      type      = "self_hosted"
