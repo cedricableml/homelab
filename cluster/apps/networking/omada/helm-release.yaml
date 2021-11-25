@@ -17,6 +17,15 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    affinity:
+      nodeAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            preference:
+              matchExpressions:
+                - key: "type"
+                  operator: In
+                  values: ["storage"]
     image:
       repository: mbentley/omada-controller
       tag: "4.4"
