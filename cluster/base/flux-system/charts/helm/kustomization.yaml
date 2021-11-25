@@ -28,3 +28,4 @@ resources:
   - nextcloud-charts.yaml
   - newrelic-charts.yaml
   - rook-ceph-charts.yaml
+  - charlie-haley-charts.yaml

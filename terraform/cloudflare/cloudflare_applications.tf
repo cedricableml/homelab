@@ -155,6 +155,11 @@ locals {
       gsuite    = true
     },
     {
+      subdomain = "omada"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
       subdomain = "jellyfin"
       type      = "self_hosted"
       gsuite    = true
