@@ -9,7 +9,7 @@ spec:
   releaseName: omada-exporter
   chart:
     spec:
-      # renovate: registryUrl=http://charts.charliehaley.dev
+      # renovate: registryUrl=https://charts.charliehaley.dev
       chart: omada-exporter
       version: 0.1.10
       sourceRef:
