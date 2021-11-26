@@ -128,15 +128,15 @@ spec:
       data:
         enabled: true
         mountPath: /opt/tplink/EAPController/data
-        existingClaim: omada-data-pvc-v1
+        existingClaim: omada-data-pvc-v2
       work:
         enabled: true
         mountPath: /opt/tplink/EAPController/work
-        existingClaim: omada-work-pvc-v1
+        existingClaim: omada-work-pvc-v2
       logs:
         enabled: true
         mountPath: /opt/tplink/EAPController/logs
-        existingClaim: omada-logs-pvc-v1
+        existingClaim: omada-logs-pvc-v2
 
     resources:
       requests:
