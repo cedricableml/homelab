@@ -49,3 +49,7 @@ variable "gsuite_client_secret" {
 }
 
 variable "ca_pem" {}
+
+variable "bypass_ips" {
+  type = list(string)
+}
