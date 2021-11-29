@@ -26,6 +26,7 @@ spec:
       spec:
         loadBalancerIP: "${SVC_TRAEFIK_ADDRESS}"
       annotations:
+        metallb.universe.tf/allow-shared-ip: traefik
         external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
         external-dns.alpha.kubernetes.io/hostname: "traefik.${SECRET_DOMAIN_CASA}"
     logs:
@@ -52,6 +53,26 @@ spec:
       - "--providers.kubernetesingress.ingressendpoint.hostname=${SECRET_DOMAIN_CASA}"
       - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_ADDRESS}"
     ports:
+      omada-0:
+        port: 29810
+        expose: true
+        exposedPort: 29810
+        protocol: UDP
+      omada-1:
+        port: 29811
+        expose: true
+        exposedPort: 29811
+        protocol: TCP
+      omada-2:
+        port: 29812
+        expose: true
+        exposedPort: 29812
+        protocol: TCP
+      omada-3:
+        port: 29813
+        expose: true
+        exposedPort: 29813
+        protocol: TCP
       web:
         redirectTo: websecure
       websecure:
