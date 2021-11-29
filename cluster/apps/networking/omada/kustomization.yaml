@@ -5,3 +5,5 @@ resources:
   - middleware.yaml
   - pvc.yaml
   - helm-release.yaml
+  - middleware-whitelist.yaml
+  - ingressroutes.yaml
