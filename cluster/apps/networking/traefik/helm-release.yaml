@@ -53,42 +53,22 @@ spec:
       - "--providers.kubernetesingress.ingressendpoint.hostname=${SECRET_DOMAIN_CASA}"
       - "--providers.kubernetesingress.ingressendpoint.ip=${SVC_TRAEFIK_ADDRESS}"
     ports:
-      omada-0-udp:
+      omada-0:
         port: 29810
         expose: true
         exposedPort: 39810
         protocol: UDP
-      omada-0-tcp:
-        port: 29810
-        expose: true
-        exposedPort: 39810
-        protocol: TCP
-      omada-1-udp:
-        port: 29811
-        expose: true
-        exposedPort: 39811
-        protocol: UDP
-      omada-1-tcp:
+      omada-1:
         port: 29811
         expose: true
         exposedPort: 39811
         protocol: TCP
-      omada-2-udp:
-        port: 29812
-        expose: true
-        exposedPort: 39812
-        protocol: UDP
-      omada-2-tcp:
+      omada-2:
         port: 29812
         expose: true
         exposedPort: 39812
         protocol: TCP
-      omada-3-udp:
-        port: 29813
-        expose: true
-        exposedPort: 39813
-        protocol: UDP
-      omada-3-tcp:
+      omada-3:
         port: 29813
         expose: true
         exposedPort: 39813
