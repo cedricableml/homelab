@@ -15,64 +15,46 @@ spec:
           weight: 10
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRouteUDP
 metadata:
-  name: omada-ingressroute-tcp-1
+  name: omada-ingressroute-udp-1
   namespace: networking
 spec:
   routes:
-    - match: HostSNI(`*`)
-      middlewares:
+    - middlewares:
         - name: omada-whitelist
           namespace: networking
       services:
         - name: omada-controller-controller
           port: 29811
           weight: 10
-          terminationDelay: 400
-          proxyProtocol:
-            version: 1
-  tls:
-    passthrough: true
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRouteUDP
 metadata:
-  name: omada-ingressroute-tcp-2
+  name: omada-ingressroute-udp-2
   namespace: networking
 spec:
   routes:
-    - match: HostSNI(`*`)
-      middlewares:
+    - middlewares:
         - name: omada-whitelist
           namespace: networking
       services:
         - name: omada-controller-controller
           port: 29812
           weight: 10
-          terminationDelay: 400
-          proxyProtocol:
-            version: 1
-  tls:
-    passthrough: true
 ---
 apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRouteTCP
+kind: IngressRouteUDP
 metadata:
-  name: omada-ingressroute-tcp-3
+  name: omada-ingressroute-udp-3
   namespace: networking
 spec:
   routes:
-    - match: HostSNI(`*`)
-      middlewares:
+    - middlewares:
         - name: omada-whitelist
           namespace: networking
       services:
         - name: omada-controller-controller
           port: 29813
           weight: 10
-          terminationDelay: 400
-          proxyProtocol:
-            version: 1
-  tls:
-    passthrough: true
