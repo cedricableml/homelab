@@ -6,4 +6,5 @@ resources:
   - pvc.yaml
   - helm-release.yaml
   - middleware-whitelist.yaml
-  - ingressroutes.yaml
+  - ingressroutes-tcp.yaml
+  - ingressroutes-udp.yaml
