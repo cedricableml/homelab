@@ -64,25 +64,25 @@ spec:
         port: 29810
         expose: true
         exposedPort: 39810
-        nodePort: 39810
+        nodePort: 31810
         protocol: UDP
       omada-1:
         port: 29811
         expose: true
         exposedPort: 39811
-        nodePort: 39811
+        nodePort: 31811
         protocol: TCP
       omada-2:
         port: 29812
         expose: true
         exposedPort: 39812
-        nodePort: 39812
+        nodePort: 31812
         protocol: TCP
       omada-3:
         port: 29813
         expose: true
         exposedPort: 39813
-        nodePort: 39813
+        nodePort: 31813
         protocol: TCP
       web:
         redirectTo: websecure
