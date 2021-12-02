@@ -47,7 +47,8 @@
     // regexManager to read and process kube-prometheus-stack CRD's
     {
       "fileMatch": [
-        "cluster/crds/kube-prometheus-stack/.+\\.yaml$"
+        "cluster/crds/kube-prometheus-stack/.+\\.yaml$",
+        "cluster/crds/velero/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
@@ -73,32 +74,122 @@
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
       ],
       "datasourceTemplate": "helm"
+    },
+    {
+      "fileMatch": [
+        "cluster/crds/external-snapshotter/.+\\.yaml$",
+        "cluster/crds/external-dns/.+\\.yaml$"
+      ],
+      "matchStrings": [
+        "datasource=(?<datasource>.*?)\n *url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n"
+      ],
+      "datasourceTemplate": "github-releases"
     }
   ],
   "packageRules": [
     {
-      "description": "Minor updates are automatic",
+      "matchDatasources": ["helm"],
       "semanticCommitScope": "charts",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "to {{{newValue}}}",
-      "matchPaths": ["/cluster/"],
-      "automerge": true,
-      "automergeType": "pr",
-      "additionalBranchPrefix": "minor-auto-",
-      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "separateMinorPatch": true,
       "ignoreDeprecated": true
     },
     {
-      "description": "Major updates are manual",
-      "semanticCommitScope": "charts",
-      "commitMessageTopic": "{{depName}}",
-      "commitMessageExtra": "to {{{newValue}}}",
-      "matchPaths": ["/cluster/"],
-      "automerge": false,
-      "automergeType": "pr",
-      "additionalBranchPrefix": "major-manual-",
-      "matchUpdateTypes": ["major",],
-      "ignoreDeprecated": true
+      "matchDatasources": ["docker"],
+      "enabled": true,
+      "matchUpdateTypes": ["major", "minor", "patch"]
     },
+    {
+      "matchDatasources": ["docker"],
+      "semanticCommitScope": "images",
+      "separateMinorPatch": true
+    },
+    // add labels according to package and update types
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(images)!: ",
+      "labels": ["renovate/image", "dep/major"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "labels": ["renovate/image", "dep/minor"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "labels": ["renovate/image", "dep/patch"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["major"],
+      "commitMessagePrefix": "feat(charts)!: ",
+      "labels": ["renovate/helm", "dep/major"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["minor"],
+      "semanticCommitType": "feat",
+      "labels": ["renovate/helm", "dep/minor"]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "matchUpdateTypes": ["patch"],
+      "semanticCommitType": "fix",
+      "labels": ["renovate/helm", "dep/patch"]
+    },
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z(-(?<compatibility>.*))?$",
+      "matchPackageNames": ["quay.io/minio/minio"]
+    },
+    // version strategies
+    {
+      "matchDatasources": ["docker"],
+      "versioning": "loose",
+      "matchPackageNames": [
+        "ghcr.io/k8s-at-home/plex",
+        "ghcr.io/k8s-at-home/qbittorrent"
+      ]
+    },
+    // enable auto-merge
+    {
+      "matchDatasources": ["docker"],
+      "automerge": true,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [
+        "ghcr.io/k8s-at-home/prowlarr",
+        "ghcr.io/k8s-at-home/readarr"
+      ]
+    },
+    // group packages
+    {
+      "matchDatasources": ["helm", "docker"],
+      "matchPackagePatterns": ["^rook.ceph"],
+      "groupName": "rook-ceph-suite",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true
+    },
+    {
+      "matchDatasources": ["github-releases", "docker"],
+      "matchPackagePatterns": [
+        "external-snapshotter",
+        "snapshot-controller"
+      ],
+      "groupName": "external-snapshotter-suite",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true
+    },
+    {
+      "matchDatasources": ["github-tags", "docker"],
+      "matchPackagePatterns": ["rancher/system-upgrade-controller"],
+      "groupName": "system-upgrade-controller-suite",
+      "additionalBranchPrefix": "",
+      "separateMinorPatch": true
+    }
   ],
 }
