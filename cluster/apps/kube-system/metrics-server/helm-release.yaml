@@ -6,6 +6,13 @@ metadata:
   namespace: kube-system
 spec:
   interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 30
+  upgrade:
+    remediation:
+      retries: 30
   chart:
     spec:
       # renovate: registryUrl=https://kubernetes-sigs.github.io/metrics-server
@@ -17,8 +24,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    args:
-      - --kubelet-insecure-tls
-      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
-      - --kubelet-use-node-status-port
-      - --metric-resolution=15s
+    image:
+      repository: k8s.gcr.io/metrics-server/metrics-server
+      tag: v0.5.2
