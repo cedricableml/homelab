@@ -29,3 +29,4 @@ resources:
   - newrelic-charts.yaml
   - rook-ceph-charts.yaml
   - charlie-haley-charts.yaml
+  - metrics-server-charts.yaml
