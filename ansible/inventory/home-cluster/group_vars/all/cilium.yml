@@ -1,0 +1,6 @@
+---
+cilium_cidr_lb: 10.250.14.0/24
+cilium_asn: 64512
+cilium_pool_name: homelab
+cilium_peer_ip: 10.250.0.1
+cilium_peer_asn: 64512

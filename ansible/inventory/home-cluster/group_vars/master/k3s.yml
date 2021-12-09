@@ -14,12 +14,14 @@ k3s_server:
   docker: false
   disable:
     - traefik
+    - flannel
     - servicelb
     - metrics-server
     - local-storage
   disable-network-policy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
+  flannel-backend: "none"
   # CIDR for pod IPs
   cluster-cidr: "10.42.0.0/16"
   # CIDR for service IPs

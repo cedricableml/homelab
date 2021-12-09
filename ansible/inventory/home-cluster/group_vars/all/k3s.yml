@@ -8,6 +8,7 @@ k3s_release_version: "v1.22.4+k3s1"
 k3s_install_hard_links: true
 
 k3s_become_for_all: true
+k3s_cluster_cidr: 10.42.0.0/16
 k3s_debug: false
 
 # Enabled embedded etcd
@@ -18,20 +19,17 @@ k3s_use_unsupported_config: true
 # set to kube-vip/keepalived IP
 k3s_registration_address: 10.250.14.200
 
-#kube-apiserver-arg:
-#  - "oidc-issuer-url=https://dex.{{ lookup('env', 'SECRET_DOMAIN') }}"
-#  - "oidc-client-id=dex-k8s-authenticator"
-#  - "oidc-username-claim=email"
-#  - "oidc-groups-claim=groups"
-
 #
 # Uncomment the config below on new installations
 # Comment after install and run `task ansible:purge-manifests`
 
 # Custom manifest files
-#k3s_server_manifests_templates:
+k3s_server_manifests_templates:
 #  - "kube-vip/kube-vip-rbac.yaml.j2"
 #  - "kube-vip/kube-vip-daemonset.yaml.j2"
+  - "cilium/cilium-rbac.yaml.j2"
+  - "cilium/cilium-bgp-config.yaml.j2"
+  - "cilium/cilium-installation.yaml.j2"
 
 #k3s_server_manifests_urls:
 #- url: https://my.yaml
