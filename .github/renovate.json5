@@ -180,6 +180,7 @@
         "velero",
         "kured",
         "nri-bundle",
+        "metallb",
       ]
     },
     // group packages
