@@ -39,7 +39,7 @@ spec:
           privileged: true
     image:
       repository: filebrowser/filebrowser
-      tag: v2.19.0
+      tag: v2.20.1
     nameOverride: filebrowser
     env:
       FB_DATABASE: "/config/filebrowser.db"
