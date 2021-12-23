@@ -5,7 +5,6 @@ resources:
   - cert-manager.yaml
   - flux-system.yaml
   - home.yaml
-  - metallb-system.yaml
   - kube-system.yaml
   - media.yaml
   - monitoring.yaml
