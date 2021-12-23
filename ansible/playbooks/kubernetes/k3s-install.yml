@@ -18,7 +18,7 @@
 
     - name: Set manifest facts
       ansible.builtin.set_fact:
-        k3s_server_manifests_templates: []
+        #k3s_server_manifests_templates: []
         k3s_server_manifests_urls: []
       when: k3s_check_installed.stat.exists
 

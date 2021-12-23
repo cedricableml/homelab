@@ -10,6 +10,7 @@ apt_install_packages:
   - htop
   - iputils-ping
   - ipvsadm
+  - lm-sensors
   - lvm2
   - net-tools
   - nfs-common

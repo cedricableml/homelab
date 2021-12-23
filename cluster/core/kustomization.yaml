@@ -6,5 +6,5 @@ resources:
   - cert-manager
   - kube-system
   - system-upgrade
-  - metallb
   - rook-ceph
+  - cilium

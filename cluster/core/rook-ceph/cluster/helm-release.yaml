@@ -49,15 +49,15 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "storage"
+          - name: "k3sstorageubuntu"
             devices:
-              - name: "nvme0n1"
+              - name: "sdb"
           - name: "nuc1"
             devices:
-              - name: "nvme0n1p3"
+              - name: "nvme0n1p4"
           - name: "nuc2"
             devices:
-              - name: "nvme0n1p3"
+              - name: "nvme0n1p4"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
