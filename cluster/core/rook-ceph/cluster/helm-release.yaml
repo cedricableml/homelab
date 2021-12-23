@@ -49,9 +49,9 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "storage"
+          - name: "k3sstorageubuntu"
             devices:
-              - name: "nvme0n1"
+              - name: "sdb"
           - name: "nuc1"
             devices:
               - name: "nvme0n1p4"
