@@ -19,6 +19,7 @@ k3s_server:
     - metrics-server
     - local-storage
   disable-network-policy: true
+  disable-kube-proxy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
   flannel-backend: "none"
@@ -31,8 +32,6 @@ k3s_server:
   kube-controller-manager-arg:
     - "address=0.0.0.0"
     - "bind-address=0.0.0.0"
-  kube-proxy-arg:
-    - "metrics-bind-address=0.0.0.0"
   kube-scheduler-arg:
     - "address=0.0.0.0"
     - "bind-address=0.0.0.0"

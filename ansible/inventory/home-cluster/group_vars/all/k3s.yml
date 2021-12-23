@@ -2,7 +2,7 @@
 
 # see https://github.com/PyratLabs/ansible-role-k3s#globalcluster-variables
 
-k3s_release_version: "v1.22.4+k3s1"
+k3s_release_version: "v1.22.5+k3s1"
 
 # system-upgrade-controller requires hard links
 k3s_install_hard_links: true
@@ -25,9 +25,8 @@ k3s_registration_address: 10.250.14.200
 
 # Custom manifest files
 k3s_server_manifests_templates:
-#  - "kube-vip/kube-vip-rbac.yaml.j2"
-#  - "kube-vip/kube-vip-daemonset.yaml.j2"
-  - "cilium/cilium-rbac.yaml.j2"
+  - "kube-vip/kube-vip-rbac.yaml.j2"
+  - "kube-vip/kube-vip-daemonset.yaml.j2"
   - "cilium/cilium-bgp-config.yaml.j2"
   - "cilium/cilium-installation.yaml.j2"
 
