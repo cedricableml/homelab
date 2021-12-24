@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: kube-vip-nuc
+  name: kube-vip
   namespace: kube-system
 spec:
   selector:
@@ -57,7 +57,6 @@ spec:
       hostNetwork: true
       nodeSelector:
         node-role.kubernetes.io/master: "true"
-        type: nuc
       serviceAccountName: kube-vip
       tolerations:
         - key: node-role.kubernetes.io/master
