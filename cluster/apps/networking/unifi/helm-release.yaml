@@ -35,7 +35,7 @@ spec:
                   values: ["storage"]
     image:
       repository: jacobalberty/unifi
-      tag: v6.5.53
+      tag: v6.5.55
     podSecurityContext:
       fsGroup: 2000
     timezone: ${TZ}
