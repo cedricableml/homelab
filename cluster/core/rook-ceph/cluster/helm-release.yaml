@@ -49,7 +49,7 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "k3sstorageubuntu"
+          - name: "kubeworker0"
             devices:
               - name: "sdb"
           - name: "nuc1"
