@@ -19,7 +19,7 @@ metadata:
   namespace: networking
 subsets:
   - addresses:
-      - ip: "${GATEWAY_ADDRESS}"
+      - ip: "${TRUENAS_ADDRESS}"
     ports:
       - port: 443
         name: "truenas"
