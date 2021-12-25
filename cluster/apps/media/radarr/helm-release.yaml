@@ -73,16 +73,16 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${STORAGE_ADDRESS}"
-            path: /storage/media/movies
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/stoarge/media/movies
         mountPath: /media/movies
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${STORAGE_ADDRESS}"
-            path: /storage/backups/softwarrself
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/stoarge/backups/softwarrself
         mountPath: /config/Backups
         readOnly: false
     resources:

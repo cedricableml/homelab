@@ -58,16 +58,16 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${STORAGE_ADDRESS}"
-            path: /storage/media/audiobooks
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/stoarge/media/audiobooks
         mountPath: /media/audiobooks
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
-            server: "${STORAGE_ADDRESS}"
-            path: /storage/backups/softwarrself
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/stoarge/backups/softwarrself
         mountPath: /config/Backups
         readOnly: false
     resources:

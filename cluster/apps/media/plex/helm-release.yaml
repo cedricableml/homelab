@@ -59,8 +59,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${STORAGE_ADDRESS}"
-            path: /storage/media
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/stoarge/media
         mountPath: /data
         readOnly: true
       transcode:

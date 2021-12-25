@@ -35,7 +35,7 @@ spec:
         scrapeTimeout: 30s
       targets:
         - name: storage
-          url: "${STORAGE_ADDRESS}"
+          url: "${TRUENAS_ADDRESS}"
           module: icmp
         - name: router
           url: "${GATEWAY_ADDRESS}"

@@ -11,5 +11,3 @@ resources:
   - blackbox-exporter
   - pushgateway
   - unifi-poller
-  - omada-exporter
-#  - newrelic
