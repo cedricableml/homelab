@@ -44,7 +44,7 @@ spec:
 #              readOnly: true
       containers:
         - name: cloudflared
-          image: cloudflare/cloudflared:2021.11.0
+          image: cloudflare/cloudflared:2021.12.3
           args:
             - tunnel
             - --origincert
