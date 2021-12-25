@@ -65,6 +65,13 @@ tasks:
       - "ansible kubernetes -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml -m shutdown"
     silent: true
 
+  playbook:nuke-rook-ceph:
+    desc: Nuke all rook-ceph devices
+    dir: ansible
+    cmds:
+      - "ansible-playbook -i {{.ANSIBLE_INVENTORY_DIR}}/home-cluster/hosts.yml {{.ANSIBLE_PLAYBOOK_DIR}}/kubernetes/nuke-rook-ceph.yml"
+    silent: true
+
   playbook:ubuntu-prepare:
     desc: Prepare all the k8s nodes for running k3s
     dir: ansible
