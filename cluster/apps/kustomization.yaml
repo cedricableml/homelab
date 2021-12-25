@@ -13,4 +13,4 @@ resources:
   - system-upgrade
   - tools
   - operators
-#  - falco-system
+  - calico-system
