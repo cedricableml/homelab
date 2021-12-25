@@ -82,7 +82,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/stoarge/media
+            path: /mnt/storage/media
         mountPath: /media
         readOnly: true
     resources:

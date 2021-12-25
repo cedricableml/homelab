@@ -59,7 +59,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/stoarge/media
+            path: /mnt/storage/media
         mountPath: /media
       backup:
         enabled: true
@@ -67,7 +67,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/stoarge/backups/softwarrself
+            path: /mnt/storage/backups/softwarrself
         mountPath: /config/Backups
         readOnly: false
     resources:
