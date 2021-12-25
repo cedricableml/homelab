@@ -30,4 +30,3 @@ resources:
   - rook-ceph-charts.yaml
   - charlie-haley-charts.yaml
   - metrics-server-charts.yaml
-  - cilium-charts.yaml

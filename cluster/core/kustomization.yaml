@@ -7,4 +7,3 @@ resources:
   - kube-system
   - system-upgrade
   - rook-ceph
-  - cilium

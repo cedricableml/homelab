@@ -19,7 +19,6 @@ k3s_server:
     - metrics-server
     - local-storage
   disable-network-policy: true
-  disable-kube-proxy: true
   disable-cloud-controller: true
   write-kubeconfig-mode: "644"
   flannel-backend: "none"

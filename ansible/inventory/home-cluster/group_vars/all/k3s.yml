@@ -19,6 +19,10 @@ k3s_use_unsupported_config: true
 # set to kube-vip/keepalived IP
 k3s_registration_address: 10.250.14.200
 
+k3s_server_manifests_urls:
+  - url: https://docs.projectcalico.org/archive/v3.21/manifests/tigera-operator.yaml
+    filename: tigera-operator.yaml
+
 #
 # Uncomment the config below on new installations
 # Comment after install and run `task ansible:purge-manifests`
@@ -27,9 +31,6 @@ k3s_registration_address: 10.250.14.200
 k3s_server_manifests_templates:
   - "kube-vip/kube-vip-rbac.yaml.j2"
   - "kube-vip/kube-vip-daemonset.yaml.j2"
-  - "cilium/cilium-bgp-config.yaml.j2"
-  - "cilium/cilium-installation.yaml.j2"
-
-#k3s_server_manifests_urls:
-#- url: https://my.yaml
-#  filename: my.yaml
+  - "calico/calico-installation.yaml.j2"
+  - "calico/calico-bgpconfiguration.yaml.j2"
+  - "calico/calico-bgppeer.yaml.j2"
