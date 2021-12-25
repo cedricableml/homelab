@@ -17,7 +17,7 @@ spec:
     spec:
       # renovate: registryUrl=https://charts.rook.io/release
       chart: rook-ceph-cluster
-      version: v1.7.9
+      version: v1.8.1
       sourceRef:
         kind: HelmRepository
         name: rook-ceph-charts
@@ -81,3 +81,12 @@ spec:
             csi.storage.k8s.io/fstype: ext4
     cephFileSystems: []
     cephObjectStores: []
+#    automate [data cleanup process](https://github.com/rook/rook/blob/master/Documentation/ceph-teardown.md#delete-the-data-on-hosts) in cluster destruction.
+#    cleanupPolicy:
+#      # Since cluster cleanup is destructive to data, confirmation is required.
+#      # To destroy all Rook data on hosts during uninstall, confirmation must be set to "yes-really-destroy-data".
+#      # This value should only be set when the cluster is about to be deleted. After the confirmation is set,
+#      # Rook will immediately stop configuring the cluster and only wait for the delete command.
+#      # If the empty string is set, Rook will not destroy any data on hosts during uninstall.
+#      confirmation: "yes-really-destroy-data"
+#      allowUninstallWithVolumes: false
