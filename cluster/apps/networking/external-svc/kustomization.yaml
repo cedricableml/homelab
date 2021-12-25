@@ -4,4 +4,3 @@ kind: Kustomization
 resources:
   - edgerouter.yaml
   - truenas.yaml
-  - minio-truenas.yaml
