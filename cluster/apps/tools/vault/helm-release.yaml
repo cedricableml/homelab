@@ -87,4 +87,4 @@ spec:
           cpu: 500m
       dataStorage:
         size: 5Gi
-        storageClass: ceph-block
+        storageClass: ceph-block-retain

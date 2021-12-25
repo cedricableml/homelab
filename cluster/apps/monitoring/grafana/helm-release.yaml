@@ -216,7 +216,7 @@ spec:
       autoMount: true
     persistence:
       enabled: false
-      storageClassName: ceph-block
+      storageClassName: ceph-block-retain
       size: 10Gi
       accessModes:
         - ReadWriteOnce

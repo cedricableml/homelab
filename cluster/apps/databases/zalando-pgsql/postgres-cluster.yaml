@@ -16,9 +16,6 @@ spec:
     vault:
       - superuser
       - createdb
-    atuin:
-      - superuser
-      - createdb
     recipes:
       - superuser
       - createdb
