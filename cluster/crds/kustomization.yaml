@@ -10,3 +10,4 @@ resources:
   - olm
   - rook-ceph
   - zalando
+  - velero
