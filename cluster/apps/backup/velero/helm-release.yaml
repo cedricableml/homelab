@@ -53,14 +53,14 @@ spec:
         provider: velero.io/aws
         bucket: velero
         config:
-          region: minio
+          region: default
           s3ForcePathStyle: true
-          s3Url: http://minio.tools.svc:9000
-          publicUrl: "https://minio.${SECRET_DOMAIN_CASA}"
+          s3Url: http://10.250.1.100:9000
+          publicUrl: "https://s3.${SECRET_DOMAIN_CASA}"
     credentials:
-      existingSecret: minio-credentials
+      existingSecret: s3-credentials
     schedules:
-      backup-minio:
+      backup-s3:
         disabled: false
         schedule: "30 4 * * *"
         useOwnerReferencesInBackup: true

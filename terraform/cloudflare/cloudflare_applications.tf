@@ -34,13 +34,9 @@ locals {
       subdomain = "hass"
       type      = "self_hosted"
       gsuite    = true
-    }, {
-      subdomain = "k8sapi"
-      type      = "self_hosted"
-      gsuite    = true
     },
     {
-      subdomain = "minio"
+      subdomain = "s3"
       type      = "self_hosted"
       gsuite    = true
     },
