@@ -102,12 +102,3 @@ spec:
         cpu: 500m
       limits:
         memory: 6000Mi
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: "type"
-                  operator: In
-                  values: ["storage"]

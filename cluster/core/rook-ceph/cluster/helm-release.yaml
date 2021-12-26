@@ -49,15 +49,15 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "kubeworker0"
-            devices:
-              - name: "sdb"
           - name: "nuc1"
             devices:
               - name: "nvme0n1p4"
           - name: "nuc2"
             devices:
               - name: "nvme0n1p4"
+#          - name: "nuc3"
+#            devices:
+#              - name: "nvme0n1"
     cephBlockPools:
       - name: ceph-blockpool
         spec:

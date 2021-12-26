@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - edgerouter.yaml
   - truenas.yaml
+  - truenas-dns.yaml

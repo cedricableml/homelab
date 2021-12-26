@@ -154,17 +154,6 @@ spec:
     prometheusOperator:
       configReloaderCpu: 0
     prometheus:
-#      affinity:
-#        nodeAffinity:
-#          preferredDuringSchedulingIgnoredDuringExecution:
-#            - weight: 1
-#              preference:
-#                matchExpressions:
-#                  - key: "type"
-#                    operator: In
-#                    values: ["storage"]
-      nodeSelector:
-        type: storage
       ingress:
         enabled: true
         pathType: Prefix

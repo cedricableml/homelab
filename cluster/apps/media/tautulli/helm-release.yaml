@@ -32,15 +32,7 @@ spec:
             mountPath: /config
         securityContext:
           privileged: true
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: "type"
-                  operator: In
-                  values: ["storage"]
+
     image:
       repository: ghcr.io/k8s-at-home/tautulli
       tag: v2.8.0

@@ -17,15 +17,7 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    affinity:
-      nodeAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 1
-            preference:
-              matchExpressions:
-                - key: "type"
-                  operator: In
-                  values: ["storage"]
+
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
