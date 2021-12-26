@@ -55,9 +55,7 @@ spec:
           - name: "nuc2"
             devices:
               - name: "nvme0n1p4"
-#          - name: "nuc3"
-#            devices:
-#              - name: "nvme0n1"
+#          - name: "nuc3wnvme0n1"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
