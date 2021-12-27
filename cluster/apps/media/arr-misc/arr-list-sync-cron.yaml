@@ -4,6 +4,8 @@ kind: CronJob
 metadata:
   namespace: media
   name: arr-list-sync
+  annotations:
+    botkube.io/disable: "true"
 spec:
   schedule: "* * * * *"
   concurrencyPolicy: "Forbid"
