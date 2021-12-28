@@ -10,6 +10,7 @@ apt_install_packages:
   - htop
   - iputils-ping
   - ipvsadm
+  - linux-firmware
   - lm-sensors
   - lvm2
   - net-tools
