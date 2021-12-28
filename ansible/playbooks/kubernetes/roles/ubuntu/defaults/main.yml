@@ -8,6 +8,7 @@ apt_install_packages:
   - gdisk
   - hdparm
   - htop
+  - iperf3
   - iputils-ping
   - ipvsadm
   - linux-firmware
