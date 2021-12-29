@@ -31,3 +31,4 @@ resources:
   - charlie-haley-charts.yaml
   - metrics-server-charts.yaml
   - metallb-charts.yaml
+  - xunholy-charts.yaml
