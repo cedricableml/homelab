@@ -139,6 +139,15 @@ spec:
         accessMode: ReadWriteOnce
         existingClaim: unifi-config-v4
         mountPath: /unifi
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/storage/backups/softwarrself/unifi
+        mountPath: /unifi/data/backup/autobackup
+        readOnly: false
     jvmMaxHeapSize: 8192M
     resources:
       limits:

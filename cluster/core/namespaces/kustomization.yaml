@@ -16,4 +16,3 @@ resources:
   - newrelic.yaml
   - rook-ceph.yaml
   - metallb-system.yaml
-  - kasten-io.yaml
