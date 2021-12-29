@@ -67,6 +67,15 @@ spec:
         enabled: true
         type: emptyDir
         medium: Memory
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/storage/backups/softwarrself/plex
+        mountPath: /config/backup
+        readOnly: false
     resources:
       requests:
         cpu: 2500m
