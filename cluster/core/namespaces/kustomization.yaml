@@ -10,10 +10,10 @@ resources:
   - media.yaml
   - monitoring.yaml
   - networking.yaml
-  - backup.yaml
   - tools.yaml
   - databases.yaml
   - falco-system.yaml
   - newrelic.yaml
   - rook-ceph.yaml
   - metallb-system.yaml
+  - kasten-io.yaml

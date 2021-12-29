@@ -8,3 +8,4 @@ resources:
   - system-upgrade
   - rook-ceph
   - metallb-system
+  - kasten-io
