@@ -65,7 +65,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself
+            path: /mnt/storage/backups/softwarrself/tautulli
         mountPath: /config/backups
         readOnly: false
     resources:
