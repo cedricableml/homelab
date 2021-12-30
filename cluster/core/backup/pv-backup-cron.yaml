@@ -21,15 +21,19 @@ spec:
           containers:
             - name: pv-backup
               image: busybox:latest
-              command:
-                - /pv-backup.sh
+              command: ["/bin/sh"]
+              args:
+                [
+                  "-c",
+                  "/scripts/pv-backup.sh",
+                ]
               env:
                 - name: DESTINATION_NAMESPACE
                   value: backup
                 - name: DESTINATION_PVC_NAME
                   value: nfs-backups-pvc
               volumeMounts:
-                - mountPath: /pv-backup.sh
+                - mountPath: /scripts/pv-backup.sh
                   name: pv-backup
           volumes:
             - name: pv-backup
