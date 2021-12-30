@@ -13,13 +13,13 @@ spec:
   nfs:
     server: "${TRUENAS_ADDRESS}"
     path: /mnt/storage/backups/pvc
-  mountOptions:
-    - nfsvers=4.2
-    - tcp
-    - intr
-    - hard
-    - noatime
-    - nodiratime
+#  mountOptions:
+#    - nfsvers=4.2
+#    - tcp
+#    - intr
+#    - hard
+#    - noatime
+#    - nodiratime
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
