@@ -1,6 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+chmod +x kubectl
+chmod +x jq-linux64
+mv kubectl /usr/local/bin/
+mv jq-linux64 /usr/local/bin/jq
+curl -LO "https://github.com/utkuozdemir/pv-migrate/releases/download/v0.8.1/pv-migrate_v0.8.1_linux_x86_64.tar.gz"
+tar xvf pv-migrate*
+mv pv-migrate /usr/local/bin/
+
 dest_ns="${DESTINATION_NAMESPACE}"
 dest_pvc_name="${DESTINATION_PVC_NAME}"
 
