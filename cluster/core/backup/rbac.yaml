@@ -11,14 +11,14 @@ metadata:
   name: pv-backup
 rules:
   - apiGroups: [""]
-    resources: ["namespaces", "pvc", "deploy"]
+    resources: ["namespaces", "persistentvolumeclaims", "deployments"]
     verbs: ["watch", "list"]
   - apiGroups: [""]
-    resources: ["pod"]
+    resources: ["pods"]
     verbs: ["watch", "list", "create", "update", "delete", "patch"]
-  - apiGroups: [""]
-    resources: ["deploy"]
-    verbs: ["update", "patch"]
+  - apiGroups: ["", "apps"]
+    resources: ["deployments"]
+    verbs: ["update", "patch", "list", "watch"]
   - apiGroups: ["apiextensions.k8s.io"]
     resources: ["customresourcedefinitions"]
     verbs: ["watch", "list"]
@@ -34,4 +34,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: sa-pv-backup
-    namespace: networking
+    namespace: backup
