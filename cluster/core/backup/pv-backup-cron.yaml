@@ -35,6 +35,7 @@ spec:
               volumeMounts:
                 - mountPath: /scripts/pv-backup.sh
                   name: pv-backup
+                  subPath: pv-backup.sh
           volumes:
             - name: pv-backup
               configMap:
