@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: calibre-web-config
   namespace: media
+  labels:
+    pv-backup/enabled: true
 spec:
   accessModes:
     - ReadWriteOnce
