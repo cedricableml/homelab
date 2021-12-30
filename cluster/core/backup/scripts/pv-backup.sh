@@ -28,7 +28,7 @@ for ns_pvc in $source_ns_pvcs; do
   deploy_ns=$(jq -r '.namespace'<<<"$deploy_details")
 
   # scale down the deployment so we can mount the PVC later
-  kubectl scale -n "$deploy_ns" "$deploy_name" --replicas=0
+  kubectl scale -n "$deploy_ns" deploy "$deploy_name" --replicas=0
 
   # wait for the deployment to successfully scale down
   # shellcheck disable=SC2046
@@ -41,5 +41,5 @@ for ns_pvc in $source_ns_pvcs; do
 
   # scale deployment back up; blindly do not wait so we can move on to the next backup
   # TODO: maybe wait in background?
-  kubectl scale -n "$deploy_ns" "$deploy_name" --replicas=1
+  kubectl scale -n "$deploy_ns" deploy "$deploy_name" --replicas=1
 done
