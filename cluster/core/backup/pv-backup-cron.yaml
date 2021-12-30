@@ -20,7 +20,7 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: pv-backup
-              image: busybox:latest
+              image: alpine:latest
               command: ["/bin/sh"]
               args:
                 [
