@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-backups-pv
+  name: nfs-backups-media-pv
 spec:
-  storageClassName: nfs-backup
+  storageClassName: nfs-backup-media
   capacity:
     storage: 2Ti
   accessModes:
@@ -24,12 +24,12 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-backups-pvc
-  namespace: backup
+  name: nfs-backups-media-pvc
+  namespace: media
 spec:
   accessModes:
     - ReadWriteMany
-  storageClassName: nfs-backup
+  storageClassName: nfs-backup-media
   resources:
     requests:
       storage: 2Ti

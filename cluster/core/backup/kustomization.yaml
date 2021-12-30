@@ -11,6 +11,5 @@ generatorOptions:
   annotations:
     kustomize.toolkit.fluxcd.io/substitute: disabled
 resources:
-  - nfs-backup-pvc.yaml
   - rbac.yaml
   - pv-backup-cron.yaml
