@@ -39,3 +39,4 @@ spec:
             - name: pv-backup
               configMap:
                 defaultMode: 0777
+                name: pv-backup
