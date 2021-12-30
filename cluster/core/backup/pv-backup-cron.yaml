@@ -37,8 +37,5 @@ spec:
                   name: pv-backup
           volumes:
             - name: pv-backup
-              projected:
-                defaultMode: 0775
-                sources:
-                  - configMap:
-                      name: pv-backup
+              configMap:
+                defaultMode: 777
