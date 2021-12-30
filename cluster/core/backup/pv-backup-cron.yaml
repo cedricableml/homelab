@@ -38,4 +38,4 @@ spec:
           volumes:
             - name: pv-backup
               configMap:
-                defaultMode: 777
+                defaultMode: 0777
