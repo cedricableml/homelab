@@ -4,6 +4,8 @@ kind: PersistentVolumeClaim
 metadata:
   name: dizquetv-config-v4
   namespace: media
+  labels:
+    pv-backup/enabled: true
 spec:
   accessModes:
     - ReadWriteOnce

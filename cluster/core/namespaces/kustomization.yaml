@@ -16,3 +16,4 @@ resources:
   - newrelic.yaml
   - rook-ceph.yaml
   - metallb-system.yaml
+  - backup.yaml

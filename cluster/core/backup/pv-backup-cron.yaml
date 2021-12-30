@@ -1,0 +1,46 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pv-backup
+  namespace: backup
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      ttlSecondsAfterFinished: 300
+      template:
+        spec:
+          serviceAccountName: sa-pv-backup
+          automountServiceAccountToken: true
+          restartPolicy: OnFailure
+          containers:
+            - name: pv-backup
+              image: utkuozdemir/pv-migrate:v0.8.1
+              command:
+                - curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+                - curl -LO "https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64"
+                - chmod +x kubectl
+                - chmod +x jq-linux64
+                - mv kubectl /usr/local/bin/
+                - mv jq-linux64 /usr/local/bin/jq
+                - /pv-backup.sh
+              env:
+                - name: DESTINATION_NAMESPACE
+                  value: backup
+                - name: DESTINATION_PVC_NAME
+                  value: nfs-backups-pvc
+              volumeMounts:
+                - mountPath: /pv-backup.sh
+                  name: pv-backup
+          volumes:
+            - name: pv-backup
+              projected:
+                defaultMode: 0775
+                sources:
+                  - configMap:
+                      name: pv-backup
