@@ -12,8 +12,6 @@ resources:
   - networking.yaml
   - tools.yaml
   - databases.yaml
-  - falco-system.yaml
-  - newrelic.yaml
   - rook-ceph.yaml
   - metallb-system.yaml
   - backup.yaml
