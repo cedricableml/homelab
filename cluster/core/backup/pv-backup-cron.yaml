@@ -20,13 +20,12 @@ spec:
           restartPolicy: OnFailure
           containers:
             - name: pv-backup
-              image: alpine:latest
-              command: ["/bin/sh"]
+              image: ghcr.io/k8s-at-home/kubectl:v1.23.1
+              command:
+                - "/bin/sh"
               args:
-                [
-                  "-c",
-                  "sleep 99999999",
-                ]
+                - "-c"
+                - "sleep 9999"
               env:
                 - name: DESTINATION_NAMESPACE
                   value: backup
