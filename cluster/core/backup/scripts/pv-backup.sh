@@ -37,7 +37,7 @@ for ns_pvc in $source_ns_pvcs; do
   done
 
   # copy from source pvc to dest pvc
-  pv-migrate migrate --source-namespace "$source_pvc_ns" --dest-namespace "$dest_ns" --dest-path /"$deploy_name" "$dest_pvc_name" "$dest_pvc_name"
+  pv-migrate migrate --source-namespace "$source_pvc_ns" --dest-namespace "$dest_ns" --dest-path /"$deploy_name" "$source_pvc_name" "$dest_pvc_name"
 
   # scale deployment back up; blindly do not wait so we can move on to the next backup
   # TODO: maybe wait in background?
