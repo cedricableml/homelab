@@ -73,8 +73,8 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/media/movies
-        mountPath: /media/movies
+            path: /mnt/storage/media
+        mountPath: /media
       backup:
         enabled: true
         type: custom
