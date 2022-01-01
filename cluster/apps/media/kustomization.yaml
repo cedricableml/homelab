@@ -5,7 +5,7 @@ resources:
   - _backup
   - bazarr
   - dizquetv
-  - nzbget
+#  - nzbget
   - overseerr
   - jellyfin
   - prowlarr

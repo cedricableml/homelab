@@ -51,6 +51,14 @@ spec:
             server: "${TRUENAS_ADDRESS}"
             path: /mnt/storage/media/comics
         mountPath: /media/comics
+      nzbget-downloads:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/ssd-sata/nzbget-downloads
+        mountPath: /nzbget-downloads
     resources:
       limits:
         cpu: 1.2

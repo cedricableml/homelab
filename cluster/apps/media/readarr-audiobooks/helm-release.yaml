@@ -53,6 +53,14 @@ spec:
             server: "${TRUENAS_ADDRESS}"
             path: /mnt/storage/media/audiobooks
         mountPath: /media/audiobooks
+      nzbget-downloads:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/ssd-sata/nzbget-downloads
+        mountPath: /nzbget-downloads
       backup:
         enabled: true
         type: custom
