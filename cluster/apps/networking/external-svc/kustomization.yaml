@@ -5,3 +5,4 @@ resources:
   - edgerouter.yaml
   - truenas.yaml
   - truenas-dns.yaml
+  - truenas-nzbget.yaml
