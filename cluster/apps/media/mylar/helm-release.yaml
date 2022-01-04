@@ -57,7 +57,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/ssd-sata/nzbget-downloads
+            path: /mnt/nvme/nzbget-downloads
         mountPath: /nzbget-downloads
     resources:
       limits:
