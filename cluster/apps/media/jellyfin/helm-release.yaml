@@ -16,6 +16,18 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - plex
+              topologyKey: kubernetes.io/hostname
     securityContext:
       privileged: true
     podAnnotations:
