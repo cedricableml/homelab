@@ -89,7 +89,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself/radarr
+            path: /mnt/nvme/backups/softwarrself/radarr
         mountPath: /config/Backups
         readOnly: false
     resources:

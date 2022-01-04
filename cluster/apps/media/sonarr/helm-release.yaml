@@ -74,7 +74,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself/sonarr
+            path: /mnt/nvme/backups/softwarrself/sonarr
         mountPath: /config/Backups
         readOnly: false
     resources:

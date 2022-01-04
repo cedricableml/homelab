@@ -145,7 +145,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself/unifi
+            path: /mnt/nvme/backups/softwarrself/unifi
         mountPath: /unifi/data/backup/autobackup
         readOnly: false
     jvmMaxHeapSize: 8192M

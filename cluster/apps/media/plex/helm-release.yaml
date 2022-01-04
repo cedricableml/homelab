@@ -73,7 +73,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself/plex
+            path: /mnt/nvme/backups/softwarrself/plex
         mountPath: /config/backup
         readOnly: false
     resources:

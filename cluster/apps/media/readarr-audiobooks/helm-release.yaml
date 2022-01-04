@@ -67,7 +67,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/backups/softwarrself/readarr-audiobooks
+            path: /mnt/nvme/backups/softwarrself/readarr-audiobooks
         mountPath: /config/Backups
         readOnly: false
     resources:
