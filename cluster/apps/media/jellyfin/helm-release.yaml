@@ -46,10 +46,10 @@ spec:
         securityContext:
           privileged: true
     image:
-      # repository: ghcr.io/k8s-at-home/jellyfin
-      # tag: v10.7.7
-      repository: nyanmisaka/jellyfin
-      tag: 211231-amd64
+      repository: linuxserver/jellyfin
+      tag: nightly-version-20220104.17-unstable
+#      repository: nyanmisaka/jellyfin
+#      tag: 211231-amd64
     env:
       TZ: "${TZ}"
       JELLYFIN_CACHE_DIR: "/config/cache"
