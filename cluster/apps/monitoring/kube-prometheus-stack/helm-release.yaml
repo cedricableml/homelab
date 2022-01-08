@@ -9,10 +9,10 @@ spec:
   install:
     disableWait: true
     remediation:
-      retries: 30
+      retries: 300
   upgrade:
     remediation:
-      retries: 30
+      retries: 300
   chart:
     spec:
       # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
@@ -120,10 +120,16 @@ spec:
               enabled: true
     kubelet:
       enabled: true
+      serviceMonitor:
+        metricRelabelings:
+          - action: replace
+            sourceLabels:
+              - node
+            targetLabel: instance
     kubeApiServer:
       enabled: true
     kubeControllerManager:
-      enabled: false
+      enabled: true
       endpoints:
         - 10.250.1.101
         - 10.250.1.102
@@ -135,7 +141,7 @@ spec:
         - 10.250.1.102
         - 10.250.1.103
     kubeProxy:
-      enabled: false
+      enabled: true
       endpoints:
         - 10.250.1.101
         - 10.250.1.102
@@ -150,9 +156,15 @@ spec:
         enabled: true
         port: 2381
         targetPort: 2381
-    # Setting this option to 0 disabled CPU limits
     prometheusOperator:
-      configReloaderCpu: 0
+      prometheusConfigReloader:
+        resources:
+          requests:
+            cpu: 100m
+            memory: 50Mi
+          limits:
+            cpu: 200m
+            memory: 100Mi
     prometheus:
       ingress:
         enabled: true
@@ -191,3 +203,9 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
+        # thanos:
+        #   image: quay.io/thanos/thanos:v0.24.0
+        #   version: v0.22.0
+        #   objectStorageConfig:
+        #     name: thanos-objstore
+        #     key: objstore.yml
