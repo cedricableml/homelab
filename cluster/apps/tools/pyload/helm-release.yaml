@@ -51,6 +51,8 @@ spec:
             server: "${TRUENAS_ADDRESS}"
             path: /mnt/storage/media/misc
         mountPath: /downloads
+        accessModes:
+          - ReadWriteOnce
     resources:
       requests:
         memory: 250Mi
