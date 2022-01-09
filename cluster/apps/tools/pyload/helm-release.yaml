@@ -24,7 +24,6 @@ spec:
       TZ: "${TZ}"
     ingress:
       main:
-        primary: true
         enabled: true
         ingressClassName: "traefik"
         annotations:
@@ -44,6 +43,14 @@ spec:
       config:
         enabled: true
         existingClaim: pyload-config-v1
+      downloads:
+        enabled: false
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/storage/media/misc
+        mountPath: /downloads
     resources:
       requests:
         memory: 250Mi
