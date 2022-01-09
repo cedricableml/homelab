@@ -44,7 +44,7 @@ spec:
         enabled: true
         existingClaim: pyload-config-v1
       downloads:
-        enabled: false
+        enabled: true
         type: custom
         volumeSpec:
           nfs:
