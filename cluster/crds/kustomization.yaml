@@ -7,7 +7,6 @@ resources:
   - external-snapshotter
   - kube-prometheus-stack
   - traefik
-  - olm
   - rook-ceph
   - zalando
   - velero
