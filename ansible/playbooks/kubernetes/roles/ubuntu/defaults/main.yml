@@ -21,6 +21,7 @@ apt_install_packages:
   - nvme-cli
   - open-iscsi
   - psmisc
+  - pip
   - smartmontools
   - socat
   - software-properties-common
