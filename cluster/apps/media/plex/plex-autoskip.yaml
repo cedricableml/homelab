@@ -26,8 +26,6 @@ spec:
           env:
             - name: TZ
               value: ${TZ}
-            - name: PAS_PATH
-              value: /tmp
           volumeMounts:
             - mountPath: /config
               name: plex-autoskip-cm
