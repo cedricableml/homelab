@@ -47,11 +47,6 @@ spec:
 
       # -- Volume used for shared storage. e.g. emptydir transcode
       # @default -- See values.yaml
-      shared:
-        enabled: true
-        mountpath: /shared
-        type: emptyDir
-        medium: Memory
     ingress:
       main:
         enabled: true
@@ -86,6 +81,11 @@ spec:
             server: "${TRUENAS_ADDRESS}"
             path: /mnt/storage/media
         mountPath: /media
+      shared:
+        enabled: true
+        mountpath: /shared
+        type: emptyDir
+        medium: Memory
 #      backup:
 #        enabled: true
 #        type: custom
