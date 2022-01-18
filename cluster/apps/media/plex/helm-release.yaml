@@ -62,7 +62,7 @@ spec:
             server: "${TRUENAS_ADDRESS}"
             path: /mnt/storage/media
         mountPath: /data
-        readOnly: true
+        readOnly: false
       transcode:
         enabled: true
         type: emptyDir
