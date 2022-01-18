@@ -86,15 +86,15 @@ spec:
         mountpath: /shared
         type: emptyDir
         medium: Memory
-#      backup:
-#        enabled: true
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "${TRUENAS_ADDRESS}"
-#            path: /mnt/nvme/backups/softwarrself/tdarr
-#        mountPath: /config/Backups
-#        readOnly: false
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/nvme/backups/softwarrself/tdarr
+        mountPath: /app/server/Tdarr/Backups
+        readOnly: false
     resources:
       requests:
         memory: 250Mi
