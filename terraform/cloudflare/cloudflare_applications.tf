@@ -180,6 +180,11 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "tdarr"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
   apps_secondary = [
     {
