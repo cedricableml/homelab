@@ -68,11 +68,11 @@ spec:
       config:
         enabled: true
         existingClaim: tdarr-config-v1
-        mountpath: /app/configs
+        mountPath: /app/configs
       data:
         enabled: true
         existingClaim: tdarr-data-v1
-        mountpath: /app/server
+        mountPath: /app/server
       media:
         enabled: true
         type: custom
