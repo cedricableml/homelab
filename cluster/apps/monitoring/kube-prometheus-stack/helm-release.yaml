@@ -97,20 +97,20 @@ spec:
               resources:
                 requests:
                   storage: 1Gi
-    kube-state-metrics:
-      fullnameOverride: kube-state-metrics
-    prometheus-node-exporter:
-      fullnameOverride: node-exporter
-      prometheus:
-        monitor:
-          enabled: true
-          relabelings:
-            - action: replace
-              regex: (.*)
-              replacement: $1
-              sourceLabels:
-                - __meta_kubernetes_pod_node_name
-              targetLabel: kubernetes_node
+#    kube-state-metrics:
+#      fullnameOverride: kube-state-metrics
+#    prometheus-node-exporter:
+#      fullnameOverride: node-exporter
+#      prometheus:
+#        monitor:
+#          enabled: true
+#          relabelings:
+#            - action: replace
+#              regex: (.*)
+#              replacement: $1
+#              sourceLabels:
+#                - __meta_kubernetes_pod_node_name
+#              targetLabel: kubernetes_node
     grafana:
       enabled: false
       forceDeployDashboards: true
@@ -119,44 +119,44 @@ spec:
           multicluster:
             etcd:
               enabled: true
-    kubelet:
-      enabled: true
-      serviceMonitor:
-        metricRelabelings:
-          - action: replace
-            sourceLabels:
-              - node
-            targetLabel: instance
-    kubeApiServer:
-      enabled: true
-    kubeControllerManager:
-      enabled: true
-      endpoints:
-        - 10.250.1.101
-        - 10.250.1.102
-        - 10.250.1.103
-    kubeScheduler:
-      enabled: true
-      endpoints:
-        - 10.250.1.101
-        - 10.250.1.102
-        - 10.250.1.103
-    kubeProxy:
-      enabled: true
-      endpoints:
-        - 10.250.1.101
-        - 10.250.1.102
-        - 10.250.1.103
-    kubeEtcd:
-      enabled: true
-      endpoints:
-        - 10.250.1.101
-        - 10.250.1.102
-        - 10.250.1.103
-      service:
-        enabled: true
-        port: 2381
-        targetPort: 2381
+#    kubelet:
+#      enabled: true
+#      serviceMonitor:
+#        metricRelabelings:
+#          - action: replace
+#            sourceLabels:
+#              - node
+#            targetLabel: instance
+#    kubeApiServer:
+#      enabled: true
+#    kubeControllerManager:
+#      enabled: true
+#      endpoints:
+#        - 10.250.1.101
+#        - 10.250.1.102
+#        - 10.250.1.103
+#    kubeScheduler:
+#      enabled: true
+#      endpoints:
+#        - 10.250.1.101
+#        - 10.250.1.102
+#        - 10.250.1.103
+#    kubeProxy:
+#      enabled: true
+#      endpoints:
+#        - 10.250.1.101
+#        - 10.250.1.102
+#        - 10.250.1.103
+#    kubeEtcd:
+#      enabled: true
+#      endpoints:
+#        - 10.250.1.101
+#        - 10.250.1.102
+#        - 10.250.1.103
+#      service:
+#        enabled: true
+#        port: 2381
+#        targetPort: 2381
     prometheusOperator:
       prometheusConfigReloader:
         resources:
