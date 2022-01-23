@@ -96,6 +96,11 @@ locals {
       gsuite    = true
     },
     {
+      subdomain = "nuc3"
+      type      = "ssh"
+      gsuite    = true
+    },
+    {
       subdomain = "tautulli"
       type      = "self_hosted"
       gsuite    = true
