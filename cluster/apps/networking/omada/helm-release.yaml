@@ -134,6 +134,15 @@ spec:
         enabled: true
         mountPath: /opt/tplink/EAPController/logs
         existingClaim: omada-logs-pvc-v2
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/nvme/backups/softwarrself/omada
+        mountPath: /opt/tplink/EAPController/data/autobackup
+        readOnly: false
 
     resources:
       requests:
