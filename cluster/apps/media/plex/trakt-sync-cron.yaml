@@ -57,7 +57,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: trakt-sync
-              image: ghcr.io/taxel/plextraktsync:0.18.18
+              image: ghcr.io/taxel/plextraktsync:0.18.20
               volumeMounts:
                 - mountPath: /app/config/config.json
                   name: config
