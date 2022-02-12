@@ -91,20 +91,13 @@ spec:
       prometheusRule:
         enabled: true
       exporter:
-        resources:
-          requests:
-            cpu: 10m
-            memory: 128Mi
-          limits:
-            cpu: 150m
-            memory: 512mi
         image:
           repository: ghcr.io/onedr0p/exportarr
           tag: v1.0.0
         env:
           port: 9794
           additionalMetrics: true
-          unknownQueueItems: false
+          unknownQueueItems: true
     podAnnotations:
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
