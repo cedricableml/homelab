@@ -6,6 +6,11 @@ metadata:
   namespace: cert-manager
 spec:
   interval: 5m
+  install:
+    createNamespace: true
+    crds: CreateReplace
+    remediation:
+      retries: 3
   chart:
     spec:
       # renovate: registryUrl=https://charts.jetstack.io/
@@ -16,9 +21,16 @@ spec:
         name: jetstack-charts
         namespace: flux-system
   values:
-    installCRDs: false
-    cainjector:
-      replicaCount: 1
+    installCRDs: true
+    extraArgs:
+      - --dns01-recursive-nameservers=1.1.1.1:53,9.9.9.9:53
+      - --dns01-recursive-nameservers-only
+    replicaCount: 1
+    podDnsPolicy: "None"
+    podDnsConfig:
+      nameservers:
+        - "1.1.1.1"
+        - "9.9.9.9"
     prometheus:
       enabled: true
       servicemonitor:
