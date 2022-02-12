@@ -31,6 +31,7 @@ metadata:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     traefik.ingress.kubernetes.io/service.serversscheme: https
     external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+    traefik.ingress.kubernetes.io/router.middlewares: networking-omada-redirect@kubernetescrd,networking-omada-headers@kubernetescrd
   name: omada-oc200
   namespace: networking
 spec:
@@ -49,3 +50,27 @@ spec:
   tls:
     - hosts:
         - "omada.${SECRET_DOMAIN_CASA}"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: omada-redirect
+  namespace: networking
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
+spec:
+  redirectRegex:
+    regex: "https://([^/]+)/?$"
+    replacement: "https://$1/login"
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: omada-headers
+  namespace: networking
+spec:
+  headers:
+    customRequestHeaders:
+      Host: "omada.${SECRET_DOMAIN}:443"
+    customResponseHeaders:
+      Host: "omada.${SECRET_DOMAIN}"
