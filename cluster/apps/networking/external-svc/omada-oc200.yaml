@@ -8,8 +8,8 @@ spec:
   ports:
     - name: "omada-oc200"
       protocol: "TCP"
-      port: 443
-      targetPort: 443
+      port: 8043
+      targetPort: 8043
       nodePort: 0
 ---
 kind: "Endpoints"
@@ -21,7 +21,7 @@ subsets:
   - addresses:
       - ip: "${OC200_ADDRESS}"
     ports:
-      - port: 443
+      - port: 8043
         name: "omada-oc200"
 ---
 apiVersion: networking.k8s.io/v1
@@ -44,7 +44,7 @@ spec:
               service:
                 name: omada-oc200
                 port:
-                  number: 443
+                  number: 8043
             path: /
             pathType: Prefix
   tls:
