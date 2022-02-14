@@ -195,6 +195,11 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "qnap"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
   apps_secondary = [
     {

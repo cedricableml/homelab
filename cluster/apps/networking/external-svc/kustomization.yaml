@@ -8,3 +8,4 @@ resources:
   - truenas-nzbget.yaml
   - truenas-minio.yaml
   - omada-oc200.yaml
+  - qnap.yaml
