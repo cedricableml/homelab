@@ -40,7 +40,7 @@ spec:
       id: node
       image:
         repository: haveagitgat/tdarr_node
-        tag: 2.00.14
+        tag: 2.00.15
         pullPolicy: IfNotPresent
       # -- Node resources
       resources: { }
