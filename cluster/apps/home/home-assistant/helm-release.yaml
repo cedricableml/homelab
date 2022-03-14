@@ -61,6 +61,8 @@ spec:
         tls:
           - hosts:
               - "hass.local.${SECRET_DOMAIN_CASA}"
+    securityContext:
+      privileged: true
     persistence:
       config:
         enabled: true
