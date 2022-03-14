@@ -17,6 +17,8 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    nodeSelector:
+      kubernetes.io/hostname: nuc1
     image:
       repository: ghcr.io/home-assistant/home-assistant
       tag: 2022.3.4
@@ -66,9 +68,14 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
-      resources:
-        requests:
-          cpu: 100m
-          memory: 100Mi
-        limits:
-          memory: 4000Mi
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_c46794596029ec11b42d6c7840c9ce8d-if00-port0
+        hostPathType: CharDevice
+    resources:
+      requests:
+        cpu: 100m
+        memory: 100Mi
+      limits:
+        memory: 4000Mi
