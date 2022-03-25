@@ -76,6 +76,7 @@ spec:
     config:
       # Minimal configuration.yml example
       permit_join: true
+      homeassistant: true
       mqtt:
         server: mqtt://localhost:1883
       serial:
