@@ -35,10 +35,8 @@ ffmpeg:
     - /dev/dri/renderD128
     - -hwaccel_output_format
     - yuv420p
-  # Enable audio on recordings...
-  # might cause issues on recording playback
-  # output_args:
-  #   record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac
+  output_args:
+    record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
 
 rtmp:
   enabled: true
@@ -61,19 +59,9 @@ record:
       mode: active_objects
 
 cameras:
-  front_camera_frigate:
+  frigate_cam1:
     rtmp:
       enabled: false
-    ffmpeg:
-      hwaccel_args:
-        - -hwaccel
-        - vaapi
-        - -hwaccel_device
-        - /dev/dri/renderD128
-        - -hwaccel_output_format
-        - yuv420p
-      output_args:
-        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
       input_args:
         - -avoid_negative_ts
         - make_zero
