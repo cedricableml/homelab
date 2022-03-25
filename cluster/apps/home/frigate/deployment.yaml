@@ -91,4 +91,3 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: 4Gi
-
