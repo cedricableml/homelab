@@ -30,11 +30,9 @@ objects:
 ffmpeg:
   hwaccel_args:
     - -hwaccel
-    - vaapi
-    - -hwaccel_device
+    - qsv
+    - -qsv_device
     - /dev/dri/renderD128
-    - -hwaccel_output_format
-    - yuv420p
   output_args:
     record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
 
@@ -62,6 +60,14 @@ cameras:
   frigate_cam1:
     rtmp:
       enabled: false
+    ffmpeg:
+      hwaccel_args:
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      output_args:
+        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
       input_args:
         - -avoid_negative_ts
         - make_zero
