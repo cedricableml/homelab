@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
   - home-assistant
   - recipes
+  - mosquitto
+  - zigbee2mqtt
+  - node-red
+  - frigate
