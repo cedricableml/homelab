@@ -64,8 +64,7 @@ spec:
       usb:
         enabled: true
         type: hostPath
-        hostPath: /dev/ttyUSB0
-        hostPathType: CharDevice
+        hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_c46794596029ec11b42d6c7840c9ce8d-if00-port0
     nodeSelector:
       kubernetes.io/hostname: nuc1
     securityContext:
@@ -86,6 +85,6 @@ spec:
       mqtt:
         server: mqtt://mosquitto:1883
       serial:
-        port: /dev/ttyUSB0
+        port: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_c46794596029ec11b42d6c7840c9ce8d-if00-port0
       frontend:
         port: 8080
