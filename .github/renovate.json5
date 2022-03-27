@@ -1,4 +1,17 @@
 {
+  "extends": [
+    ":enableRenovate",
+    "config:base",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":separatePatchReleases",
+    "docker:enableMajor",
+    ":enablePreCommit",
+    "github>0dragosh/homelab-k3s//.github/renovate/autoMerge",
+    "github>0dragosh/homelab-k3s//.github/renovate/labels",
+    "github>0dragosh/homelab-k3s//.github/renovate/semanticCommits"
+  ],
   "enabled": true,
   "timezone": "Europe/Bucharest",
   "semanticCommits": "enabled",
@@ -9,6 +22,19 @@
   "suppressNotifications": ["prIgnoreNotification"],
   // only rebase PRs when there's a conflict
   "rebaseWhen": "conflicted",
+  "ignoreDeps": [
+    "ghcr.io/fluxcd/helm-controller",
+    "ghcr.io/fluxcd/image-automation-controller",
+    "ghcr.io/fluxcd/image-reflector-controller",
+    "ghcr.io/fluxcd/kustomize-controller",
+    "ghcr.io/fluxcd/notification-controller",
+    "ghcr.io/fluxcd/source-controller"
+  ],
+  "flux": {
+    "fileMatch": [
+      "cluster/.+\\.ya?ml$"
+    ]
+  },
   "helm-values": {
     "fileMatch": [
       "cluster/.+/helm-release\\.yaml$",
