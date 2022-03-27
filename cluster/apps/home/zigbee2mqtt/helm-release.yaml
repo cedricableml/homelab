@@ -34,6 +34,8 @@ spec:
     env:
       TZ: "${TZ}"
       ZIGBEE2MQTT_DATA: /data
+      ZIGBEE2MQTT_CONFIG_MQTT_USER: "${MQTT_USER}"
+      ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD: "${MQTT_PASSWORD}"
     ingress:
       main:
         enabled: true
@@ -68,6 +70,9 @@ spec:
       kubernetes.io/hostname: nuc1
     securityContext:
       privileged: true
+    podSecurityContext:
+      supplementalGroups:
+        - 20 # dialout for /dev/ttyUSB0
     resources:
       requests:
         memory: 100Mi
@@ -79,7 +84,7 @@ spec:
       permit_join: true
       homeassistant: true
       mqtt:
-        server: mqtt://localhost:1883
+        server: mqtt://mosquitto:1883
       serial:
         port: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_c46794596029ec11b42d6c7840c9ce8d-if00-port0
       frontend:
