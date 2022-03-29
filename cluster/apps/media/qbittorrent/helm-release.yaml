@@ -88,14 +88,22 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent-config-v2
-      media:
+      media-temp:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/media
-        mountPath: /media
+            path: /mnt/nvme/media
+        mountPath: /media-temp
+#      media:
+#        enabled: true
+#        type: custom
+#        volumeSpec:
+#          nfs:
+#            server: "${TRUENAS_ADDRESS}"
+#            path: /mnt/storage/media
+#        mountPath: /media
     resources:
       requests:
         memory: 250Mi
