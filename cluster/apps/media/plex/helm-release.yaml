@@ -54,15 +54,15 @@ spec:
       config:
         enabled: true
         existingClaim: plex-library-config-v3
-#      media:
-#        enabled: true
-#        type: custom
-#        volumeSpec:
-#          nfs:
-#            server: "${TRUENAS_ADDRESS}"
-#            path: /mnt/storage/media
-#        mountPath: /data
-#        readOnly: false
+      media:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_ADDRESS}"
+            path: /mnt/storage/media
+        mountPath: /data
+        readOnly: true
       media-temp:
         enabled: true
         type: custom
