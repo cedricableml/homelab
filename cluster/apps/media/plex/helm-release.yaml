@@ -59,18 +59,10 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/media
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/media
         mountPath: /data
-        readOnly: true
-      media-temp:
-        enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_ADDRESS}"
-            path: /mnt/nvme/media
-        mountPath: /media-temp
+        readOnly: false
       transcode:
         enabled: true
         type: emptyDir
@@ -80,7 +72,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${TRUENAS_ADDRESS}"
+            server: "${TRUENAS_VM_ADDRESS}"
             path: /mnt/nvme/backups/softwarrself/plex
         mountPath: /config/backup
         readOnly: false

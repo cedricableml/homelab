@@ -65,8 +65,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/media
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/media
         mountPath: /media
     resources:
       requests:

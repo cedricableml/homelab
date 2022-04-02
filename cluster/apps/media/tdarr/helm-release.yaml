@@ -78,8 +78,8 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${TRUENAS_ADDRESS}"
-            path: /mnt/storage/media
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/media
         mountPath: /media
       shared:
         enabled: true
@@ -91,7 +91,7 @@ spec:
         type: custom
         volumeSpec:
           nfs:
-            server: "${TRUENAS_ADDRESS}"
+            server: "${TRUENAS_VM_ADDRESS}"
             path: /mnt/nvme/backups/softwarrself/tdarr
         mountPath: /app/server/Tdarr/Backups
         readOnly: false
