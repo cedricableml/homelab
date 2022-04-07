@@ -33,3 +33,4 @@ resources:
   - metallb-charts.yaml
   - xunholy-charts.yaml
   - kasten-charts.yaml
+  - vsphere-tmm.yaml
