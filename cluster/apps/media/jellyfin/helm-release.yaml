@@ -46,10 +46,8 @@ spec:
         securityContext:
           privileged: true
     image:
-      repository: linuxserver/jellyfin
-      tag: nightly-version-20220107.3-unstable
-#      repository: nyanmisaka/jellyfin
-#      tag: 211231-amd64
+      repository: jellyfin/jellyfin
+      tag: 10.8.0-beta1
     env:
       TZ: "${TZ}"
       JELLYFIN_CACHE_DIR: "/config/cache"
