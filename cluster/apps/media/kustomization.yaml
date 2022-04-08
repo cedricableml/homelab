@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - bazarr
   - dizquetv
-#  - nzbget
   - overseerr
   - jellyfin
   - prowlarr
@@ -20,3 +19,4 @@ resources:
   - calibre-web
   - mylar
   - tdarr
+  - sabnzbd
