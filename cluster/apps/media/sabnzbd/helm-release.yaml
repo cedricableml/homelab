@@ -55,15 +55,7 @@ spec:
         existingClaim: sabnzbd-config-v1
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/media
-          mountOptions:
-            - nfsvers=4.1
-            - rsize=131072
-            - wsize=131072
+        existingClaim: media-nfs
         mountPath: /media
     resources:
       requests:
