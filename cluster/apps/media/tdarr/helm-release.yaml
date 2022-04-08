@@ -92,7 +92,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/nvme/backups/softwarrself/tdarr
+            path: /mnt/tank/backups/softwarrself/tdarr
         mountPath: /app/server/Tdarr/Backups
         readOnly: false
     resources:

@@ -73,7 +73,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/nvme/backups/softwarrself/prowlarr
+            path: /mnt/tank/backups/softwarrself/prowlarr
         mountPath: /config/Backups
         readOnly: false
     resources:

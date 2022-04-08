@@ -73,7 +73,7 @@ spec:
         - name: nas-backup
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/nvme/backups/pvc
+            path: /mnt/tank/backups/pvc
         - name: direct-mount-scripts
           projected:
             defaultMode: 0775
