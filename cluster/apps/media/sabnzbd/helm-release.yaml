@@ -60,11 +60,11 @@ spec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
             path: /mnt/tank/media
+            mountOptions:
+              - nfsvers=4.1
+              - rsize=131072
+              - wsize=131072
         mountPath: /media
-        mountOptions:
-          - nfsvers=4.1
-          - rsize=131072
-          - wsize=131072
     resources:
       requests:
         memory: 250Mi
