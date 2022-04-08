@@ -14,7 +14,7 @@ spec:
     server: "${TRUENAS_VM_ADDRESS}"
     path: /mnt/tank/media
   mountOptions:
-    - nfsvers=4.2
+    - nfsvers=4.1
     - tcp
     - intr
     - hard
