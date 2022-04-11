@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: plex-media-manager
+  name: plex-meta-manager
   namespace: media
 spec:
   interval: 5m
@@ -46,7 +46,7 @@ spec:
               - key: config.yaml
                 path: config.yaml
     podAnnotations:
-      configmap.reloader.stakater.com/reload: "plex-media-manager-cm"
+      configmap.reloader.stakater.com/reload: "plex-meta-manager-cm"
     resources:
       requests:
         memory: 100Mi
