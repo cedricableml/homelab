@@ -25,7 +25,6 @@ spec:
     image:
       repository: linuxserver/plex-meta-manager
       tag: v1.16.3-ls10
-    nameOverride: plex-media-manager
     env:
       TZ: ${TZ}
       PMM_TIME: "06:00"
@@ -33,18 +32,12 @@ spec:
     service:
       main:
         enabled: false
-    persistance:
+    persistence:
       config:
         enabled: true
-        type: custom
-        mountPath: /config/config.yaml
-        subPath: config.yaml
-        volumeSpec:
-          configMap:
-            name: plex-meta-manager-cm
-            items:
-              - key: config.yaml
-                path: config.yaml
+        type: configMap
+        name: plex-meta-manager-cm
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-meta-manager-cm"
     resources:
