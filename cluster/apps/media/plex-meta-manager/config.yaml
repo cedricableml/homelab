@@ -16,7 +16,7 @@ libraries:
       - file: config/Anime TV.yml
       - git: meisnate12/AnimeCharts
   settings:
-    cache: true
+    cache: false
     cache_expiration: 60
     asset_directory: config/assets
     asset_folders: true
