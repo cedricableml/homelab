@@ -28,7 +28,7 @@ spec:
       containers:
         - env:
             - name: PMM_CONFIG
-              value: /app/config.yaml
+              value: /config/config.yaml
             - name: PMM_RUN
               value: "True"
             - name: PMM_TIME
@@ -48,7 +48,7 @@ spec:
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           volumeMounts:
-            - mountPath: /app
+            - mountPath: /config
               name: config
               subPath: config.yaml
       volumes:
