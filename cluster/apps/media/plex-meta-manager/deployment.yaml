@@ -51,7 +51,12 @@ spec:
             - mountPath: /config
               name: config
               subPath: config.yaml
+            - name: config-pvc
+              mountPath: /config
       volumes:
+        - name: config-pvc
+          persistentVolumeClaim:
+            claimName: plex-meta-manager-config-v1
         - configMap:
             defaultMode: 440
             name: plex-meta-manager-cm
