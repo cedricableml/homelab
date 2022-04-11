@@ -46,7 +46,7 @@ spec:
               - key: config.yaml
                 path: config.yaml
     podAnnotations:
-      secret.reloader.stakater.com/reload: "plex-media-manager"
+      configmap.reloader.stakater.com/reload: "plex-media-manager-cm"
     resources:
       requests:
         memory: 100Mi
