@@ -36,7 +36,7 @@ spec:
             - name: TZ
               value: ${TZ}
           name: plex-meta-manager
-          image: meisnate12/plex-meta-manager:v1.16.3
+          image: linuxserver/plex-meta-manager:v1.16.3-ls10
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -50,6 +50,7 @@ spec:
           volumeMounts:
             - mountPath: /app
               name: config
+              subPath: config.yaml
       volumes:
         - configMap:
             defaultMode: 440
