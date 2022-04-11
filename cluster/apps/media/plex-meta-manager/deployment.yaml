@@ -28,7 +28,7 @@ spec:
       containers:
         - env:
             - name: PMM_CONFIG
-              value: /app/config.yml
+              value: /app/config.yaml
             - name: PMM_RUN
               value: "True"
             - name: PMM_TIME
