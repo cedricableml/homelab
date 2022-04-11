@@ -23,7 +23,7 @@ spec:
       interval: 5m
   values:
     image:
-      repository: meisnate12/plex-meta-manager
+      repository: linuxserver/plex-meta-manager
       tag: v1.16.3-ls10
     nameOverride: plex-media-manager
     env:
