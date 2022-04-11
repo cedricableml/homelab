@@ -6,6 +6,13 @@ metadata:
   namespace: media
 spec:
   interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
   chart:
     spec:
       chart: /charts/kah-common/
@@ -23,6 +30,9 @@ spec:
       TZ: ${TZ}
       PMM_TIME: "06:00"
       PMM_RUN: "True"
+    service:
+      main:
+        enabled: false
     persistance:
       config:
         type: configMap
