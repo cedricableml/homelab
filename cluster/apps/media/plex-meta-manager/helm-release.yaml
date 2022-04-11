@@ -29,6 +29,7 @@ spec:
       TZ: ${TZ}
       PMM_TIME: "06:00"
       PMM_RUN: "True"
+      PMM_CONFIG: "/app/config.yml"
     service:
       main:
         enabled: false
@@ -37,6 +38,7 @@ spec:
         enabled: true
         type: configMap
         name: plex-meta-manager-cm
+        mountPath: /app
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-meta-manager-cm"
