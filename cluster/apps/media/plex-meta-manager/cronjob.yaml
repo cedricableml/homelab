@@ -1,0 +1,41 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: plex-media-manager
+  namespace: media
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+          containers:
+            - name: plex-media-manager
+              image: meisnate12/plex-meta-manager:v1.15.1
+              imagePullPolicy: IfNotPresent
+              args: ["--run", "--read-only-config"]
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 2Gi
+                requests:
+                  cpu: 100m
+                  memory: 125Mi
+              volumeMounts:
+                - name: config
+                  mountPath: /config
+                - name: pmm-config
+                  mountPath: /config/config.yml
+                  subPath: config.yml
+          volumes:
+            - name: config
+              persistentVolumeClaim:
+                claimName: plex-meta-manager-config-v1
+            - configMap:
+                name: plex-meta-manager-cm
+              name: pmm-config
+          restartPolicy: OnFailure
