@@ -70,6 +70,15 @@ spec:
         volumeMounts:
           - name: config
             mountPath: /config
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/backups/softwarrself/home-assistant
+        mountPath: /config/backups
+        readOnly: false
       usb:
         enabled: true
         type: hostPath
