@@ -6,6 +6,9 @@ libraries:
       - git: meisnate12/Studios
       - git: meisnate12/IMDBGenres
       - git: meisnate12/People
+      - git: Speedmod/Movies/Collections
+      - git: Speedmod/Movies/Holiday
+      - git: MMagTech/Movies
   TV shows:
     metadata_path:
       - file: config/TV Shows.yml
