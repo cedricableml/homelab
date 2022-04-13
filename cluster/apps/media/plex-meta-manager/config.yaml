@@ -84,3 +84,4 @@ sonarr:
 trakt:
   client_id: ${SECRET_TRAKT_PMM_CLIENT_ID}
   client_secret: ${SECRET_TRAKT_PMM_CLIENT_SECRET}
+  pin: ${SECRET_TRAKT_PIN}
