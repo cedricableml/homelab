@@ -23,8 +23,6 @@ spec:
                   value: /config/config.yaml
                 - name: PMM_RUN
                   value: "True"
-                - name: PMM_TIME
-                  value: "06:00"
                 - name: PMM_READ_ONLY_CONFIG
                   value: "true"
                 - name: TZ
