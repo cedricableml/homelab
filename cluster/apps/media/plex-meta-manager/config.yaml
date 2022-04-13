@@ -52,7 +52,7 @@ radarr:
   root_folder_path: /media/movies
   monitor: true
   availability: announced
-  quality_profile: (U)HD - 720p/1080p/2160p
+  quality_profile: HD - 720p/1080p/2160p
   version: v3
   add: false
   tag:
@@ -65,7 +65,7 @@ sonarr:
   add: false
   root_folder_path: /media/tv
   monitor: all
-  quality_profile: (U)HD - 720p/1080p/2160p
+  quality_profile: HD - 720p/1080p/2160p
   language_profile: English
   series_type: standard
   season_folder: true
