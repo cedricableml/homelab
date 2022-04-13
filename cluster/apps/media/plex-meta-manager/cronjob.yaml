@@ -15,7 +15,7 @@ spec:
             runAsGroup: 1000
           containers:
             - name: plex-media-manager
-              image: meisnate12/plex-meta-manager:v1.15.1
+              image: meisnate12/plex-meta-manager:v1.16.3
               imagePullPolicy: IfNotPresent
               args: ["--run", "--read-only-config"]
               env:
@@ -40,8 +40,8 @@ spec:
                 - name: config
                   mountPath: /config
                 - name: pmm-config
-                  mountPath: /config/config.yml
-                  subPath: config.yml
+                  mountPath: /config/config.yaml
+                  subPath: config.yaml
           volumes:
             - name: config
               persistentVolumeClaim:
