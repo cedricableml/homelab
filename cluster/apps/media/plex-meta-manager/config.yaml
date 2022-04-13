@@ -11,7 +11,12 @@ libraries:
       - file: config/TV Shows.yml
       - git: meisnate12/ShowCharts
       - git: meisnate12/Networks
-  Anime Movies:
+  Cartoons TV:
+    metadata_path:
+      - file: config/TV Shows.yml
+      - git: meisnate12/ShowCharts
+      - git: meisnate12/Networks
+  Anime TV:
     metadata_path:
       - file: config/Anime TV.yml
       - git: meisnate12/AnimeCharts
