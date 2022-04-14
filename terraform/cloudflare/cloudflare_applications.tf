@@ -41,11 +41,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "nzbget"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "requests"
       type      = "self_hosted"
       gsuite    = true
@@ -81,26 +76,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "storage"
-      type      = "ssh"
-      gsuite    = true
-    },
-    {
-      subdomain = "nuc1"
-      type      = "ssh"
-      gsuite    = true
-    },
-    {
-      subdomain = "nuc2"
-      type      = "ssh"
-      gsuite    = true
-    },
-    {
-      subdomain = "nuc3"
-      type      = "ssh"
-      gsuite    = true
-    },
-    {
       subdomain = "tautulli"
       type      = "self_hosted"
       gsuite    = true
@@ -111,27 +86,7 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "vault"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "edgerouter"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "falcosidekick-ui"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "falcosidekick"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "tv"
       type      = "self_hosted"
       gsuite    = true
     },
@@ -156,11 +111,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "omada"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "jellyfin"
       type      = "self_hosted"
       gsuite    = true
@@ -171,22 +121,7 @@ locals {
 #      gsuite    = true
 #    },
     {
-      subdomain = "truenas"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "mylar"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "pyload"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "tdarr"
       type      = "self_hosted"
       gsuite    = true
     },
@@ -222,6 +157,11 @@ locals {
     },
     {
       subdomain = "sabnzbd"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
+      subdomain = "gaps"
       type      = "self_hosted"
       gsuite    = true
     },

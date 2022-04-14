@@ -19,6 +19,5 @@ resources:
   - calibre
   - calibre-web
   - mylar
-  - tdarr
   - sabnzbd
   - plex-meta-manager
