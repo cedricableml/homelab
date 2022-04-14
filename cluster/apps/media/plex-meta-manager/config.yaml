@@ -7,8 +7,6 @@ libraries:
       - git: MMagTech/Movies
       - git: meisnate12/Studios
       - git: meisnate12/MovieCharts
-      - git: meisnate12/IMDBGenres
-      - git: meisnate12/People
   TV shows:
     metadata_path:
       - file: config/TV Shows.yml
