@@ -40,6 +40,11 @@
       "cluster/.+/helm-release\\.yaml$",
     ],
   },
+  "helmv3": {
+    "fileMatch": [
+      "charts/.+/Chart\\.ya?ml$"
+    ]
+  },
   "kubernetes": {
     "fileMatch": [
       "cluster/.+\\.yaml$",
