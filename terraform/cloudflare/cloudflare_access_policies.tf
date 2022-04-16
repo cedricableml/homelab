@@ -95,29 +95,3 @@ resource "cloudflare_access_policy" "public_kobo" {
     everyone = true
   }
 }
-
-resource "cloudflare_access_policy" "public_jf" {
-  zone_id        = var.zone_id_casa
-  application_id = cloudflare_access_application.app_casa["jellyfin"].id
-
-  name       = "allow bypass IP"
-  precedence = "1"
-  decision   = "bypass"
-
-  include {
-    ip = var.bypass_ips
-  }
-}
-
-resource "cloudflare_access_policy" "public_tv" {
-  zone_id        = var.zone_id_casa
-  application_id = cloudflare_access_application.app_casa["tv"].id
-
-  name       = "allow bypass IP"
-  precedence = "1"
-  decision   = "bypass"
-
-  include {
-    ip = var.bypass_ips
-  }
-}
