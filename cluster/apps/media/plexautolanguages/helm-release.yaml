@@ -1,0 +1,39 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: plexautolanguages
+  namespace: media
+spec:
+  interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 30
+  upgrade:
+    remediation:
+      retries: 30
+  chart:
+    spec:
+      chart: /charts/kah-common/
+      sourceRef:
+        kind: GitRepository
+        name: flux-system
+        namespace: flux-system
+      interval: 5m
+  values:
+    image:
+      repository: remirigal/plex-auto-languages
+      tag: v1.0.1
+    nameOverride: plexautolanguages
+    env:
+      TZ: "${TZ}"
+      PLEX_TOKEN: "${SECRET_PLEX_TOKEN}"
+      PLEX_URL: http://plex.media:32400
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
