@@ -84,11 +84,7 @@ spec:
         existingClaim: jellyfin-config-v2
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/media
+        existingClaim: media-nfs
         mountPath: /media
       transcode:
         enabled: true
