@@ -54,11 +54,7 @@ spec:
         existingClaim: sonarr-config-v4
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/media
+        existingClaim: media-nfs
         mountPath: /media
       backup:
         enabled: true

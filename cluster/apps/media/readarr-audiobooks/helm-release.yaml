@@ -54,12 +54,8 @@ spec:
         existingClaim: readarr-audiobooks-config-v4
       media:
         enabled: true
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/media/audiobooks
-        mountPath: /media/audiobooks
+        existingClaim: media-nfs
+        mountPath: /media
       backup:
         enabled: true
         type: custom
