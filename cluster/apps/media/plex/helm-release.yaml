@@ -57,7 +57,7 @@ spec:
       media:
         enabled: true
         existingClaim: media-nfs
-        mountPath: /media
+        mountPath: /data
       transcode:
         enabled: true
         type: emptyDir
