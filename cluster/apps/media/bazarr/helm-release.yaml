@@ -67,7 +67,6 @@ spec:
         type: configMap
         name: bazarr-sub-cleaner-cm
         mountPath: /scripts
-        subPath: /scripts/sub-cleaner.sh
 
     resources:
       requests:
