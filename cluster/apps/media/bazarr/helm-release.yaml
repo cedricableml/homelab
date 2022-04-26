@@ -6,6 +6,13 @@ metadata:
   namespace: media
 spec:
   interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
   chart:
     spec:
       # renovate: registryUrl=https://k8s-at-home.com/charts/
