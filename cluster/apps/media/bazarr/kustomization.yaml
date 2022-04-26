@@ -6,6 +6,8 @@ configMapGenerator:
   - name: bazarr-sub-cleaner-cm
     files:
       - sub-cleaner.sh
+generatorOptions:
+  disableNameSuffixHash: true
 resources:
   - config-pvc.yaml
   - helm-release.yaml
