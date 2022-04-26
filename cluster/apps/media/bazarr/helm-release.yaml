@@ -74,6 +74,7 @@ spec:
         type: configMap
         name: bazarr-sub-cleaner-cm
         mountPath: /scripts
+        defaultMode: 511
 
     resources:
       requests:
