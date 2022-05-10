@@ -64,7 +64,7 @@ spec:
             port: *port
           failureThreshold: 30
           periodSeconds: 10
-        ingress:
+    ingress:
       main:
         enabled: true
         ingressClassName: "traefik"
