@@ -6,21 +6,15 @@ mqtt:
   password: "${MQTT_PASSWORD}"
 
 snapshots:
-  enabled: true
-  timestamp: false
+  enabled: True
   bounding_box: true
   retain:
     default: 7
 
 record:
-  enabled: true
+  enabled: True
   retain:
-    days: 2
-    mode: motion
-  events:
-    retain:
-      default: 5
-      mode: active_objects
+    days: 30
 
 cameras:
   cam1:
