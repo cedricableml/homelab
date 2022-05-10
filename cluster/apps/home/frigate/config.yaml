@@ -57,10 +57,19 @@ record:
       mode: active_objects
 
 cameras:
-  frigate_cam1:
+  cam1:
     rtmp:
       enabled: false
     ffmpeg:
+      inputs:
+        - path: rtmp://${CAM1_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM1_USER}&password=${CAM1_PASSWORD}
+          roles:
+            - clips
+            - detect
+            - record
+    #       - path: rtmp://${CAM1_IP}/bcs/channel0_sub.bcs?channel=0&stream=0&user=${CAM1_USER}&password=${CAM1_PASSWORD}
+    #         roles:
+    #           - detect
       hwaccel_args:
         - -hwaccel
         - qsv
@@ -83,19 +92,19 @@ cameras:
       #   - "5000000"
       #   - -use_wallclock_as_timestamps
       #   - "1"
-      inputs:
-        - path: rtmp://${CAM1_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM1_USER}&password=${CAM1_PASSWORD}
-          roles:
-            - clips
-            - detect
-            - record
-    #       - path: rtmp://${CAM1_IP}/bcs/channel0_sub.bcs?channel=0&stream=0&user=${CAM1_USER}&password=${CAM1_PASSWORD}
-    #         roles:
-    #           - detect
-    frigate_cam2:
+    cam2:
       rtmp:
         enabled: false
       ffmpeg:
+        inputs:
+          - path: rtmp://${CAM2_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM2_USER}&password=${CAM2_PASSWORD}
+            roles:
+              - clips
+              - detect
+              - record
+      #       - path: rtmp://${CAM2_IP}/bcs/channel0_sub.bcs?channel=0&stream=0&user=${CAM2_USER}&password=${CAM2_PASSWORD}
+      #         roles:
+      #           - detect
         hwaccel_args:
           - -hwaccel
           - qsv
@@ -118,17 +127,8 @@ cameras:
         #   - "5000000"
         #   - -use_wallclock_as_timestamps
         #   - "1"
-        inputs:
-          - path: rtmp://${CAM2_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM2_USER}&password=${CAM2_PASSWORD}
-            roles:
-              - clips
-              - detect
-              - record
-      #       - path: rtmp://${CAM2_IP}/bcs/channel0_sub.bcs?channel=0&stream=0&user=${CAM2_USER}&password=${CAM2_PASSWORD}
-      #         roles:
-      #           - detect
-    width: 2560
-    height: 1920
+    width: 3840
+    height: 2160
     fps: 25
     objects:
       track:
