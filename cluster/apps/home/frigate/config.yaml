@@ -5,11 +5,22 @@ mqtt:
   user: "${MQTT_USER}"
   password: "${MQTT_PASSWORD}"
 
+snapshots:
+  enabled: true
+  timestamp: false
+  bounding_box: true
+  retain:
+    default: 7
+
 record:
   enabled: true
   retain:
     days: 2
     mode: motion
+  events:
+    retain:
+      default: 5
+      mode: active_objects
 
 cameras:
   cam1:
