@@ -22,3 +22,13 @@ cameras:
             - record
             - detect
             - clips
+  cam2:
+    rtmp:
+      enabled: False
+    ffmpeg:
+      inputs:
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+          roles:
+            - record
+            - detect
+            - clips
