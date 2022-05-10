@@ -1,3 +1,4 @@
+---
 mqtt:
   host: mosquitto
   topic_prefix: frigate
@@ -16,6 +17,8 @@ cameras:
       enabled: false
     ffmpeg:
       inputs:
-        - path: rtmp://${CAM1_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM1_USER}&password=${CAM1_PASSWORD}
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
             - record
+            - detect
+            - clips
