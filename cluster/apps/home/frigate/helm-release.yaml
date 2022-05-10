@@ -42,7 +42,6 @@ spec:
           httpGet:
             path: /api/version
             port: *port
-          initialDelaySeconds: 0
           periodSeconds: 10
           timeoutSeconds: 1
           failureThreshold: 3
@@ -53,7 +52,6 @@ spec:
           httpGet:
             path: /api/version
             port: *port
-          initialDelaySeconds: 0
           periodSeconds: 10
           timeoutSeconds: 1
           failureThreshold: 3
