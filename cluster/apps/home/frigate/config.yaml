@@ -14,7 +14,7 @@ record:
 cameras:
   cam1:
     rtmp:
-      enabled: false
+      enabled: False
     ffmpeg:
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
