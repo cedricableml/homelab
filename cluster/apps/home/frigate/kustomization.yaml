@@ -4,9 +4,6 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  # - deployment.yaml
-  # - service.yaml
-  # - ingress.yaml
 namespace: home
 configMapGenerator:
   - name: frigate
