@@ -17,7 +17,7 @@ record:
     days: 30
 
 cameras:
-  let:
+  lat:
     ffmpeg:
       hwaccel_args:
         - -hwaccel
@@ -27,18 +27,8 @@ cameras:
       input_args:
         - -avoid_negative_ts
         - make_zero
-        - -fflags
-        - nobuffer+genpts+discardcorrupt
-        - -flags
-        - low_delay
-        - -strict
-        - experimental
-        - -analyzeduration
-        - 1000M
-        - -probesize
-        - 1000M
-        - -rw_timeout
-        - "5000000"
+      output_args:
+        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
