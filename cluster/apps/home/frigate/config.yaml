@@ -17,7 +17,7 @@ record:
     days: 30
 
 cameras:
-  int:
+  let:
     ffmpeg:
       hwaccel_args:
         - -hwaccel
@@ -40,11 +40,11 @@ cameras:
         - -rw_timeout
         - "5000000"
       inputs:
-        - path: http://${CAM1_IP}/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=${CAM1_USER}&password=${CAM1_PASSWORD}
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
             - record
             - rtmp
-        - path: http://${CAM1_IP}/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=${CAM1_USER}&password=${CAM1_PASSWORD}
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
             - detect
     detect:
