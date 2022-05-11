@@ -23,6 +23,11 @@ spec:
     remediation:
       retries: 100
   values:
+    podSecurityContext:
+      supplementalGroups:
+        - 44
+        - 109
+        - 100
     fullnameOverride: *app
     image:
       repository: docker.io/blakeblackshear/frigate
