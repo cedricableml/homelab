@@ -29,30 +29,57 @@ record:
     days: 30
 
 cameras:
-  cam1:
-    rtmp:
-      enabled: False
+  int:
+    ffmpeg:
+      hwaccel_args:
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      input_args:
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer+genpts+discardcorrupt
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -analyzeduration
+        - 1000M
+        - -probesize
+        - 1000M
+        - -rw_timeout
+        - "5000000"
       inputs:
-        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
+        - path: http://${CAM1_IP}/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=${CAM1_USER}&password=${CAM1_PASSWORD}
           roles:
             - record
-            - detect
-            - clips
-  cam2:
-    rtmp:
-      enabled: False
-      inputs:
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+            - rtmp
+        - path: http://${CAM1_IP}/flv?port=1935&app=bcs&stream=channel0_main.bcs&user=${CAM1_USER}&password=${CAM1_PASSWORD}
           roles:
-            - record
             - detect
-            - clips
-  detectors:
-    cpu1:
-      type: cpu
-    cpu2:
-      type: cpu
-    cpu3:
-      type: cpu
-    cpu4:
-      type: cpuup
+    detect:
+      width: 896
+      height: 672
+      fps: 7
+
+# cameras:
+#   cam1:
+#     rtmp:
+#       enabled: False
+#       inputs:
+#         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
+#           roles:
+#             - record
+#             - detect
+#             - clips
+#   cam2:
+#     rtmp:
+#       enabled: False
+#       inputs:
+#         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+#           roles:
+#             - record
+#             - detect
+#             - clips
