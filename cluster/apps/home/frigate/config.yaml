@@ -27,7 +27,6 @@ cameras:
       global_args: -hide_banner -loglevel info
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
-        clips: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
       input_args:
         - -avoid_negative_ts
         - make_zero
@@ -56,7 +55,6 @@ cameras:
       global_args: -hide_banner -loglevel info
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
-        clips: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554
           roles:
