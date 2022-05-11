@@ -21,12 +21,26 @@ cameras:
     rtmp:
       enabled: False
     ffmpeg:
+      hwaccel_args:
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      output_args:
+        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
+      input_args:
+        - -avoid_negative_ts
+        - make_zero
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
             - record
             - detect
             - clips
+  cam2:
+    rtmp:
+      enabled: False
+    ffmpeg:
       hwaccel_args:
         - -hwaccel
         - qsv
@@ -37,26 +51,12 @@ cameras:
       input_args:
         - -avoid_negative_ts
         - make_zero
-  cam2:
-    rtmp:
-      enabled: False
-    ffmpeg:
       inputs:
         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
           roles:
             - record
             - detect
             - clips
-      hwaccel_args:
-        - -hwaccel
-        - qsv
-        - -qsv_device
-        - /dev/dri/renderD128
-      output_args:
-        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
-      input_args:
-        - -avoid_negative_ts
-        - make_zero
   detectors:
     cpu1:
       type: cpu
