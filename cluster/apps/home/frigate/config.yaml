@@ -41,9 +41,9 @@ cameras:
           roles:
             - detect
     detect:
-      width: 3840
-      height: 2160
-      fps: 25
+      width: 1280
+      height: 720
+      fps: 5
   lat:
     ffmpeg:
       hwaccel_args:
@@ -68,6 +68,6 @@ cameras:
           roles:
             - detect
     detect:
-      width: 3840
-      height: 2160
+      width: 1280
+      height: 720
       fps: 5
