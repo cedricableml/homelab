@@ -17,6 +17,30 @@ record:
     days: 30
 
 cameras:
+  int:
+    ffmpeg:
+      hwaccel_args:
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      input_args:
+        - -avoid_negative_ts
+        - make_zero
+      output_args:
+        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
+      inputs:
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+          roles:
+            - record
+            - rtmp
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+          roles:
+            - detect
+    detect:
+      width: 3840
+      height: 2160
+      fps: 25
   lat:
     ffmpeg:
       hwaccel_args:
@@ -38,26 +62,6 @@ cameras:
           roles:
             - detect
     detect:
-      width: 896
-      height: 672
-      fps: 7
-
-# cameras:
-#   cam1:
-#     rtmp:
-#       enabled: False
-#       inputs:
-#         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
-#           roles:
-#             - record
-#             - detect
-#             - clips
-#   cam2:
-#     rtmp:
-#       enabled: False
-#       inputs:
-#         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
-#           roles:
-#             - record
-#             - detect
-#             - clips
+      width: 3840
+      height: 2160
+      fps: 25
