@@ -57,3 +57,12 @@ cameras:
       input_args:
         - -avoid_negative_ts
         - make_zero
+  detectors:
+    cpu1:
+      type: cpu
+    cpu2:
+      type: cpu
+    cpu3:
+      type: cpu
+    cpu4:
+      type: cpuup
