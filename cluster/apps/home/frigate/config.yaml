@@ -11,18 +11,6 @@ snapshots:
   retain:
     default: 7
 
-ffmpeg:
-  hwaccel_args:
-    - -hwaccel
-    - qsv
-    - -qsv_device
-    - /dev/dri/renderD128
-  output_args:
-    record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c:v copy -c:a aac # enables audio
-  input_args:
-    - -avoid_negative_ts
-    - make_zero
-
 record:
   enabled: True
   retain:
