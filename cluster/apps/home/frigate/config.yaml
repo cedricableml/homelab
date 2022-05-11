@@ -35,7 +35,6 @@ cameras:
         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554
           roles:
             - record
-            - clips
             - rtmp
         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h264Preview_01_sub
           roles:
@@ -62,7 +61,6 @@ cameras:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554
           roles:
             - record
-            - clips
             - rtmp
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h264Preview_01_sub
           roles:
