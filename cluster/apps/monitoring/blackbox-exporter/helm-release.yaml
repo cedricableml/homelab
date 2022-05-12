@@ -40,6 +40,18 @@ spec:
         - name: router
           url: "${GATEWAY_ADDRESS}"
           module: icmp
+        - name: cam1
+          url: "${CAM1_IP}"
+          module: icmp
+        - name: cam2
+          url: "${CAM2_IP}"
+          module: icmp
+        - name: cam3
+          url: "${CAM3_IP}"
+          module: icmp
+        - name: cam4
+          url: "${CAM4_IP}"
+          module: icmp
     prometheusRule:
       enabled: true
       additionalLabels:

@@ -31,3 +31,5 @@ data:
   SVC_QBITTORRENT_ADDR: "10.250.14.110"  # needs port-forward
   CAM1_IP: "10.249.250.2"
   CAM2_IP: "10.249.250.3"
+  CAM3_IP: "10.249.250.4"
+  CAM4_IP: "10.249.250.5"
