@@ -67,7 +67,7 @@ cameras:
       width: 1280
       height: 720
       fps: 5
-  lat2:
+  back:
     ffmpeg:
       hwaccel_args:
         - -hwaccel
@@ -92,7 +92,7 @@ cameras:
       width: 1280
       height: 720
       fps: 5
-  back:
+  lat2:
     ffmpeg:
       hwaccel_args:
         - -hwaccel
