@@ -51,7 +51,7 @@ cameras:
     ffmpeg:
       hwaccel_args:
         - -c:v
-        - h264_qsv
+        - hevc_qsv
         - -hwaccel
         - qsv
         - -qsv_device
@@ -61,8 +61,22 @@ cameras:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
       input_args:
+        - -rtsp_transport
+        - tcp
         - -avoid_negative_ts
         - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
       inputs:
         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
           roles:
@@ -74,16 +88,33 @@ cameras:
   lat:
     ffmpeg:
       hwaccel_args:
+        - -c:v
+        - hevc_qsv
         - -hwaccel
         - qsv
         - -qsv_device
         - /dev/dri/renderD128
-      input_args:
-        - -avoid_negative_ts
-        - make_zero
       global_args: -hide_banner -loglevel info
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
@@ -95,16 +126,33 @@ cameras:
   back:
     ffmpeg:
       hwaccel_args:
+        - -c:v
+        - hevc_qsv
         - -hwaccel
         - qsv
         - -qsv_device
         - /dev/dri/renderD128
-      input_args:
-        - -avoid_negative_ts
-        - make_zero
       global_args: -hide_banner -loglevel info
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
       inputs:
         - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
           roles:
@@ -116,16 +164,33 @@ cameras:
   lat2:
     ffmpeg:
       hwaccel_args:
+        - -c:v
+        - hevc_qsv
         - -hwaccel
         - qsv
         - -qsv_device
         - /dev/dri/renderD128
-      input_args:
-        - -avoid_negative_ts
-        - make_zero
       global_args: -hide_banner -loglevel info
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
       inputs:
         - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
           roles:
