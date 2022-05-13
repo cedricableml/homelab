@@ -1,4 +1,7 @@
 ---
+database:
+  path: /data/frigate.db
+
 mqtt:
   host: mosquitto
   topic_prefix: frigate
