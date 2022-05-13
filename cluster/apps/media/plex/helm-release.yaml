@@ -78,6 +78,18 @@ spec:
         gpu.intel.com/i915: 1
       limits:
         gpu.intel.com/i915: 1
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values:
+                      - frigate
+              topologyKey: kubernetes.io/hostname
     podAnnotations:
       configmap.reloader.stakater.com/reload: "plex-promtail"
       backup.velero.io/backup-volumes: config
