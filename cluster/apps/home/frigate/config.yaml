@@ -43,6 +43,11 @@ detect:
   height: 720
   fps: 5
 
+objects:
+  track:
+    - person
+    - car
+
 snapshots:
   enabled: True
   bounding_box: true
