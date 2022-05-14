@@ -36,7 +36,7 @@ birdseye:
   mode: continuous
 
 record:
-  enabled: true
+  enabled: True
   retain:
     days: 30
     mode: motion
