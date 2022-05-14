@@ -47,6 +47,8 @@ objects:
   track:
     - person
     - car
+    - cat
+    - dog
 
 snapshots:
   enabled: True
