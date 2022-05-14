@@ -1,4 +1,6 @@
 ---
+# yamllint disable rule:truthy
+# yamllint disable rule:line-length
 database:
   path: /data/frigate.db
 
@@ -63,6 +65,8 @@ snapshots:
 
 cameras:
   int:
+    rtmp:
+      enabled: False
     ffmpeg:
       hwaccel_args:
         - -c:v
@@ -73,7 +77,7 @@ cameras:
         - /dev/dri/renderD128
       global_args: -hide_banner -loglevel info
       output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy  # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
       input_args:
         - -rtsp_transport
@@ -101,6 +105,8 @@ cameras:
           roles:
             - detect
   lat:
+    rtmp:
+      enabled: False
     ffmpeg:
       hwaccel_args:
         - -c:v
@@ -111,7 +117,7 @@ cameras:
         - /dev/dri/renderD128
       global_args: -hide_banner -loglevel info
       output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
       input_args:
         - -rtsp_transport
@@ -139,6 +145,8 @@ cameras:
           roles:
             - detect
   back:
+    rtmp:
+      enabled: False
     ffmpeg:
       hwaccel_args:
         - -c:v
@@ -149,7 +157,7 @@ cameras:
         - /dev/dri/renderD128
       global_args: -hide_banner -loglevel info
       output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
       input_args:
         - -rtsp_transport
@@ -177,6 +185,8 @@ cameras:
           roles:
             - detect
   lat2:
+    rtmp:
+      enabled: False
     ffmpeg:
       hwaccel_args:
         - -c:v
@@ -187,7 +197,7 @@ cameras:
         - /dev/dri/renderD128
       global_args: -hide_banner -loglevel info
       output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy #removed -an parameter to enable audio
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
       input_args:
         - -rtsp_transport
