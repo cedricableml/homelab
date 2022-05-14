@@ -34,9 +34,14 @@ birdseye:
   mode: continuous
 
 record:
-  enabled: True
+  enabled: true
   retain:
     days: 30
+    mode: motion
+  events:
+    retain:
+      default: 100
+      mode: active_objects
 
 detect:
   width: 1280
