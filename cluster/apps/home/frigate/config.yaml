@@ -54,8 +54,15 @@ objects:
   track:
     - person
     - car
+    - motorcycle
     - cat
     - dog
+    - chair
+    - couch
+    - bench
+    - bag
+    - backpack
+    - bird
 
 snapshots:
   enabled: True
