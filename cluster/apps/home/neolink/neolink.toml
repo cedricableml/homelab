@@ -1,0 +1,37 @@
+bind = "0.0.0.0"
+bind_port = 8554
+
+[[cameras]]
+name = "lat"
+username = "${CAM1_USER}"
+password = "${CAM1_PASSWORD}"
+address = "${CAM1_IP}:9000"
+
+[[cameras]]
+name = "int"
+username = "${CAM2_USER}"
+password = "${CAM2_PASSWORD}"
+address = "${CAM2_IP}:9000"
+
+[[cameras]]
+name = "back"
+username = "${CAM3_USER}"
+password = "${CAM3_PASSWORD}"
+address = "${CAM3_IP}:9000"
+
+[[cameras]]
+name = "lat2"
+username = "${CAM4_USER}"
+password = "${CAM4_PASSWORD}"
+address = "${CAM4_IP}:9000"
+
+[[users]]
+name = "${NEOLINK_USER}"
+pass = "${NEOLINK_PASSWORD}"
+
+
+# permitted_users = [ "me" ]
+
+# By default "both" "mainStream" and "subStream" are connected
+# If your device has user connection limits try a single stream instead.
+# stream = "mainStream"
