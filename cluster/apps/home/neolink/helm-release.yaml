@@ -24,6 +24,8 @@ spec:
       retries: 100
   values:
     fullnameOverride: *app
+    env:
+      RUST_LOG: debug
     image:
       repository: docker.io/thirtythreeforty/neolink
       tag: latest
