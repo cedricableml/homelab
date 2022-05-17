@@ -7,3 +7,4 @@ resources:
   - zigbee2mqtt
   - node-red
   - neolink
+  - smtp-relay
