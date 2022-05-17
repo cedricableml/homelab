@@ -7,7 +7,7 @@ namespace: home
 configMapGenerator:
   - name: neolink
     files:
-      - config.toml
+      - neolink.toml
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
