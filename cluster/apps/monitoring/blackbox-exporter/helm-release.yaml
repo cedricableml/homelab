@@ -38,8 +38,11 @@ spec:
           name: blueiris
           url: "http://${BLUEIRIS_ADDRESS}:8181/login.htm"
         - module: tcp_connect
-          url: 10.250.0.204:8554               # neolink vm
-          name: neolink
+          url: "${SVC_NEOLINK_VM_ADDR}:8554"
+          name: neolink_tcp
+        - name: neolink_ping
+          url: "${SVC_NEOLINK_VM_ADDR}"
+          module: icmp
         - name: storage
           url: "${TRUENAS_VM_ADDRESS}"
           module: icmp
