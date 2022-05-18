@@ -6,5 +6,5 @@ resources:
   - mosquitto
   - zigbee2mqtt
   - node-red
-  - neolink
+  # - neolink
   - smtp-relay
