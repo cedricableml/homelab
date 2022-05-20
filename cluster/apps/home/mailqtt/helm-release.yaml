@@ -58,7 +58,7 @@ spec:
           tcpSocket:
             port: *port
     persistence:
-      backup:
+      attachments:
         enabled: true
         type: custom
         volumeSpec:
@@ -66,7 +66,6 @@ spec:
             server: "${TRUENAS_VM_ADDRESS}"
             path: /mnt/tank/cameras-attachments
         mountPath: /attachments
-        readOnly: false
     resources:
       requests:
         cpu: 50m

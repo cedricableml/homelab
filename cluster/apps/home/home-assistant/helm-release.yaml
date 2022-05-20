@@ -78,6 +78,14 @@ spec:
             path: /mnt/tank/backups/softwarrself/home-assistant
         mountPath: /config/backups
         readOnly: false
+      attachments:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/cameras-attachments
+        mountPath: /camera-detection-attachments
     podAnnotations:
       secret.reloader.stakater.com/reload: "home-assistant"
     addons:
