@@ -26,8 +26,9 @@ spec:
     fullnameOverride: *app
     image:
       repository: ghcr.io/0dragosh/mailqtt
-      tag: v1.0.2
+      tag: v1.0.4
     env:
+      TZ: "${TZ}"
       SAVE_ATTACHMENTS: "True"
       MQTT_HOST: mosquitto.home
       MQTT_PORT: 1883
