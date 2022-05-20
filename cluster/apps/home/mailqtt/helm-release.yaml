@@ -41,12 +41,22 @@ spec:
       main:
         type: LoadBalancer
         loadBalancerIP: ${SVC_MAILQTT_ADDR}
-        externalIPs:
-          - "${SVC_MAILQTT_ADDR}"
-        externalTrafficPolicy: Local
         ports:
           http:
             port: &port 1025
+    probes:
+      liveness:
+        enabled: true
+        custom: true
+        spec:
+          tcpSocket:
+            port: *port
+      readiness:
+        enabled: true
+        custom: true
+        spec:
+          tcpSocket:
+            port: *port
     persistence:
       backup:
         enabled: true
