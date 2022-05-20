@@ -1,0 +1,65 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app mailqtt
+  namespace: home
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kah-common-chart
+      version: 1.1.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
+  values:
+    fullnameOverride: *app
+    image:
+      repository: ghcr.io/0dragosh/mailqtt
+      tag: v1.0.1
+    env:
+      SAVE_ATTACHMENTS: "True"
+      MQTT_HOST: mosquitto.home
+      MQTT_PORT: 1883
+      MQTT_USERNAME: "${MQTT_USER}"
+      MQTT_PASSWORD: "${MQTT_PASSWORD}"
+      MQTT_TOPIC: "cams"
+      DEBUG: "True"
+      SAVE_ATTACHMENTS_DURING_RESET_TIME: "True"
+      SAVE_ATTACHMENTS_DIR: "/attachments"
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_MAILQTT_ADDR}
+        externalIPs:
+          - "${SVC_MAILQTT_ADDR}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: &port 1025
+    persistence:
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/cameras-attachments
+        mountPath: /attachments
+        readOnly: false
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
+      limits:
+        memory: 1Gi

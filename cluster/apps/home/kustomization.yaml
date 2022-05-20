@@ -8,3 +8,4 @@ resources:
   - node-red
   # - neolink
   - smtp-relay
+  - mailqtt
