@@ -47,7 +47,7 @@ spec:
         - module: tcp_connect
           url: "${SVC_NEOLINK_VM_ADDR}:8554"
           name: neolink-tcp
-        - name: neolink_ping
+        - name: neolink-ping
           url: "${SVC_NEOLINK_VM_ADDR}"
           module: icmp
         - name: storage
