@@ -7,6 +7,9 @@ metadata:
 data:
   snmp.yaml: |
     apcups:
+      auth:
+        auth:
+          community: ${SECRET_UPS_COMMUNITY_NAME}
       retries: 5
       timeout: 60s
       walk:
