@@ -12,3 +12,4 @@ resources:
   - pushgateway
   - unifi-poller
   - thanos
+  - snmp-exporter
