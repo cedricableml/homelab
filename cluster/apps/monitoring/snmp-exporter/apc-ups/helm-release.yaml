@@ -23,6 +23,8 @@ spec:
       repository: quay.io/prometheus/snmp-exporter
     extraArgs:
       - "--config.file=/config/snmp.yaml"
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: snmp-exporter-apc-ups
     extraConfigmapMounts:
       - name: snmp-exporter-apc-ups
         mountPath: /config/snmp.yaml
