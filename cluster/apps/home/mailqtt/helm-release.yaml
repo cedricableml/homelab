@@ -27,7 +27,8 @@ spec:
     image:
       repository: ghcr.io/0dragosh/mailqtt
       tag: v1.0.4
-    replicas: 3
+    controller:
+      replicas: 3
     env:
       TZ: "${TZ}"
       SAVE_ATTACHMENTS: "True"
