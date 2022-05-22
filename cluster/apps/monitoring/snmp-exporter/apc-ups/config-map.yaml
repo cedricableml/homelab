@@ -9,7 +9,7 @@ data:
     apcups:
       auth:
         community: kube
-        security_level: SomethingReadOnly
+        security_level: authPriv
         username: ${SECRET_UPS_SNMPV3_USERNAME}
         password: ${SECRET_UPS_SNMPV3_PASSWORD}
         auth_protocol: SHA256
