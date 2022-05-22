@@ -8,7 +8,13 @@ data:
   snmp.yaml: |
     apcups:
       auth:
-        community: ${SECRET_UPS_COMMUNITY_NAME}
+        community: kube
+        security_level: SomethingReadOnly
+        username: ${SECRET_UPS_SNMPV3_USERNAME}
+        password: ${SECRET_UPS_SNMPV3_PASSWORD}
+        auth_protocol: SHA256
+        priv_protocol: AES
+        priv_password: ${SECRET_UPS_SNMPV3_PRIVACY_PASSPHRASE}
       retries: 5
       timeout: 60s
       walk:
