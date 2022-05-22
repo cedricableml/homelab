@@ -41,9 +41,9 @@ spec:
         interval: 2m
         scrapeTimeout: 30s
       targets:
-        - module: http_2xx
+        - module: icmp
           name: blueiris
-          url: "http://${BLUEIRIS_ADDRESS}:8181/login.htm"
+          url: "${BLUEIRIS_ADDRESS}"
         - module: tcp_connect
           url: "${SVC_NEOLINK_VM_ADDR}:8554"
           name: neolink-tcp
