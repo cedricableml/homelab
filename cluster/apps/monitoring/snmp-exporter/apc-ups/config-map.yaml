@@ -1950,4 +1950,4 @@ data:
         indexes:
         - labelname: rPDU2BankStatusIndex
           type: gauge
-      version: 1
+      version: 3
