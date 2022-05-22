@@ -46,7 +46,7 @@ spec:
           url: "http://${BLUEIRIS_ADDRESS}:8181/login.htm"
         - module: tcp_connect
           url: "${SVC_NEOLINK_VM_ADDR}:8554"
-          name: neolink_tcp
+          name: neolink-tcp
         - name: neolink_ping
           url: "${SVC_NEOLINK_VM_ADDR}"
           module: icmp
