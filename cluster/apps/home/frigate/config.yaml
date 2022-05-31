@@ -250,8 +250,8 @@ cameras:
       inputs:
         - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_main
           roles:
-            - rtmp
             - record
         - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_sub
           roles:
+            - rtmp
             - detect
