@@ -75,103 +75,94 @@ snapshots:
     default: 7
 
 cameras:
-  int:
+  entrance:
     rtmp:
       enabled: False
     ffmpeg:
-      hwaccel_args:
-        - -c:v
-        - hevc_qsv
-        - -hwaccel
-        - qsv
-        - -qsv_device
-        - /dev/dri/renderD128
-      global_args: -hide_banner -loglevel info
+      hwaccel_args: -hwaccel vaapi -vaapi_device /dev/dri/renderD128 -hwaccel_output_format yuv420p
+      input_args: -avoid_negative_ts make_zero -flags low_delay -strict experimental -rw_timeout 5000000 -f live_flv
       output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy  # removed -an parameter to enable audio
-        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-        rtmp: -c copy -f flv
-      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
+        record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy
       inputs:
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
-          roles:
-            - record
-            - rtmp
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/bcs/channel0_main.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
           roles:
             - detect
-  lat:
-    rtmp:
-      enabled: False
-    ffmpeg:
-      hwaccel_args:
-        - -c:v
-        - hevc_qsv
-        - -hwaccel
-        - qsv
-        - -qsv_device
-        - /dev/dri/renderD128
-      global_args: -hide_banner -loglevel info
-      output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
-        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-        rtmp: -c copy -f flv
-      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
-      inputs:
-        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
-          roles:
             - record
-            - rtmp
-        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
-          roles:
-            - detect
-  back:
-    rtmp:
-      enabled: False
-    ffmpeg:
-      hwaccel_args:
-        - -c:v
-        - hevc_qsv
-        - -hwaccel
-        - qsv
-        - -qsv_device
-        - /dev/dri/renderD128
-      global_args: -hide_banner -loglevel info
-      output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
-        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-        rtmp: -c copy -f flv
-      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
-      inputs:
-        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
-          roles:
-            - record
-            - rtmp
-        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
-          roles:
-            - detect
-  lat2:
-    rtmp:
-      enabled: False
-    ffmpeg:
-      hwaccel_args:
-        - -c:v
-        - hevc_qsv
-        - -hwaccel
-        - qsv
-        - -qsv_device
-        - /dev/dri/renderD128
-      global_args: -hide_banner -loglevel info
-      output_args:
-        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
-        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-        rtmp: -c copy -f flv
-      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
-      inputs:
-        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/bcs/channel0_sub.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
           roles:
             - rtmp
-            - record
-        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
-          roles:
-            - detect
+#  lateral1:
+#    rtmp:
+#      enabled: False
+#    ffmpeg:
+#      hwaccel_args:
+#        - -c:v
+#        - hevc_qsv
+#        - -hwaccel
+#        - qsv
+#        - -qsv_device
+#        - /dev/dri/renderD128
+#      global_args: -hide_banner -loglevel info
+#      output_args:
+#        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+#        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+#        rtmp: -c copy -f flv
+#      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
+#      inputs:
+#        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
+#          roles:
+#            - record
+#            - rtmp
+#        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
+#          roles:
+#            - detect
+#  back:
+#    rtmp:
+#      enabled: False
+#    ffmpeg:
+#      hwaccel_args:
+#        - -c:v
+#        - hevc_qsv
+#        - -hwaccel
+#        - qsv
+#        - -qsv_device
+#        - /dev/dri/renderD128
+#      global_args: -hide_banner -loglevel info
+#      output_args:
+#        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+#        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+#        rtmp: -c copy -f flv
+#      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
+#      inputs:
+#        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
+#          roles:
+#            - record
+#            - rtmp
+#        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
+#          roles:
+#            - detect
+#  lateral2:
+#    rtmp:
+#      enabled: False
+#    ffmpeg:
+#      hwaccel_args:
+#        - -c:v
+#        - hevc_qsv
+#        - -hwaccel
+#        - qsv
+#        - -qsv_device
+#        - /dev/dri/renderD128
+#      global_args: -hide_banner -loglevel info
+#      output_args:
+#        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+#        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+#        rtmp: -c copy -f flv
+#      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
+#      inputs:
+#        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
+#          roles:
+#            - record
+#            - rtmp
+#        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
+#          roles:
+#            - detect
