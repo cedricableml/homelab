@@ -84,11 +84,11 @@ cameras:
       output_args:
         record: -f segment -segment_time 10 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy
       inputs:
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/bcs/channel0_main.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
+        - path: rtmp://${CAM2_IP}:554/bcs/channel0_main.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
           roles:
             - detect
             - record
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/bcs/channel0_sub.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
+        - path: rtmp://{CAM2_IP}:554/bcs/channel0_sub.bcs?channel=0&stream=1&user=${CAM2_USER}&password=${CAM2_PASSWORD}
           roles:
             - rtmp
 #  lateral1:
