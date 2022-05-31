@@ -33,7 +33,7 @@ spec:
     fullnameOverride: *app
     image:
       repository: docker.io/blakeblackshear/frigate
-      tag: 0.10.1-amd64
+      tag: 0.11.0-beta2
     env:
       TZ: "${TZ}"
     service:
