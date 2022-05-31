@@ -90,33 +90,13 @@ cameras:
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy  # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-      input_args:
-        - -rtsp_transport
-        - tcp
-        - -avoid_negative_ts
-        - make_zero
-        - -flags
-        - low_delay
-        - -strict
-        - experimental
-        - -fflags
-        - nobuffer+genpts+discardcorrupt
-        - -analyzeduration
-        - 1000M
-        - -probesize
-        - 1000M
-        - -rw_timeout
-        - "5000000"
-        - -stimeout
-        - '5000000'
-        - -use_wallclock_as_timestamps
-        - '1'
+      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
       inputs:
         - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h264Preview_01_sub
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h264Preview_01_main
           roles:
             - detect
   lat:
@@ -134,33 +114,13 @@ cameras:
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-      input_args:
-        - -rtsp_transport
-        - tcp
-        - -avoid_negative_ts
-        - make_zero
-        - -flags
-        - low_delay
-        - -strict
-        - experimental
-        - -fflags
-        - nobuffer+genpts+discardcorrupt
-        - -analyzeduration
-        - 1000M
-        - -probesize
-        - 1000M
-        - -rw_timeout
-        - "5000000"
-        - -stimeout
-        - '5000000'
-        - -use_wallclock_as_timestamps
-        - '1'
+      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
       inputs:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h264Preview_01_sub
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h264Preview_01_main
           roles:
             - detect
   back:
@@ -178,33 +138,13 @@ cameras:
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-      input_args:
-        - -rtsp_transport
-        - tcp
-        - -avoid_negative_ts
-        - make_zero
-        - -flags
-        - low_delay
-        - -strict
-        - experimental
-        - -fflags
-        - nobuffer+genpts+discardcorrupt
-        - -analyzeduration
-        - 1000M
-        - -probesize
-        - 1000M
-        - -rw_timeout
-        - "5000000"
-        - -stimeout
-        - '5000000'
-        - -use_wallclock_as_timestamps
-        - '1'
+      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
       inputs:
         - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h264Preview_01_sub
+        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h264Preview_01_main
           roles:
             - detect
   lat2:
@@ -222,32 +162,12 @@ cameras:
       output_args:
         record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
         detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
-      input_args:
-        - -rtsp_transport
-        - tcp
-        - -avoid_negative_ts
-        - make_zero
-        - -flags
-        - low_delay
-        - -strict
-        - experimental
-        - -fflags
-        - nobuffer+genpts+discardcorrupt
-        - -analyzeduration
-        - 1000M
-        - -probesize
-        - 1000M
-        - -rw_timeout
-        - "5000000"
-        - -stimeout
-        - '5000000'
-        - -use_wallclock_as_timestamps
-        - '1'
+      input_args: ["-avoid_negative_ts", "make_zero", "-fflags", "nobuffer+genpts+discardcorrupt", "-rtsp_transport", "tcp", "-flags", "low_delay", "-strict", "experimental", "-analyzeduration", "1000M", "-probesize", "1000M"]
       inputs:
         - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
           roles:
             - rtmp
             - record
-        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_sub
+        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_main
           roles:
             - detect
