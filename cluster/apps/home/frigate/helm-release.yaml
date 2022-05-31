@@ -139,7 +139,8 @@ spec:
       limits:
         memory: 16Gi
         gpu.intel.com/i915: "1"
-    nodeSelector: nuc3
+    nodeSelector:
+      kubernetes.io/hostname: nuc3
 #    nodeAffinity:
 #      requiredDuringSchedulingIgnoredDuringExecution:
 #        nodeSelectorTerms:
