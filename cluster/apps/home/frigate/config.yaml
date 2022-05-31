@@ -112,7 +112,7 @@ cameras:
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_sub
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h264Preview_01_sub
           roles:
             - detect
   lat:
@@ -152,7 +152,7 @@ cameras:
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_sub
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h264Preview_01_sub
           roles:
             - detect
   back:
@@ -192,7 +192,7 @@ cameras:
           roles:
             - record
             - rtmp
-        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_sub
+        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h264Preview_01_sub
           roles:
             - detect
   lat2:
@@ -232,6 +232,6 @@ cameras:
           roles:
             - rtmp
             - record
-        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_sub
+        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_sub
           roles:
             - detect
