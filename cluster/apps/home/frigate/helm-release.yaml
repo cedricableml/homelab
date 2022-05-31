@@ -108,6 +108,12 @@ spec:
         medium: Memory
         sizeLimit: 4Gi
         mountPath: /dev/shm
+      usb:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/bus/usb
+        hostPathType: Directory
+        mountPath: /dev/bus/usb
 
     podAnnotations:
       configmap.reloader.stakater.com/reload: *app
@@ -131,11 +137,12 @@ spec:
       limits:
         memory: 16Gi
         gpu.intel.com/i915: "1"
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: feature.node.kubernetes.io/custom-coral-tpu
-                operator: In
-                values:
-                  - "true"
+    nodeSelector: nuc3
+#    nodeAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        nodeSelectorTerms:
+#          - matchExpressions:
+#              - key: feature.node.kubernetes.io/custom-coral-tpu
+#                operator: In
+#                values:
+#                  - "true"
