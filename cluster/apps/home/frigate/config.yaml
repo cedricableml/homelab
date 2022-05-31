@@ -95,14 +95,18 @@ cameras:
         - tcp
         - -avoid_negative_ts
         - make_zero
-        - -fflags
-        - nobuffer
         - -flags
         - low_delay
         - -strict
         - experimental
         - -fflags
-        - +genpts+discardcorrupt
+        - nobuffer+genpts+discardcorrupt
+        - -analyzeduration
+        - 1000M
+        - -probesize
+        - 1000M
+        - -rw_timeout
+        - "5000000"
         - -stimeout
         - '5000000'
         - -use_wallclock_as_timestamps
@@ -135,14 +139,18 @@ cameras:
         - tcp
         - -avoid_negative_ts
         - make_zero
-        - -fflags
-        - nobuffer
         - -flags
         - low_delay
         - -strict
         - experimental
         - -fflags
-        - +genpts+discardcorrupt
+        - nobuffer+genpts+discardcorrupt
+        - -analyzeduration
+        - 1000M
+        - -probesize
+        - 1000M
+        - -rw_timeout
+        - "5000000"
         - -stimeout
         - '5000000'
         - -use_wallclock_as_timestamps
@@ -175,14 +183,18 @@ cameras:
         - tcp
         - -avoid_negative_ts
         - make_zero
-        - -fflags
-        - nobuffer
         - -flags
         - low_delay
         - -strict
         - experimental
         - -fflags
-        - +genpts+discardcorrupt
+        - nobuffer+genpts+discardcorrupt
+        - -analyzeduration
+        - 1000M
+        - -probesize
+        - 1000M
+        - -rw_timeout
+        - "5000000"
         - -stimeout
         - '5000000'
         - -use_wallclock_as_timestamps
@@ -215,14 +227,18 @@ cameras:
         - tcp
         - -avoid_negative_ts
         - make_zero
-        - -fflags
-        - nobuffer
         - -flags
         - low_delay
         - -strict
         - experimental
         - -fflags
-        - +genpts+discardcorrupt
+        - nobuffer+genpts+discardcorrupt
+        - -analyzeduration
+        - 1000M
+        - -probesize
+        - 1000M
+        - -rw_timeout
+        - "5000000"
         - -stimeout
         - '5000000'
         - -use_wallclock_as_timestamps
