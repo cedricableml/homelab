@@ -1,0 +1,237 @@
+---
+# yamllint disable rule:truthy
+# yamllint disable rule:line-length
+database:
+  path: /data/frigate.db
+
+mqtt:
+  host: mosquitto
+  topic_prefix: frigate
+  user: "${MQTT_USER}"
+  password: "${MQTT_PASSWORD}"
+
+live:
+  # Optional: Set the height of the live stream. (default: 720)
+  # This must be less than or equal to the height of the detect stream. Lower resolutions
+  # reduce bandwidth required for viewing the live stream. Width is computed to match known aspect ratio.
+  height: 1280
+  # Optional: Set the encode quality of the live stream (default: shown below)
+  # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
+  quality: 8
+
+birdseye:
+  # Optional: Enable birdseye view (default: shown below)
+  enabled: True
+  # Optional: Width of the output resolution (default: shown below)
+  width: 2560
+  # Optional: Height of the output resolution (default: shown below)
+  height: 1440
+  # Optional: Encoding quality of the mpeg1 feed (default: shown below)
+  # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
+  quality: 20
+  # Optional: Mode of the view. Available options are: objects, motion, and continuous
+  #   objects - cameras are included if they have had a tracked object within the last 30 seconds
+  #   motion - cameras are included if motion was detected in the last 30 seconds
+  #   continuous - all cameras are included always
+  mode: continuous
+
+record:
+  enabled: True
+  retain:
+    days: 30
+    mode: motion
+  events:
+    retain:
+      default: 100
+      mode: active_objects
+
+#detect:
+#  width: 1280
+#  height: 720
+#  fps: 5
+
+detectors:
+  coral:
+    type: edgetpu
+    device: usb
+
+objects:
+  track:
+    - person
+    - car
+    - motorcycle
+    - cat
+    - dog
+    - chair
+    - couch
+    - bag
+    - backpack
+    - bird
+
+snapshots:
+  enabled: True
+  bounding_box: true
+  retain:
+    default: 7
+
+cameras:
+  int:
+    rtmp:
+      enabled: False
+    ffmpeg:
+      hwaccel_args:
+        - -c:v
+        - hevc_qsv
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      global_args: -hide_banner -loglevel info
+      output_args:
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy  # removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
+      inputs:
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_main
+          roles:
+            - record
+            - rtmp
+        - path: rtsp://${CAM2_USER}:${CAM2_PASSWORD}@${CAM2_IP}:554/h265Preview_01_sub
+          roles:
+            - detect
+  lat:
+    rtmp:
+      enabled: False
+    ffmpeg:
+      hwaccel_args:
+        - -c:v
+        - hevc_qsv
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      global_args: -hide_banner -loglevel info
+      output_args:
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
+      inputs:
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_main
+          roles:
+            - record
+            - rtmp
+        - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h265Preview_01_sub
+          roles:
+            - detect
+  back:
+    rtmp:
+      enabled: False
+    ffmpeg:
+      hwaccel_args:
+        - -c:v
+        - hevc_qsv
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      global_args: -hide_banner -loglevel info
+      output_args:
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
+      inputs:
+        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_main
+          roles:
+            - record
+            - rtmp
+        - path: rtsp://${CAM3_USER}:${CAM3_PASSWORD}@${CAM3_IP}:554/h265Preview_01_sub
+          roles:
+            - detect
+  lat2:
+    rtmp:
+      enabled: False
+    ffmpeg:
+      hwaccel_args:
+        - -c:v
+        - hevc_qsv
+        - -hwaccel
+        - qsv
+        - -qsv_device
+        - /dev/dri/renderD128
+      global_args: -hide_banner -loglevel info
+      output_args:
+        record: -f segment -segment_time 60 -segment_format mp4 -reset_timestamps 1 -strftime 1 -c copy   # removed -an parameter to enable audio
+        detect: -f rawvideo -vf hwdownload,format=nv12 -pix_fmt yuv420p
+      input_args:
+        - -rtsp_transport
+        - tcp
+        - -avoid_negative_ts
+        - make_zero
+        - -fflags
+        - nobuffer
+        - -flags
+        - low_delay
+        - -strict
+        - experimental
+        - -fflags
+        - +genpts+discardcorrupt
+        - -stimeout
+        - '5000000'
+        - -use_wallclock_as_timestamps
+        - '1'
+      inputs:
+        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_main
+          roles:
+            - rtmp
+            - record
+        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h265Preview_01_sub
+          roles:
+            - detect
