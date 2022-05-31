@@ -23,6 +23,8 @@ spec:
     remediation:
       retries: 100
   values:
+    securityContext:
+      privileged: true
     podSecurityContext:
       supplementalGroups:
         - 44
