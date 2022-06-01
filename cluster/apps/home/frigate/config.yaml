@@ -10,15 +10,6 @@ mqtt:
   user: "${MQTT_USER}"
   password: "${MQTT_PASSWORD}"
 
-live:
-  # Optional: Set the height of the live stream. (default: 720)
-  # This must be less than or equal to the height of the detect stream. Lower resolutions
-  # reduce bandwidth required for viewing the live stream. Width is computed to match known aspect ratio.
-#  height: 1280
-  # Optional: Set the encode quality of the live stream (default: shown below)
-  # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
-  quality: 8
-
 birdseye:
   # Optional: Enable birdseye view (default: shown below)
   enabled: True
@@ -28,7 +19,7 @@ birdseye:
   height: 1440
   # Optional: Encoding quality of the mpeg1 feed (default: shown below)
   # 1 is the highest quality, and 31 is the lowest. Lower quality feeds utilize less CPU resources.
-  quality: 20
+  quality: 8
   # Optional: Mode of the view. Available options are: objects, motion, and continuous
   #   objects - cameras are included if they have had a tracked object within the last 30 seconds
   #   motion - cameras are included if motion was detected in the last 30 seconds
