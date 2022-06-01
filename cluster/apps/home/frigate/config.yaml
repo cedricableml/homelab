@@ -239,10 +239,11 @@ cameras:
         - -probesize
         - 1000M
       inputs:
-        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_main
+#        - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_main
+        - path: rtmp://${CAM4_IP}/bcs/channel0_main.bcs?channel=0&stream=0&user=${CAM4_USER}&password=${CAM4_PASSWORD}
           roles:
             - record
+            - rtmp
         - path: rtsp://${CAM4_USER}:${CAM4_PASSWORD}@${CAM4_IP}:554/h264Preview_01_sub
           roles:
-            - rtmp
             - detect
