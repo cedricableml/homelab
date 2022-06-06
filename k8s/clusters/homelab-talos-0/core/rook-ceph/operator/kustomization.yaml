@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - sc-retain.yaml
-  - volumesnapshotclass.yaml
+#  - volumesnapshotclass.yaml
