@@ -3,7 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   namespace: flux-system
-  name: cluster-settings
+  name: global-vars
 data:
   CLUSTER_NAME: "homelab-talos-0"
   CLUSTER_ID: "1"
