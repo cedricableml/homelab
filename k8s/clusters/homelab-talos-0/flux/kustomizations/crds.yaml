@@ -9,7 +9,7 @@ spec:
   path: ./k8s/clusters/homelab-talos-0/crds
   prune: false
   dependsOn:
-    - name: crds
+    - name: global
   sourceRef:
     kind: GitRepository
     name: flux-system
