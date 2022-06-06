@@ -39,12 +39,14 @@ resource "tls_private_key" "main" {
 # Flux
 data "flux_install" "main" {
   target_path = var.target_path
+  depends_on = [module.homelab-talos-0]
 }
 
 data "flux_sync" "main" {
   target_path = var.target_path
   url         = "ssh://git@github.com/${var.github_owner}/${var.repository_name}.git"
   branch      = var.branch
+  depends_on = [module.homelab-talos-0]
 }
 
 # Kubernetes
@@ -58,14 +60,18 @@ resource "kubernetes_namespace" "flux_system" {
       metadata[0].labels,
     ]
   }
+
+  depends_on = [module.homelab-talos-0]
 }
 
 data "kubectl_file_documents" "install" {
   content = data.flux_install.main.content
+  depends_on = [module.homelab-talos-0]
 }
 
 data "kubectl_file_documents" "sync" {
   content = data.flux_sync.main.content
+  depends_on = [module.homelab-talos-0]
 }
 
 locals {
