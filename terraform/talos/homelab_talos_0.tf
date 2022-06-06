@@ -1,5 +1,5 @@
 module "homelab-talos-0" {
-  source = "github.com/ilpozzd/terraform-talos-vsphere-cluster?ref=v1.1.1"
+  source = "github.com/ilpozzd/terraform-talos-vsphere-cluster?ref=v1.1.2"
 
   cluster_name = "homelab-talos-0"
   datacenter = "Datacenter"
@@ -20,11 +20,11 @@ module "homelab-talos-0" {
     endpoint = "https://10.250.14.220:6443"
     localAPIServerPort = "6443"
   }
-control_plane_cluster_configuration = {
+  control_plane_cluster_configuration = {
   network = {
       cni = {
           name = "custom"
-          urls = ["https://raw.githubusercontent.com/0dragosh/homelab/restructuring-talos/k8s/clusters/homelab-talos-0/integrations/cilium-quick-install/quick-install.yaml"]
+          urls = ["https://raw.githubusercontent.com/0dragosh/homelab/main/k8s/clusters/homelab-talos-0/integrations/cilium-quick-install/quick-install.yaml"]
       }
       dnsDomain = "cluster.local"
       podSubnets = ["10.244.0.0/16"]
@@ -43,7 +43,10 @@ control_plane_cluster_configuration = {
     image = "k8s.gcr.io/kube-apiserver:v1.23.6"
     extraArgs = {
         feature-gates = "MixedProtocolLBService=true,EphemeralContainers=True"
-      }
+    }
+    certSANs = [
+      "10.250.14.220",
+    ]
   }
   controllerManager = {
     image = "k8s.gcr.io/kube-controller-manager:v1.23.6"
@@ -98,7 +101,7 @@ control_plane_cluster_configuration = {
     time = {
       disabled = false
       servers = [
-        "time.cloudflare.com"
+        "10.250.0.1"
       ]
       bootTimeout = "2m0s"
     }
@@ -118,6 +121,10 @@ control_plane_cluster_configuration = {
       "10.250.0.1",
     ]
   }
+
+  control_plane_machine_cert_sans = [[
+    "10.250.14.220",
+  ]]
 
   control_plane_machine_network_interfaces = [
     [
@@ -173,6 +180,13 @@ control_plane_cluster_configuration = {
     ]
   ]
 
+  worker_machine_cert_sans = [[
+    "10.250.13.4",
+    "10.250.13.5",
+    "10.250.13.6",
+    "10.250.14.220",
+  ]]
+
   worker_machine_network_interfaces = [
     [
       {
@@ -180,6 +194,7 @@ control_plane_cluster_configuration = {
         addresses = [
           "10.250.13.4/20"
         ]
+        mtu = "9000"
         routes = [
           {
             network = "0.0.0.0/0"
@@ -194,6 +209,7 @@ control_plane_cluster_configuration = {
         addresses = [
           "10.250.13.5/20"
         ]
+        mtu = "9000"
         routes = [
           {
             network = "0.0.0.0/0"
@@ -208,6 +224,7 @@ control_plane_cluster_configuration = {
         addresses = [
           "10.250.13.6/20"
         ]
+        mtu = "9000"
         routes = [
           {
             network = "0.0.0.0/0"
