@@ -160,7 +160,7 @@ data:
   enable-well-known-identities: "false"
   enable-remote-node-identity: "true"
   operator-api-serve-addr: "127.0.0.1:9234"
-  ipam: "kubernetes"
+  ipam: "cluster"
   disable-cnp-status-updates: "true"
   cgroup-root: "/run/cilium/cgroupv2"
   enable-k8s-terminating-endpoint: "true"
@@ -433,7 +433,7 @@ spec:
     metadata:
       annotations:
         # ensure pods roll when configmap updates
-        cilium.io/cilium-configmap-checksum: "fb85addabfd71b396ede08c785af3a94577beb16171af97c0f2744acefdd8772"
+        cilium.io/cilium-configmap-checksum: "a3dd8b6b06fd72e07c2ac56b4339a91abddc0c814f70b9417450904047ac68a6"
         # This annotation plus the CriticalAddonsOnly toleration makes
         # cilium to be a critical pod in the cluster, which ensures cilium
         # gets priority scheduling.
