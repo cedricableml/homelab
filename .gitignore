@@ -21,4 +21,5 @@ node_modules
 .decrypted~*.yaml
 .dec~*.yaml
 kubeconfig
+talosconfig
 .terraform
