@@ -33,37 +33,20 @@ spec:
       name: "${CLUSTER_NAME}"
       id: "${CLUSTER_ID}"
 
+    k8sServiceHost: "${CLUSTER_APISERVER_ENDPOINT}"
+    k8sServicePort: 6443
+
     rollOutCiliumPods: true
     localRedirectPolicy: true
 
     kubeProxyReplacement: "strict"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
-    # maybe try this out
-    # nativeRoutingCIDR:
-
-    k8sServiceHost: "${CLUSTER_APISERVER_ENDPOINT}"
-    k8sServicePort: 6443
-
-    loadBalancer:
-      algorithm: "maglev"
-      mode: "dsr"
-
-    tunnel: "disabled"
-
-    autoDirectNodeRoutes: true
-
-    endpointRoutes:
-      enabled: true
-
     ipam:
       mode: "kubernetes"
 
     operator:
       rollOutPods: true
-
-    containerRuntime:
-      integration: containerd
 
     hubble:
       enabled: true
