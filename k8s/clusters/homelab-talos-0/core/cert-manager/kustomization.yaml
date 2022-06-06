@@ -7,3 +7,4 @@ resources:
   - letsencrypt-staging.yaml
   - secret.enc.yaml
   - prometheus-rule.yaml
+  - namespace.yaml
