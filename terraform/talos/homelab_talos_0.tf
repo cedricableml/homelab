@@ -28,7 +28,7 @@ module "homelab-talos-0" {
       }
       dnsDomain = "cluster.local"
       podSubnets = ["10.244.0.0/16"]
-      serviceSubnets = ["10.81.0.0/12"]
+      serviceSubnets = ["10.96.0.0/16"]
   }
   proxy = {
       disabled = true
