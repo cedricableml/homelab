@@ -33,7 +33,7 @@ spec:
         annotations:
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         host:
           name: "rook.${SECRET_DOMAIN_CASA}"
           path: "/"
@@ -59,13 +59,13 @@ spec:
         config:
           osdsPerDevice: "1"
         nodes:
-          - name: "worker-0"
+          - name: "homelab-talos-0-worker-0"
             devices:
               - name: "/dev/sdb"
-          - name: "worker-1"
+          - name: "homelab-talos-0-worker-1"
             devices:
               - name: "/dev/sdb"
-          - name: "worker-2"
+          - name: "homelab-talos-0-worker-2"
             devices:
               - name: "/dev/sdb"
     cephBlockPools:
