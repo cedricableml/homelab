@@ -6,7 +6,6 @@ module "homelab-talos-0" {
   datastores = [
     "large1",
     "large1-slim",
-    # "medium1-slim"
   ]
   hosts = [
     "fatman.home.lan",
@@ -17,7 +16,7 @@ module "homelab-talos-0" {
   remote_ovf_url = "https://github.com/siderolabs/talos/releases/download/v1.0.5/vmware-amd64.ova"
 
   cluster_control_plane = {
-    endpoint = "https://10.250.14.220:6443"
+    endpoint = "https://10.250.13.220:6443"
     localAPIServerPort = "6443"
   }
   control_plane_cluster_configuration = {
@@ -45,7 +44,7 @@ module "homelab-talos-0" {
         feature-gates = "MixedProtocolLBService=true,EphemeralContainers=True"
     }
     certSANs = [
-      "10.250.14.220",
+      "10.250.13.220",
     ]
   }
   controllerManager = {
@@ -71,13 +70,17 @@ module "homelab-talos-0" {
     }
   ]
 
-  worker_count    = 3
+  worker_count    = 4
   worker_num_cpus = 8
-  worker_memory   = 16384
+  worker_memory   = 32768
   worker_disks = [
     {
       label = "sda"
       size  = 40
+    },
+    {
+      label = "sdx"
+      size  = 500
     },
   ]
   worker_network_interfaces = [
@@ -118,7 +121,7 @@ module "homelab-talos-0" {
   }
 
   control_plane_machine_cert_sans = [[
-    "10.250.14.220",
+    "10.250.13.220",
   ]]
 
   control_plane_machine_network_interfaces = [
@@ -135,7 +138,7 @@ module "homelab-talos-0" {
           }
         ]
         vip = {
-          ip = "10.250.14.220"
+          ip = "10.250.13.220"
         }
       }
     ],
@@ -152,7 +155,7 @@ module "homelab-talos-0" {
           }
         ]
         vip = {
-          ip = "10.250.14.220"
+          ip = "10.250.13.220"
         }
       }
     ],
@@ -169,7 +172,7 @@ module "homelab-talos-0" {
           }
         ]
         vip = {
-          ip = "10.250.14.220"
+          ip = "10.250.13.220"
         }
       }
     ]
@@ -179,7 +182,7 @@ module "homelab-talos-0" {
     "10.250.13.4",
     "10.250.13.5",
     "10.250.13.6",
-    "10.250.14.220",
+    "10.250.13.220",
   ]]
 
   worker_machine_network_interfaces = [
