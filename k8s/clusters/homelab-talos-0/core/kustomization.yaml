@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
   - cert-manager
   - kube-system
-  - rook-ceph
+#  - rook-ceph
