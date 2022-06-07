@@ -44,10 +44,26 @@ spec:
         enabled: true
         urlPrefix: /
       storage:
-        useAllNodes: true
-        useAllDevices: true
+        useAllNodes: false
+        useAllDevices: false
         config:
           osdsPerDevice: "1"
+        nodes:
+          - name: "homelab-talos-0-worker-0"
+            devices:
+              - name: "sdb"
+          - name: "homelab-talos-0-worker-1"
+            devices:
+              - name: "sdb"
+          - name: "homelab-talos-0-worker-2"
+            devices:
+              - name: "sdb"
+          - name: "homelab-talos-0-worker-3"
+            devices:
+              - name: "sdb"
+      mon:
+        count: 4
+        allowMultiplePerNode: true
     cephBlockPools:
       - name: ceph-blockpool
         spec:
