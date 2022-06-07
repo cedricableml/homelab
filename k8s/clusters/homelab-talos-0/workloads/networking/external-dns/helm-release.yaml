@@ -26,7 +26,7 @@ spec:
       - crd
     provider: cloudflare
     cloudflare:
-      secretName: cloudflare-api-key
+      secretName: cloudflare-api-token
       email: "${SECRET_EMAIL_CLOUDFLARE}"
       proxied: true
     policy: sync
