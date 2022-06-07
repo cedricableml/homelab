@@ -5,4 +5,5 @@ resources:
   - namespace.yaml
   - helm-release.yaml
   - sc-retain.yaml
+  - rbac-monitoring.yaml
 #  - volumesnapshotclass.yaml
