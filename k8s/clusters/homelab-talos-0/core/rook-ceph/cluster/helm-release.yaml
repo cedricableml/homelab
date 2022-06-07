@@ -58,13 +58,13 @@ spec:
         nodes:
           - name: "homelab-talos-0-worker-0"
             devices:
-              - name: "sda"
+              - name: "sdb"
           - name: "homelab-talos-0-worker-1"
             devices:
-              - name: "sda"
+              - name: "sdb"
           - name: "homelab-talos-0-worker-2"
             devices:
-              - name: "sda"
+              - name: "sdb"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
