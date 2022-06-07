@@ -1,6 +1,11 @@
 locals {
   apps_casa = [
     {
+      subdomain = "flux-webhook.homelab-talos-0"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
       subdomain = "bazarr"
       type      = "self_hosted"
       gsuite    = true
@@ -179,6 +184,11 @@ locals {
     },
     {
       subdomain = "requests"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
+      subdomain = "flux-webhook"
       type      = "self_hosted"
       gsuite    = true
     },
