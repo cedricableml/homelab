@@ -64,7 +64,7 @@ spec:
               - name: "sdb"
           - name: "homelab-talos-0-worker-2"
             devices:
-              - name: "sdb"
+              - name: "sda"
     cephBlockPools:
       - name: ceph-blockpool
         spec:
