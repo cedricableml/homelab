@@ -7,7 +7,7 @@ metadata:
 spec:
   interval: 10m0s
   path: ./k8s/clusters/homelab-talos-0/crds
-  prune: false
+  prune: true
   dependsOn:
     - name: global
   sourceRef:
