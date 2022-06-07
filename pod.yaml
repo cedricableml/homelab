@@ -12,7 +12,6 @@ spec:
     requests:
       storage: 100Mi
 ---
-# https://kubernetes.io/docs/concepts/workloads/pods/
 apiVersion: v1
 kind: Pod
 metadata:
