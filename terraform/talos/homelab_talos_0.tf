@@ -122,6 +122,9 @@ module "homelab-talos-0" {
 
   control_plane_machine_cert_sans = [[
     "10.250.13.220",
+    "10.250.13.1",
+    "10.250.13.2",
+    "10.250.13.3",
   ]]
 
   control_plane_machine_network_interfaces = [
