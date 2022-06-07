@@ -79,11 +79,6 @@ module "homelab-talos-0" {
       label = "sda"
       size  = 40
     },
-    {
-      label = "sdb"
-      size  = 500
-      thin_provisioned = true
-    }
   ]
   worker_network_interfaces = [
     {
