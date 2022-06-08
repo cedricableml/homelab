@@ -11,7 +11,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: &host "flux-webhook.${CLUSTER_NAME}.${SECRET_DOMAIN_CASA}"
+    - host: &host "flux-webhook-${CLUSTER_NAME/./-}.${SECRET_DOMAIN_CASA}"
       http:
         paths:
           - path: /
