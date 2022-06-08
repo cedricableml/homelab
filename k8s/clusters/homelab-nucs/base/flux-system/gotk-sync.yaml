@@ -24,7 +24,7 @@ spec:
     secretRef:
       name: sops-age
   interval: 10m0s
-  path: ./cluster/base
+  path: ./k8s/clusters/homelab-nucs/base
   prune: true
   sourceRef:
     kind: GitRepository
