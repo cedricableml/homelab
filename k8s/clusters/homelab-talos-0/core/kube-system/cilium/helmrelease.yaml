@@ -48,6 +48,12 @@ spec:
     operator:
       rollOutPods: true
 
+    autoDirectNodeRoutes: true
+    nativeRoutingCIDR: 10.244.0.0/16
+    tunnel: disabled
+    endpointRoutes:
+      enabled: true
+
     hubble:
       enabled: true
       serviceMonitor:
