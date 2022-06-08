@@ -17,3 +17,4 @@ spec:
     - "${SECRET_DOMAIN_CASA}"
     - "*.${SECRET_DOMAIN_CASA}"
     - "*.local.${SECRET_DOMAIN_CASA}"
+    - "*.${CLUSTER_NAME}.${SECRET_DOMAIN_CASA}"
