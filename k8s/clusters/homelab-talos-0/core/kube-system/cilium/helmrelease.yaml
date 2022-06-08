@@ -83,8 +83,7 @@ spec:
           hosts:
             - host: &host "hubble.${SECRET_DOMAIN_CASA}"
           tls:
-            - secretName: tls.hubble
-              hosts:
+            - hosts:
                 - *host
 
     bgp:
