@@ -81,15 +81,11 @@ spec:
             external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
             external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
           hosts:
-            - host: "hubble.${SECRET_DOMAIN_CASA}"
-              paths:
-                - path: /
-                  pathType: Prefix
+            - host: &host "hubble.${SECRET_DOMAIN_CASA}"
           tls:
-            - hosts:
-                - "hubble.${SECRET_DOMAIN_CASA}"
-
-    
+            - secretName: tls.hubble
+              hosts:
+                - *host
 
     bgp:
       enabled: true
