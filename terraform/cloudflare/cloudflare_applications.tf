@@ -1,6 +1,11 @@
 locals {
   apps_casa = [
     {
+      subdomain = "hubble"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
       subdomain = "bazarr"
       type      = "self_hosted"
       gsuite    = true
