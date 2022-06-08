@@ -8,9 +8,9 @@
     ":separatePatchReleases",
     "docker:enableMajor",
     ":enablePreCommit",
-    "github>0dragosh/homelab-k3s//.github/renovate/autoMerge",
-    "github>0dragosh/homelab-k3s//.github/renovate/labels",
-    "github>0dragosh/homelab-k3s//.github/renovate/semanticCommits"
+    "github>0dragosh/homelab//.github/renovate/autoMerge",
+    "github>0dragosh/homelab//.github/renovate/labels",
+    "github>0dragosh/homelab//.github/renovate/semanticCommits"
   ],
   "enabled": true,
   "timezone": "Europe/Bucharest",
@@ -32,12 +32,12 @@
   ],
   "flux": {
     "fileMatch": [
-      "cluster/.+\\.ya?ml$"
+      "k8s/clusters/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
     "fileMatch": [
-      "cluster/.+/helm-release\\.yaml$",
+      "k8s/clusters/.+/helm-release\\.yaml$",
     ],
   },
   "helmv3": {
@@ -47,17 +47,17 @@
   },
   "kubernetes": {
     "fileMatch": [
-      "cluster/.+\\.yaml$",
+      "k8s/clusters/.+\\.yaml$",
     ],
     "ignorePaths": [
-      "cluster/base/",
+      "k8s/clusters/.+/flux",
     ],
   },
   "regexManagers": [
     // regexManager to read and process HelmRelease files
     {
       "fileMatch": [
-        "cluster/.+\\.yaml$"
+        "k8s/clusters/.+\\.yaml$"
       ],
       "matchStrings": [
         // helm releases
@@ -68,7 +68,7 @@
     // regexManager to read and process cert-manager CRD's
     {
       "fileMatch": [
-        "cluster/crds/cert-manager/.+\\.yaml$"
+        "k8s/clusters/.+/crds/cert-manager/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
@@ -78,8 +78,8 @@
     // regexManager to read and process kube-prometheus-stack CRD's
     {
       "fileMatch": [
-        "cluster/crds/kube-prometheus-stack/.+\\.yaml$",
-        "cluster/crds/velero/.+\\.yaml$"
+        "k8s/clusters/.+/crds/kube-prometheus-stack/.+\\.yaml$",
+        "k8s/clusters/.+/crds/velero/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
@@ -89,7 +89,7 @@
     // regexManager to read and process Traefik CRD's
     {
       "fileMatch": [
-        "cluster/crds/traefik/.+\\.yaml$"
+        "k8s/clusters/.+/crds/traefik/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
@@ -99,7 +99,7 @@
     // regexManager to read and process Rook-Ceph CRD's
     {
       "fileMatch": [
-        "cluster/crds/rook-ceph/.+\\.yaml$"
+        "k8s/clusters/.+/crds/rook-ceph/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
@@ -108,8 +108,8 @@
     },
     {
       "fileMatch": [
-        "cluster/crds/external-snapshotter/.+\\.yaml$",
-        "cluster/crds/external-dns/.+\\.yaml$"
+        "k8s/clusters/.+/crds/external-snapshotter/.+\\.yaml$",
+        "k8s/clusters/.+/crds/external-dns/.+\\.yaml$"
       ],
       "matchStrings": [
         "url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n"
