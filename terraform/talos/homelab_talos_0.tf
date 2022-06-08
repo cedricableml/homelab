@@ -185,6 +185,7 @@ module "homelab-talos-0" {
     "10.250.13.4",
     "10.250.13.5",
     "10.250.13.6",
+    "10.250.13.7",
     "10.250.13.220",
   ]]
 
@@ -224,6 +225,21 @@ module "homelab-talos-0" {
         interface = "eth0"
         addresses = [
           "10.250.13.6/20"
+        ]
+        mtu = "9000"
+        routes = [
+          {
+            network = "0.0.0.0/0"
+            gateway = "10.250.0.1"
+          }
+        ]
+      }
+    ],
+    [
+      {
+        interface = "eth0"
+        addresses = [
+          "10.250.13.7/20"
         ]
         mtu = "9000"
         routes = [
