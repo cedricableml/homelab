@@ -58,4 +58,4 @@ spec:
       protocol: TCP
       port: 8443
       targetPort: 8443
-  loadBalancerIP: 10.250.13.101
+  loadBalancerIP: 172.27.0.1
