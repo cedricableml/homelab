@@ -57,7 +57,7 @@ module "homelab-talos-0" {
 
   control_plane_count    = 3
   control_plane_num_cpus = 4
-  control_plane_memory   = 2048
+  control_plane_memory   = 4096
   control_plane_disks = [
     {
       label = "sda"
