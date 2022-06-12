@@ -36,10 +36,10 @@ record:
       default: 100
       mode: active_objects
 
-#detect:
-#  width: 1280
-#  height: 720
-#  fps: 5
+detect:
+  width: 640
+  height: 360
+  fps: 5
 
 detectors:
   coral:
@@ -50,14 +50,9 @@ objects:
   track:
     - person
     - car
-    - motorcycle
     - cat
     - dog
     - chair
-    - couch
-    - bag
-    - backpack
-    - bird
 
 snapshots:
   enabled: True
@@ -202,7 +197,7 @@ cameras:
         - path: rtsp://${CAM1_USER}:${CAM1_PASSWORD}@${CAM1_IP}:554/h264Preview_01_sub
           roles:
             - detect
-  back:
+  backyard:
     rtmp:
       enabled: True
     record:
