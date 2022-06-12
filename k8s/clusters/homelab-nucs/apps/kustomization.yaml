@@ -9,5 +9,5 @@ resources:
   - media
   - monitoring
   - networking
-  - system-upgrade
+  # - system-upgrade
   - calico-system
