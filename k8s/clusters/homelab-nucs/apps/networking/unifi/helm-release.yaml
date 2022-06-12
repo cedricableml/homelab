@@ -151,7 +151,6 @@ spec:
     jvmMaxHeapSize: 8192M
     resources:
       limits:
-        cpu: 2000m
         memory: 8Gi
       requests:
         cpu: 100m
