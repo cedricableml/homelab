@@ -16,3 +16,4 @@ resources:
   - metallb-system.yaml
   - backup.yaml
   - vmware-system-csi.yaml
+  - linkerd.yaml

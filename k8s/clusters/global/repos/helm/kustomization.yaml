@@ -35,3 +35,4 @@ resources:
   - kasten-charts.yaml
   - vsphere-tmm.yaml
   - cilium-charts.yaml
+  - linkerd-charts.yaml
