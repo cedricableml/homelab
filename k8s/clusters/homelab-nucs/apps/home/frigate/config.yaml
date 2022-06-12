@@ -202,6 +202,15 @@ cameras:
       enabled: True
     record:
       enabled: True
+    motion:
+      mask:
+        - 640,0,640,138,339,0
+    objects:
+      filters:
+        car:
+          mask: 640,0,640,139
+        person:
+          mask: 640,0,640,139
     ffmpeg:
       hwaccel_args:
         - -hwaccel
@@ -243,6 +252,15 @@ cameras:
           roles:
             - detect
   lateral2:
+    motion:
+      mask:
+        - 0,21,196,25,557,188,0,0
+    objects:
+      filters:
+        person:
+          mask: 640,224,640,0
+        car:
+          mask: 640,224,640,0
     rtmp:
       enabled: True
     record:
