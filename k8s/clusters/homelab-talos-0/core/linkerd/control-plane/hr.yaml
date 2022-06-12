@@ -40,6 +40,7 @@ spec:
           limit: 50Mi
           request: 10Mi
     proxyInit:
+      ignoreOutboundPorts: "4567,4568,443,6443"
       resources:
         cpu:
           request: 10m
