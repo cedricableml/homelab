@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: linkerd
 resources:
   - hr.yaml
-  - values.enc.yaml
+  - certs-secret.yaml
