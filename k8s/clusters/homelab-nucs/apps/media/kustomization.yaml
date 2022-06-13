@@ -12,7 +12,6 @@ resources:
   - readarr
   - readarr-audiobooks
   - sonarr
-  - tautulli
   - qbittorrent
   - plex
   - arr-misc
