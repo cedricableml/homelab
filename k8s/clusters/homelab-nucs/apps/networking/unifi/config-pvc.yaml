@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: unifi-config-v4
+  name: unifi-config-v5
   namespace: networking
 spec:
   accessModes:

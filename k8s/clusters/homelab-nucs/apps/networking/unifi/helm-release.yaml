@@ -137,7 +137,7 @@ spec:
       data:
         enabled: true
         accessMode: ReadWriteOnce
-        existingClaim: unifi-config-v4
+        existingClaim: unifi-config-v5
         mountPath: /unifi
       backup:
         enabled: true

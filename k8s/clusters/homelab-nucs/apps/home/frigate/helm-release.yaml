@@ -90,7 +90,7 @@ spec:
     persistence:
       data:
         enabled: true
-        existingClaim: frigate-config-v3
+        existingClaim: frigate-config-v4
       config:
         enabled: true
         type: configMap

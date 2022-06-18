@@ -13,7 +13,7 @@ resources:
   - readarr-audiobooks
   - sonarr
   - qbittorrent
-  - plex
+  # - plex
   - arr-misc
   - calibre
   - calibre-web

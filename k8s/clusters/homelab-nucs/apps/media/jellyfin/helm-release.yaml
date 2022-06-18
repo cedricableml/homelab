@@ -81,7 +81,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: jellyfin-config-v2
+        existingClaim: jellyfin-config-v3
       media:
         enabled: true
         existingClaim: media-nfs

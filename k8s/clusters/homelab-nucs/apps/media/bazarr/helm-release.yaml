@@ -64,7 +64,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: bazarr-config-v4
+        existingClaim: bazarr-config-v5
       media:
         enabled: true
         existingClaim: media-nfs
