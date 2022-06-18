@@ -91,6 +91,7 @@ spec:
                       - neolink
               topologyKey: kubernetes.io/hostname
     podAnnotations:
+      linkerd.io/inject: disabled
       configmap.reloader.stakater.com/reload: "plex-promtail"
       backup.velero.io/backup-volumes: config
       pre.hook.backup.velero.io/container: fsfreeze
