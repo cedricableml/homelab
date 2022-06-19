@@ -39,5 +39,5 @@ spec:
 #        path: /var/lib/rook
     - name: test
       persistentVolumeClaim:
-        claimName: plex-config-v5
+        claimName: plex-library-config-v2
   restartPolicy: Always
