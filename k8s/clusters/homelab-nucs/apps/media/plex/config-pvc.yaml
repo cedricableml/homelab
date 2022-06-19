@@ -11,16 +11,3 @@ spec:
     requests:
       storage: 120Gi
   storageClassName: ceph-block-retain
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: plex-library-config-v3
-  namespace: media
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 120Gi
-  storageClassName: ceph-block-retain
