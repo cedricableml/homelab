@@ -99,7 +99,7 @@ spec:
       secret.reloader.stakater.com/reload: "home-assistant"
     addons:
       codeserver:
-        enabled: true
+        enabled: false
         image:
           repository: docker.io/codercom/code-server
           tag: 4.4.0
