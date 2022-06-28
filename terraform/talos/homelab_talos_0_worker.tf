@@ -9,7 +9,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-0" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         tag    = var.public_vlan
@@ -34,7 +34,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-1" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         tag    = var.public_vlan
@@ -59,7 +59,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-2" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         tag    = var.public_vlan
@@ -84,7 +84,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-3" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         tag    = var.public_vlan
@@ -109,7 +109,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-4" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         tag    = var.public_vlan

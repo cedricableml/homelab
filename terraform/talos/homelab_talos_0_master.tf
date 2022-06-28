@@ -8,7 +8,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-0" {
     cores       = 4
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         bridge = var.public_network_bridge
@@ -32,7 +32,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-1" {
     cores       = 4
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         bridge = var.public_network_bridge
@@ -56,7 +56,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node" {
     cores       = 4
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb,cpu,memory"
+    hotplug 	= "network,disk,usb"
     network {
         model  = "virtio"
         bridge = var.public_network_bridge
