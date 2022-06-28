@@ -177,7 +177,7 @@ controlPlane:
       path: /machine/kubelet/extraArgs
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
-        rotate-server-certificates: "false"
+        # rotate-server-certificates: "true"
     - op: add
       path: /machine/install/extraKernelArgs
       value:
@@ -217,7 +217,7 @@ worker:
       path: /machine/kubelet/extraArgs
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
-        rotate-server-certificates: "false"
+        # rotate-server-certificates: "true"
   inlinePatch:
     cluster:
       aescbcEncryptionSecret: ${aescbcEncryptionKey}

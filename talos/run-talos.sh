@@ -4,7 +4,7 @@ talhelper genconfig
 
 export TALOSCONFIG=~/dev/homelab/homelab/talos/clusterconfig/talosconfig
 
-talosctl config node "10.250.2.200"; talosctl config endpoint "10.250.2.200"
+talosctl config node "10.250.2.200"; talosctl config endpoint 10.250.2.200 10.250.2.201 10.250.2.202 10.250.2.254
 
 echo Applying master..
 talosctl apply-config --insecure --nodes 10.250.2.200 --file clusterconfig/homelab-talos-0-homelab-talos-0-controlplane-0.yaml
