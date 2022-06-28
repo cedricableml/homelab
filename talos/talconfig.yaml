@@ -10,8 +10,7 @@ clusterSvcNets:
 cniConfig:
   name: custom
   urls:
-    - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/cilium.yaml
-    - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/configmap.yaml
+    - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/cilium/quick-install.yaml
 nodes:
   - hostname: homelab-talos-0-controlplane-0
     ipAddress: 10.250.2.200
