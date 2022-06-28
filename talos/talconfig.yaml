@@ -15,7 +15,7 @@ nodes:
   - hostname: homelab-talos-0-controlplane-0
     ipAddress: 10.250.2.200
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     nameservers:
       - 10.250.0.1
     networkInterfaces:
@@ -39,7 +39,7 @@ nodes:
   - hostname: homelab-talos-0-controlplane-1
     ipAddress: 10.250.2.201
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     nameservers:
       - 10.250.0.1
     networkInterfaces:
@@ -63,7 +63,7 @@ nodes:
   - hostname: homelab-talos-0-controlplane-2
     ipAddress: 10.250.2.202
     controlPlane: true
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     nameservers:
       - 10.250.0.1
     networkInterfaces:
@@ -87,9 +87,12 @@ nodes:
   - hostname: homelab-talos-0-worker-0
     ipAddress: 10.250.2.210
     controlPlane: false
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     inlinePatch:
       machine:
+        time:
+          servers:
+            - 10.250.0.1
         network:
           interfaces:
             - addresses:
@@ -102,9 +105,12 @@ nodes:
   - hostname: homelab-talos-0-worker-1
     ipAddress: 10.250.2.211
     controlPlane: false
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     inlinePatch:
       machine:
+        time:
+          servers:
+            - 10.250.0.1
         network:
           interfaces:
             - addresses:
@@ -117,9 +123,12 @@ nodes:
   - hostname: homelab-talos-0-worker-2
     ipAddress: 10.250.2.212
     controlPlane: false
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     inlinePatch:
       machine:
+        time:
+          servers:
+            - 10.250.0.1
         network:
           interfaces:
             - addresses:
@@ -132,7 +141,7 @@ nodes:
   - hostname: homelab-talos-0-worker-3
     ipAddress: 10.250.2.213
     controlPlane: false
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     inlinePatch:
       machine:
         network:
@@ -147,9 +156,12 @@ nodes:
   - hostname: homelab-talos-0-worker-4
     ipAddress: 10.250.2.214
     controlPlane: false
-    installDisk: /dev/sda
+    installDisk: /dev/vda
     inlinePatch:
       machine:
+        time:
+          servers:
+            - 10.250.0.1
         network:
           interfaces:
             - addresses:
@@ -165,7 +177,7 @@ controlPlane:
       path: /machine/kubelet/extraArgs
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
-        rotate-server-certificates: "true"
+        rotate-server-certificates: "false"
     - op: add
       path: /machine/install/extraKernelArgs
       value:
@@ -183,14 +195,18 @@ controlPlane:
         ca:
           crt: ${etcdCert}
           key: ${etcdCertKey}
-      extraManifests:
-        - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
-        - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      # extraManifests:
+      #   - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+      #   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
       secret: ${clusterSecret}
       serviceAccount:
         key: ${k8sServiceAccountKey}
       token: ${clusterToken}
     machine:
+      time:
+        disabled: false
+        servers:
+          - 10.250.0.1
       ca:
         crt: ${machineCert}
         key: ${machineCertKey}
@@ -201,19 +217,23 @@ worker:
       path: /machine/kubelet/extraArgs
       value:
         feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
-        rotate-server-certificates: "true"
+        rotate-server-certificates: "false"
   inlinePatch:
     cluster:
       aescbcEncryptionSecret: ${aescbcEncryptionKey}
       ca:
         crt: ${clusterCert}
         key: ${clusterCertKey}
-      extraManifests:
-        - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
-        - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      # extraManifests:
+      #   - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+      #   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
       secret: ${clusterSecret}
       token: ${clusterToken}
     machine:
+      time:
+        disabled: false
+        servers:
+          - 10.250.0.1
       ca:
         crt: ${machineCert}
         key: ${machineCertKey}

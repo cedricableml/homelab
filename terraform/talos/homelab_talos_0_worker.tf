@@ -5,7 +5,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-0" {
     vmid        = "210"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
-    memory      = "49152"
+    memory      = "45056"
     cores       = 8
     sockets     = 1
     numa        = true
