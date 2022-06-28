@@ -35,7 +35,7 @@ nodes:
           - 10.250.2.254
           - homelab-talos-0-controlplane-0
           - homelab-talos-0-controlplane-0.home.lan
-          - homelab-talos-0-controlplane.homelan
+          - homelab-talos-0-controlplane.home.lan
   - hostname: homelab-talos-0-controlplane-1
     ipAddress: 10.250.2.201
     controlPlane: true
@@ -59,7 +59,7 @@ nodes:
           - 10.250.2.254
           - homelab-talos-0-controlplane-1
           - homelab-talos-0-controlplane-1.home.lan
-          - homelab-talos-0-controlplane.homelan
+          - homelab-talos-0-controlplane.home.lan
   - hostname: homelab-talos-0-controlplane-2
     ipAddress: 10.250.2.202
     controlPlane: true
@@ -83,7 +83,7 @@ nodes:
           - 10.250.2.254
           - homelab-talos-0-controlplane-2
           - homelab-talos-0-controlplane-2.home.lan
-          - homelab-talos-0-controlplane.homelan
+          - homelab-talos-0-controlplane.home.lan
   - hostname: homelab-talos-0-worker-0
     ipAddress: 10.250.2.210
     controlPlane: false
