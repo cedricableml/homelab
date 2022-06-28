@@ -1,0 +1,221 @@
+clusterName: homelab-talos-0
+talosVersion: v1.1.0
+kubernetesVersion: v1.24.2
+endpoint: https://10.250.2.254:6443
+allowSchedulingOnMasters: true
+clusterPodNets:
+  - 10.244.0.0/16
+clusterSvcNets:
+  - 10.96.0.0/12
+cniConfig:
+  name: custom
+  urls:
+    - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/cilium.yaml
+    - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/configmap.yaml
+nodes:
+  - hostname: homelab-talos-0-controlplane-0
+    ipAddress: 10.250.2.200
+    controlPlane: true
+    installDisk: /dev/sda
+    nameservers:
+      - 10.250.0.1
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 10.250.2.200/20
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+        mtu: 9000
+        vip:
+          ip: 10.250.2.254
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 10.250.2.254
+          - homelab-talos-0-controlplane-0
+          - homelab-talos-0-controlplane-0.home.lan
+          - homelab-talos-0-controlplane.homelan
+  - hostname: homelab-talos-0-controlplane-1
+    ipAddress: 10.250.2.201
+    controlPlane: true
+    installDisk: /dev/sda
+    nameservers:
+      - 10.250.0.1
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 10.250.2.201/20
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+        mtu: 9000
+        vip:
+          ip: 10.250.2.254
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 10.250.2.254
+          - homelab-talos-0-controlplane-1
+          - homelab-talos-0-controlplane-1.home.lan
+          - homelab-talos-0-controlplane.homelan
+  - hostname: homelab-talos-0-controlplane-2
+    ipAddress: 10.250.2.202
+    controlPlane: true
+    installDisk: /dev/sda
+    nameservers:
+      - 10.250.0.1
+    networkInterfaces:
+      - interface: eth0
+        addresses:
+          - 10.250.2.202/20
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+        mtu: 9000
+        vip:
+          ip: 10.250.2.254
+    configPatches:
+      - op: add
+        path: /cluster/apiServer/certSANs
+        value:
+          - 10.250.2.254
+          - homelab-talos-0-controlplane-2
+          - homelab-talos-0-controlplane-2.home.lan
+          - homelab-talos-0-controlplane.homelan
+  - hostname: homelab-talos-0-worker-0
+    ipAddress: 10.250.2.210
+    controlPlane: false
+    installDisk: /dev/sda
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 10.250.2.210/20
+              interface: eth1
+              mtu: 9000
+              routes:
+                - gateway: 10.250.0.1
+                  network: 0.0.0.0/0
+  - hostname: homelab-talos-0-worker-1
+    ipAddress: 10.250.2.211
+    controlPlane: false
+    installDisk: /dev/sda
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 10.250.2.211/20
+              interface: eth1
+              mtu: 9000
+              routes:
+                - gateway: 10.250.0.1
+                  network: 0.0.0.0/0
+  - hostname: homelab-talos-0-worker-2
+    ipAddress: 10.250.2.212
+    controlPlane: false
+    installDisk: /dev/sda
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 10.250.2.212/20
+              interface: eth1
+              mtu: 9000
+              routes:
+                - gateway: 10.250.0.1
+                  network: 0.0.0.0/0
+  - hostname: homelab-talos-0-worker-3
+    ipAddress: 10.250.2.213
+    controlPlane: false
+    installDisk: /dev/sda
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 10.250.2.213/20
+              interface: eth1
+              mtu: 9000
+              routes:
+                - gateway: 10.250.0.1
+                  network: 0.0.0.0/0
+  - hostname: homelab-talos-0-worker-4
+    ipAddress: 10.250.2.214
+    controlPlane: false
+    installDisk: /dev/sda
+    inlinePatch:
+      machine:
+        network:
+          interfaces:
+            - addresses:
+                - 10.250.2.214/20
+              interface: eth1
+              mtu: 9000
+              routes:
+                - gateway: 10.250.0.1
+                  network: 0.0.0.0/0
+controlPlane:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
+        rotate-server-certificates: "true"
+    - op: add
+      path: /machine/install/extraKernelArgs
+      value:
+        - talos.logging.kernel=udp://10.45.0.2:6050/
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      aggregatorCA:
+        crt: ${k8sAggregatorCert}
+        key: ${k8sAggregatorCertKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      etcd:
+        ca:
+          crt: ${etcdCert}
+          key: ${etcdCertKey}
+      extraManifests:
+        - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+        - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      secret: ${clusterSecret}
+      serviceAccount:
+        key: ${k8sServiceAccountKey}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}
+worker:
+  configPatches:
+    - op: add
+      path: /machine/kubelet/extraArgs
+      value:
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
+        rotate-server-certificates: "true"
+  inlinePatch:
+    cluster:
+      aescbcEncryptionSecret: ${aescbcEncryptionKey}
+      ca:
+        crt: ${clusterCert}
+        key: ${clusterCertKey}
+      extraManifests:
+        - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
+        - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+      secret: ${clusterSecret}
+      token: ${clusterToken}
+    machine:
+      ca:
+        crt: ${machineCert}
+        key: ${machineCertKey}
+      token: ${machineToken}

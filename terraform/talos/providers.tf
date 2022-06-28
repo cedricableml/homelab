@@ -1,6 +1,18 @@
-provider "vsphere" {
-  user           = var.vsphere_user
-  password       = var.vsphere_password
-  vsphere_server = var.vsphere_address
-  allow_unverified_ssl = true
+terraform {
+  required_providers {
+    proxmox = {
+      source = "Telmate/proxmox"
+      version = ">= 2.9.10"
+    }
+  }
 }
+
+provider "proxmox" {
+  pm_tls_insecure = true
+  # PM_API_TOKEN_SECRET
+  # PM_API_TOKEN_ID
+  pm_api_url      = "https://10.240.240.100:8006/api2/json"
+  pm_debug        = true
+  pm_parallel     = 25
+}
+
