@@ -184,6 +184,16 @@ controlPlane:
         - talos.logging.kernel=udp://10.45.0.2:6050/
   inlinePatch:
     cluster:
+      apiServer:
+        certSANs:
+          - homelab-talos-0-controlplane.home.lan
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      controllerManager:
+        extraArgs:
+          feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
+      proxy:
+        disabled: true
       aescbcEncryptionSecret: ${aescbcEncryptionKey}
       aggregatorCA:
         crt: ${k8sAggregatorCert}
@@ -203,6 +213,10 @@ controlPlane:
         key: ${k8sServiceAccountKey}
       token: ${clusterToken}
     machine:
+      kubelet:
+        extraArgs:
+          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+          # rotate-server-certificates: "true"
       time:
         disabled: false
         servers:
