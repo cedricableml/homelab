@@ -7,7 +7,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
-  clusterID: rook-ceph
+  clusterID: ceph-pve-external
   pool: pvcs
   imageFormat: "2"
   imageFeatures: layering
