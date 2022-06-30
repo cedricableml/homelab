@@ -1,6 +1,6 @@
 variable "cluster_name" {
     default = "homelab-talos-0"
-  
+
 }
 variable "worker_node_count" {
     description = "Number of worker nodes for the cluster."
@@ -54,14 +54,20 @@ variable "config_network_bridge" {
     default = "vmbr0"
 }
 
-variable "public_vlan" {
+variable "homelab_vlan" {
     description = "The VLAN that nodes will recieve DHCP IP assignments and be accessible to other clients on the network."
     type = number
     default = 1000
 }
 
-variable "public_network_bridge" {
-    description = "The name of the network bridge on the Proxmox host that will be used for the publicu network."
+variable "pve_vlan" {
+    description = "The VLAN that nodes will recieve DHCP IP assignments and be accessible to other clients on the network."
+    type = number
+    default = 4000
+}
+
+variable "network_bridge" {
+    description = "The name of the network bridge on the Proxmox host."
     type = string
     default = "vmbr0"
 }

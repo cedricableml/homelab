@@ -20,14 +20,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        addresses:
-          - 10.250.2.200/20
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 10.250.0.1
         mtu: 9000
+        dhcp: true
         vip:
           ip: 10.250.2.254
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -44,14 +43,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        addresses:
-          - 10.250.2.201/20
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 10.250.0.1
         mtu: 9000
+        dhcp: true
         vip:
           ip: 10.250.2.254
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -68,14 +66,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        addresses:
-          - 10.250.2.202/20
-        routes:
-          - network: 0.0.0.0/0
-            gateway: 10.250.0.1
         mtu: 9000
+        dhcp: true
         vip:
           ip: 10.250.2.254
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -95,13 +92,12 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
-            - addresses:
-                - 10.250.2.210/20
-              interface: eth1
+            - interface: eth1
               mtu: 9000
-              routes:
-                - gateway: 10.250.0.1
-                  network: 0.0.0.0/0
+              dhcp: true
+            - interface: eth2
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-1
     ipAddress: 10.250.2.211
     controlPlane: false
@@ -113,13 +109,12 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
-            - addresses:
-                - 10.250.2.211/20
-              interface: eth1
+            - interface: eth1
               mtu: 9000
-              routes:
-                - gateway: 10.250.0.1
-                  network: 0.0.0.0/0
+              dhcp: true
+            - interface: eth2
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-2
     ipAddress: 10.250.2.212
     controlPlane: false
@@ -131,13 +126,12 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
-            - addresses:
-                - 10.250.2.212/20
-              interface: eth1
+            - interface: eth1
               mtu: 9000
-              routes:
-                - gateway: 10.250.0.1
-                  network: 0.0.0.0/0
+              dhcp: true
+            - interface: eth2
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-3
     ipAddress: 10.250.2.213
     controlPlane: false
@@ -146,13 +140,12 @@ nodes:
       machine:
         network:
           interfaces:
-            - addresses:
-                - 10.250.2.213/20
-              interface: eth1
+            - interface: eth1
               mtu: 9000
-              routes:
-                - gateway: 10.250.0.1
-                  network: 0.0.0.0/0
+              dhcp: true
+            - interface: eth2
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-4
     ipAddress: 10.250.2.214
     controlPlane: false
@@ -164,13 +157,12 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
-            - addresses:
-                - 10.250.2.214/20
-              interface: eth1
+            - interface: eth1
               mtu: 9000
-              routes:
-                - gateway: 10.250.0.1
-                  network: 0.0.0.0/0
+              dhcp: true
+            - interface: eth2
+              dhcp: true
+              mtu: 9000
 controlPlane:
   configPatches:
     - op: add
@@ -215,7 +207,7 @@ controlPlane:
     machine:
       kubelet:
         extraArgs:
-          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true
+          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
           # rotate-server-certificates: "true"
       time:
         disabled: false

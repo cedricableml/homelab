@@ -9,12 +9,18 @@ resource "proxmox_vm_qemu" "talos-worker-node-0" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb"
+    hotplug     = "network,disk,usb"
     network {
         model  = "virtio"
-        tag    = var.public_vlan
-        bridge = var.public_network_bridge
+        tag    = var.homelab_vlan
+        bridge = var.network_bridge
         macaddr = "1a:10:50:55:00:00"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.pve_vlan
+        macaddr = "1a:20:55:00:00:00"
     }
     disk {
         type    = "virtio"
@@ -34,12 +40,18 @@ resource "proxmox_vm_qemu" "talos-worker-node-1" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb"
+    hotplug     = "network,disk,usb"
     network {
         model  = "virtio"
-        tag    = var.public_vlan
-        bridge = var.public_network_bridge
+        tag    = var.homelab_vlan
+        bridge = var.network_bridge
         macaddr = "1a:10:50:55:00:01"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.pve_vlan
+        macaddr = "1a:20:55:00:00:01"
     }
     disk {
         type    = "virtio"
@@ -59,12 +71,18 @@ resource "proxmox_vm_qemu" "talos-worker-node-2" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb"
+    hotplug     = "network,disk,usb"
     network {
         model  = "virtio"
-        tag    = var.public_vlan
-        bridge = var.public_network_bridge
+        tag    = var.homelab_vlan
+        bridge = var.network_bridge
         macaddr = "1a:10:50:55:00:02"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.pve_vlan
+        macaddr = "1a:20:55:00:00:02"
     }
     disk {
         type    = "virtio"
@@ -84,12 +102,18 @@ resource "proxmox_vm_qemu" "talos-worker-node-3" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb"
+    hotplug     = "network,disk,usb"
     network {
         model  = "virtio"
-        tag    = var.public_vlan
-        bridge = var.public_network_bridge
+        tag    = var.homelab_vlan
+        bridge = var.network_bridge
         macaddr = "1a:10:50:55:00:03"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.pve_vlan
+        macaddr = "1a:20:55:00:00:03"
     }
     disk {
         type    = "virtio"
@@ -109,12 +133,18 @@ resource "proxmox_vm_qemu" "talos-worker-node-4" {
     cores       = 8
     sockets     = 1
     numa        = true
-    hotplug 	= "network,disk,usb"
+    hotplug     = "network,disk,usb"
     network {
         model  = "virtio"
-        tag    = var.public_vlan
-        bridge = var.public_network_bridge
+        tag    = var.homelab_vlan
+        bridge = var.network_bridge
         macaddr = "1a:10:50:55:00:04"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.pve_vlan
+        macaddr = "1a:20:55:00:00:04"
     }
     disk {
         type    = "virtio"
