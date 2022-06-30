@@ -4,4 +4,4 @@ resources:
   - secret.enc.yaml
   - ceph-cluster.yaml
   - storage-class.yaml
-  - volume-snapshot-class.yaml
+  # - volume-snapshot-class.yaml
