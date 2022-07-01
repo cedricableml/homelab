@@ -22,11 +22,23 @@ nodes:
       - interface: eth0
         mtu: 9000
         dhcp: true
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+            metric: 200
+        dhcpOptions:
+          routeMetric: 200
         vip:
           ip: 10.250.2.254
       - interface: eth1
         dhcp: true
         mtu: 9000
+        routes:
+          - network: 10.240.240.0/24
+            gateway: 10.240.240.1
+            metric: 100
+        dhcpOptions:
+          routeMetric: 300
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -47,9 +59,21 @@ nodes:
         dhcp: true
         vip:
           ip: 10.250.2.254
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+            metric: 200
+        dhcpOptions:
+          routeMetric: 200
       - interface: eth1
         dhcp: true
         mtu: 9000
+        routes:
+          - network: 10.240.240.0/24
+            gateway: 10.240.240.1
+            metric: 100
+        dhcpOptions:
+          routeMetric: 300
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -70,9 +94,21 @@ nodes:
         dhcp: true
         vip:
           ip: 10.250.2.254
+        routes:
+          - network: 0.0.0.0/0
+            gateway: 10.250.0.1
+            metric: 200
+        dhcpOptions:
+          routeMetric: 200
       - interface: eth1
         dhcp: true
         mtu: 9000
+        routes:
+          - network: 10.240.240.0/24
+            gateway: 10.240.240.1
+            metric: 100
+        dhcpOptions:
+          routeMetric: 300
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -92,12 +128,24 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
+            - interface: eth0
+              mtu: 9000
+              dhcp: true
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 10.250.0.1
+                  metric: 200
+              dhcpOptions:
+                routeMetric: 200
             - interface: eth1
-              mtu: 9000
-              dhcp: true
-            - interface: eth2
               dhcp: true
               mtu: 9000
+              routes:
+                - network: 10.240.240.0/24
+                  gateway: 10.240.240.1
+                  metric: 100
+              dhcpOptions:
+                routeMetric: 300
   - hostname: homelab-talos-0-worker-1
     ipAddress: 10.250.2.211
     controlPlane: false
@@ -109,12 +157,24 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
+            - interface: eth0
+              mtu: 9000
+              dhcp: true
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 10.250.0.1
+                  metric: 200
+              dhcpOptions:
+                routeMetric: 200
             - interface: eth1
-              mtu: 9000
-              dhcp: true
-            - interface: eth2
               dhcp: true
               mtu: 9000
+              routes:
+                - network: 10.240.240.0/24
+                  gateway: 10.240.240.1
+                  metric: 100
+              dhcpOptions:
+                routeMetric: 300
   - hostname: homelab-talos-0-worker-2
     ipAddress: 10.250.2.212
     controlPlane: false
@@ -126,12 +186,24 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
+            - interface: eth0
+              mtu: 9000
+              dhcp: true
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 10.250.0.1
+                  metric: 200
+              dhcpOptions:
+                routeMetric: 200
             - interface: eth1
-              mtu: 9000
-              dhcp: true
-            - interface: eth2
               dhcp: true
               mtu: 9000
+              routes:
+                - network: 10.240.240.0/24
+                  gateway: 10.240.240.1
+                  metric: 100
+              dhcpOptions:
+                routeMetric: 300
   - hostname: homelab-talos-0-worker-3
     ipAddress: 10.250.2.213
     controlPlane: false
@@ -140,12 +212,24 @@ nodes:
       machine:
         network:
           interfaces:
+            - interface: eth0
+              mtu: 9000
+              dhcp: true
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 10.250.0.1
+                  metric: 200
+              dhcpOptions:
+                routeMetric: 200
             - interface: eth1
-              mtu: 9000
-              dhcp: true
-            - interface: eth2
               dhcp: true
               mtu: 9000
+              routes:
+                - network: 10.240.240.0/24
+                  gateway: 10.240.240.1
+                  metric: 100
+              dhcpOptions:
+                routeMetric: 300
   - hostname: homelab-talos-0-worker-4
     ipAddress: 10.250.2.214
     controlPlane: false
@@ -157,12 +241,25 @@ nodes:
             - 10.250.0.1
         network:
           interfaces:
+            - interface: eth0
+              mtu: 9000
+              dhcp: true
+              routes:
+                - network: 0.0.0.0/0
+                  gateway: 10.250.0.1
+                  metric: 200
+              dhcpOptions:
+                routeMetric: 200
             - interface: eth1
-              mtu: 9000
-              dhcp: true
-            - interface: eth2
               dhcp: true
               mtu: 9000
+              routes:
+                - network: 10.240.240.0/24
+                  gateway: 10.240.240.1
+                  metric: 100
+              dhcpOptions:
+                routeMetric: 300
+
 controlPlane:
   configPatches:
     - op: add

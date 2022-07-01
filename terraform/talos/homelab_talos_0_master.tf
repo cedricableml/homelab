@@ -60,7 +60,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-1" {
     }
 }
 
-resource "proxmox_vm_qemu" "talos-control-plane-node" {
+resource "proxmox_vm_qemu" "talos-control-plane-node-2" {
     name        = "${var.cluster_name}-controlplane-2"
     iso         = var.iso_image_location
     target_node = "pve-fatman"

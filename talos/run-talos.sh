@@ -18,14 +18,17 @@ talosctl apply-config --insecure --nodes 10.250.2.212 --file clusterconfig/homel
 talosctl apply-config --insecure --nodes 10.250.2.213 --file clusterconfig/homelab-talos-0-homelab-talos-0-worker-3.yaml
 talosctl apply-config --insecure --nodes 10.250.2.214 --file clusterconfig/homelab-talos-0-homelab-talos-0-worker-4.yaml
 
-echo Sleep 150..
-sleep 150
+echo Sleep..
+sleep 120
 
 echo Running bootstrap..
 talosctl bootstrap
 
+echo Sleep..
+sleep 180
+
 talosctl kubeconfig .
-export KUBECONFIG=./kubeconfig
+export KUBECONFIG=$(pwd)/kubeconfig
 
 echo kubectl get no
 kubectl get no
