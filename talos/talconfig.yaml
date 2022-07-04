@@ -249,7 +249,7 @@ controlPlane:
     - op: add
       path: /machine/kubelet/extraArgs
       value:
-        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true,ServerSideApply=true
         # rotate-server-certificates: "true"
     - op: add
       path: /machine/install/extraKernelArgs
@@ -275,6 +275,7 @@ controlPlane:
         crt: ${clusterCert}
         key: ${clusterCertKey}
       etcd:
+        subnet: 10.250.0.0/20
         ca:
           crt: ${etcdCert}
           key: ${etcdCertKey}
@@ -287,8 +288,11 @@ controlPlane:
       token: ${clusterToken}
     machine:
       kubelet:
+        nodeIP:
+          validSubnets:
+            - 10.250.0.0/20
         extraArgs:
-          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
+          feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true,ServerSideApply=true
           # rotate-server-certificates: "true"
       time:
         disabled: false
@@ -303,7 +307,7 @@ worker:
     - op: add
       path: /machine/kubelet/extraArgs
       value:
-        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true
+        feature-gates: GracefulNodeShutdown=true,MixedProtocolLBService=true,EphemeralContainers=true,ServerSideApply=true
         # rotate-server-certificates: "true"
   inlinePatch:
     cluster:
@@ -317,6 +321,10 @@ worker:
       secret: ${clusterSecret}
       token: ${clusterToken}
     machine:
+      kubelet:
+        nodeIP:
+          validSubnets:
+            - 10.250.0.0/20
       time:
         disabled: false
         servers:
