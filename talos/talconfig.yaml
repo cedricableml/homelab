@@ -201,6 +201,8 @@ controlPlane:
           service:
             disabled: true
       etcd:
+        extraArgs:
+          election-timeout: "5000"
         subnet: 10.250.0.0/20
         ca:
           crt: ${etcdCert}
