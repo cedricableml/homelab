@@ -290,6 +290,12 @@ controlPlane:
       ca:
         crt: ${clusterCert}
         key: ${clusterCertKey}
+      discovery:
+        enabled: true
+        registries:
+          kubernetes: {}
+          service:
+            disabled: true
       etcd:
         subnet: 10.250.0.0/20
         ca:
