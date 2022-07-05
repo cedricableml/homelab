@@ -27,7 +27,7 @@ talosctl bootstrap
 echo Sleep..
 sleep 180
 
-talosctl kubeconfig .
+talosctl kubeconfig -f .
 export KUBECONFIG=$(pwd)/kubeconfig
 
 echo kubectl get no
