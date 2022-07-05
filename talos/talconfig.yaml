@@ -2,7 +2,7 @@ clusterName: homelab-talos-0
 talosVersion: v1.1.0
 kubernetesVersion: v1.24.2
 endpoint: https://10.250.2.254:6443
-allowSchedulingOnMasters: true
+allowSchedulingOnMasters: false
 clusterPodNets:
   - 10.244.0.0/16
 clusterSvcNets:
@@ -21,12 +21,12 @@ nodes:
     networkInterfaces:
       - interface: eth0
         mtu: 9000
-        vip:
-          ip: 10.250.2.254
+        # vip:
+        #   ip: 10.250.2.254
         dhcp: true
-      # - interface: eth1
-      #   dhcp: true
-      #   mtu: 9000
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -45,11 +45,11 @@ nodes:
       - interface: eth0
         mtu: 9000
         dhcp: true
-        vip:
-          ip: 10.250.2.254
-      # - interface: eth1
-      #   dhcp: true
-      #   mtu: 9000
+        # vip:
+        #   ip: 10.250.2.254
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -68,11 +68,11 @@ nodes:
       - interface: eth0
         mtu: 9000
         dhcp: true
-        vip:
-          ip: 10.250.2.254
-      # - interface: eth1
-      #   dhcp: true
-      #   mtu: 9000
+        # vip:
+        #   ip: 10.250.2.254
+      - interface: eth1
+        dhcp: true
+        mtu: 9000
     configPatches:
       - op: add
         path: /cluster/apiServer/certSANs
@@ -95,9 +95,9 @@ nodes:
             - interface: eth0
               mtu: 9000
               dhcp: true
-            # - interface: eth1
-            #   dhcp: true
-            #   mtu: 9000
+            - interface: eth1
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-1
     ipAddress: 10.250.2.211
     controlPlane: false
@@ -112,9 +112,9 @@ nodes:
             - interface: eth0
               mtu: 9000
               dhcp: true
-            # - interface: eth1
-            #   dhcp: true
-            #   mtu: 9000
+            - interface: eth1
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-2
     ipAddress: 10.250.2.212
     controlPlane: false
@@ -129,9 +129,9 @@ nodes:
             - interface: eth0
               mtu: 9000
               dhcp: true
-            # - interface: eth1
-            #   dhcp: true
-            #   mtu: 9000
+            - interface: eth1
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-3
     ipAddress: 10.250.2.213
     controlPlane: false
@@ -143,9 +143,9 @@ nodes:
             - interface: eth0
               mtu: 9000
               dhcp: true
-            # - interface: eth1
-            #   dhcp: true
-            #   mtu: 9000
+            - interface: eth1
+              dhcp: true
+              mtu: 9000
   - hostname: homelab-talos-0-worker-4
     ipAddress: 10.250.2.214
     controlPlane: false
@@ -160,9 +160,9 @@ nodes:
             - interface: eth0
               mtu: 9000
               dhcp: true
-            # - interface: eth1
-            #   dhcp: true
-            #   mtu: 9000
+            - interface: eth1
+              dhcp: true
+              mtu: 9000
 
 controlPlane:
   configPatches:
@@ -178,6 +178,7 @@ controlPlane:
   inlinePatch:
     cluster:
       apiServer:
+        disablePodSecurityPolicy: true
         certSANs:
           - homelab-talos-0-controlplane.home.lan
         extraArgs:
@@ -207,7 +208,8 @@ controlPlane:
         ca:
           crt: ${etcdCert}
           key: ${etcdCertKey}
-      # extraManifests:
+      extraManifests:
+        - https://raw.githubusercontent.com/0dragosh/homelab/main/talos/kube-vip/install.yaml
       #   - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
       #   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
       secret: ${clusterSecret}
@@ -243,9 +245,6 @@ worker:
       ca:
         crt: ${clusterCert}
         key: ${clusterCertKey}
-      # extraManifests:
-      #   - https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/main/deploy/standalone-install.yaml
-      #   - https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
       secret: ${clusterSecret}
       token: ${clusterToken}
     machine:
