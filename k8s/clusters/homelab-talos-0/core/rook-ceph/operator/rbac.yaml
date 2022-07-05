@@ -64,3 +64,20 @@ subjects:
   - kind: ServiceAccount
     name: rook-ceph-mgr
     namespace: rook-ceph
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: 'rook-ceph-system-psp-user'
+  labels:
+    operator: rook
+    storage-backend: ceph
+rules:
+  - apiGroups:
+      - policy
+    resources:
+      - podsecuritypolicies
+    resourceNames:
+      - 00-rook-ceph-operator
+    verbs:
+      - use
