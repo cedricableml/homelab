@@ -11,6 +11,7 @@ parameters:
   pool: pvcs
   imageFormat: "2"
   imageFeatures: layering
+  monitors: 10.240.240.100:3300,10.240.240.99:3300,10.240.240.101:3300
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
   csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
   csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
@@ -30,6 +31,7 @@ parameters:
   clusterID: ceph-pve-external
   fsName: cephfs
   pool: cephfs
+  monitors: 10.240.240.100:3300,10.240.240.99:3300,10.240.240.101:3300
   csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
   csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
   csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
