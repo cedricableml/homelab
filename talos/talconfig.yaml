@@ -20,13 +20,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        mtu: 9000
+        mtu: 8978
         vip:
           ip: 10.250.2.254
         dhcp: true
       - interface: eth1
         dhcp: true
-        mtu: 9000
+        mtu: 8978
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -45,13 +45,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        mtu: 9000
+        mtu: 8978
         dhcp: true
         vip:
           ip: 10.250.2.254
       - interface: eth1
         dhcp: true
-        mtu: 9000
+        mtu: 8978
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -70,13 +70,13 @@ nodes:
       - 10.250.0.1
     networkInterfaces:
       - interface: eth0
-        mtu: 9000
+        mtu: 8978
         dhcp: true
         vip:
           ip: 10.250.2.254
       - interface: eth1
         dhcp: true
-        mtu: 9000
+        mtu: 8978
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -99,11 +99,11 @@ nodes:
         network:
           interfaces:
             - interface: eth0
-              mtu: 9000
+              mtu: 8978
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 9000
+              mtu: 8978
               dhcpOptions:
                 routeMetric: 2048
   - hostname: homelab-talos-0-worker-1
@@ -118,11 +118,11 @@ nodes:
         network:
           interfaces:
             - interface: eth0
-              mtu: 9000
+              mtu: 8978
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 9000
+              mtu: 8978
               dhcpOptions:
                 routeMetric: 2048
   - hostname: homelab-talos-0-worker-2
@@ -137,11 +137,11 @@ nodes:
         network:
           interfaces:
             - interface: eth0
-              mtu: 9000
+              mtu: 8978
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 9000
+              mtu: 8978
               dhcpOptions:
                 routeMetric: 2048
   - hostname: homelab-talos-0-worker-3
@@ -153,11 +153,11 @@ nodes:
         network:
           interfaces:
             - interface: eth0
-              mtu: 9000
+              mtu: 8978
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 9000
+              mtu: 8978
               dhcpOptions:
                 routeMetric: 2048
   - hostname: homelab-talos-0-worker-4
@@ -172,11 +172,11 @@ nodes:
         network:
           interfaces:
             - interface: eth0
-              mtu: 9000
+              mtu: 8978
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 9000
+              mtu: 8978
               dhcpOptions:
                 routeMetric: 2048
 
