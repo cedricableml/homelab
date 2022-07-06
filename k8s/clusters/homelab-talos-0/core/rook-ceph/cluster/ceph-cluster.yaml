@@ -8,8 +8,8 @@ spec:
   external:
     enable: true
   dataDirHostPath: /var/lib/rook
-  # cephVersion:
-  #   image: ceph/ceph:v16.2.7
+  cephVersion:
+    image: ceph/ceph:v16.2
   crashCollector:
     disable: true
   healthCheck:
