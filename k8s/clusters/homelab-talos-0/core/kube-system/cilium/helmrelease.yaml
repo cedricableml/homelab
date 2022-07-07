@@ -42,6 +42,10 @@ spec:
     kubeProxyReplacement: "strict"
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
+    loadBalancer:
+      algorithm: "maglev"
+      mode: "dsr"
+
     ipam:
       mode: "kubernetes"
 
@@ -51,9 +55,8 @@ spec:
     autoDirectNodeRoutes: true
     nativeRoutingCIDR: 10.244.0.0/16
     tunnel: "disabled"
-    auto-direct-node-routes: true
-    # endpointRoutes:
-    #   enabled: true
+    containerRuntime:
+      integration: containerd
 
     hubble:
       enabled: true
@@ -90,8 +93,6 @@ spec:
 
     bgp:
       enabled: false
-      announce:
-        loadbalancerIP: true
 
     externalIPs:
       enabled: false
