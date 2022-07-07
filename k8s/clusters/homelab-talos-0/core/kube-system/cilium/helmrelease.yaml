@@ -55,37 +55,37 @@ spec:
       enabled: true
 
     hubble:
-      enabled: false
-#       serviceMonitor:
-#         enabled: true
-#       metrics:
-#         enabled:
-#           - dns:query;ignoreAAAA
-#           - drop
-#           - tcp
-#           - flow
-#           - port-distribution
-#           - icmp
-#           - http
-#       relay:
-#         enabled: true
-#         rollOutPods: true
-#       ui:
-#         enabled: true
-#         rollOutPods: true
-#         ingress:
-#           enabled: true
-#           annotations:
-#             traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
-#             external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-#             external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
-#           className: "traefik"
-#           hosts:
-#             - &host "hubble.${SECRET_DOMAIN_CASA}"
-#           tls:
-# #            - secretName: chart-example-tls
-#             - hosts:
-#                 - *host
+      enabled: true
+      serviceMonitor:
+        enabled: true
+      metrics:
+        enabled:
+          - dns:query;ignoreAAAA
+          - drop
+          - tcp
+          - flow
+          - port-distribution
+          - icmp
+          - http
+      relay:
+        enabled: true
+        rollOutPods: true
+      ui:
+        enabled: true
+        rollOutPods: true
+        ingress:
+          enabled: true
+          annotations:
+            traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+            external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+            external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
+          className: "traefik"
+          hosts:
+            - &host "hubble.${SECRET_DOMAIN_CASA}"
+          tls:
+#            - secretName: chart-example-tls
+            - hosts:
+                - *host
 
     bgp:
       enabled: true
