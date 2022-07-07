@@ -50,9 +50,10 @@ spec:
 
     autoDirectNodeRoutes: true
     nativeRoutingCIDR: 10.244.0.0/16
-    tunnel: disabled
-    endpointRoutes:
-      enabled: true
+    tunnel: "disabled"
+    auto-direct-node-routes: true
+    # endpointRoutes:
+    #   enabled: true
 
     hubble:
       enabled: true
@@ -88,7 +89,7 @@ spec:
                 - *host
 
     bgp:
-      enabled: true
+      enabled: false
       announce:
         loadbalancerIP: true
 
