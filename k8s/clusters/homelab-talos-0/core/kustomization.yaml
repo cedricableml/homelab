@@ -5,5 +5,4 @@ resources:
   - cert-manager
   - kube-system
   - rook-ceph
-  - linkerd
   - qemu-guest-agent
