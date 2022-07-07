@@ -213,7 +213,6 @@
         "velero",
         "kured",
         "nri-bundle",
-        "metallb",
         "loki"
       ]
     },
