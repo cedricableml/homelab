@@ -9,4 +9,3 @@ resources:
   - rook-ceph
   - zalando
   - velero
-#  - linkerd
