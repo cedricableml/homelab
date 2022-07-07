@@ -27,10 +27,7 @@ spec:
         - effect: "NoSchedule"
           operator: "Exists"
       frr:
-        enabled: true
-        image:
-          repository: docker.io/frrouting/frr
-          tag: v8.2.2
+        enabled: false
 
     crds:
       enabled: true
