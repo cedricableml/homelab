@@ -13,7 +13,7 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 0.13.2
+      version: 0.13.3
       sourceRef:
         kind: HelmRepository
         name: metallb-charts
@@ -43,7 +43,6 @@ spec:
         enabled: true
       prometheusRule:
         enabled: true
-
 
   postRenderers:
     - kustomize:
