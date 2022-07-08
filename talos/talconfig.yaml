@@ -195,6 +195,7 @@ controlPlane:
     cluster:
       apiServer:
         disablePodSecurityPolicy: true
+        admissionControl: []
         certSANs:
           - homelab-talos-0-controlplane.home.lan
         extraArgs:
