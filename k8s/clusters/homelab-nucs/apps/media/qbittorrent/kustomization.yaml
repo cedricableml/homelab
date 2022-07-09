@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+  - backup-job.yaml
   - tag-tracker-errors
