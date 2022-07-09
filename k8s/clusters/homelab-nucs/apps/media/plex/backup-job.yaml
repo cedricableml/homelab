@@ -22,7 +22,7 @@ spec:
                 - |-
                   rclone config create backup alias remote=/backup
                   tar -zcvf - /config | rclone rcat backup:"/$(date "+%Y-%m-%d_%H:%M:%S").tar.gz" -v
-                  rclone delete backup:/ --min-age 8d -v
+                  rclone delete backup:/ --min-age 2d -v
               volumeMounts:
                 - name: config
                   mountPath: /config
