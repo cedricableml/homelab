@@ -20,10 +20,11 @@ spec:
     # nodeSelector:
     #   kubernetes.io/hostname: nuc1
     image:
-      repository: ghcr.io/home-assistant/home-assistant
-      tag: 2022.6.7
+      repository: ghcr.io/onedr0p/home-assistant
+      tag: 2022.7.2
     env:
       TZ: "${TZ}"
+      PYTHONUSERBASE: /config/deps
     envFrom:
       - secretRef:
           name: home-assistant
@@ -37,6 +38,13 @@ spec:
           loadBalancerIP: "${SVC_HASS_ADDRESS}"
         annotations:
           metallb.universe.tf/allow-shared-ip: traefik
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
 
     ingress:
       main:
@@ -69,8 +77,15 @@ spec:
         tls:
           - hosts:
               - "hass.local.${SECRET_DOMAIN_CASA}"
-    securityContext:
-      privileged: true
+    # securityContext:
+    #   privileged: true
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 100
     persistence:
       config:
         enabled: true
