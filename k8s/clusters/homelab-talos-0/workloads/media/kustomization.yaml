@@ -4,5 +4,20 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - _pvc
-  - tautulli
   - jellyfin
+  - plex
+  - plex-meta-manager
+  - plexautolanguages
+  # - dizquetv
+  - prowlarr
+  - sonarr
+  - radarr
+  - readarr
+  - readarr-audiobooks
+  - bazarr
+  - qbittorrent
+  - sabnzbd
+  - tautulli
+  - arr-misc
+  # - calibre
+  # - calibre-web

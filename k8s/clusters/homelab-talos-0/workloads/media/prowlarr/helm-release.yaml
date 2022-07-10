@@ -1,0 +1,68 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: prowlarr
+  namespace: media
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: prowlarr
+      version: 4.4.2
+      sourceRef:
+        kind: HelmRepository
+        name: k8s-at-home-charts
+        namespace: flux-system
+      interval: 5m
+  install:
+    disableWait: true
+    remediation:
+      retries: 10
+  upgrade:
+    remediation:
+      retries: 10
+  values:
+    image:
+      repository: ghcr.io/k8s-at-home/prowlarr
+      tag: v0.4.0.1802
+    env:
+      TZ: "${TZ}"
+    ingress:
+      main:
+        primary: true
+        enabled: true
+        ingressClassName: "traefik"
+        annotations:
+          external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
+        hosts:
+          - host: "prowlarr.${SECRET_DOMAIN_CASA}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - "prowlarr.${SECRET_DOMAIN_CASA}"
+    podSecurityContext:
+      fsGroup: 568
+    persistence:
+      config:
+        enabled: true
+        existingClaim: prowlarr-config-v1
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/backups/softwarrself/prowlarr
+        mountPath: /config/Backups
+        readOnly: false
+    resources:
+      requests:
+        memory: 250Mi
+        cpu: 500m
+      limits:
+        memory: 16Gi

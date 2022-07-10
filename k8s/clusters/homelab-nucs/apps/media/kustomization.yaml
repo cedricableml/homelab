@@ -4,22 +4,22 @@ kind: Kustomization
 resources:
   - _pvc
   # - _external-svc
-  - bazarr
-  - dizquetv
+  # - bazarr
+  # - dizquetv
   - overseerr
   # - jellyfin
-  - prowlarr
-  - radarr
-  - readarr
-  - readarr-audiobooks
-  - sonarr
-  - qbittorrent
-  - plex
-  - arr-misc
-  - calibre
-  - calibre-web
+  # - prowlarr
+  # - radarr
+  # - readarr
+  # - readarr-audiobooks
+  # - sonarr
+  # - qbittorrent
+  # - plex
+  # - arr-misc
+  # - calibre
+  # - calibre-web
   - mylar
-  - sabnzbd
-  - plex-meta-manager
-  - plexautolanguages
+  # - sabnzbd
+  # - plex-meta-manager
+  # - plexautolanguages
   - gaps
