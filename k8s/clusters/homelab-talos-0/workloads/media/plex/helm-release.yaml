@@ -109,7 +109,7 @@ spec:
         mountPath: /config/backup
         readOnly: false
       restore:
-        enabled: false
+        enabled: true
         type: custom
         volumeSpec:
           nfs:
