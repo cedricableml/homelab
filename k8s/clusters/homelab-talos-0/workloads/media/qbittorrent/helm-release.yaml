@@ -45,7 +45,7 @@ spec:
           - /bin/sh
           - -c
           - |-
-            if [ -z "$(ls -A $DST_DIR)" ]; then
+            if ! ls -1qA $DST_DIR | grep -v 'lost+found' | grep -q . ; then
               echo "Destination directory is empty, proceeding"
             elif [ $OVERWRITE == "true" ]; then
               echo "Overwriting data by wiping and restoring"
@@ -136,7 +136,7 @@ spec:
         existingClaim: media-nfs
         mountPath: /media
       restore:
-        enabled: false
+        enabled: true
         type: custom
         volumeSpec:
           nfs:
