@@ -17,57 +17,6 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    initContainers:
-      restore:
-        image: busybox:latest
-        imagePullPolicy: IfNotPresent
-        env:
-          - name: SRC_DIR
-            value: /backup
-          - name: DST_DIR
-            value: /config
-          - name: OVERWRITE      # will rm -rf before restoring so be careful
-            value: "false"
-          - name: JUST_SET_PERMS # in case you forgot and want to only do that. they get set after the restore anyway
-            value: "false"
-          - name: UID            # UID/GID to set after the restore
-            value: "568"
-          - name: GID
-            value: "568"
-        command:
-          - /bin/sh
-          - -c
-          - |-
-            if ! ls -1qA $DST_DIR | grep -v 'lost+found' | grep -q . ; then
-              echo "Destination directory is empty, proceeding"
-            elif [ $OVERWRITE == "true" ]; then
-              echo "Overwriting data by wiping and restoring"
-              rm -rf $DST_DIR/*
-            elif [ $JUST_SET_PERMS == "true" ]; then
-              echo Just setting permissions to $UID:$GID
-              chown -R $UID:$GID $DST_DIR
-              exit 0
-            else
-              echo "Destination directory is not empty, not overwriting."
-              echo "Aborting."
-              exit 0
-            fi
-
-            echo "cleaning destination dir -- $DST_DIR ."
-            latestFile="$(find $SRC_DIR -name "*.tar.gz" -print0 | xargs -r -0 ls -1 -t | head -1)"
-            echo "latest backup file is: $latestFile ."
-
-            echo extracting backup...
-            tar -zxvf $latestFile -C $DST_DIR --strip-components=1
-            echo restore done
-
-            echo setting permissions to $UID:$GID
-            chown -R $UID:$GID $DST_DIR
-        volumeMounts:
-          - name: restore
-            mountPath: /backup
-          - name: config
-            mountPath: /config
     image:
       repository: ghcr.io/onedr0p/home-assistant
       tag: 2022.7.2
@@ -126,8 +75,6 @@ spec:
         tls:
           - hosts:
               - "hass.local.${SECRET_DOMAIN_CASA}"
-    # securityContext:
-    #   privileged: true
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
@@ -160,7 +107,7 @@ spec:
             path: /mnt/tank/cameras-attachments
         mountPath: /camera-detection-attachments
       restore:
-        enabled: true
+        enabled: false
         type: custom
         volumeSpec:
           nfs:
