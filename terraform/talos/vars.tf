@@ -73,7 +73,7 @@ variable "network_bridge" {
 }
 
 variable "qemu_guest_agent" {
-  default = 0
+  default = 1
 }
 
 variable "proxmox_host_node" {
