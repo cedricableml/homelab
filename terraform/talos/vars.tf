@@ -45,7 +45,7 @@ variable "boot_disk_storage_pool" {
 variable "boot_disk_size" {
     description = "The size of the boot disks. A numeric string with G, M, or K appended ex: 512M or 32G."
     type = string
-    default = "10G"
+    default = "100G"
 }
 
 variable "config_network_bridge" {
@@ -70,6 +70,10 @@ variable "network_bridge" {
     description = "The name of the network bridge on the Proxmox host."
     type = string
     default = "vmbr0"
+}
+
+variable "qemu_guest_agent" {
+  default = 0
 }
 
 variable "proxmox_host_node" {

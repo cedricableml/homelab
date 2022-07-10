@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-0" {
     name        = "${var.cluster_name}-controlplane-0"
     iso         = var.iso_image_location
     target_node = "nuc1"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "200"
     qemu_os     = "l26" # Linux kernel type
     memory      = "8192"
@@ -33,7 +33,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-1" {
     name        = "${var.cluster_name}-controlplane-1"
     iso         = var.iso_image_location
     target_node = "pve-lilslim"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "201"
     qemu_os     = "l26" # Linux kernel type
     memory      = "8192"
@@ -64,7 +64,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-2" {
     name        = "${var.cluster_name}-controlplane-2"
     iso         = var.iso_image_location
     target_node = "pve-fatman"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "202"
     qemu_os     = "l26" # Linux kernel type
     memory      = "8192"

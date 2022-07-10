@@ -2,7 +2,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-0" {
     name        = "${var.cluster_name}-worker-0"
     iso         = var.iso_image_location
     target_node = "nuc1"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "210"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
@@ -34,7 +34,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-1" {
     name        = "${var.cluster_name}-worker-1"
     iso         = var.iso_image_location
     target_node = "pve-lilslim"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "211"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
@@ -66,7 +66,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-2" {
     name        = "${var.cluster_name}-worker-2"
     iso         = var.iso_image_location
     target_node = "pve-fatman"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "212"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
@@ -98,7 +98,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-3" {
     name        = "${var.cluster_name}-worker-3"
     iso         = var.iso_image_location
     target_node = "pve-fatman"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "213"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
@@ -130,7 +130,7 @@ resource "proxmox_vm_qemu" "talos-worker-node-4" {
     name        = "${var.cluster_name}-worker-4"
     iso         = var.iso_image_location
     target_node = "pve-fatman"
-    agent       = 1
+    agent       = var.qemu_guest_agent
     vmid        = "214"
     qemu_os     = "l26" # Linux kernel type
     scsihw      = "virtio-scsi-pci"
