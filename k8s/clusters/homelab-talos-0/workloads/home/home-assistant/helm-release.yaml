@@ -116,6 +116,7 @@ spec:
         mountPath: /backup
         readOnly: false
     podAnnotations:
+      k8s.v1.cni.cncf.io/networks: hass-wifi-static
       secret.reloader.stakater.com/reload: "home-assistant"
     addons:
       codeserver:

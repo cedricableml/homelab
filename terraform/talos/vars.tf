@@ -66,6 +66,12 @@ variable "pve_vlan" {
     default = 4000
 }
 
+variable "wifi_vlan" {
+    description = "The wifi vlan"
+    type = number
+    default = 1010
+}
+
 variable "network_bridge" {
     description = "The name of the network bridge on the Proxmox host."
     type = string

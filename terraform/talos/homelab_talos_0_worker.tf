@@ -23,6 +23,12 @@ resource "proxmox_vm_qemu" "talos-worker-node-0" {
         tag    = var.pve_vlan
         macaddr = "1a:20:55:00:00:00"
     }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.wifi_vlan
+        macaddr = "1a:20:55:10:10:00"
+    }
     disk {
         type    = "virtio"
         size    = var.boot_disk_size
@@ -54,6 +60,12 @@ resource "proxmox_vm_qemu" "talos-worker-node-1" {
         bridge = var.network_bridge
         tag    = var.pve_vlan
         macaddr = "1a:20:55:00:00:01"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.wifi_vlan
+        macaddr = "1a:20:55:10:10:01"
     }
     disk {
         type    = "virtio"
@@ -87,6 +99,12 @@ resource "proxmox_vm_qemu" "talos-worker-node-2" {
         tag    = var.pve_vlan
         macaddr = "1a:20:55:00:00:02"
     }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.wifi_vlan
+        macaddr = "1a:20:55:10:10:02"
+    }
     disk {
         type    = "virtio"
         size    = var.boot_disk_size
@@ -119,6 +137,12 @@ resource "proxmox_vm_qemu" "talos-worker-node-3" {
         tag    = var.pve_vlan
         macaddr = "1a:20:55:00:00:03"
     }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.wifi_vlan
+        macaddr = "1a:20:55:10:10:03"
+    }
     disk {
         type    = "virtio"
         size    = var.boot_disk_size
@@ -150,6 +174,12 @@ resource "proxmox_vm_qemu" "talos-worker-node-4" {
         bridge = var.network_bridge
         tag    = var.pve_vlan
         macaddr = "1a:20:55:00:00:04"
+    }
+    network {
+        model  = "virtio"
+        bridge = var.network_bridge
+        tag    = var.wifi_vlan
+        macaddr = "1a:20:55:10:10:04"
     }
     disk {
         type    = "virtio"
