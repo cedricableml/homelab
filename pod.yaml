@@ -1,44 +1,44 @@
 # yamllint disable
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: test
-  namespace: default
-spec:
-  # storageClassName: rook-ceph-block
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Mi
----
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: test
+#   namespace: default
+# spec:
+#   # storageClassName: rook-ceph-block
+#   accessModes:
+#     - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 100Mi
+# ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: test
-  namespace: default
+  name: debug
+  namespace: home
 spec:
 #  nodeSelector:
 #    kubernetes.io/hostname: homelab-talos-0-worker-0
   containers:
     - name: myapp
       image: "ubuntu"
-      # securityContext:
-      #   privileged: true
+      securityContext:
+        privileged: true
       args:
         - "sleep"
         - "99999999999"
       volumeMounts:
-#        - name: rook
-#          mountPath: /rook
-        - name: test
-          mountPath: /test
+       - name: mount
+         mountPath: /mnt
+        # - name: test
+        #   mountPath: /test
   volumes:
-    - name: test
+    # - name: test
+      # persistentVolumeClaim:
+      #   claimName: test
+    - name: mount
       persistentVolumeClaim:
-        claimName: test
-#    - name: rook
-#      hostPath:
-#        path: /var/lib/rook
+        claimName: home-assistant-config-v1
   restartPolicy: Always
