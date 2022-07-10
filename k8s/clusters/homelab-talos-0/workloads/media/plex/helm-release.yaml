@@ -34,7 +34,7 @@ spec:
           - name: DST_DIR
             value: /config
           - name: OVERWRITE      # will rm -rf before restoring so be careful
-            value: "true"
+            value: "false"
           - name: JUST_SET_PERMS # in case you forgot and want to only do that. they get set after the restore anyway
             value: "false"
           - name: UID            # UID/GID to set after the restore
@@ -45,12 +45,12 @@ spec:
           - /bin/sh
           - -c
           - |-
-            if [ -z "$(ls -A $DST_DIR)" ]; then
+            if ! ls -1qA $DST_DIR | grep -v 'lost+found' | grep -q . ; then
               echo "Destination directory is empty, proceeding"
-            elif [ $OVERWRITE == true ]; then
+            elif [ $OVERWRITE == "true" ]; then
               echo "Overwriting data by wiping and restoring"
               rm -rf $DST_DIR/*
-            elif [ $JUST_SET_PERMS == true ]; then
+            elif [ $JUST_SET_PERMS == "true" ]; then
               echo Just setting permissions to $UID:$GID
               chown -R $UID:$GID $DST_DIR
               exit 0
