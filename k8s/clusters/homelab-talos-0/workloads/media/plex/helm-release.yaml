@@ -27,7 +27,7 @@ spec:
           - name: DST_DIR
             value: /config
           - name: OVERWRITE
-            value: "false"
+            value: "true"
         command:
           - /bin/sh
           - -c
@@ -114,7 +114,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/backups/softwarrself/plex
+            path: /mnt/tank/backups/softwarrself/plex-library
         mountPath: /backup
         readOnly: false
     resources:
@@ -136,23 +136,6 @@ spec:
                     values:
                       - neolink
               topologyKey: kubernetes.io/hostname
-    podAnnotations:
-      linkerd.io/inject: disabled
-      configmap.reloader.stakater.com/reload: "plex-promtail"
-      backup.velero.io/backup-volumes: config
-      pre.hook.backup.velero.io/container: fsfreeze
-      pre.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--freeze", "/config"]'
-      post.hook.backup.velero.io/container: fsfreeze
-      post.hook.backup.velero.io/command: '["/sbin/fsfreeze", "--unfreeze", "/config"]'
-    additionalContainers:
-      fsfreeze:
-        name: fsfreeze
-        image: ghcr.io/k8s-at-home/fsfreeze:v2.37-r0
-        volumeMounts:
-          - name: config
-            mountPath: /config
-        securityContext:
-          privileged: true
 
     addons:
       promtail:
