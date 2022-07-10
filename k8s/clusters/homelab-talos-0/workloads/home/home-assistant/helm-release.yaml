@@ -28,14 +28,6 @@ spec:
           name: home-assistant
     # hostNetwork: true
     dnsPolicy: ClusterFirstWithHostNet
-    service:
-      main:
-        enabled: true
-        type: LoadBalancer
-        spec:
-          loadBalancerIP: "${SVC_HASS_ADDRESS}"
-        annotations:
-          metallb.universe.tf/allow-shared-ip: traefik
     probes:
       liveness:
         enabled: false
