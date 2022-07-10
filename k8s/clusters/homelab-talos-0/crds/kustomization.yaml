@@ -9,3 +9,4 @@ resources:
   - rook-ceph
   - external-snapshotter
   - node-feature-discovery
+  - metallb

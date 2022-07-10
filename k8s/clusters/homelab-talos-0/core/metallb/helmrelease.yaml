@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: metallb
-  namespace: kube-system
+  namespace: metallb-system
 spec:
   dependsOn:
     - name: cilium
@@ -20,7 +20,20 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
+    crds:
+      enabled: false
+    prometheusRule:
+      enabled: true
+    controller:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
     speaker:
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
       tolerations:
         - effect: "NoExecute"
           operator: "Exists"
@@ -28,9 +41,6 @@ spec:
           operator: "Exists"
       frr:
         enabled: false
-
-    crds:
-      enabled: true
 
     prometheus:
       serviceAccount: kube-prometheus-stack-prometheus
