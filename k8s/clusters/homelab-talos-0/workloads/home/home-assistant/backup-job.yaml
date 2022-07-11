@@ -46,7 +46,7 @@ spec:
             - name: backup
               nfs:
                 server: "${TRUENAS_VM_ADDRESS}"
-                path: /mnt/tank/backups/softwarrself/homeassistant
+                path: /mnt/tank/backups/softwarrself/home-assistant
           affinity:
             podAffinity:
               requiredDuringSchedulingIgnoredDuringExecution:
