@@ -1,0 +1,16 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - botkube
+  - grafana
+  - kube-prometheus-stack
+  - loki
+  - speedtest-exporter
+  - promtail
+  - blackbox-exporter
+  - unifi-poller
+#  - thanos
+  - snmp-exporter
+  - intel-gpu-exporter
+  - namespace.yaml
