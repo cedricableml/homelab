@@ -6,7 +6,7 @@ resources:
   # - _external-svc
   # - bazarr
   # - dizquetv
-  - overseerr
+#  - overseerr
   # - jellyfin
   # - prowlarr
   # - radarr
@@ -18,8 +18,8 @@ resources:
   # - arr-misc
   # - calibre
   # - calibre-web
-  - mylar
+#  - mylar
   # - sabnzbd
   # - plex-meta-manager
   # - plexautolanguages
-  - gaps
+#  - gaps
