@@ -41,7 +41,7 @@ spec:
 #        path: /mnt/tank/backups/softwarrself/home-assistant
      - name: test
        persistentVolumeClaim:
-         claimName: jellyfin-config-v1
+         claimName: plex-library-config-v1
 #    - name: mount
 #      persistentVolumeClaim:
 #        claimName: home-assistant-config-v1
