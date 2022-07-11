@@ -42,7 +42,7 @@ spec:
           volumes:
             - name: data
               persistentVolumeClaim:
-                claimName: plex-config-library-v1
+                claimName: plex-library-config-v1
             - name: backup
               nfs:
                 server: "${TRUENAS_VM_ADDRESS}"
