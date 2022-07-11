@@ -26,7 +26,7 @@ nodes:
         dhcp: true
       - interface: eth1
         dhcp: true
-        mtu: 8978
+        mtu: 9000
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -51,7 +51,7 @@ nodes:
           ip: 10.250.2.254
       - interface: eth1
         dhcp: true
-        mtu: 8978
+        mtu: 9000
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -76,7 +76,7 @@ nodes:
           ip: 10.250.2.254
       - interface: eth1
         dhcp: true
-        mtu: 8978
+        mtu: 9000
         dhcpOptions:
           routeMetric: 2048
     configPatches:
@@ -103,7 +103,7 @@ nodes:
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 8978
+              mtu: 9000
               dhcpOptions:
                 routeMetric: 2048
             - interface: eth2
@@ -127,7 +127,7 @@ nodes:
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 8978
+              mtu: 9000
               dhcpOptions:
                 routeMetric: 2048
             - interface: eth2
@@ -151,7 +151,7 @@ nodes:
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 8978
+              mtu: 9000
               dhcpOptions:
                 routeMetric: 2048
             - interface: eth2
@@ -172,7 +172,7 @@ nodes:
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 8978
+              mtu: 9000
               dhcpOptions:
                 routeMetric: 2048
             - interface: eth2
@@ -196,7 +196,7 @@ nodes:
               dhcp: true
             - interface: eth1
               dhcp: true
-              mtu: 8978
+              mtu: 9000
               dhcpOptions:
                 routeMetric: 2048
             - interface: eth2
