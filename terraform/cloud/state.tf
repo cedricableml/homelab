@@ -3,7 +3,7 @@ terraform {
   backend "remote" {
     organization = "cloudpush"
     workspaces {
-      name = "homelab-cloudflare"
+      name = "homelab-cloud"
     }
   }
 }
