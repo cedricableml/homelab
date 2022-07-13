@@ -15,4 +15,3 @@ provider "proxmox" {
   pm_debug        = true
   pm_parallel     = 25
 }
-
