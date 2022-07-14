@@ -66,6 +66,10 @@ spec:
         enabled: true
         existingClaim: media-nfs
         mountPath: /media
+      downloads:
+        enabled: true
+        existingClaim: sabnzbd-downloads-v1
+        mountPath: /downloads
     resources:
       requests:
         memory: 250Mi

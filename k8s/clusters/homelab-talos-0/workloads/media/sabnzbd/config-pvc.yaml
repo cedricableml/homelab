@@ -11,3 +11,16 @@ spec:
     requests:
       storage: 1Gi
   storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: sabnzbd-downloads-v1
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Ti
+  storageClassName: rook-cephfs-fast-low-redundancy
