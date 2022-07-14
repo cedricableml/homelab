@@ -82,7 +82,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - "alert-manager.${SECRET_DOMAIN_CASA}"
@@ -187,7 +187,7 @@ spec:
         ingressClassName: "traefik"
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
-          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_1}.cfargotunnel.com"
+          external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
           traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
         hosts:
           - "prometheus.${SECRET_DOMAIN_CASA}"
