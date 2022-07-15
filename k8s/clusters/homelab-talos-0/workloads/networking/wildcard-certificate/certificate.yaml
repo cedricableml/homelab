@@ -9,6 +9,9 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
+  secretTemplate:
+    annotations:
+      replicator.v1.mittwald.de/replicate-to: 'media,home,kube-system,monitoring'
   commonName: "${SECRET_DOMAIN_CASA}"
   dnsNames:
     - "${SECRET_DOMAIN}"
