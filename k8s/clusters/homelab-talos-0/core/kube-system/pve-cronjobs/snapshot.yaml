@@ -20,12 +20,11 @@ spec:
           restartPolicy: Never
           containers:
             - name: arr-list-sync-sonarr
-              image: busybox:latest
+              image: ghcr.io/k8s-at-home/kubectl:rolling
               args:
                 - "/bin/sh"
                 - "-ec"
                 - |
-                  apt update && apt install -y zip
                   curl -s https://api.github.com/repos/Corsinvest/cv4pve-autosnap/releases/latest | jq '.assets[] | select(.name|match("linux-x64.zip$")) | .browser_download_url' | xargs curl -LO
                   unzip *zip && mv cv4pve-autosnap* /usr/local/bin && chmod +x /usr/local/bin/cv4pve-autosnap
                   cv4pve-autosnap --host=10.240.240.100 --api-token "${CV4PVE_TOKEN}" --vmid="all" snap --label=daily --keep=2
