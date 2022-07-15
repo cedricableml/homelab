@@ -1,0 +1,34 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: kube-system
+  name: pve-snapshot
+spec:
+  schedule: "0 13 * * *"
+  concurrencyPolicy: "Forbid"
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      backoffLimit: 3
+      template:
+        # metadata:
+        #   annotations:
+        #     botkube.io/disable: "true"
+        spec:
+          restartPolicy: Never
+          containers:
+            - name: arr-list-sync-sonarr
+              image: busybox:latest
+              args:
+                - "/bin/sh"
+                - "-ec"
+                - |
+                  apt update && apt install -y zip
+                  curl -s https://api.github.com/repos/Corsinvest/cv4pve-autosnap/releases/latest | jq '.assets[] | select(.name|match("linux-x64.zip$")) | .browser_download_url' | xargs curl -LO
+                  unzip *zip && mv cv4pve-autosnap* /usr/local/bin && chmod +x /usr/local/bin/cv4pve-autosnap
+                  cv4pve-autosnap --host=10.240.240.100 --api-token "${CV4PVE_TOKEN}" --vmid="all" snap --label=daily --keep=2
+              envFrom:
+                - secretRef:
+                    name: pve-creds
