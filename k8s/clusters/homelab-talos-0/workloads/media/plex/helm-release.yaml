@@ -41,6 +41,8 @@ spec:
         externalIPs:
           - "${SVC_PLEX_ADDR}"
         externalTrafficPolicy: Local
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: plex-wifi-static
     ingress:
       main:
         enabled: true

@@ -8,3 +8,4 @@ resources:
   - trakt-sync-pytrakt-secret.yaml
   - trakt-sync-env-secret.yaml
   - backup-job.yaml
+  - net-attach.yaml

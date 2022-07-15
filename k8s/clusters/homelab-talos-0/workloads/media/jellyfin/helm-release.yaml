@@ -16,43 +16,6 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
-    # initContainers:
-    #   restore:
-    #     image: busybox:latest
-    #     imagePullPolicy: IfNotPresent
-    #     env:
-    #       - name: SRC_DIR
-    #         value: /backup
-    #       - name: DST_DIR
-    #         value: /config
-    #       - name: OVERWRITE
-    #         value: "false"
-    #     command:
-    #       - /bin/sh
-    #       - -c
-    #       - |-
-    #         if [ -z "$(ls -A $DST_DIR)" ]; then
-    #           echo "Destination directory is empty, proceeding"
-    #         elif [ $OVERWRITE == true ]; then
-    #           echo "Overwriting data by wiping and restoring"
-    #           rm -rf $DST_DIR/*
-    #         else
-    #           echo "Destination directory is not empty, not overwriting."
-    #           echo "Aborting."
-    #           exit 0
-    #         fi
-
-    #         echo "cleaning destination dir -- $DST_DIR ."
-    #         latestFile="$(find $SRC_DIR -name "*.tar.gz" -print0 | xargs -r -0 ls -1 -t | head -1)"
-    #         echo "latest backup file is: $latestFile ."
-    #         echo extracting backup...
-    #         tar -zxvf $latestFile -C $DST_DIR
-    #         echo restore done
-    #     volumeMounts:
-    #       - name: restore
-    #         mountPath: /backup
-    #       - name: config
-    #         mountPath: /config
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
@@ -71,6 +34,8 @@ spec:
     env:
       TZ: "${TZ}"
       JELLYFIN_CACHE_DIR: "/config/cache"
+    podAnnotations:
+      k8s.v1.cni.cncf.io/networks: jellyfin-wifi-static
     podSecurityContext:
       supplementalGroups:
         - 44
@@ -110,15 +75,6 @@ spec:
         enabled: true
         type: emptyDir
         medium: Memory
-      restore:
-        enabled: false
-        type: custom
-        volumeSpec:
-          nfs:
-            server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/backups/softwarrself/jellyfin
-        mountPath: /backup
-        readOnly: false
     resources:
       requests:
         gpu.intel.com/i915: 1
