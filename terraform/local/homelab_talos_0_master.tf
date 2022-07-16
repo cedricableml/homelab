@@ -1,6 +1,7 @@
 resource "proxmox_vm_qemu" "talos-control-plane-node-0" {
     name        = "${var.cluster_name}-controlplane-0"
-    iso         = var.iso_image_location
+    # iso         = var.iso_image_location
+    full_clone  = false
     target_node = "nuc1"
     agent       = var.qemu_guest_agent
     vmid        = "200"
@@ -32,6 +33,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-0" {
 resource "proxmox_vm_qemu" "talos-control-plane-node-1" {
     name        = "${var.cluster_name}-controlplane-1"
     iso         = var.iso_image_location
+    full_clone  = false
     target_node = "pve-lilslim"
     agent       = var.qemu_guest_agent
     vmid        = "201"
@@ -63,6 +65,7 @@ resource "proxmox_vm_qemu" "talos-control-plane-node-1" {
 resource "proxmox_vm_qemu" "talos-control-plane-node-2" {
     name        = "${var.cluster_name}-controlplane-2"
     iso         = var.iso_image_location
+    full_clone  = false
     target_node = "pve-fatman"
     agent       = var.qemu_guest_agent
     vmid        = "202"
