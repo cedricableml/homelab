@@ -7,7 +7,7 @@ metadata:
   annotations:
     botkube.io/disable: "true"
 spec:
-  schedule: "*/5 * * * *"
+  schedule: "*/45 * * * *"
   concurrencyPolicy: "Forbid"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 3
