@@ -35,8 +35,9 @@ nodes:
         value:
           - 10.250.2.254
           - homelab-talos-0-controlplane-0
-          - homelab-talos-0-controlplane-0.home.lan
-          - homelab-talos-0-controlplane.home.lan
+          - homelab-talos-0-controlplane-0.${secret_domain_internal}
+          - homelab-talos-0-controlplane.${secret_domain_internal}
+          - homelab-talos-0.${secret_domain_internal}
   - hostname: homelab-talos-0-controlplane-1
     ipAddress: 10.250.2.201
     controlPlane: true
@@ -60,8 +61,9 @@ nodes:
         value:
           - 10.250.2.254
           - homelab-talos-0-controlplane-1
-          - homelab-talos-0-controlplane-1.home.lan
-          - homelab-talos-0-controlplane.home.lan
+          - homelab-talos-0-controlplane-1.${secret_domain_internal}
+          - homelab-talos-0-controlplane.${secret_domain_internal}
+          - homelab-talos-0.${secret_domain_internal}
   - hostname: homelab-talos-0-controlplane-2
     ipAddress: 10.250.2.202
     controlPlane: true
@@ -85,8 +87,9 @@ nodes:
         value:
           - 10.250.2.254
           - homelab-talos-0-controlplane-2
-          - homelab-talos-0-controlplane-2.home.lan
-          - homelab-talos-0-controlplane.home.lan
+          - homelab-talos-0-controlplane-2.${secret_domain_internal}
+          - homelab-talos-0-controlplane.${secret_domain_internal}
+          - homelab-talos-0.${secret_domain_internal}
   - hostname: homelab-talos-0-worker-0
     ipAddress: 10.250.2.210
     controlPlane: false
@@ -222,7 +225,8 @@ controlPlane:
         disablePodSecurityPolicy: true
         admissionControl: []
         certSANs:
-          - homelab-talos-0-controlplane.home.lan
+          - homelab-talos-0-controlplane.${secret_domain_internal}
+          - homelab-talos-0.${secret_domain_internal}
         extraArgs:
           feature-gates: MixedProtocolLBService=true,EphemeralContainers=True
       controllerManager:
