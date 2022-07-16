@@ -207,6 +207,30 @@ nodes:
               mtu: 1500
               dhcpOptions:
                 routeMetric: 4096
+  # - hostname: homelab-talos-0-worker-5
+  #   ipAddress: 10.250.2.215
+  #   controlPlane: false
+  #   installDisk: /dev/vda
+  #   inlinePatch:
+  #     machine:
+  #       time:
+  #         servers:
+  #           - 10.250.0.1
+  #       network:
+  #         interfaces:
+  #           - interface: eth0
+  #             mtu: 8978
+  #             dhcp: true
+  #           - interface: eth1
+  #             dhcp: true
+  #             mtu: 9000
+  #             dhcpOptions:
+  #               routeMetric: 2048
+  #           - interface: eth2
+  #             dhcp: true
+  #             mtu: 1500
+  #             dhcpOptions:
+  #               routeMetric: 4096
 
 controlPlane:
   configPatches:
