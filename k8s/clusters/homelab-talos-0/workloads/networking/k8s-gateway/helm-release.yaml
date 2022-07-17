@@ -21,6 +21,7 @@ spec:
     remediation:
       retries: 5
   values:
+    watchedResources: ["Ingress"]
     nameOverride: k8s-gateway
     domain: "${SECRET_DOMAIN_INTERNAL}"
     ttl: 1
