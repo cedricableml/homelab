@@ -82,23 +82,11 @@ spec:
         readOnly: false
     resources:
       requests:
-        cpu: 2500m
+        cpu: 200m
         memory: 2Gi
         gpu.intel.com/i915: 1
       limits:
         gpu.intel.com/i915: 1
-    affinity:
-      podAntiAffinity:
-        preferredDuringSchedulingIgnoredDuringExecution:
-          - weight: 100
-            podAffinityTerm:
-              labelSelector:
-                matchExpressions:
-                  - key: app.kubernetes.io/name
-                    operator: In
-                    values:
-                      - neolink
-              topologyKey: kubernetes.io/hostname
 
     addons:
       promtail:
