@@ -56,13 +56,24 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "jellyfin.${SECRET_DOMAIN_CASA}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "jellyfin.${SECRET_DOMAIN_CASA}"
+              - *host
+        local:
+          enabled: true
+          ingressClassName: "traefik"
+          hosts:
+            - host: &hostinternal "{{ .Release.Name }}.${SECRET_DOMAIN_INTERNAL}"
+              paths:
+                - path: /
+                  pathType: Prefix
+          tls:
+            - hosts:
+                - *hostinternal
     persistence:
       config:
         enabled: true
