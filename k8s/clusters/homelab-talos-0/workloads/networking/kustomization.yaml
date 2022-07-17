@@ -6,4 +6,5 @@ resources:
   - cloudflared
   - external-dns
   - traefik
+  - k8s-gateway
   - wildcard-certificate

@@ -32,3 +32,4 @@ resources:
   - linkerd-charts.yaml
   - kubernetes-replicator-charts.yaml
   - kyverno-charts.yaml
+  - k8s-gateway-charts.yaml
