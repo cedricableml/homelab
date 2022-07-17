@@ -74,6 +74,15 @@ spec:
         enabled: true
         existingClaim: media-nfs
         mountPath: /media
+      backup:
+        enabled: true
+        type: custom
+        volumeSpec:
+          nfs:
+            server: "${TRUENAS_VM_ADDRESS}"
+            path: /mnt/tank/backups/softwarrself/bazarr
+        mountPath: /config/backup
+        readOnly: false
       sub-cleaner:
         enabled: true
         type: configMap
