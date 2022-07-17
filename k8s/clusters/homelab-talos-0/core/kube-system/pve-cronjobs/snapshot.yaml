@@ -20,7 +20,7 @@ spec:
           restartPolicy: Never
           containers:
             - name: arr-list-sync-sonarr
-              image: ghcr.io/k8s-at-home/kubectl:rolling
+              image: ghcr.io/k8s-at-home/kubectl:1.24.3
               args:
                 - "/bin/sh"
                 - "-ec"
