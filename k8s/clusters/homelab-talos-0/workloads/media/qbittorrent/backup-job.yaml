@@ -15,8 +15,6 @@ spec:
       ttlSecondsAfterFinished: 300
       template:
         spec:
-          securityContext:
-            privileged: true
           automountServiceAccountToken: false
           restartPolicy: OnFailure
           containers:
