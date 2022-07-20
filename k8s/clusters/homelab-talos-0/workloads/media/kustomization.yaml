@@ -19,5 +19,5 @@ resources:
   - sabnzbd
   - tautulli
   - arr-misc
-  # - calibre
-  # - calibre-web
+  - calibre
+  - calibre-web
