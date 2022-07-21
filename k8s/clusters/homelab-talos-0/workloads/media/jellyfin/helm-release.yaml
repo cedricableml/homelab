@@ -16,6 +16,23 @@ spec:
         name: k8s-at-home-charts
         namespace: flux-system
   values:
+    initContainers:
+      setperms:
+        image: busybox:latest
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: UID
+            value: "568"
+          - name: GID
+            value: "568"
+        command:
+          - /bin/sh
+          - -c
+          - |-
+            chown -R $UID:$GID /config
+        volumeMounts:
+          - name: config
+            mountPath: /config
     affinity:
       podAntiAffinity:
         preferredDuringSchedulingIgnoredDuringExecution:
