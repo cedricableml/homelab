@@ -5,40 +5,34 @@ metadata:
   name: sabnzbd-backup
   namespace: media
 spec:
-  schedule: "@daily"
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 0
+  failedJobsHistoryLimit: 2
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 3600
+      backoffLimit: 1
+      ttlSecondsAfterFinished: 300
       template:
         spec:
           automountServiceAccountToken: false
           restartPolicy: OnFailure
           containers:
             - name: backup
-              image: ghcr.io/onedr0p/rclone:1.58.1@sha256:23442b3c125fd125f8dcd9ac4b2c80d426e4f84851a864ad8f14dc942c8c1b84
-              command:
-                - /bin/sh
-                - -c
-                - |-
-                  rclone config create backup alias remote=/backup
-                  tar -zcvf - /config | rclone rcat backup:"/$(date "+%Y-%m-%d_%H:%M:%S").tar.gz" -v
-                  rclone delete backup:/ --min-age 8d -v
-              volumeMounts:
-                - name: config
-                  mountPath: /config
-                - name: backup
-                  mountPath: /backup
-              # lifecycle:
-              #   postStart:
-              #     exec:
-              #       command: ["/bin/sh", "-c", "fsfreeze --freeze /config"]
-              #   preStop:
-              #     exec:
-              #       command: ["/bin/sh", "-c", "fsfreeze --unfreeze /config"]
+              image: ghcr.io/bjw-s/pmb:v0.4.0@sha256:10388afc2a2f6a9f2ae7ec15aee5d919c3d274fd862c753abd6a91f656bf6958
+              imagePullPolicy: Always
               securityContext:
                 privileged: true
+              env:
+                - name: KOPIA_PASSWORD
+                  value: "${KOPIA_PASSWORD}"
+              volumeMounts:
+                - name: data
+                  mountPath: /data/src
+                - name: backup
+                  mountPath: /data/dest
           volumes:
-            - name: config
+            - name: data
               persistentVolumeClaim:
                 claimName: sabnzbd-config-v1
             - name: backup
