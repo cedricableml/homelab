@@ -21,32 +21,12 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "filebrowser"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "change-detection"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "grafana"
       type      = "self_hosted"
       gsuite    = true
     },
     {
-      subdomain = "hass"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "s3"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "requests"
+      subdomain = "home-assistant"
       type      = "self_hosted"
       gsuite    = true
     },
@@ -86,32 +66,12 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "unifi"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "edgerouter"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "rook"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "alert-manager"
       type      = "self_hosted"
       gsuite    = true
     },
     {
       subdomain = "prometheus"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "recipes"
       type      = "self_hosted"
       gsuite    = true
     },
@@ -125,21 +85,6 @@ locals {
 #      type      = "self_hosted"
 #      gsuite    = true
 #    },
-    {
-      subdomain = "mylar"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "minio"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "qnap"
-      type      = "self_hosted"
-      gsuite    = true
-    },
     {
       subdomain = "zigbee2mqtt"
       type      = "self_hosted"
@@ -179,11 +124,6 @@ locals {
   apps_secondary = [
     {
       subdomain = "calibre-web"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
-      subdomain = "requests"
       type      = "self_hosted"
       gsuite    = true
     },

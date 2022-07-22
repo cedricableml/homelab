@@ -70,18 +70,18 @@ resource "cloudflare_access_policy" "everyone_calibre-web_secondary" {
   }
 }
 
-resource "cloudflare_access_policy" "everyone_requests_secondary" {
-  zone_id        = var.zone_id
-  application_id = cloudflare_access_application.app_secondary["requests"].id
-
-  name       = "allow group with pin"
-  precedence = "20"
-  decision   = "allow"
-
-  include {
-    group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
-  }
-}
+#resource "cloudflare_access_policy" "everyone_requests_secondary" {
+#  zone_id        = var.zone_id
+#  application_id = cloudflare_access_application.app_secondary["requests"].id
+#
+#  name       = "allow group with pin"
+#  precedence = "20"
+#  decision   = "allow"
+#
+#  include {
+#    group = ["546e1fbc-2441-4852-83a0-a664c45cff3d"] # everyone
+#  }
+#}
 
 resource "cloudflare_access_policy" "public_kobo" {
   zone_id        = var.zone_id_casa
