@@ -8,3 +8,4 @@ resources:
   - traefik
   - k8s-gateway
   - wildcard-certificate
+  - opnsense

@@ -172,6 +172,14 @@ spec:
             etcd:
               enabled: true
 
+    additionalScrapeConfigs:
+      - job_name: opnsense-node-exporter
+        scrape_interval: 1m
+        scrape_timeout: 10s
+        honor_timestamps: true
+        static_configs:
+          - targets:
+              - "opnsense.${SECRET_DOMAIN_INTERNAL}:9100"
     prometheusOperator:
       prometheusConfigReloader:
         resources:
