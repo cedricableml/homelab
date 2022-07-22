@@ -118,16 +118,6 @@ spec:
           gnetId: 14062
           revision: 2
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13177
-        ipmi:
-          gnetId: 13177
-          revision: 1
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/12950
-        temperature:
-          gnetId: 12950
-          revision: 2
-          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/1860
         nodeexporter:
           gnetId: 1860
@@ -146,11 +136,6 @@ spec:
         unifi-network-sites:
           gnetId: 11311
           revision: 4
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11314
-        unifi-uap-insights:
-          gnetId: 11314
-          revision: 9
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/11312
         unifi-usw-insights:
@@ -179,6 +164,20 @@ spec:
           datasource: Prometheus
         sonarr:
           url: https://raw.githubusercontent.com/k8s-at-home/grafana-dashboards/main/sonarr.json
+          datasource: Prometheus
+        cilium-agent:
+          gnetId: 15513
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15514
+        cilium-operator:
+          gnetId: 15514
+          revision: 1
+          datasource: Prometheus
+        # Ref: https://grafana.com/grafana/dashboards/15515
+        cilium-hubble:
+          gnetId: 15515
+          revision: 1
           datasource: Prometheus
     sidecar:
       dashboards:
