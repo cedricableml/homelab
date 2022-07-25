@@ -9,6 +9,9 @@ spec:
   jobTemplate:
     spec:
       template:
+        metadata:
+          annotations:
+            botkube.io/disable: "true"
         spec:
           securityContext:
             runAsUser: 1000
