@@ -24,6 +24,11 @@ spec:
     remediation:
       retries: 100
   values:
+    tolerations:
+      - key: "nuc"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
     image:
       repository: ghcr.io/k8s-at-home/plex
       tag: v1.27.2.5929-a806c5905
