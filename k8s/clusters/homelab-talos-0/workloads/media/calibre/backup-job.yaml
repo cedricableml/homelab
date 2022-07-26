@@ -34,7 +34,7 @@ spec:
           volumes:
             - name: data
               persistentVolumeClaim:
-                claimName: calibre-web-config
+                claimName: calibre-config
             - name: backup
               nfs:
                 server: "${TRUENAS_VM_ADDRESS}"
