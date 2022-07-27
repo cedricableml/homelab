@@ -15,6 +15,11 @@ spec:
       ttlSecondsAfterFinished: 300
       template:
         spec:
+          tolerations:
+            - key: "nuc"
+              operator: "Equal"
+              value: "true"
+              effect: "NoSchedule"
           automountServiceAccountToken: false
           restartPolicy: OnFailure
           containers:
