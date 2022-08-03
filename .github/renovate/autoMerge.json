@@ -14,7 +14,27 @@
       ],
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/prowlarr-nightly",
-        "renovatebot/github-action"
+        "renovatebot/github-action",
+        "radarr",
+        "readarr",
+        "sonarr",
+        "prowlarr",
+        "calibre",
+        "calibre-web",
+        "calibre-web",
+        "kubernetes-sigs/external-dns",
+        "zigbee2mqtt",
+        "unifi-poller",
+        "tautulli",
+        "speedtest-exporter",
+        "sabnzbd",
+        "qbittorrent",
+        "node-red",
+        "node-red",
+        "mosquitto",
+        "kah-common-chart",
+        "jellyfin",
+        "intel-gpu-plugin"
       ]
     }
   ]
