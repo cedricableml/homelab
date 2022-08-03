@@ -14,6 +14,11 @@
       ],
       "matchPackageNames": [
         "ghcr.io/k8s-at-home/prowlarr-nightly",
+        "ghcr.io/k8s-at-home/prowlarr",
+        "ghcr.io/k8s-at-home/radarr",
+        "ghcr.io/k8s-at-home/sonarr",
+        "ghcr.io/k8s-at-home/readarr",
+        "ghcr.io/k8s-at-home/tautulli",
         "renovatebot/github-action",
         "radarr",
         "readarr",
