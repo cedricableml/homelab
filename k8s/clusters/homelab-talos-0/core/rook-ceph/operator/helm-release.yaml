@@ -23,6 +23,12 @@ spec:
         name: rook-ceph-charts
         namespace: flux-system
   values:
+    csi:
+      pluginTolerations:
+        - key: "nuc"
+          operator: "Equal"
+          value: "true"
+          effect: "NoSchedule"
     crds:
       enabled: false
     cephBlockPoolsVolumeSnapshotClass:
