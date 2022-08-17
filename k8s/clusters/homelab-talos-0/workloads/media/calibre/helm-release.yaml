@@ -34,6 +34,14 @@ spec:
       TZ: ${TZ}
       PGID: 65539
 
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     persistence:
       config:
         enabled: true

@@ -32,6 +32,14 @@ spec:
       PGID: 65539
       DOCKER_MODS: "linuxserver/calibre-web:calibre"
 
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
     persistence:
       config:
         enabled: true
