@@ -36,11 +36,17 @@ spec:
 
     probes:
       liveness:
-        enabled: false
+        enabled: true
       readiness:
-        enabled: false
+        enabled: true
       startup:
-        enabled: false
+        enabled: true
+        spec:
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          ## This means it has a maximum of 10*30=300 seconds to start up before it fails
+          periodSeconds: 10
+          failureThreshold: 30
 
     persistence:
       config:
