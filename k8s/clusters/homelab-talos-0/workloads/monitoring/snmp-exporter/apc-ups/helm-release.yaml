@@ -28,8 +28,11 @@ spec:
       repository: quay.io/prometheus/snmp-exporter
     extraArgs:
       - "--config.file=/config/snmp.yaml"
+
     podAnnotations:
       configmap.reloader.stakater.com/reload: snmp-exporter-apc-ups
+      k8s.v1.cni.cncf.io/networks: snmp-homelab-static
+
     extraConfigmapMounts:
       - name: snmp-exporter-apc-ups
         mountPath: /config/snmp.yaml
@@ -37,6 +40,7 @@ spec:
         configMap: snmp-exporter-apc-ups
         readOnly: true
         defaultMode: 420
+
     serviceMonitor:
       enabled: true
       namespace: monitoring
