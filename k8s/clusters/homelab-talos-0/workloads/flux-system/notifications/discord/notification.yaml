@@ -2,14 +2,14 @@
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Provider
 metadata:
-  name: slack
+  name: discord
   namespace: flux-system
 spec:
-  type: slack
+  type: discord
   username: Flux
   channel: homelab
   secretRef:
-    name: slack-webhook-url
+    name: discord-webhook-url
 ---
 apiVersion: notification.toolkit.fluxcd.io/v1beta1
 kind: Alert
@@ -18,7 +18,7 @@ metadata:
   namespace: flux-system
 spec:
   providerRef:
-    name: slack
+    name: discord
   eventSeverity: error
   eventSources:
     - kind: GitRepository
