@@ -28,11 +28,11 @@ spec:
     alertmanager:
       config:
         global:
-          slack_api_url: "${SECRET_ALERT_MANAGER_SLACK_WEBHOOK}"
+          slack_api_url: "${SECRET_ALERT_MANAGER_DISCORD_WEBHOOK}"
           resolve_timeout: 5m
         receivers:
           - name: 'null'
-          - name: 'slack'
+          - name: 'discord'
             slack_configs:
               - icon_url: https://avatars3.githubusercontent.com/u/3380462
                 username: 'AlertManager'
@@ -54,7 +54,7 @@ spec:
           group_wait: 30s
           group_interval: 5m
           repeat_interval: 6h
-          receiver: "slack"
+          receiver: "discord"
           routes:
             - receiver: "null"
               match:
@@ -65,7 +65,7 @@ spec:
             - receiver: "null"
               match:
                 alertname: Watchdog
-            - receiver: "slack"
+            - receiver: "discord"
               match_re:
                 severity: critical
               continue: true
