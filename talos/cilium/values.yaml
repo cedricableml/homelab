@@ -3,6 +3,9 @@ cluster:
   name: "homelab-talos-0"
   id: "1"
 
+securityContext:
+  privileged: true
+
 rollOutCiliumPods: true
 localRedirectPolicy: true
 
