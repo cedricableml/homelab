@@ -33,3 +33,4 @@ resources:
   - kubernetes-replicator-charts.yaml
   - kyverno-charts.yaml
   - k8s-gateway-charts.yaml
+  - bjw-s.yaml

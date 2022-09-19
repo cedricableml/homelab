@@ -5,46 +5,33 @@ metadata:
   name: calibre-web
   namespace: media
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: calibre-web
-      version: 8.4.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
   values:
+    image:
+      repository: ghcr.io/bjw-s/calibre-web
+      tag: 0.6.19@sha256:7f6fce8bf5552cdaf6be13cf23a2fc81c1b0693a9d5986cb076e85d5f9c49bee
+
     podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 568
-        - 1001
         - 65539
 
-    image:
-      repository: ghcr.io/linuxserver/calibre-web
-      tag: 0.6.19
+    enableServiceLinks: false
 
     env:
       TZ: ${TZ}
-      PGID: 65539
-      DOCKER_MODS: "ghcr.io/linuxserver/mods:universal-calibre"
-
-    probes:
-      liveness:
-        enabled: true
-      readiness:
-        enabled: true
-      startup:
-        enabled: true
-        spec:
-          initialDelaySeconds: 30
-          timeoutSeconds: 1
-          ## This means it has a maximum of 10*30=300 seconds to start up before it fails
-          periodSeconds: 10
-          failureThreshold: 30
 
     persistence:
       config:
@@ -55,6 +42,12 @@ spec:
         existingClaim: media-nfs
         mountPath: /media
 
+    service:
+      main:
+        ports:
+          http:
+            port: 8083
+
     ingress:
       main:
         primary: true
@@ -64,13 +57,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "calibre-web.${SECRET_DOMAIN_CASA}"
+          - host: &host "calibre-web.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "calibre-web.${SECRET_DOMAIN_CASA}"
+              - *host
       secondary:
         enabled: true
         ingressClassName: "traefik"
@@ -78,17 +71,17 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "calibre-web.${SECRET_DOMAIN}"
+          - host: *host
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "calibre-web.${SECRET_DOMAIN}"
-
+              - *host
 
     resources:
       requests:
+        cpu: 15m
         memory: 256Mi
       limits:
         memory: 512Mi
