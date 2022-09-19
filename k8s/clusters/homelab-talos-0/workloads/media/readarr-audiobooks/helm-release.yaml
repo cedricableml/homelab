@@ -30,6 +30,12 @@ spec:
     env:
       TZ: "${TZ}"
 
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8787
+
     ingress:
       main:
         primary: true
