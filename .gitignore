@@ -25,3 +25,4 @@ talosconfig
 .terraform
 *.crt
 *.key
+generated_values.yaml
