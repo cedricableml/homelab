@@ -20,6 +20,9 @@ spec:
       repository: ghcr.io/linuxserver/calibre
       tag: 6.4.0
 
+    securityContext:
+      privileged: true
+
     podSecurityContext:
       supplementalGroups:
         - 568
