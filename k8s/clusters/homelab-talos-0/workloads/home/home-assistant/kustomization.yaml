@@ -4,7 +4,6 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  - code-server-ssh-secret.yaml
   - home-assistant-secret.yaml
   - backup-job.yaml
   - net-attach.yaml
