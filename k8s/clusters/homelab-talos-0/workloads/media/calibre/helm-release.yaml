@@ -29,7 +29,9 @@ spec:
 
     env:
       TZ: ${TZ}
+      PUID: "1001"
       PGID: 65539
+      UMASK_SET: "022"
 
     probes:
       liveness:
@@ -58,7 +60,16 @@ spec:
       main:
         ports:
           http:
-            port: &port 8080
+            port: 8080
+      webserver:
+        enabled: true
+        type: ClusterIP
+        ports:
+          webserver:
+            enabled: true
+            port: 8081
+            protocol: TCP
+            targetPort: 8081
 
     ingress:
       main:
