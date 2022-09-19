@@ -5,16 +5,16 @@ metadata:
   name: &app smtp-relay
   namespace: home
 spec:
-  interval: 5m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   install:
     disableWait: true
     remediation:
@@ -23,16 +23,17 @@ spec:
     remediation:
       retries: 100
   values:
-    fullnameOverride: *app
     env:
       SMTP_SERVER: smtp.sendgrid.net
       OVERWRITE_FROM: "${SECRET_SENDGRID_USER_SMTP_RELAY}"
       SMTP_USERNAME: apikey
       SMTP_PASSWORD: "${SECRET_SENDGRID_APIKEY_SMTP_RELAY}"
       SERVER_HOSTNAME: "${SECRET_DOMAIN}"
+
     image:
       repository: docker.io/juanluisbaptiste/postfix
       tag: 1.7.1
+
     service:
       main:
         type: LoadBalancer
@@ -43,6 +44,7 @@ spec:
         ports:
           http:
             port: &port 25
+
     resources:
       requests:
         cpu: 50m

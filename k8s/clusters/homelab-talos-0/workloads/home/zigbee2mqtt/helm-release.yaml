@@ -5,17 +5,16 @@ metadata:
   name: zigbee2mqtt
   namespace: home
 spec:
-  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: zigbee2mqtt
-      version: 9.4.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   install:
     disableWait: true
     remediation:
@@ -31,11 +30,19 @@ spec:
     image:
       repository: ghcr.io/koenkk/zigbee2mqtt
       tag: 1.27.2
+
     env:
       TZ: "${TZ}"
       ZIGBEE2MQTT_DATA: /data
       ZIGBEE2MQTT_CONFIG_MQTT_USER: "${MQTT_USER}"
       ZIGBEE2MQTT_CONFIG_MQTT_PASSWORD: "${MQTT_PASSWORD}"
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8080
+
     ingress:
       main:
         enabled: true
@@ -45,17 +52,14 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "zigbee2mqtt.${SECRET_DOMAIN_CASA}"
-            paths:
-              - path: /
-                pathType: Prefix
-          - host: "zigbee2mqtt.${SECRET_DOMAIN_CASA}"
+          - host: &host "zigbee2mqtt.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "zigbee2mqtt.${SECRET_DOMAIN_CASA}"
+              - *host
+
     persistence:
       config:
         enabled: true
@@ -65,19 +69,24 @@ spec:
         enabled: true
         type: hostPath
         hostPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_c46794596029ec11b42d6c7840c9ce8d-if00-port0
+
     nodeSelector:
       kubernetes.io/hostname: nuc1
+
     securityContext:
       privileged: true
+
     podSecurityContext:
       supplementalGroups:
         - 20 # dialout for /dev/ttyUSB0
+
     resources:
       requests:
         memory: 100Mi
-        cpu: 100m
+        cpu: 10m
       limits:
-        memory: 500Mi
+        memory: 1.5Gi
+
     config:
       # Minimal configuration.yml example
       permit_join: true

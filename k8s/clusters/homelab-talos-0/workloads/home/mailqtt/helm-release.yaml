@@ -5,16 +5,16 @@ metadata:
   name: &app mailqtt
   namespace: home
 spec:
-  interval: 5m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   install:
     disableWait: true
     remediation:
@@ -23,12 +23,13 @@ spec:
     remediation:
       retries: 100
   values:
-    fullnameOverride: *app
     image:
       repository: ghcr.io/0dragosh/mailqtt
       tag: v1.1.0
+
     controller:
       replicas: 3
+
     env:
       TZ: "${TZ}"
       SAVE_ATTACHMENTS: "True"
@@ -40,6 +41,7 @@ spec:
       DEBUG: "True"
       SAVE_ATTACHMENTS_DURING_RESET_TIME: "True"
       SAVE_ATTACHMENTS_DIR: "/attachments"
+
     service:
       main:
         type: LoadBalancer
@@ -47,6 +49,7 @@ spec:
         ports:
           http:
             port: &port 1025
+
     probes:
       liveness:
         enabled: true
@@ -60,6 +63,7 @@ spec:
         spec:
           tcpSocket:
             port: *port
+
     persistence:
       attachments:
         enabled: true
@@ -69,6 +73,7 @@ spec:
             server: "${TRUENAS_VM_ADDRESS}"
             path: /mnt/tank/cameras-attachments
         mountPath: /attachments
+
     resources:
       requests:
         cpu: 50m
