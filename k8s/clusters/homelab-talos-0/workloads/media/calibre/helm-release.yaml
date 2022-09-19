@@ -5,23 +5,21 @@ metadata:
   name: calibre
   namespace: media
 spec:
+  interval: 5m
   chart:
     spec:
-      chart: app-template
-      version: 0.2.1
-      interval: 15m
+      # renovate: registryUrl=https://k8s-at-home.com/charts/
+      chart: calibre
+      version: 5.4.2
       sourceRef:
         kind: HelmRepository
-        name: bjw-s
+        name: k8s-at-home-charts
         namespace: flux-system
-  interval: 15m
+      interval: 5m
   values:
     image:
       repository: ghcr.io/linuxserver/calibre
       tag: 6.4.0
-
-    securityContext:
-      privileged: true
 
     podSecurityContext:
       supplementalGroups:
@@ -29,9 +27,7 @@ spec:
 
     env:
       TZ: ${TZ}
-      PUID: "1001"
       PGID: 65539
-      UMASK_SET: "022"
 
     probes:
       liveness:
@@ -57,19 +53,8 @@ spec:
         mountPath: /media
 
     service:
-      main:
-        ports:
-          http:
-            port: 8080
       webserver:
         enabled: true
-        type: ClusterIP
-        ports:
-          webserver:
-            enabled: true
-            port: 8081
-            protocol: TCP
-            targetPort: 8081
 
     ingress:
       main:
