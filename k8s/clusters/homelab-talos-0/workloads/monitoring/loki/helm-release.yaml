@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: loki
       version: 3.0.7
       sourceRef:
@@ -17,55 +16,26 @@ spec:
         namespace: flux-system
       interval: 5m
   values:
-    loki:
-      commonConfig:
-        replication_factor: 1
-      storage:
-        type: 'filesystem'
     image:
-      repository: ghcr.io/k8s-at-home/loki
-    ingress:
-      enabled: false
-    serviceMonitor:
-      enabled: true
-    config:
-      ruler:
-        storage:
-          type: local
-          local:
-            directory: /rules
-        rule_path: /tmp/scratch
-        alertmanager_url: http://prometheus-alertmanager:9093
-        ring:
-          kvstore:
-            store: inmemory
-        enable_api: true
-    alerting_groups:
-    #
-    # SMART Failures
-    #
-      - name: smart-failure
-        rules:
-          - alert: SmartFailures
-            expr: |
-              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "SMART has reported failures a drive on {{$hostname}}"
-      #
-      # *arr applications
-      #
-      - name: arr
-        rules:
-          - alert: ArrDatabaseIsLocked
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "{{$app}} is experiencing locked database issues"
+      repository: grafana/loki
+      tag: 2.6.1
+      pullPolicy: IfNotPresent
+
+    loki:
+      config:
+        table_manager:
+          retention_deletes_enabled: true
+          retention_period: 336h
+      persistence:
+        enabled: true
+        storageClassName: "rook-ceph-block"
+        size: 50Gi
+      serviceMonitor:
+        enabled: true
+
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
+      limits:
+        memory: 512Mi
