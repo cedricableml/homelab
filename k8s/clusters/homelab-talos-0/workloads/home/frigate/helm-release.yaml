@@ -5,16 +5,16 @@ metadata:
   name: &app frigate
   namespace: home
 spec:
-  interval: 5m
   chart:
     spec:
-      chart: kah-common-chart
-      version: 1.2.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   install:
     disableWait: true
     remediation:
@@ -23,24 +23,28 @@ spec:
     remediation:
       retries: 100
   values:
-    securityContext:
-      privileged: true
+    image:
+      repository: docker.io/blakeblackshear/frigate
+      tag: 0.11.0-rc3
+
+    env:
+      TZ: "${TZ}"
+
     podSecurityContext:
       supplementalGroups:
         - 44
         - 109
         - 100
-    fullnameOverride: *app
-    image:
-      repository: docker.io/blakeblackshear/frigate
-      tag: 0.11.0-beta3
-    env:
-      TZ: "${TZ}"
+
+    securityContext:
+      privileged: true
+
     service:
       main:
         ports:
           http:
             port: &port 5000
+
     probes:
       liveness:
         enabled: false
@@ -71,6 +75,7 @@ spec:
             port: *port
           failureThreshold: 30
           periodSeconds: 10
+
     ingress:
       main:
         enabled: true
@@ -80,13 +85,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "frigate.${SECRET_DOMAIN_CASA}"
+          - host: &host "frigate.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "frigate.${SECRET_DOMAIN_CASA}"
+              - *host
     persistence:
       data:
         enabled: true
