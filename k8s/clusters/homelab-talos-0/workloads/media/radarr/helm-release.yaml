@@ -5,7 +5,6 @@ metadata:
   name: radarr
   namespace: media
 spec:
-  interval: 5m
   install:
     disableWait: true
     remediation:
@@ -15,20 +14,33 @@ spec:
       retries: 100
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: radarr
-      version: 16.3.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/radarr
-      tag: v4.1.0.6175
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.2.3.6575@sha256:c18425b9a0e0871141db3d7e8892806df53376f682559d62b6f8c25bb9009d86
+
     env:
       TZ: "${TZ}"
+      RADARR__INSTANCE_NAME: Radarr
+      RADARR__PORT: &port 7878
+      RADARR__APPLICATION_URL: "https://radarr.${SECRET_DOMAIN_CASA}"
+      RADARR__LOG_LEVEL: info
+      RADARR__API_KEYL: "${SECRET_RADARR_API_KEY}"
+
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
     ingress:
       main:
         primary: true
@@ -38,15 +50,22 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "radarr.${SECRET_DOMAIN_CASA}"
+          - host: &host "radarr.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "radarr.${SECRET_DOMAIN_CASA}"
+              - *host
+
     podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
       fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
+
     persistence:
       config:
         enabled: true
@@ -64,12 +83,14 @@ spec:
             path: /mnt/tank/backups/softwarrself/radarr
         mountPath: /config/Backups
         readOnly: false
+
     resources:
       requests:
         memory: 250Mi
-        cpu: 500m
+        cpu: 50m
       limits:
-        memory: 1500Mi
+        memory: 2Gi
+
     metrics:
       enabled: true
       serviceMonitor:
