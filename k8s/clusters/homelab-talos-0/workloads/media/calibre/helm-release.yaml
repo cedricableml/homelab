@@ -21,12 +21,8 @@ spec:
       tag: 6.4.0
 
     podSecurityContext:
-      runAsUser: 568
-      runAsGroup: 568
-      fsGroup: 568
-      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
-        - 65539
+        - 568
 
     env:
       TZ: ${TZ}
