@@ -5,17 +5,16 @@ metadata:
   name: plex
   namespace: media
 spec:
-  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: plex
-      version: 6.4.3
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   install:
     disableWait: true
     remediation:
@@ -24,21 +23,34 @@ spec:
     remediation:
       retries: 100
   values:
+    image:
+      repository: ghcr.io/onedr0p/plex
+      tag: 1.28.2.6151-914ddd2b3@sha256:0b1c10bda8403bb984eb8ae77ec19dd5abdaacc57e2ec42be4316f9dafec6977
+
     tolerations:
       - key: "nuc"
         operator: "Equal"
         value: "true"
         effect: "NoSchedule"
-    image:
-      repository: ghcr.io/k8s-at-home/plex
-      tag: v1.28.2.6151-914ddd2b3
+
+    dnsConfig:
+      options:
+        - name: ndots
+          value: "1"
+
     env:
       TZ: "${TZ}"
+
     podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
       supplementalGroups:
         - 44
         - 109
-        - 100
+        - 65539
+
     service:
       main:
         type: LoadBalancer
@@ -46,8 +58,13 @@ spec:
         externalIPs:
           - "${SVC_PLEX_ADDR}"
         externalTrafficPolicy: Local
+        ports:
+          http:
+            port: 32400
+
     podAnnotations:
       k8s.v1.cni.cncf.io/networks: plex-wifi-static
+
     ingress:
       main:
         enabled: true
@@ -57,13 +74,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "plex.${SECRET_DOMAIN_CASA}"
+          - host: &host "plex.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "plex.${SECRET_DOMAIN_CASA}"
+              - *host
     persistence:
       config:
         enabled: true
@@ -85,29 +102,12 @@ spec:
             path: /mnt/tank/backups/softwarrself/plex
         mountPath: /config/Backups
         readOnly: false
+
     resources:
       requests:
         cpu: 200m
-        memory: 2Gi
+        memory: 4Gi
         gpu.intel.com/i915: 1
       limits:
         gpu.intel.com/i915: 1
-
-    addons:
-      promtail:
-        enabled: true
-        image:
-          repository: ghcr.io/k8s-at-home/promtail
-          tag: v2.6.1
-        loki: http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push
-        logs:
-          - name: promtail/plex
-            path: "/config/Library/Application Support/Plex Media Server/Logs/*.log"
-          - name: promtail/plex/plugins
-            path: "/config/Library/Application Support/Plex Media Server/Logs/PMS Plugin Logs/*.log"
-        volumeMounts:
-          - name: config
-            mountPath: /config
-            readOnly: true
-        securityContext:
-          runAsUser: 0
+        memory: 32G
