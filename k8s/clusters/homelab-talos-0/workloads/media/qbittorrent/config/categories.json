@@ -1,0 +1,35 @@
+{
+  "radarr": {
+      "save_path": "/media/movies/downloads"
+  },
+  "sonarr": {
+      "save_path": "/media/tv/downloads"
+  },
+  "docs-tv": {
+      "save_path": "/media/docs-tv/downloads"
+  },
+  "docs-movies": {
+      "save_path": "/media/docs-movies/downloads"
+  },
+  "anime-tv": {
+    "save_path": "/media/anime-tv/downloads"
+  },
+  "anime-movies": {
+    "save_path": "/media/anime-movies/downloads"
+  },
+  "cartoons-tv": {
+    "save_path": "/media/cartoons-tv"
+  },
+  "readarr": {
+    "save_path": "/media/ebooks/downloads"
+  },
+  "software": {
+    "save_path": "/media/software"
+  },
+  "readarr-audiobooks": {
+    "save_path": "/media/audiobooks/downloads"
+  },
+  "misc": {
+    "save_path": "/media/misc"
+  }
+}

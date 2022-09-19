@@ -5,7 +5,6 @@ metadata:
   name: qbittorrent
   namespace: media
 spec:
-  interval: 5m
   install:
     disableWait: true
     remediation:
@@ -15,20 +14,27 @@ spec:
       retries: 100
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: qbittorrent
-      version: 13.5.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   values:
     image:
-      repository: ghcr.io/k8s-at-home/qbittorrent
-      tag: v4.4.3.1
+      repository: ghcr.io/onedr0p/qbittorrent
+      tag: 4.4.3.1@sha256:cea2a1647727f49582ca3d517bc45d53d00abe211fc667c429020f042635ea34
+
+    podAnnotations:
+      setGateway: "true"
+
     env:
       TZ: "${TZ}"
+      UMASK: "022"
+      QBITTORRENT__PORT: &port 8080
+
     service:
       main:
         ports:
@@ -41,12 +47,15 @@ spec:
         externalIPs:
           - "${SVC_QBITTORRENT_ADDR}"
         ports:
+          http:
+            port: *port
           bittorrent:
             enabled: true
             port: 50413
             protocol: TCP
             targetPort: 50413
         externalTrafficPolicy: Local
+
     ingress:
       main:
         enabled: true
@@ -56,13 +65,29 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "qbittorrent.${SECRET_DOMAIN_CASA}"
+          - host: &host "qbittorrent.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "qbittorrent.${SECRET_DOMAIN_CASA}"
+              - *host
+
+#    TODO for config as code
+#    initContainers:
+#      copy-config:
+#        image: busybox:latest@sha256:ad9bd57a3a57cc95515c537b89aaa69d83a6df54c4050fcf2b41ad367bec0cd5
+#        command:
+#          - "/bin/sh"
+#          - -c
+#        args:
+#          - cp /data/configfiles/* /data/config/
+#        volumeMounts:
+#          - name: config
+#            mountPath: /data/config
+#          - name: configfiles
+#            mountPath: /data/configfiles
+
     metrics:
       enabled: true
       exporter:
@@ -74,16 +99,30 @@ spec:
         scrapeTimeout: 10s
       prometheusRule:
         enabled: true
+
     podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
       fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
+
     persistence:
       config:
         enabled: true
         existingClaim: qbittorrent-config-v1
+
+      cache:
+        enabled: true
+        type: emptyDir
+        mountPath: /config/qBittorrent/cache
+
       media:
         enabled: true
         existingClaim: media-nfs
         mountPath: /media
+
       restore:
         enabled: true
         type: custom
@@ -93,9 +132,10 @@ spec:
             path: /mnt/tank/backups/softwarrself/qbittorrent
         mountPath: /backup
         readOnly: false
+
     resources:
       requests:
         memory: 250Mi
         cpu: 500m
       limits:
-        memory: 6000Mi
+        memory: 6Gi
