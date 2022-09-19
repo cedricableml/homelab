@@ -7,3 +7,6 @@ resources:
   - home-assistant-secret.yaml
   - backup-job.yaml
   - net-attach.yaml
+commonLabels:
+  app.kubernetes.io/name: home-assistant
+  app.kubernetes.io/instance: home-assistant

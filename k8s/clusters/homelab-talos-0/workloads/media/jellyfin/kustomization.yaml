@@ -6,3 +6,6 @@ resources:
   - helm-release.yaml
   - backup-job.yaml
   - net-attach.yaml
+commonLabels:
+  app.kubernetes.io/name: jellyfin
+  app.kubernetes.io/instance: jellyfin

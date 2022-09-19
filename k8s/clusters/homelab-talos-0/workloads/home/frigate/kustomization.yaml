@@ -11,3 +11,6 @@ configMapGenerator:
       - config.yaml
 generatorOptions:
   disableNameSuffixHash: true
+commonLabels:
+  app.kubernetes.io/name: frigate
+  app.kubernetes.io/instance: frigate
