@@ -5,24 +5,30 @@ metadata:
   name: readarr
   namespace: media
 spec:
-  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: readarr
-      version: 6.4.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   values:
-
     image:
-      repository: ghcr.io/k8s-at-home/readarr
-      tag: v0.1.1.1352
+      repository: ghcr.io/onedr0p/readarr-nightly
+      tag: 0.1.1.1409
+
     env:
       TZ: "${TZ}"
+
+    service:
+      main:
+        ports:
+          http:
+            port: &port 8787
+
     ingress:
       main:
         primary: true
@@ -32,15 +38,22 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "readarr.${SECRET_DOMAIN_CASA}"
+          - host: &host "readarr.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "readarr.${SECRET_DOMAIN_CASA}"
+              - *host
+
     podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
       fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
+
     persistence:
       config:
         enabled: true
@@ -58,12 +71,14 @@ spec:
             path: /mnt/tank/backups/softwarrself/readarr
         mountPath: /config/Backups
         readOnly: false
+
     resources:
       requests:
         memory: 250Mi
         cpu: 500m
       limits:
         memory: 1500Mi
+
     prometheus:
       podMonitor:
         enabled: true

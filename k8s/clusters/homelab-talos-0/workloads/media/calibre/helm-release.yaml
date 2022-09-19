@@ -5,30 +5,28 @@ metadata:
   name: calibre
   namespace: media
 spec:
-  interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: calibre
-      version: 5.4.2
+      chart: app-template
+      version: 0.2.1
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
+  interval: 15m
   values:
-
-
-    podSecurityContext:
-      supplementalGroups:
-        - 568
-
     image:
       repository: ghcr.io/linuxserver/calibre
       tag: 6.4.0
 
-    podAnnotations:
-      backup.velero.io/backup-volumes: config
+    podSecurityContext:
+      runAsUser: 568
+      runAsGroup: 568
+      fsGroup: 568
+      fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
 
     env:
       TZ: ${TZ}
@@ -58,8 +56,10 @@ spec:
         mountPath: /media
 
     service:
-      webserver:
-        enabled: true
+      main:
+        ports:
+          http:
+            port: &port 8080
 
     ingress:
       main:
@@ -70,13 +70,13 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: "calibre.${SECRET_DOMAIN_CASA}"
+          - host: &host "calibre.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
-              - "calibre.${SECRET_DOMAIN_CASA}"
+              - *host
 
     resources:
       requests:
