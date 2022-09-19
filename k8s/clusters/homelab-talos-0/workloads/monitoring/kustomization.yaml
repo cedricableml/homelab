@@ -8,8 +8,7 @@ resources:
   - speedtest-exporter
   - promtail
   - blackbox-exporter
-  - unifi-poller
 #  - thanos
   - snmp-exporter
-#  - intel-gpu-exporter
+  - intel-gpu-exporter
   - namespace.yaml
