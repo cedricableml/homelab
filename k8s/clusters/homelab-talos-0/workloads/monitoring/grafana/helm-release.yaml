@@ -22,6 +22,8 @@ spec:
     image:
       repository: ghcr.io/k8s-at-home/grafana
     replicas: 1
+    rbac:
+      pspEnabled: false
     podAnnotations:
       configmap.reloader.stakater.com/reload: "grafana"
     env:
