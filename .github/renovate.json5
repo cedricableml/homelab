@@ -181,8 +181,8 @@
       "matchDatasources": ["docker"],
       "versioning": "loose",
       "matchPackageNames": [
-        "ghcr.io/k8s-at-home/plex",
-        "ghcr.io/k8s-at-home/qbittorrent"
+        "ghcr.io/onedr0p/plex",
+        "ghcr.io/onedr0p/qbittorrent"
       ]
     },
     // enable auto-merge
@@ -193,8 +193,8 @@
       "requiredStatusChecks": null,
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
-        "ghcr.io/k8s-at-home/prowlarr",
-        "ghcr.io/k8s-at-home/readarr",
+        "ghcr.io/onedr0p/prowlarr",
+        "ghcr.io/onedr0p/readarr",
         "ghcr.io/taxel/plextraktsync",
         "raspbernetes/cloudflared"
       ]
