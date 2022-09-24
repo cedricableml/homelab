@@ -19,8 +19,6 @@ spec:
   values:
     deploymentStrategy:
       type: Recreate
-    image:
-      repository: ghcr.io/k8s-at-home/grafana
     replicas: 1
     rbac:
       pspEnabled: false
