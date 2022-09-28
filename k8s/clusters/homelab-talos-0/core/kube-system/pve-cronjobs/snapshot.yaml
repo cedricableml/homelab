@@ -4,6 +4,8 @@ kind: CronJob
 metadata:
   namespace: kube-system
   name: pve-snapshot
+  labels:
+    job: pve-snapshot
 spec:
   schedule: "0 13 * * *"
   concurrencyPolicy: "Forbid"
