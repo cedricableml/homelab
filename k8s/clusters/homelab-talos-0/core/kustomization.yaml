@@ -7,4 +7,3 @@ resources:
   - rook-ceph
   - qemu-guest-agent
   - multus
-#  - metallb

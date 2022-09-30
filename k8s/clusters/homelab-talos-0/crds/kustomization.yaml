@@ -10,4 +10,3 @@ resources:
   - external-snapshotter
   - node-feature-discovery
   - kyverno
-  - metallb
