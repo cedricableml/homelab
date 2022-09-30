@@ -64,6 +64,12 @@ spec:
       enabled: true
       serviceMonitor:
         enabled: true
+      dashboards:
+        enabled: true
+        label: grafana_dashboard
+        namespace: monitoring
+        labelValue: "1"
+        annotations: { }
       metrics:
         enabled:
           - dns:query;ignoreAAAA
