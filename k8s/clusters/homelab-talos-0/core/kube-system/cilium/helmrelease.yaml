@@ -100,10 +100,6 @@ spec:
                 - *host
 
     bgp:
-      enabled: false
-
-    externalIPs:
-      enabled: false
-
-    ipv6:
-      enabled: false
+      enabled: true
+      announce:
+        loadbalancerIP: true
