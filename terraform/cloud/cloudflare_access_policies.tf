@@ -26,7 +26,7 @@ resource "cloudflare_access_policy" "gsuite_casa" {
   dynamic "include" {
     for_each = each.value.gsuite == true ? [1] : []
     content {
-      group = ["admins@${var.email_domain}"]
+      group = ["7f34af6d-a6d2-4f8e-bbde-044d8e0bedaa"] # admins group
     }
   }
 }
