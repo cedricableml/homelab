@@ -91,11 +91,6 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "nodered"
-      type      = "self_hosted"
-      gsuite    = true
-    },
-    {
       subdomain = "mosquitto"
       type      = "self_hosted"
       gsuite    = true
@@ -116,7 +111,7 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "hass-config"
+      subdomain = "firezone-wg"
       type      = "self_hosted"
       gsuite    = true
     },
