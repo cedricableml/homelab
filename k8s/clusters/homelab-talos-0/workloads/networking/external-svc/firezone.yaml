@@ -3,6 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: firezone-ext
+  namespace: networking
 spec:
   type: ExternalName
   externalName: "firezone-wg.${SECRET_INTERNAL_DOMAIN}"
@@ -11,6 +12,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: firezone
+  namespace: networking
   annotations:
     external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
     external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
