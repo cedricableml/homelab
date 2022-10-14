@@ -8,34 +8,53 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://k8s-at-home.com/charts/
-      chart: calibre
-      version: 5.4.2
+      chart: app-template
+      version: 0.2.2
+      interval: 15m
       sourceRef:
         kind: HelmRepository
-        name: k8s-at-home-charts
+        name: bjw-s
         namespace: flux-system
-      interval: 5m
   values:
     image:
       repository: ghcr.io/linuxserver/calibre
-      tag: 6.7.0
+      tag: version-v6.7.0
 
-    podSecurityContext:
-      supplementalGroups:
-        - 568
+#    podSecurityContext:
+#      runAsUser: 568
+#      runAsGroup: 568
+#      fsGroup: 568
+#      fsGroupChangePolicy: "OnRootMismatch"
+#      supplementalGroups:
+#        - 65539
+
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+      webserver:
+        enabled: true
+        ports:
+          webserver:
+            enabled: true
+            port: 8081
+            protocol: TCP
+            targetPort: 8081
+        type: ClusterIP
 
     env:
       TZ: ${TZ}
-      PGID: 65539
+      PUID: "568"
+      PGID: "65539"
 
-    probes:
-      liveness:
-        enabled: false
-      readiness:
-        enabled: false
-      startup:
-        enabled: false
+#    probes:
+#      liveness:
+#        enabled: false
+#      readiness:
+#        enabled: false
+#      startup:
+#        enabled: false
 
     persistence:
       config:
@@ -45,10 +64,6 @@ spec:
         enabled: true
         existingClaim: media-nfs
         mountPath: /media
-
-    service:
-      webserver:
-        enabled: true
 
     ingress:
       main:
