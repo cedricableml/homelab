@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: ghcr.io/linuxserver/calibre
-      tag: 6.6.1
+      tag: 6.7.0
 
     podSecurityContext:
       supplementalGroups:
