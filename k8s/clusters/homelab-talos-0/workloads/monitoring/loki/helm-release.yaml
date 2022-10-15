@@ -67,9 +67,6 @@ spec:
           alertmanager_url: http://prometheus-alertmanager:9093
           storage:
             type: local
-            local:
-              directory: /rules
-          rule_path: /tmp/scratch
           ring:
             kvstore:
               store: memberlist
@@ -141,21 +138,6 @@ spec:
                   matchLabels:
                     {{- include "loki.readSelectorLabels" . | nindent 12 }}
                 topologyKey: kubernetes.io/hostname
-      extraVolumeMounts:
-        - name: loki-rules
-          mountPath: /rules/fake
-        - name: loki-rules-tmp
-          mountPath: /tmp/scratch
-        - name: loki-tmp
-          mountPath: /tmp/loki-tmp
-      extraVolumes:
-        - name: loki-rules
-          configMap:
-            name: loki-alerting-rules
-        - name: loki-rules-tmp
-          emptyDir: {}
-        - name: loki-tmp
-          emptyDir: {}
       persistence:
         size: 10Gi
         storageClass: rook-ceph-block
