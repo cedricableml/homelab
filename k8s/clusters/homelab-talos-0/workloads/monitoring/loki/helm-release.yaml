@@ -61,15 +61,6 @@ spec:
           ring:
             kvstore:
               store: memberlist
-        ruler:
-          enable_api: true
-          enable_alertmanager_v2: true
-          alertmanager_url: http://prometheus-alertmanager:9093
-          storage:
-            type: local
-          ring:
-            kvstore:
-              store: memberlist
         distributor:
           ring:
             kvstore:
