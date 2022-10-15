@@ -52,12 +52,20 @@ spec:
           storage:
             s3:
               s3: null
-              insecure: true
+              insecure: false
               s3forcepathstyle: true
-              bucketnames: loki
-              endpoint: "${S3_INTERNAL_ENDPOINT}"
-              access_key_id: "${S3_ACCESS_KEY}"
-              secret_access_key: "${S3_SECRET_KEY}"
+          ring:
+            kvstore:
+              store: memberlist
+        ruler:
+          enable_api: true
+          enable_alertmanager_v2: true
+          alertmanager_url: http://prometheus-alertmanager:9093
+          storage:
+            type: local
+            local:
+              directory: /rules
+          rule_path: /tmp/scratch
           ring:
             kvstore:
               store: memberlist
@@ -129,6 +137,20 @@ spec:
                   matchLabels:
                     {{- include "loki.readSelectorLabels" . | nindent 12 }}
                 topologyKey: kubernetes.io/hostname
+      extraVolumeMounts:
+        - name: loki-rules
+          mountPath: /rules/fake
+        - name: loki-rules-tmp
+          mountPath: /tmp/scratch
+        - name: loki-tmp
+          mountPath: /tmp/loki-tmp
+      extraVolumes:
+        - name: loki-rules
+          emptyDir: {}
+        - name: loki-rules-tmp
+          emptyDir: {}
+        - name: loki-tmp
+          emptyDir: {}
       persistence:
         size: 10Gi
         storageClass: rook-ceph-block
@@ -137,3 +159,21 @@ spec:
         enabled: false
         grafanaAgent:
           installOperator: false
+
+  valuesFrom:
+    - kind: Secret
+      name: loki-secrets
+      valuesKey: S3_BUCKET_NAME
+      targetPath: loki.structuredConfig.common.storage.s3.bucketnames
+    - kind: Secret
+      name: loki-secrets
+      valuesKey: S3_BUCKET_HOST
+      targetPath: loki.structuredConfig.common.storage.s3.endpoint
+    - kind: Secret
+      name: loki-secrets
+      valuesKey: S3_ACCESS_KEY
+      targetPath: loki.structuredConfig.common.storage.s3.access_key_id
+    - kind: Secret
+      name: loki-secrets
+      valuesKey: S3_SECRET_KEY
+      targetPath: loki.structuredConfig.common.storage.s3.secret_access_key
