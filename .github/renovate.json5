@@ -8,9 +8,10 @@
     ":separatePatchReleases",
     "docker:enableMajor",
     ":enablePreCommit",
-    "github>0dragosh/homelab//.github/renovate/autoMerge",
-    "github>0dragosh/homelab//.github/renovate/labels",
-    "github>0dragosh/homelab//.github/renovate/semanticCommits"
+    "github>0dragosh/homelab//.github/renovate/autoMerge.json5",
+    "github>0dragosh/homelab//.github/renovate/labels.json5",
+    "github>0dragosh/homelab//.github/renovate/semanticCommits.json5",
+    "github>0dragosh/homelab//.github/renovate/disabledDatasources.json5"
   ],
   "enabled": true,
   "timezone": "Europe/Bucharest",
