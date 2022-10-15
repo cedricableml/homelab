@@ -6,7 +6,7 @@ resources:
   - kube-prometheus-stack
   - promtail
   - blackbox-exporter
-#  - loki
+  - loki
   - snmp-exporter
   - intel-gpu-exporter
   - namespace.yaml
