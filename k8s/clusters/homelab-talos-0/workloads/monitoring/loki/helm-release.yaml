@@ -128,7 +128,7 @@ spec:
                 topologyKey: kubernetes.io/hostname
       persistence:
         size: 10Gi
-        storageClass: ceph-block
+        storageClass: rook-ceph-block
 
     read:
       replicas: 3
