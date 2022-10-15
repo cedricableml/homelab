@@ -158,7 +158,7 @@ spec:
           emptyDir: {}
       persistence:
         size: 10Gi
-        storageClass: ceph-block
+        storageClass: rook-ceph-block
     monitoring:
       selfMonitoring:
         enabled: false
