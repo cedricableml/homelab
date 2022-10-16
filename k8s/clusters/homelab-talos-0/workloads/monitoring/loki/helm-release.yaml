@@ -9,95 +9,57 @@ spec:
   chart:
     spec:
       chart: loki
-      version: 3.2.1
+      version: 2.16.0
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
       interval: 5m
   values:
-    loki:
-      structuredConfig:
-        auth_enabled: false
-
-      server:
-        http_listen_port: 3100
-
-      ingester:
-        lifecycler:
-          address: 127.0.0.1
-          ring:
-            kvstore:
-              store: inmemory
-            replication_factor: 1
-          final_sleep: 0s
-        chunk_idle_period: 5m
-        chunk_retain_period: 30s
-
-      schema_config:
-        configs:
-          - from: 2020-05-15
-            store: boltdb
-            object_store: filesystem
-            schema: v11
-            index:
-              prefix: index_
-              period: 168h
-
-      storage_config:
-        boltdb:
-          directory: /tmp/loki/index
-
-        filesystem:
-          directory: /tmp/loki/chunks
-
-      limits_config:
-        enforce_metric_name: false
-        reject_old_samples: true
-        reject_old_samples_max_age: 168h
-    gateway:
+    image:
+      repository: ghcr.io/k8s-at-home/loki
+    ingress:
+      enabled: false
+    serviceMonitor:
       enabled: true
-      replicas: 3
-      ingress:
-        enabled: true
-        ingressClassName: "traefik"
-        hosts:
-          - host: &host "loki.${SECRET_DOMAIN_INTERNAL}"
-            paths:
-              - path: /
-                pathType: Prefix
-        tls:
-          - hosts:
-              - *host
-    write:
-      replicas: 3
-      persistence:
-        size: 10Gi
-        accessMode: ReadWriteOnce
-        storageClass: rook-ceph-block
-    read:
-      replicas: 3
-      extraVolumeMounts:
-        - name: loki-rules
-          mountPath: /rules/fake
-        - name: loki-rules-tmp
-          mountPath: /tmp/scratch
-        - name: loki-tmp
-          mountPath: /tmp/loki-tmp
-      extraVolumes:
-        - name: loki-rules
-          configMap:
-            name: loki-alerting-rules
-        - name: loki-rules-tmp
-          emptyDir: { }
-        - name: loki-tmp
-          emptyDir: { }
-      persistence:
-        size: 10Gi
-        accessMode: ReadWriteOnce
-        storageClass: rook-ceph-block
-    monitoring:
-      selfMonitoring:
-        enabled: false
-        grafanaAgent:
-          installOperator: false
+    config:
+      ruler:
+        storage:
+          type: local
+          local:
+            directory: /rules
+        rule_path: /tmp/scratch
+        alertmanager_url: http://prometheus-alertmanager:9093
+        ring:
+          kvstore:
+            store: inmemory
+        enable_api: true
+    alerting_groups:
+      #
+      # SMART Failures
+      #
+      - name: smart-failure
+        rules:
+          - alert: SmartFailures
+            expr: |
+              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "SMART has reported failures a drive on {{$hostname}}"
+      #
+      # *arr applications
+      #
+      - name: arr
+        rules:
+          - alert: ArrDatabaseIsLocked
+            expr: |
+              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
+            for: 10s
+            labels:
+              severity: critical
+              category: logs
+            annotations:
+              summary: "{{$app}} is experiencing locked database issues"
