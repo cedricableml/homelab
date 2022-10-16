@@ -60,7 +60,7 @@ spec:
         replicas: 3
         ingress:
           enabled: true
-          ingressClassName: "nginx"
+          ingressClassName: "traefik"
           hosts:
             - host: &host "loki.${SECRET_DOMAIN_INTERNAL}"
               paths:
