@@ -6,12 +6,13 @@
         "github-tags"
       ],
       "automerge": true,
-      "automergeType": "branch",
+      "automergeType": "pr",
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
         "minor",
         "patch"
       ],
+      "stabilityDays": 3,
       "matchPackageNames": [
         "ghcr.io/onedr0p/prowlarr-nightly",
         "ghcr.io/onedr0p/prowlarr",
@@ -26,7 +27,6 @@
         "prowlarr",
         "calibre",
         "calibre-web",
-        "calibre-web",
         "kubernetes-sigs/external-dns",
         "zigbee2mqtt",
         "unifi-poller",
@@ -38,6 +38,7 @@
         "node-red",
         "mosquitto",
         "kah-common-chart",
+        "app-template",
         "jellyfin",
         "intel-gpu-plugin"
       ]
