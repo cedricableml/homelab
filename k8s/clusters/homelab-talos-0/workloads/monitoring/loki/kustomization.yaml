@@ -4,4 +4,4 @@ kind: Kustomization
 resources:
  - helm-release.yaml
  - prometheus-rule.yaml
- - configmap-alerting-rules.yaml
+ - pvc.yaml
