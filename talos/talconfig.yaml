@@ -1,6 +1,6 @@
 clusterName: homelab-talos-0
-talosVersion: v1.2.4
-kubernetesVersion: v1.25.2
+talosVersion: v1.2.6
+kubernetesVersion: v1.25.3
 endpoint: https://10.250.2.254:6443
 allowSchedulingOnMasters: false
 clusterPodNets:
