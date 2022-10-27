@@ -2,64 +2,142 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: loki
+  name: &app loki
   namespace: monitoring
 spec:
-  interval: 5m
+  interval: 15m
   chart:
     spec:
       chart: loki
-      version: 2.16.0
+      version: 3.3.0
       sourceRef:
         kind: HelmRepository
         name: grafana-charts
         namespace: flux-system
-      interval: 5m
+  test:
+    enable: false
+  install:
+    remediation:
+      retries: 5
+  upgrade:
+    remediation:
+      retries: 5
+      remediateLastFailure: true
+    cleanupOnFail: true
+  rollback:
+    timeout: 10m
+    recreate: true
+    cleanupOnFail: true
   values:
-    image:
-      repository: ghcr.io/k8s-at-home/loki
-    ingress:
-      enabled: false
-    serviceMonitor:
+    loki:
+      structuredConfig:
+        auth_enabled: false
+        server:
+          log_level: info
+          http_listen_port: 3100
+          grpc_listen_port: 9095
+        memberlist:
+          join_members: ["loki-memberlist"]
+        limits_config:
+          retention_period: 14d
+          enforce_metric_name: false
+          reject_old_samples: true
+          reject_old_samples_max_age: 168h
+          max_cache_freshness_per_query: 10m
+          split_queries_by_interval: 15m
+          ingestion_rate_mb: 8
+          ingestion_burst_size_mb: 16
+        schema_config:
+          configs:
+            - from: "2021-08-01"
+              store: boltdb-shipper
+              object_store: s3
+              schema: v11
+              index:
+                prefix: loki_index_
+                period: 24h
+        common:
+          path_prefix: /var/loki
+          replication_factor: 1
+          storage:
+            s3:
+              s3: null
+              insecure: true
+              s3forcepathstyle: true
+          ring:
+            kvstore:
+              store: memberlist
+        ruler:
+          enable_api: true
+          enable_alertmanager_v2: true
+          alertmanager_url: http://prometheus-alertmanager:9093
+          storage:
+            type: local
+            local:
+              directory: /rules
+          rule_path: /tmp/scratch
+          ring:
+            kvstore:
+              store: memberlist
+        distributor:
+          ring:
+            kvstore:
+              store: memberlist
+        compactor:
+          working_directory: /var/loki/boltdb-shipper-compactor
+          shared_store: s3
+          compaction_interval: 10m
+          retention_enabled: true
+          retention_delete_delay: 2h
+          retention_delete_worker_count: 150
+        ingester:
+          max_chunk_age: 1h
+          lifecycler:
+            ring:
+              kvstore:
+                store: memberlist
+        analytics:
+          reporting_enabled: false
+    gateway:
       enabled: true
-    config:
-      ruler:
-        storage:
-          type: local
-          local:
-            directory: /rules
-        rule_path: /tmp/scratch
-        alertmanager_url: http://prometheus-alertmanager:9093
-        ring:
-          kvstore:
-            store: inmemory
-        enable_api: true
-    alerting_groups:
-      #
-      # SMART Failures
-      #
-      - name: smart-failure
-        rules:
-          - alert: SmartFailures
-            expr: |
-              sum by (hostname) (count_over_time({hostname=~".+"} |~ "(?i).*smartd.*(error|fail).*"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "SMART has reported failures a drive on {{$hostname}}"
-      #
-      # *arr applications
-      #
-      - name: arr
-        rules:
-          - alert: ArrDatabaseIsLocked
-            expr: |
-              sum by (app) (count_over_time({app=~".*arr"} |~ "(?i)database is locked"[2m])) > 0
-            for: 10s
-            labels:
-              severity: critical
-              category: logs
-            annotations:
-              summary: "{{$app}} is experiencing locked database issues"
+      ingress:
+        enabled: true
+        ingressClassName: "traefik"
+        hosts:
+          - host: &host "loki.${SECRET_DOMAIN_INTERNAL}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *host
+    write:
+      persistence:
+        size: 10Gi
+        storageClass: ceph-block
+    read:
+      extraVolumeMounts:
+        - name: loki-rules
+          mountPath: /rules/fake
+        - name: loki-rules-tmp
+          mountPath: /tmp/scratch
+        - name: loki-tmp
+          mountPath: /tmp/loki-tmp
+      extraVolumes:
+        - name: loki-rules
+          configMap:
+            name: loki-alerting-rules
+        - name: loki-rules-tmp
+          emptyDir: {}
+        - name: loki-tmp
+          emptyDir: {}
+      persistence:
+        size: 10Gi
+        storageClass: ceph-block
+    monitoring:
+      selfMonitoring:
+        enabled: false
+        lokiCanary:
+          enabled: false
+        grafanaAgent:
+          installOperator: false
