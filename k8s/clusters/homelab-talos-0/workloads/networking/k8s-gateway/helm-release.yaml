@@ -5,33 +5,97 @@ metadata:
   name: k8s-gateway
   namespace: networking
 spec:
-  interval: 10m
+  interval: 30m
   chart:
     spec:
-      chart: k8s-gateway
-      version: 1.1.15
+      chart: app-template
+      version: 0.2.2
+      interval: 30m
       sourceRef:
         kind: HelmRepository
-        name: k8s-gateway-charts
+        name: bjw-s
         namespace: flux-system
-  install:
-    remediation:
-      retries: 5
-  upgrade:
-    remediation:
-      retries: 5
+
   values:
-    nameOverride: k8s-gateway
-    domain: "${SECRET_DOMAIN_INTERNAL}"
-    ttl: 1
+    image:
+      repository: quay.io/oriedge/k8s_gateway
+      tag: v0.3.2
+      pullPolicy: IfNotPresent
+
+    podAnnotations:
+      configmap.reloader.stakater.com/reload: "k8s-gateway-config"
+
+    args: ["-conf", "/etc/coredns/Corefile"]
+
+    configmap:
+      config:
+        enabled: true
+        data:
+          Corefile: |
+            .:1053 {
+              errors
+              log
+              health {
+                lameduck 5s
+              }
+              ready
+              k8s_gateway ${SECRET_DOMAIN_INTERNAL} {
+                apex k8s-gateway.networking
+                resources Ingress Service
+                ttl 300
+              }
+              prometheus 0.0.0.0:9153
+              loop
+              reload
+              loadbalance
+            }
+    serviceAccount:
+      create: true
+      name: k8s-gateway
+
     service:
-      type: LoadBalancer
-      port: 53
-      loadBalancerIP: "${SVC_K8S_GATEWAY_ADDR}"
-      externalTrafficPolicy: Local
-    resources:
-      requests:
-        memory: 100Mi
-        cpu: 25m
-      limits:
-        memory: 250Mi
+      main:
+        type: LoadBalancer
+        externalTrafficPolicy: Local
+        loadBalancerIP: "${SVC_K8S_GATEWAY_ADDR}"
+        ports:
+          http:
+            enabled: false
+          dns:
+            enabled: true
+            port: 53
+            targetPort: 1053
+            protocol: UDP
+
+    persistence:
+      config:
+        enabled: true
+        type: configMap
+        name: k8s-gateway-config
+        mountPath: /etc/coredns
+        readOnly: true
+
+    probes:
+      readiness:
+        custom: true
+        spec:
+          httpGet:
+            path: /ready
+            port: 8181
+            scheme: HTTP
+      liveness:
+        custom: true
+        spec:
+          httpGet:
+            path: /health
+            port: 8080
+            scheme: HTTP
+      startup:
+        custom: true
+        spec:
+          httpGet:
+            path: /ready
+            port: 8181
+            scheme: HTTP
+
+    resources: {}
