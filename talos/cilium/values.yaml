@@ -29,7 +29,7 @@ ipam:
 
 # Cilium leverages MetalLB's simplified BGP announcement system for service type: LoadBalancer
 bgp:
-  enabled: false
+  enabled: true
   announce:
     loadbalancerIP: true
 

@@ -334,6 +334,7 @@ data:
   agent-not-ready-taint-key: node.cilium.io/agent-not-ready
   arping-refresh-period: 30s
   auto-direct-node-routes: "false"
+  bgp-announce-lb-ip: "true"
   bpf-lb-external-clusterip: "false"
   bpf-lb-map-max: "65536"
   bpf-lb-sock: "false"
@@ -494,6 +495,9 @@ spec:
         - mountPath: /tmp/cilium/config-map
           name: cilium-config-path
           readOnly: true
+        - mountPath: /var/lib/cilium/bgp
+          name: bgp-config-path
+          readOnly: true
       hostNetwork: true
       nodeSelector:
         kubernetes.io/os: linux
@@ -507,6 +511,9 @@ spec:
       - configMap:
           name: cilium-config
         name: cilium-config-path
+      - configMap:
+          name: bgp-config
+        name: bgp-config-path
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -527,7 +534,7 @@ spec:
   template:
     metadata:
       annotations:
-        cilium.io/cilium-configmap-checksum: 437c56800566bd8e268ca3e5b9791a4c306078c4526b4c8283b5cfc51eec3d42
+        cilium.io/cilium-configmap-checksum: 4c761bdccd61339fa91a14bb16ce5ccbaa79ffa4679ff23e3f408c62778e99af
         meta.helm.sh/release-name: cilium
         meta.helm.sh/release-namespace: kube-system
       labels:
@@ -652,6 +659,9 @@ spec:
           readOnly: true
         - mountPath: /run/xtables.lock
           name: xtables-lock
+        - mountPath: /var/lib/cilium/bgp
+          name: bgp-config-path
+          readOnly: true
       hostNetwork: true
       initContainers:
       - command:
@@ -784,6 +794,9 @@ spec:
       - configMap:
           name: cilium-config
         name: cilium-config-path
+      - configMap:
+          name: bgp-config
+        name: bgp-config-path
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 2
