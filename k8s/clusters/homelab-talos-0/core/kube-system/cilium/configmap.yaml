@@ -13,5 +13,6 @@ data:
     address-pools:
       - name: default
         protocol: bgp
+        avoid-buggy-ips: true
         addresses:
           - ${CILIUM_BGP_LB_RANGE}
