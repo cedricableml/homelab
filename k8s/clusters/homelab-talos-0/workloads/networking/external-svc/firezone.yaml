@@ -5,6 +5,9 @@ metadata:
   name: firezone-ext
   namespace: networking
 spec:
+  ports:
+    - name: https
+      port: 443
   type: ExternalName
   externalName: "firezone-wg.${SECRET_DOMAIN_INTERNAL}"
 ---
