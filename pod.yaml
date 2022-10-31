@@ -19,11 +19,12 @@ metadata:
   name: debug
   namespace: media
 spec:
-#  nodeSelector:
-#    kubernetes.io/hostname: homelab-talos-0-worker-0
+  nodeSelector:
+    kubernetes.io/hostname: homelab-talos-0-worker-0
+
   containers:
     - name: myapp
-      image: "ubuntu"
+      image: ghcr.io/onedr0p/plex:1.29.1.6316-f4cdfea9c@sha256:b9a570cb67d22f73d1fbdc1f3e781b901718f829176ccffa183646e8bf7e3c8b
       securityContext:
         privileged: true
       args:
@@ -46,3 +47,8 @@ spec:
 #      persistentVolumeClaim:
 #        claimName: home-assistant-config-v1
   restartPolicy: Always
+  tolerations:
+  - key: "nuc"
+    operator: "Equal"
+    value: "true"
+    effect: "NoSchedule"
