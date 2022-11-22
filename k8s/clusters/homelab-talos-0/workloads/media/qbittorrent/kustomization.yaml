@@ -14,3 +14,4 @@ resources:
   - helm-release.yaml
   - backup-job.yaml
   - tag-tracker-errors
+  - net-attach.yaml

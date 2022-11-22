@@ -29,6 +29,7 @@ spec:
 
     podAnnotations:
       setGateway: "true"
+      k8s.v1.cni.cncf.io/networks: plex-wifi-static
 
     env:
       TZ: "${TZ}"
