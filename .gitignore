@@ -1,6 +1,7 @@
 # Editors
 .vscode/
 .idea/
+.highflux
 # Trash
 .DS_Store
 Thumbs.db

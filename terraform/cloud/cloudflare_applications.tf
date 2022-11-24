@@ -80,11 +80,6 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
-#    {
-#      subdomain = "plex"
-#      type      = "self_hosted"
-#      gsuite    = true
-#    },
     {
       subdomain = "zigbee2mqtt"
       type      = "self_hosted"
@@ -157,6 +152,15 @@ resource "cloudflare_access_application" "kobo" {
   zone_id                   = var.zone_id_casa
   name                      = "kobo"
   domain                    = "calibre-web.${var.domain_casa}/kobo"
+  type                      = "self_hosted"
+  session_duration          = "336h"
+  auto_redirect_to_identity = false
+}
+
+resource "cloudflare_access_application" "plex" {
+  zone_id                   = var.zone_id_casa
+  name                      = "plex"
+  domain                    = "plex.${var.domain_casa}"
   type                      = "self_hosted"
   session_duration          = "336h"
   auto_redirect_to_identity = false

@@ -95,3 +95,16 @@ resource "cloudflare_access_policy" "public_kobo" {
     everyone = true
   }
 }
+
+resource "cloudflare_access_policy" "public_plex" {
+  zone_id        = var.zone_id_casa
+  application_id = cloudflare_access_application.plex.id
+
+  name       = "make plex public"
+  precedence = "11"
+  decision   = "bypass"
+
+  include {
+    everyone = true
+  }
+}
