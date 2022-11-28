@@ -25,18 +25,13 @@ spec:
   values:
     image:
       repository: ghcr.io/onedr0p/plex
-      tag: 1.29.2.6364-6d72b0cf6@sha256:20597062bbcfca07c95dce3b8d71c965b607136f1e59d9c99f4debb428d9d4bd
+      tag: 1.29.2.6364-6d72b0cf6@sha256:3457eeeba1c1c698470aa20d23db37c38969581ff86b111c2f31625886dbc948
 
     tolerations:
       - key: "nuc"
         operator: "Equal"
         value: "true"
         effect: "NoSchedule"
-
-    dnsConfig:
-      options:
-        - name: ndots
-          value: "1"
 
     env:
       TZ: "${TZ}"
@@ -49,7 +44,7 @@ spec:
       supplementalGroups:
         - 44
         - 109
-        - 65539
+        - 100
 
     service:
       main:
