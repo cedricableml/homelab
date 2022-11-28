@@ -21,6 +21,7 @@ spec:
         for: 10m
         labels:
           severity: critical
+          ceph: true
   # Rules manually copied from https://raw.githubusercontent.com/ceph/ceph/master/monitoring/prometheus/alerts/ceph_default_alerts.yml
   - name: cluster health
     rules:
@@ -28,6 +29,7 @@ spec:
         expr: ceph_health_status == 2
         for: 5m
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.2.1
@@ -40,6 +42,7 @@ spec:
         expr: ceph_health_status == 1
         for: 15m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.2.2
@@ -53,6 +56,7 @@ spec:
       - alert: low monitor quorum count
         expr: sum(ceph_mon_quorum_status) < 3
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.3.1
@@ -72,6 +76,7 @@ spec:
       - alert: 10% OSDs down
         expr: count(ceph_osd_up == 0) / count(ceph_osd_up) * 100 >= 10
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.4.1
@@ -88,6 +93,7 @@ spec:
         expr: count(ceph_osd_up == 0) > 0
         for: 15m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.4.2
@@ -111,6 +117,7 @@ spec:
           ) * 100 > 90
         for: 5m
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.4.3
@@ -126,6 +133,7 @@ spec:
             * on(ceph_daemon) group_left(hostname) ceph_osd_metadata
           ) * 60 > 1
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.4.4
@@ -145,6 +153,7 @@ spec:
           ) * on(ceph_daemon) group_left(hostname) ceph_osd_metadata > 0.30
         for: 5m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.4.5
@@ -158,6 +167,7 @@ spec:
         expr: ceph_pool_metadata * on(pool_id,instance) group_left() (ceph_pg_total - ceph_pg_active) > 0
         for: 5m
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.7.1
@@ -170,6 +180,7 @@ spec:
         expr: ceph_pool_metadata * on(pool_id,instance) group_left() (ceph_pg_total - ceph_pg_clean) > 0
         for: 15m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.7.2
@@ -184,6 +195,7 @@ spec:
         expr: node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} * 100 < 5
         for: 5m
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.8.1
@@ -206,6 +218,7 @@ spec:
           ) >= 100
         for: 5m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.8.2
@@ -227,6 +240,7 @@ spec:
             increase(node_network_transmit_errs_total{device!="lo"}[1m])
           ) >= 10
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.8.3
@@ -241,6 +255,7 @@ spec:
           on(instance) group_left(nodename) node_uname_info < 0
         for: 30m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.8.4
@@ -257,6 +272,7 @@ spec:
           ceph_pool_stored / (ceph_pool_stored + ceph_pool_max_avail)
           * on(pool_id) group_right ceph_pool_metadata * 100 > 90
         labels:
+          ceph: true
           severity: critical
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.9.1
@@ -271,6 +287,7 @@ spec:
           ) * on(pool_id) group_left(name) ceph_pool_metadata
         for: 30m
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
           oid: 1.3.6.1.4.1.50495.15.1.2.9.2
@@ -285,6 +302,7 @@ spec:
         expr: ceph_healthcheck_slow_ops > 0
         for: 30s
         labels:
+          ceph: true
           severity: warning
           type: ceph_default
         annotations:
