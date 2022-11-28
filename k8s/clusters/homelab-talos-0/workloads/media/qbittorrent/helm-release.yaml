@@ -48,8 +48,6 @@ spec:
         externalIPs:
           - "${SVC_QBITTORRENT_ADDR}"
         ports:
-          http:
-            port: *port
           bittorrent:
             enabled: true
             port: 50413
