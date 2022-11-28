@@ -19,30 +19,30 @@ metadata:
   name: debug
   namespace: media
 spec:
-  nodeSelector:
-    kubernetes.io/hostname: homelab-talos-0-worker-0
+#  nodeSelector:
+#    kubernetes.io/hostname: homelab-talos-0-worker-0
 
   containers:
     - name: myapp
-      image: ghcr.io/onedr0p/plex:1.29.1.6316-f4cdfea9c@sha256:b9a570cb67d22f73d1fbdc1f3e781b901718f829176ccffa183646e8bf7e3c8b
+      image: ubuntu:latest
       securityContext:
         privileged: true
       args:
         - "sleep"
         - "99999999999"
       volumeMounts:
-#       - name: backup
-#         mountPath: /mnt
-        - name: test
-          mountPath: /test
+       - name: backup
+         mountPath: /backup
+       - name: test
+         mountPath: /test
   volumes:
-#    - name: backup
-#      nfs:
-#        server: 10.250.0.200
-#        path: /mnt/tank/backups/softwarrself/home-assistant
-     - name: test
-       persistentVolumeClaim:
-         claimName: plex-library-config-v1
+    - name: backup
+      nfs:
+        server: 10.250.0.200
+        path: /mnt/tank/backups/softwarrself/plex-new
+    - name: test
+      persistentVolumeClaim:
+        claimName: plex-library-config-v1
 #    - name: mount
 #      persistentVolumeClaim:
 #        claimName: home-assistant-config-v1
