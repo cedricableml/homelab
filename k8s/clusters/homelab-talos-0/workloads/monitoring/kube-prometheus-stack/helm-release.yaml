@@ -85,8 +85,8 @@ spec:
                 severity: critical
               continue: true
             - receiver: "discord-ceph"
-              match:
-                ceph: true
+              match_re:
+                ceph: ceph
               continue: true
         inhibit_rules:
           - source_match:
