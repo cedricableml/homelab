@@ -195,7 +195,13 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchPackageNames": [
         "ghcr.io/onedr0p/prowlarr",
+        "ghcr.io/onedr0p/sonarr-develop",
+        "ghcr.io/onedr0p/radarr-develop",
+        "ghcr.io/bjw-s/calibre-web",
+        "ghcr.io/bjw-s/tautulli",
         "ghcr.io/onedr0p/readarr",
+        "ghcr.io/onedr0p/readarr-nightly",
+        "ghcr.io/onedr0p/prowlarr",
         "ghcr.io/taxel/plextraktsync",
         "raspbernetes/cloudflared"
       ]
