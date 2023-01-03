@@ -89,7 +89,7 @@ spec:
         mountPath: /media
       downloads:
         enabled: true
-        existingClaim: sabnzbd-downloads-v4
+        existingClaim: sabnzbd-downloads-v5
         mountPath: /downloads
 
     resources:
