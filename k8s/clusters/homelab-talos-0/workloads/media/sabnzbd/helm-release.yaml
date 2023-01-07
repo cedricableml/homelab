@@ -88,7 +88,7 @@ spec:
         existingClaim: media-nfs
         mountPath: /media
       downloads:
-        enabled: false
+        enabled: true
         existingClaim: sabnzbd-downloads-v5
         mountPath: /downloads
 
