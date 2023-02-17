@@ -1,0 +1,12 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - config-pvc.yaml
+  - helm-release.yaml
+  - home-assistant-secret.yaml
+  - backup-job.yaml
+  - net-attach.yaml
+commonLabels:
+  app.kubernetes.io/name: home-assistant
+  app.kubernetes.io/instance: home-assistant

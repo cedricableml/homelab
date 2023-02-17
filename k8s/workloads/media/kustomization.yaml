@@ -1,0 +1,23 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - namespace.yaml
+  - _pvc
+  - jellyfin
+  - plex
+  - plex-meta-manager
+  - plexautolanguages
+  # - dizquetv
+  - prowlarr
+  - sonarr
+  - radarr
+  - readarr
+  - readarr-audiobooks
+  - bazarr
+  - qbittorrent
+  - sabnzbd
+  - tautulli
+  - arr-misc
+  - calibre
+  - calibre-web

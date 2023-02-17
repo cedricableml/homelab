@@ -1,0 +1,79 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: intel-gpu-plugin
+  namespace: kube-system
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 15m
+  values:
+    image:
+      repository: intel/intel-gpu-plugin
+      tag: 0.26.0
+
+    controller:
+      type: daemonset
+      strategy: RollingUpdate
+
+    args:
+      - -shared-dev-num
+      - "2"
+
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: feature.node.kubernetes.io/custom-intel-gpu
+                  operator: In
+                  values:
+                    - "true"
+    service:
+      main:
+        enabled: false
+
+    ingress:
+      main:
+        enabled: false
+    persistence:
+      devfs:
+        enabled: true
+        type: hostPath
+        hostPath: /dev/dri
+        hostPathType: Directory
+        readOnly: true
+      sysfs:
+        enabled: true
+        type: hostPath
+        hostPath: /sys/class/drm
+        hostPathType: Directory
+        readOnly: true
+      kubeletsockets:
+        enabled: true
+        type: hostPath
+        hostPathType: Directory
+        hostPath: /var/lib/kubelet/device-plugins
+
+    probes:
+      liveness:
+        enabled: false
+      readiness:
+        enabled: false
+      startup:
+        enabled: false
+
+    resources:
+      requests:
+        cpu: 15m
+        memory: 64M
+      limits:
+        memory: 64M

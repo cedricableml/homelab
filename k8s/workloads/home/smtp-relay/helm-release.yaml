@@ -1,0 +1,53 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app smtp-relay
+  namespace: home
+spec:
+  chart:
+    spec:
+      chart: app-template
+      version: 1.3.1
+      interval: 15m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  interval: 15m
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
+  values:
+    env:
+      SMTP_SERVER: smtp.sendgrid.net
+      OVERWRITE_FROM: "${SECRET_SENDGRID_USER_SMTP_RELAY}"
+      SMTP_USERNAME: apikey
+      SMTP_PASSWORD: "${SECRET_SENDGRID_APIKEY_SMTP_RELAY}"
+      SERVER_HOSTNAME: "${SECRET_DOMAIN}"
+
+    image:
+      repository: docker.io/juanluisbaptiste/postfix
+      tag: 1.7.1
+
+    service:
+      main:
+        type: LoadBalancer
+        loadBalancerIP: ${SVC_SMTP_RELAY_ADDR}
+        externalIPs:
+          - "${SVC_SMTP_RELAY_ADDR}"
+        externalTrafficPolicy: Local
+        ports:
+          http:
+            port: &port 25
+
+    resources:
+      requests:
+        cpu: 50m
+        memory: 100Mi
+      limits:
+        memory: 256Mi

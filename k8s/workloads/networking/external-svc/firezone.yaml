@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: firezone-ext
+  namespace: networking
+spec:
+  ports:
+    - name: https
+      port: 443
+  type: ExternalName
+  externalName: "firezone-wg.${SECRET_DOMAIN_INTERNAL}"
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: firezone
+  namespace: networking
+  annotations:
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+    external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
+    traefik.ingress.kubernetes.io/router.entrypoints: "websecure"
+    traefik.ingress.kubernetes.io/service.serversscheme: https
+spec:
+  ingressClassName: "traefik"
+  rules:
+    - host: &host "firezone-wg.${SECRET_DOMAIN_CASA}"
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: firezone-ext
+                port:
+                  number: 443
+  tls:
+    - hosts:
+        - *host
