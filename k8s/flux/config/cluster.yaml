@@ -42,5 +42,5 @@ spec:
         name: global-vars
         optional: false
       - kind: Secret
-        name: glogal-secrets
+        name: global-secrets
         optional: false
