@@ -15,7 +15,6 @@ spec:
       retries: 300
   chart:
     spec:
-      # renovate: registryUrl=https://prometheus-community.github.io/helm-charts
       chart: kube-prometheus-stack
       version: 45.1.1
       sourceRef:
@@ -225,13 +224,15 @@ spec:
 #      thanosServiceMonitor:
 #        enabled: true
       prometheusSpec:
-        replicas: 1
+        replicas: 3
         replicaExternalLabelName: "replica"
         ruleSelectorNilUsesHelmValues: false
+        podAntiAffinity: hard
         serviceMonitorSelectorNilUsesHelmValues: false
         podMonitorSelectorNilUsesHelmValues: false
         probeSelectorNilUsesHelmValues: false
-        retention: 6h
+        retention: 2d
+        retentionSize: 20GB
         enableAdminAPI: true
         walCompression: true
         storageSpec:
