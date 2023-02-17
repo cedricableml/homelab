@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - cloudflared
-  - external-dns
+  - ./external-dns/ks.yaml
   - traefik
   - k8s-gateway
   - wildcard-certificate
