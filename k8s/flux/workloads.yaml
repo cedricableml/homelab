@@ -9,7 +9,7 @@ spec:
     - name: core
   interval: 2m0s
   path: ./k8s/workloads
-  prune: false
+  prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -38,9 +38,9 @@ spec:
           postBuild:
             substituteFrom:
               - kind: ConfigMap
-                name: cluster-settings
+                name: global-vars
               - kind: Secret
-                name: cluster-secrets
+                name: global-secrets
       target:
         group: kustomize.toolkit.fluxcd.io
         version: v1beta2

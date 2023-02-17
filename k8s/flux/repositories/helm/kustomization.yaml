@@ -34,3 +34,7 @@ resources:
   - k8s-gateway-charts.yaml
   - bjw-s.yaml
   - robusta.yaml
+  - intel.yaml
+  - external-secrets.yaml
+  - weave-gitops.yaml
+  - tf-controller.yaml

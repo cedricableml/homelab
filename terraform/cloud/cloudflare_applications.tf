@@ -101,7 +101,7 @@ locals {
       gsuite    = true
     },
     {
-      subdomain = "gaps"
+      subdomain = "gitops"
       type      = "self_hosted"
       gsuite    = true
     },

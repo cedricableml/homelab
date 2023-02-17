@@ -10,13 +10,16 @@ spec:
     - "ping"
     - "push"
   secretRef:
-    name: github-webhook-token
+    name: github-webhook-token-secret
   resources:
     - kind: GitRepository
       name: flux-system
     - kind: Kustomization
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
-      name: global
+      name: flux
+    - kind: Kustomization
+      apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
+      name: cluster
     - kind: Kustomization
       apiVersion: kustomize.toolkit.fluxcd.io/v1beta1
       name: workloads
