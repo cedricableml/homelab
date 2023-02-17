@@ -8,8 +8,6 @@ spec:
   interval: 10m0s
   path: ./k8s/crds
   prune: false
-  dependsOn:
-    - name: global
   sourceRef:
     kind: GitRepository
     name: flux-system
