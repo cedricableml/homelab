@@ -106,6 +106,11 @@ locals {
       gsuite    = true
     },
     {
+      subdomain = "1password"
+      type      = "self_hosted"
+      gsuite    = true
+    },
+    {
       subdomain = "firezone-wg"
       type      = "self_hosted"
       gsuite    = true
