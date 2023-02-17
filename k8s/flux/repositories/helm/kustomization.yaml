@@ -38,3 +38,4 @@ resources:
   - external-secrets.yaml
   - weave-gitops.yaml
   - tf-controller.yaml
+  - piraeus.yaml
