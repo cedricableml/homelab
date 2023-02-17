@@ -95,7 +95,6 @@ spec:
           hosts:
             - &host "hubble.${SECRET_DOMAIN_CASA}"
           tls:
-#            - secretName: chart-example-tls
             - hosts:
                 - *host
 

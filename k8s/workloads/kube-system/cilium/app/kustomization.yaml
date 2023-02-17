@@ -5,3 +5,7 @@ resources:
   - helmrelease.yaml
   - configmap.yaml
   - monitoring.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: cilium
+      app.kubernetes.io/instance: cilium
