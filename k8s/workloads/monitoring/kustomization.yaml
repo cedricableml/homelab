@@ -2,11 +2,10 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
+  - namespace.yaml
+  - blackbox-exporter
   - grafana
   - kube-prometheus-stack
-  - promtail
-  - blackbox-exporter
 #  - loki
+  - promtail
   - snmp-exporter
-  - intel-gpu-exporter
-  - namespace.yaml
