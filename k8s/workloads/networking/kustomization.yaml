@@ -5,6 +5,7 @@ resources:
   - namespace.yaml
   - cloudflared
   - ./external-dns/ks.yaml
+  - ./multus/ks.yaml
   - traefik
   - k8s-gateway
   - wildcard-certificate

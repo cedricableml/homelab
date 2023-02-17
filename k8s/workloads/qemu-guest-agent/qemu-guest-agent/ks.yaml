@@ -6,7 +6,7 @@ metadata:
   name: cluster-workloads-qemu-guest-agent
   namespace: flux-system
 spec:
-  path: ./k8s/workloads/networking/qemu-guest-agent/app
+  path: ./k8s/workloads/qemu-guest-agent/qemu-guest-agent/app
   prune: true
   sourceRef:
     kind: GitRepository
