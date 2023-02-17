@@ -11,7 +11,7 @@ spec:
     kind: ClusterIssuer
   secretTemplate:
     annotations:
-      replicator.v1.mittwald.de/replicate-to: 'media,home,kube-system,monitoring'
+      replicator.v1.mittwald.de/replicate-to: 'media,home,kube-system,monitoring,flux-system'
   commonName: "${SECRET_DOMAIN_CASA}"
   dnsNames:
     - "${SECRET_DOMAIN}"
