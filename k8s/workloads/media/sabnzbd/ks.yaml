@@ -3,13 +3,13 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: cluster-workloads-home-assistant
+  name: cluster-workloads-sabnzbd
   namespace: flux-system
 spec:
   dependsOn:
 #    - name: cluster-workloads-rook-ceph-cluster
     - name: cluster-workloads-volsync
-  path: ./k8s/workloads/home/home-assistant/app
+  path: ./k8s/workloads/media/sabnzbd/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -17,8 +17,8 @@ spec:
   healthChecks:
     - apiVersion: helm.toolkit.fluxcd.io/v2beta1
       kind: HelmRelease
-      name: home-assistant
-      namespace: home
+      name: sabnzbd
+      namespace: media
   interval: 30m
   retryInterval: 1m
   timeout: 3m

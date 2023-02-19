@@ -6,17 +6,17 @@ resources:
   - _pvc
   - arr-misc
   - ./bazarr/ks.yaml
-  - calibre
-  - calibre-web
-  - plex
+  - ./calibre/ks.yaml
+  - ./calibre-web/ks.yaml
+  - ./jellyfin/ks.yaml
+  - ./plex/ks.yaml
   - plex-meta-manager
   - plexautolanguages
-  - jellyfin
   - prowlarr
-  - qbittorrent
+  - ./qbittorrent/ks.yaml
   - radarr
   - readarr
   - readarr-audiobooks
-  - sabnzbd
+  - ./sabnzbd/ks.yaml
   - sonarr
   - tautulli

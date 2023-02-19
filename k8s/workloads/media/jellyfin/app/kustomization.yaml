@@ -4,8 +4,9 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  - backup-job.yaml
+  - volsync.yaml
   - net-attach.yaml
-commonLabels:
-  app.kubernetes.io/name: jellyfin
-  app.kubernetes.io/instance: jellyfin
+labels:
+  - pairs:
+      app.kubernetes.io/name: jellyfin
+      app.kubernetes.io/instance: jellyfin

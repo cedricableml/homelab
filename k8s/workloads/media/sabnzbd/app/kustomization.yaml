@@ -5,6 +5,8 @@ resources:
   - config-pvc.yaml
   - helm-release.yaml
   - secret.yaml
-commonLabels:
-  app.kubernetes.io/name: sabnzbd
-  app.kubernetes.io/instance: sabnzbd
+  - volsync.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: sabnzbd
+      app.kubernetes.io/instance: sabnzbd

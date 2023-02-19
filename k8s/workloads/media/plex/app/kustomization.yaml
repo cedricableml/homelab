@@ -7,8 +7,9 @@ resources:
   - trakt-sync-cron.yaml
   - trakt-sync-pytrakt-secret.yaml
   - trakt-sync-env-secret.yaml
-  - backup-job.yaml
   - net-attach.yaml
-commonLabels:
-  app.kubernetes.io/name: plex
-  app.kubernetes.io/instance: plex
+  - volsync.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: plex
+      app.kubernetes.io/instance: plex
