@@ -48,7 +48,7 @@ spec:
         - name: apc-ups-0
           module:
             - apcups
-          target: "ups.${SECRET_DOMAIN_INTERNAL}"
+          target: "10.240.239.5"
       path: /snmp
       scrapeTimeout: 10s
       relabelings:
