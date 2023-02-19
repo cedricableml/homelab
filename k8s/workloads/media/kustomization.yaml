@@ -18,5 +18,5 @@ resources:
   - readarr
   - readarr-audiobooks
   - ./sabnzbd/ks.yaml
-  - sonarr
+  - ./sonarr/ks.yaml
   - tautulli
