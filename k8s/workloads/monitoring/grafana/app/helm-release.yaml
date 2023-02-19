@@ -117,7 +117,7 @@ spec:
         # Ref: https://grafana.com/grafana/dashboards/2842
         ceph-cluster:
           gnetId: 2842
-          revision: 14
+          revision: 16
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/5336
         ceph-osd:
