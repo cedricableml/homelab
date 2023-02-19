@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: sonarr
+  name: radarr
   namespace: media
 spec:
   install:
@@ -24,21 +24,16 @@ spec:
   interval: 15m
   values:
     image:
-      repository: ghcr.io/onedr0p/sonarr-develop
-      tag: 4.0.0.373@sha256:7b9d997c25c562f2bf6a535a1dc8325570f33e1ecebc519e30cc5306b96d9467
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.4.1.6926@sha256:f5ffec33b203f9052caf1cf484b1d30f9dc0bc3268c8a439b45e67c3c4dbe5b2
 
     env:
       TZ: "${TZ}"
-      PUSHOVER_APP_URL: &host "sonarr.${SECRET_DOMAIN_CASA}"
-      PUSHOVER_PRIORITY: "-1"
-      SONARR__INSTANCE_NAME: Sonarr
-      SONARR__PORT: &port 8989
-      SONARR__APPLICATION_URL: "https://sonarr.${SECRET_DOMAIN_CASA}"
-      SONARR__LOG_LEVEL: info
-
-    envFrom:
-      - secretRef:
-          name: sonarr-secret
+      RADARR__INSTANCE_NAME: Radarr
+      RADARR__PORT: &port 7878
+      RADARR__APPLICATION_URL: "https://radarr.${SECRET_DOMAIN_CASA}"
+      RADARR__LOG_LEVEL: info
+      RADARR__API_KEYL: "${SECRET_RADARR_API_KEY}"
 
     service:
       main:
@@ -55,7 +50,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: *host
+          - host: &host "radarr.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
@@ -74,7 +69,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: sonarr-config-v1
+        existingClaim: radarr-config-v1
       media:
         enabled: true
         existingClaim: media-nfs
@@ -85,7 +80,7 @@ spec:
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/backups/softwarrself/sonarr
+            path: /mnt/tank/backups/softwarrself/radarr
         mountPath: /config/Backups
         readOnly: false
 
