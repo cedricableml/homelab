@@ -26,10 +26,10 @@ spec:
               memory: 100Mi
             limits:
               memory: 1Gi
-#          env:
-#            - name: TZ
-#              value: "${TZ}"
-#            - name: PLEX_URL
-#              value: http://plex.media:32400
-#            - name: PLEX_TOKEN
-#              value: "${SECRET_PLEX_TOKEN}"
+          env:
+            - name: TZ
+              value: "${TZ}"
+            - name: PLEX_URL
+              value: http://plex.media:32400
+            - name: PLEX_TOKEN
+              value: "${SECRET_PLEX_TOKEN}"
