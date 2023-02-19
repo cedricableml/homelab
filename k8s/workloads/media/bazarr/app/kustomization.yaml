@@ -11,6 +11,8 @@ generatorOptions:
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-commonLabels:
-  app.kubernetes.io/name: bazarr
-  app.kubernetes.io/instance: bazarr
+  - volsync.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: bazarr
+      app.kubernetes.io/instance: bazarr

@@ -42,3 +42,4 @@ resources:
   - piraeus.yaml
   - external-dns.yaml
   - cloudnative-pg.yaml
+  - backube.yaml
