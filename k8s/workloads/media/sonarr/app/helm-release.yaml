@@ -36,9 +36,9 @@ spec:
       SONARR__APPLICATION_URL: "https://sonarr.${SECRET_DOMAIN_CASA}"
       SONARR__LOG_LEVEL: info
 
-    envFrom:
-      - secretRef:
-          name: sonarr-secret
+#    envFrom:
+#      - secretRef:
+#          name: sonarr-secret
 
     service:
       main:
