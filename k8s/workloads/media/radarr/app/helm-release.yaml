@@ -2,9 +2,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prowlarr
+  name: radarr
   namespace: media
 spec:
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
   chart:
     spec:
       chart: app-template
@@ -15,30 +22,21 @@ spec:
         name: bjw-s
         namespace: flux-system
   interval: 15m
-  install:
-    disableWait: true
-    remediation:
-      retries: 10
-  upgrade:
-    remediation:
-      retries: 10
   values:
     image:
-      repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.2.1.2588@sha256:33aec869d6a66171829ba412283a214f8d2fd7a857e425d6db6b1231119bc771
-
-    hostname: prowlarr
+      repository: ghcr.io/onedr0p/radarr-develop
+      tag: 4.4.1.6926@sha256:f5ffec33b203f9052caf1cf484b1d30f9dc0bc3268c8a439b45e67c3c4dbe5b2
 
     env:
       TZ: "${TZ}"
-      PROWLARR__INSTANCE_NAME: Prowlarr
-      PROWLARR__PORT: &port 9696
-      PROWLARR__LOG_LEVEL: info
-      PROWLARR__ANALYTICS_ENABLED: "False"
+      RADARR__INSTANCE_NAME: Radarr
+      RADARR__PORT: &port 7878
+      RADARR__APPLICATION_URL: "https://radarr.${SECRET_DOMAIN_CASA}"
+      RADARR__LOG_LEVEL: info
 
     envFrom:
       - secretRef:
-          name: prowlarr
+          name: radarr-secret
 
     service:
       main:
@@ -55,7 +53,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: &host "prowlarr.${SECRET_DOMAIN_CASA}"
+          - host: &host "radarr.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
@@ -63,26 +61,29 @@ spec:
           - hosts:
               - *host
 
-    podAnnotations:
-      setGateway: "true"
-
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
 
     persistence:
       config:
         enabled: true
-        existingClaim: prowlarr-config-v1
+        existingClaim: radarr-config-v1
+      media:
+        enabled: true
+        existingClaim: media-nfs
+        mountPath: /media
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/backups/softwarrself/prowlarr
+            path: /mnt/tank/backups/softwarrself/radarr
         mountPath: /config/Backups
         readOnly: false
 
@@ -91,4 +92,20 @@ spec:
         memory: 250Mi
         cpu: 50m
       limits:
-        memory: 16Gi
+        memory: 2Gi
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v1.1.0
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: true

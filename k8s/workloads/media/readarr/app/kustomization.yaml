@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-commonLabels:
-  app.kubernetes.io/name: tautulli
-  app.kubernetes.io/instance: tautulli
+labels:
+  - pairs:
+      app.kubernetes.io/name: readarr
+      app.kubernetes.io/instance: readarr
