@@ -105,7 +105,7 @@ spec:
         enabled: true
         ingressClassName: "traefik"
         hosts:
-          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_INTERNAL}"
+          - host: &host "loki.${SECRET_DOMAIN_INTERNAL}"
             paths:
               - path: /
                 pathType: Prefix
