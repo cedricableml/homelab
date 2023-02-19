@@ -4,4 +4,8 @@ kind: Kustomization
 resources:
  - helm-release.yaml
  - prometheus-rule.yaml
- - pvc.yaml
+ - externalsecret.yaml
+labels:
+ - pairs:
+    app.kubernetes.io/name: loki
+    app.kubernetes.io/instance: loki

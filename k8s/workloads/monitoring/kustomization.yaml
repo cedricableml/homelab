@@ -7,5 +7,5 @@ resources:
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
   - ./promtail/ks.yaml
-#  - loki
+  - ./loki/ks.yaml
   - snmp-exporter
