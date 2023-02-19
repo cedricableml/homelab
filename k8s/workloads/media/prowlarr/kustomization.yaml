@@ -4,8 +4,7 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-  - externalsecret.yaml
-labels:
-  - pairs:
-      app.kubernetes.io/name: sonarr
-      app.kubernetes.io/instance: sonarr
+  - secret.yaml
+commonLabels:
+  app.kubernetes.io/name: prowlarr
+  app.kubernetes.io/instance: prowlarr
