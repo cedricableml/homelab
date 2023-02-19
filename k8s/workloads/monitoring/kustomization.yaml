@@ -8,4 +8,4 @@ resources:
   - ./kube-prometheus-stack/ks.yaml
   - ./promtail/ks.yaml
   - ./loki/ks.yaml
-  - snmp-exporter
+  - ./snmp-exporter/ks.yaml

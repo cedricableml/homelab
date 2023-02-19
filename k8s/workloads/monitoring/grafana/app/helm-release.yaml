@@ -129,39 +129,10 @@ spec:
           gnetId: 5342
           revision: 5
           datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/14062
-        smart:
-          gnetId: 14062
-          revision: 2
-          datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/1860
         nodeexporter:
           gnetId: 1860
           revision: 23
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/14127
-        metallb:
-          gnetId: 14127
-          revision: 1
-          datasource: Prometheus
-        unifi-client-insights:
-          gnetId: 11315
-          revision: 8
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11311
-        unifi-network-sites:
-          gnetId: 11311
-          revision: 4
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/11312
-        unifi-usw-insights:
-          gnetId: 11312
-          revision: 8
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/13665
-        speedtest:
-          gnetId: 13665
-          revision: 1
           datasource: Prometheus
         blackbox:
           url: https://raw.githubusercontent.com/jr0dd/grafana-dashboards/main/blackbox.json
@@ -201,15 +172,6 @@ spec:
           datasource: Prometheus
         sonarr:
           url: https://raw.githubusercontent.com/k8s-at-home/grafana-dashboards/main/sonarr.json
-          datasource: Prometheus
-        cilium-agent:
-          gnetId: 15513
-          revision: 1
-          datasource: Prometheus
-        # Ref: https://grafana.com/grafana/dashboards/15514
-        cilium-operator:
-          gnetId: 15514
-          revision: 1
           datasource: Prometheus
         # Ref: https://grafana.com/grafana/dashboards/15515
         cilium-hubble:
