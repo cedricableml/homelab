@@ -8,7 +8,6 @@ spec:
   interval: 5m
   chart:
     spec:
-      # renovate: registryUrl=https://grafana.github.io/helm-charts
       chart: grafana
       version: 6.50.7
       sourceRef:
@@ -16,10 +15,19 @@ spec:
         name: grafana-charts
         namespace: flux-system
       interval: 5m
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
   values:
-    deploymentStrategy:
-      type: Recreate
-    replicas: 1
+    replicas: 2
     rbac:
       pspEnabled: false
     podAnnotations:
@@ -86,6 +94,8 @@ spec:
         deleteDatasources:
           - name: Loki
             orgId: 1
+          - name: Alertmanager
+            orgId: 1
         datasources:
           - name: Prometheus
             type: prometheus
@@ -95,7 +105,13 @@ spec:
           - name: Loki
             type: loki
             access: proxy
-            url: http://loki-gateway:3100
+            url: http://loki-gateway:80
+          - name: Alertmanager
+            type: alertmanager
+            access: proxy
+            url: http://kube-prometheus-stack-alertmanager:9093
+            jsonData:
+              implementation: prometheus
     dashboards:
       default:
         # Ref: https://grafana.com/grafana/dashboards/2842
@@ -159,6 +175,27 @@ spec:
         flux-control-plane:
           url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/grafana/dashboards/control-plane.json
           datasource: Prometheus
+        flux-logs:
+          url: https://raw.githubusercontent.com/fluxcd/flux2/main/manifests/monitoring/monitoring-config/dashboards/logs.json
+          datasource: Prometheus
+        kubernetes-api-server:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-api-server.json
+          datasource: Prometheus
+        kubernetes-coredns:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-system-coredns.json
+          datasource: Prometheus
+        kubernetes-global:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-global.json
+          datasource: Prometheus
+        kubernetes-namespaces:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-namespaces.json
+          datasource: Prometheus
+        kubernetes-nodes:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-nodes.json
+          datasource: Prometheus
+        kubernetes-pods:
+          url: https://raw.githubusercontent.com/dotdc/grafana-dashboards-kubernetes/master/dashboards/k8s-views-pods.json
+          datasource: Prometheus
         radarr:
           url: https://raw.githubusercontent.com/k8s-at-home/grafana-dashboards/main/radarr.json
           datasource: Prometheus
@@ -209,6 +246,19 @@ spec:
     serviceAccount:
       create: true
       autoMount: true
+
+    affinity:
+      podAntiAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/name
+                    operator: In
+                    values: ["grafana"]
+              topologyKey: kubernetes.io/hostname
+
     persistence:
       enabled: false
       storageClassName: rook-ceph-block
