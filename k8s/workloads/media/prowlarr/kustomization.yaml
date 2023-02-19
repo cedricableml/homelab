@@ -4,7 +4,7 @@ kind: Kustomization
 resources:
   - config-pvc.yaml
   - helm-release.yaml
-labels:
-  - pairs:
-      app.kubernetes.io/name: readarr-audiobooks
-      app.kubernetes.io/instance: readarr-audiobooks
+  - secret.yaml
+commonLabels:
+  app.kubernetes.io/name: prowlarr
+  app.kubernetes.io/instance: prowlarr

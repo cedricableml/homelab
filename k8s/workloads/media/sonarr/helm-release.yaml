@@ -2,9 +2,16 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: prowlarr
+  name: sonarr
   namespace: media
 spec:
+  install:
+    disableWait: true
+    remediation:
+      retries: 100
+  upgrade:
+    remediation:
+      retries: 100
   chart:
     spec:
       chart: app-template
@@ -15,30 +22,20 @@ spec:
         name: bjw-s
         namespace: flux-system
   interval: 15m
-  install:
-    disableWait: true
-    remediation:
-      retries: 10
-  upgrade:
-    remediation:
-      retries: 10
   values:
     image:
-      repository: ghcr.io/onedr0p/prowlarr-nightly
-      tag: 1.2.1.2588@sha256:33aec869d6a66171829ba412283a214f8d2fd7a857e425d6db6b1231119bc771
-
-    hostname: prowlarr
+      repository: ghcr.io/onedr0p/sonarr-develop
+      tag: 4.0.0.373@sha256:7b9d997c25c562f2bf6a535a1dc8325570f33e1ecebc519e30cc5306b96d9467
 
     env:
       TZ: "${TZ}"
-      PROWLARR__INSTANCE_NAME: Prowlarr
-      PROWLARR__PORT: &port 9696
-      PROWLARR__LOG_LEVEL: info
-      PROWLARR__ANALYTICS_ENABLED: "False"
-
-    envFrom:
-      - secretRef:
-          name: prowlarr-secret
+      PUSHOVER_APP_URL: &host "sonarr.${SECRET_DOMAIN_CASA}"
+      PUSHOVER_PRIORITY: "-1"
+      SONARR__INSTANCE_NAME: Sonarr
+      SONARR__PORT: &port 8989
+      SONARR__APPLICATION_URL: "https://sonarr.${SECRET_DOMAIN_CASA}"
+      SONARR__LOG_LEVEL: info
+      SONARR__API_KEY: "${SECRET_SONARR_API_KEY}"
 
     service:
       main:
@@ -55,7 +52,7 @@ spec:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: &host "prowlarr.${SECRET_DOMAIN_CASA}"
+          - host: *host
             paths:
               - path: /
                 pathType: Prefix
@@ -63,26 +60,29 @@ spec:
           - hosts:
               - *host
 
-    podAnnotations:
-      setGateway: "true"
-
     podSecurityContext:
       runAsUser: 568
       runAsGroup: 568
       fsGroup: 568
       fsGroupChangePolicy: "OnRootMismatch"
+      supplementalGroups:
+        - 65539
 
     persistence:
       config:
         enabled: true
-        existingClaim: prowlarr-config-v1
+        existingClaim: sonarr-config-v1
+      media:
+        enabled: true
+        existingClaim: media-nfs
+        mountPath: /media
       backup:
         enabled: true
         type: custom
         volumeSpec:
           nfs:
             server: "${TRUENAS_VM_ADDRESS}"
-            path: /mnt/tank/backups/softwarrself/prowlarr
+            path: /mnt/tank/backups/softwarrself/sonarr
         mountPath: /config/Backups
         readOnly: false
 
@@ -91,4 +91,20 @@ spec:
         memory: 250Mi
         cpu: 50m
       limits:
-        memory: 16Gi
+        memory: 2Gi
+
+    metrics:
+      enabled: true
+      serviceMonitor:
+        interval: 3m
+        scrapeTimeout: 1m
+      prometheusRule:
+        enabled: true
+      exporter:
+        image:
+          repository: ghcr.io/onedr0p/exportarr
+          tag: v1.1.0
+        env:
+          port: 9794
+          additionalMetrics: true
+          unknownQueueItems: true
