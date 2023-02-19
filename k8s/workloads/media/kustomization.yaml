@@ -4,19 +4,19 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - _pvc
-  - arr-misc
+  - ./arr-misc/ks.yaml
   - ./bazarr/ks.yaml
   - ./calibre/ks.yaml
   - ./calibre-web/ks.yaml
   - ./jellyfin/ks.yaml
   - ./plex/ks.yaml
-  - plex-meta-manager
-  - plexautolanguages
-  - prowlarr
+  - ./plex-meta-manager/ks.yaml
+  - ./plexautolanguages
+  - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-  - radarr
-  - readarr
-  - readarr-audiobooks
+  - ./radarr/ks.yaml
+  - ./readarr/ks.yaml
+  - ./readarr-audiobooks
   - ./sabnzbd/ks.yaml
-  - sonarr
-  - tautulli
+  - ./sonarr/ks.yaml
+  - ./tautulli/ks.yaml
