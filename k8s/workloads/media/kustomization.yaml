@@ -5,7 +5,7 @@ resources:
   - namespace.yaml
   - _pvc
   - arr-misc
-  - bazarr
+  - ./bazarr/ks.yaml
   - calibre
   - calibre-web
   - plex
