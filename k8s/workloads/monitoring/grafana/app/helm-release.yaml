@@ -194,6 +194,15 @@ spec:
       - grafana-clock-panel
     serviceMonitor:
       enabled: true
+
+    imageRenderer:
+      enabled: true
+      replicas: 2
+      networkPolicy:
+        limitIngress: false
+      serviceMonitor:
+        enabled: true
+
     ingress:
       enabled: true
       ingressClassName: "traefik"
