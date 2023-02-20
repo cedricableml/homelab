@@ -27,7 +27,7 @@ metadata:
   name: ceph-block-ec
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
-  clusterID: rook-ceph
+  clusterID: ceph-pve-external
 
   dataPool: pvcs_ec
   pool: pvcs_ec_metadata
