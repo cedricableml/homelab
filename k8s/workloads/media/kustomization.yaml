@@ -19,4 +19,4 @@ resources:
   - readarr-audiobooks
   - ./sabnzbd/ks.yaml
   - sonarr
-  - tautulli
+  - ./tautulli/ks.yaml
