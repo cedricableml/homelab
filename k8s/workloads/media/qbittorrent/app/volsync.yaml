@@ -13,6 +13,9 @@ spec:
     name: qbittorrent-restic-secret
     creationPolicy: Owner
     template:
+      metadata:
+        annotations:
+          replicator.v1.mittwald.de/replicate-to: 'volsync'
       engineVersion: v2
       data:
         RESTIC_REPOSITORY: '{{ .REPOSITORY_TEMPLATE }}/qbittorrent'
