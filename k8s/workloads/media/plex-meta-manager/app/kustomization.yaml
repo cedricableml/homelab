@@ -13,3 +13,7 @@ generatorOptions:
   disableNameSuffixHash: true
 #  annotations:
 #    kustomize.toolkit.fluxcd.io/substitute: disabled
+labels:
+  - pairs:
+      app.kubernetes.io/name: plex-meta-manager
+      app.kubernetes.io/instance: plex-meta-manager

@@ -10,9 +10,9 @@ resources:
   - ./calibre-web/ks.yaml
   - ./jellyfin/ks.yaml
   - ./plex/ks.yaml
-  - plex-meta-manager
-  - plexautolanguages
-  - prowlarr
+  - ./plex-meta-manager/ks.yaml
+  - ./plexautolanguages/ks.yaml
+  - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - radarr
   - readarr
