@@ -10,5 +10,6 @@ resources:
   - media
   - monitoring
   - networking
+  - rook-ceph
   - qemu-guest-agent
   - volsync
