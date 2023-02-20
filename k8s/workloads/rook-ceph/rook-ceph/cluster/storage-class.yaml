@@ -29,8 +29,8 @@ provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
   clusterID: rook-ceph
 
-  dataPool: pvcs_ec
-  pool: pvcs_ec_metadata
+  dataPool: pvcs_ec-data
+  pool: pvcs_ec-metadata
 
   imageFormat: "2"
   imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
