@@ -15,7 +15,6 @@ spec:
       retries: 100
   chart:
     spec:
-      # renovate: registryUrl=https://charts.rook.io/release
       chart: rook-ceph
       version: v1.10.11
       sourceRef:
@@ -37,7 +36,8 @@ spec:
       name: csi-rbdplugin-snapclass
     resources:
       requests:
-        cpu: 100m
+        cpu: 1
         memory: 128Mi
       limits:
+        cpu: 4
         memory: 256Mi
