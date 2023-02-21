@@ -232,7 +232,7 @@ spec:
 
     persistence:
       enabled: false
-      storageClassName: rook-ceph-block
+      storageClassName: ceph-block-ec
       size: 10Gi
       accessModes:
         - ReadWriteOnce
