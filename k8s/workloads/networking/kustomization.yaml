@@ -3,11 +3,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
-  - cloudflared
+  - ./cloudflared/ks.yaml
   - ./external-dns/ks.yaml
   - ./multus/ks.yaml
-  - traefik
-  - k8s-gateway
+  - ./traefik/ks.yaml
+  - ./k8s-gateway/ks.yaml
   - wildcard-certificate
   - opnsense
   - external-svc

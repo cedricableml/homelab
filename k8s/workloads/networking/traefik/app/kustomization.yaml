@@ -4,7 +4,8 @@ kind: Kustomization
 resources:
  - helm-release.yaml
  - service-monitor.yaml
- - tls-store
- - dashboard
- - middlewares
  - prometheus-rules.yaml
+labels:
+ - pairs:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik

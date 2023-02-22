@@ -4,3 +4,7 @@ kind: Kustomization
 resources:
   - helm-release.yaml
   - secret-creds.yaml
+labels:
+  - pairs:
+      app.kubernetes.io/name: cloudflared
+      app.kubernetes.io/instance: cloudflared
