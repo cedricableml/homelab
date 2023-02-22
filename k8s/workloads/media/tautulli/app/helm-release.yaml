@@ -59,7 +59,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: tautulli-config-v1
+        existingClaim: tautulli-config-0
       backup:
         enabled: true
         type: custom

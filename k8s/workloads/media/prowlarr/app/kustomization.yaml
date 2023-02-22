@@ -5,6 +5,7 @@ resources:
   - config-pvc.yaml
   - helm-release.yaml
   - externalsecret.yaml
+  - volsync.yaml
 labels:
   - pairs:
       app.kubernetes.io/name: prowlarr
