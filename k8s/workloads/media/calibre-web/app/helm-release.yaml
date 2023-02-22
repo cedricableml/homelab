@@ -36,7 +36,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: calibre-web-config
+        existingClaim: calibre-web-config-0
       media:
         enabled: true
         existingClaim: media-nfs

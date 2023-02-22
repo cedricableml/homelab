@@ -91,7 +91,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: qbittorrent-config-v1
+        existingClaim: qbittorrent-config-0
 
       cache:
         enabled: true
