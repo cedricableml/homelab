@@ -59,7 +59,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: calibre-config-0
+        existingClaim: calibre-config
       media:
         enabled: true
         existingClaim: media-nfs
