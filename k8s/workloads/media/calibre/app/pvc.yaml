@@ -27,4 +27,4 @@ spec:
     requests:
       storage: 1Gi
 
-  storageClassName: ceph-block-0
+  storageClassName: ceph-block-ec
