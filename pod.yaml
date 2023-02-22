@@ -31,18 +31,18 @@ spec:
         - "sleep"
         - "99999999999"
       volumeMounts:
-       - name: backup
-         mountPath: /backup
+#       - name: backup
+#         mountPath: /backup
        - name: test
          mountPath: /test
   volumes:
-    - name: backup
-      nfs:
-        server: 10.250.0.200
-        path: /mnt/tank/backups/softwarrself/plex-new
+#    - name: backup
+#      nfs:
+#        server: 10.250.0.200
+#        path: /mnt/tank/backups/softwarrself/plex-new
     - name: test
       persistentVolumeClaim:
-        claimName: plex-library-config-v1
+        claimName: plex-trakt-sync-config
 #    - name: mount
 #      persistentVolumeClaim:
 #        claimName: home-assistant-config-v1
