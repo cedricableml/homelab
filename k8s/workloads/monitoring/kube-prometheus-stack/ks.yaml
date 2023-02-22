@@ -8,7 +8,7 @@ metadata:
 spec:
   dependsOn:
     - name: cluster-workloads-external-secrets-stores
-#    - name: cluster-workloads-rook-ceph-cluster
+    - name: cluster-workloads-rook-ceph-cluster
 #    - name: cluster-workloads-thanos
   path: ./k8s/workloads/monitoring/kube-prometheus-stack/app
   prune: true

@@ -7,7 +7,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-#    - name: cluster-workloads-rook-ceph-cluster
+    - name: cluster-workloads-rook-ceph-cluster
     - name: cluster-workloads-volsync
   path: ./k8s/workloads/home/home-assistant/app
   prune: true

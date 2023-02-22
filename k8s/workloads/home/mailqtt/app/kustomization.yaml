@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: home
 resources:
   - helm-release.yaml
-commonLabels:
-  app.kubernetes.io/name: mailqtt
-  app.kubernetes.io/instance: mailqtt
+labels:
+  - pairs:
+      app.kubernetes.io/name: mailqtt
+      app.kubernetes.io/instance: mailqtt
