@@ -6,7 +6,7 @@
 #   name: test
 #   namespace: default
 # spec:
-#   # storageClassName: rook-ceph-block
+#   # storageClassName: ceph-block-ec
 #   accessModes:
 #     - ReadWriteOnce
 #   resources:

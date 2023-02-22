@@ -11,3 +11,16 @@ spec:
     requests:
       storage: 60Gi
   storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: jellyfin-config-0
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 60Gi
+  storageClassName: ceph-block-ec
