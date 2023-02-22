@@ -64,7 +64,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: readarr-audiobooks-config-v1
+        existingClaim: readarr-audiobooks-config-0
       media:
         enabled: true
         existingClaim: media-nfs

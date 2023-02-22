@@ -75,7 +75,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: prowlarr-config-v1
+        existingClaim: prowlarr-config-0
       backup:
         enabled: true
         type: custom
