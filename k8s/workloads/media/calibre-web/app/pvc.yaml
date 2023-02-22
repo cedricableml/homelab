@@ -13,3 +13,18 @@ spec:
       storage: 512Mi
 
   storageClassName: rook-ceph-block
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: calibre-web-config-0
+  namespace: media
+spec:
+  accessModes:
+    - ReadWriteOnce
+
+  resources:
+    requests:
+      storage: 512Mi
+
+  storageClassName: ceph-block-ec

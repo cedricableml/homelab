@@ -45,7 +45,7 @@ spec:
           volumes:
             - name: config
               persistentVolumeClaim:
-                claimName: plex-meta-manager-config-v1
+                claimName: plex-meta-manager-config-0
             - configMap:
                 name: plex-meta-manager-cm
               name: pmm-config
