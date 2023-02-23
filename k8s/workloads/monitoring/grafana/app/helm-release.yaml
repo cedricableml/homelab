@@ -97,15 +97,15 @@ spec:
           - name: Alertmanager
             orgId: 1
         datasources:
+          - name: Prometheus
+            isDefault: true
+            type: prometheus
+            access: proxy
+            url: http://prometheus-operated:9090/
           - name: Thanos
             type: prometheus
             access: proxy
             url: http://thanos-query:9090
-            isDefault: true
-          - name: Prometheus
-            type: prometheus
-            access: proxy
-            url: http://prometheus-operated:9090/
           - name: Loki
             type: loki
             access: proxy
