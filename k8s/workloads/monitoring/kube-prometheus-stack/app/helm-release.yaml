@@ -230,13 +230,27 @@ spec:
         tls:
           - hosts:
               - "prometheus.${SECRET_DOMAIN_CASA}"
-#      thanosService:
-#        enabled: true
-#      thanosServiceMonitor:
-#        enabled: true
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
       prometheusSpec:
+        resources:
+          requests:
+            cpu: 150m
+            memory: 2Gi
+          limits:
+            memory: 8Gi
         replicas: 3
-        replicaExternalLabelName: "replica"
+        replicaExternalLabelName: __replica__ # must match with thanos value `.query.replicaLabel[0]`
+        # Breaks any metric that has an existing "cluster" label on a metric
+        # externalLabels:
+        #   cluster: home # must match with thanos value `.ruler.clusterName`
+        thanos:
+          image: quay.io/thanos/thanos:v0.30.2
+          objectStorageConfig:
+            name: thanos-objstore-secret
+            key: objstore.yml
         ruleSelectorNilUsesHelmValues: false
         podAntiAffinity: hard
         serviceMonitorSelectorNilUsesHelmValues: false
@@ -253,9 +267,3 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
-#        thanos:
-#          image: quay.io/thanos/thanos:v0.26.0
-#          version: v0.22.0
-#          objectStorageConfig:
-#            name: thanos-objstore
-#            key: objstore.yml

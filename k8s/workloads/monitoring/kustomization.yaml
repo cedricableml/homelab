@@ -9,3 +9,4 @@ resources:
   - ./promtail/ks.yaml
   - ./loki/ks.yaml
   - ./snmp-exporter/ks.yaml
+  - ./thanos/ks.yaml
