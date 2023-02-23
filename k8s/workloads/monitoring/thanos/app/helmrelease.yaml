@@ -48,7 +48,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        hostname: &host "thanos-query.${SECRET_INTERNAL_DOMAIN}"
+        hostname: &host "thanos-query.${SECRET_DOMAIN_INTERNAL}"
         tls: true
         extraTls:
           - hosts:
@@ -60,7 +60,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        hostname: &host "thanos-bucketweb.${SECRET_INTERNAL_DOMAIN}"
+        hostname: &host "thanos-bucketweb.${SECRET_DOMAIN_INTERNAL}"
         tls: true
         extraTls:
           - hosts:
@@ -74,7 +74,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        hostname: &host "thanos-compactor.${SECRET_INTERNAL_DOMAIN}"
+        hostname: &host "thanos-compactor.${SECRET_DOMAIN_INTERNAL}"
         tls: true
         extraTls:
           - hosts:
@@ -89,7 +89,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        hostname: &host "thanos-storegateway.${SECRET_INTERNAL_DOMAIN}"
+        hostname: &host "thanos-storegateway.${SECRET_DOMAIN_INTERNAL}"
         tls: true
         extraTls:
           - hosts:
@@ -116,7 +116,7 @@ spec:
       ingress:
         enabled: true
         ingressClassName: traefik
-        hostname: &host "thanos-ruler.${SECRET_INTERNAL_DOMAIN}"
+        hostname: &host "thanos-ruler.${SECRET_DOMAIN_INTERNAL}"
         tls: true
         extraTls:
           - hosts:

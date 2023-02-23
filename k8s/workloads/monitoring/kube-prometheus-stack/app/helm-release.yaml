@@ -196,11 +196,11 @@ spec:
         honor_timestamps: true
         static_configs:
           - targets:
-              - "nuc1.${SECRET_INTERNAL_DOMAIN}:9283"
-              - "nuc2.${SECRET_INTERNAL_DOMAIN}:9283"
-              - "nuc3.${SECRET_INTERNAL_DOMAIN}:9283"
-              - "pve-lilslim.${SECRET_INTERNAL_DOMAIN}:9283"
-              - "pve-fatman.${SECRET_INTERNAL_DOMAIN}:9283"
+              - "nuc1.${SECRET_DOMAIN_INTERNAL}:9283"
+              - "nuc2.${SECRET_DOMAIN_INTERNAL}:9283"
+              - "nuc3.${SECRET_DOMAIN_INTERNAL}:9283"
+              - "pve-lilslim.${SECRET_DOMAIN_INTERNAL}:9283"
+              - "pve-fatman.${SECRET_DOMAIN_INTERNAL}:9283"
       - job_name: opnsense-node-exporter
         scrape_interval: 1m
         scrape_timeout: 10s
