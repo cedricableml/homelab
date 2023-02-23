@@ -5,6 +5,7 @@ namespace: home
 resources:
   - config-pvc.yaml
   - helm-release.yaml
+  - nfd.yaml
 configMapGenerator:
   - name: frigate
     files:
