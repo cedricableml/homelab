@@ -52,10 +52,12 @@ spec:
       mode: "kubernetes"
 
     ingressController:
-      enabled: true
+      enabled: false
       loadbalancerMode: shared
-      service:
-        loadBalancerIP: "${SVC_CILIUM_INGRESS_ADDRESS}"
+
+#      not yet merged?
+#      service:
+#        loadBalancerIP: "${SVC_CILIUM_INGRESS_ADDRESS}"
 
     operator:
       rollOutPods: true
