@@ -109,3 +109,14 @@ spec:
       enabled: true
       announce:
         loadbalancerIP: true
+  postRenderers:
+    - kustomize:
+        patchesStrategicMerge:
+          - kind: Service
+            apiVersion: v1
+            metadata:
+              name: cilium-ingress
+            spec:
+              spec:
+                externalIPs:
+                  - "${SVC_CILIUM_INGRESS_ADDRESS}"
