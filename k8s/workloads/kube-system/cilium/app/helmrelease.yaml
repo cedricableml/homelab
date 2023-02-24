@@ -52,7 +52,7 @@ spec:
       mode: "kubernetes"
 
     ingressController:
-      enabled: true
+      enabled: false
       loadbalancerMode: shared
 
     operator:
