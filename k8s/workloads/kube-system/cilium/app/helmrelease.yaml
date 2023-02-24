@@ -53,6 +53,7 @@ spec:
 
     ingressController:
       enabled: true
+      loadbalancerMode: shared
 
     operator:
       rollOutPods: true
