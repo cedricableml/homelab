@@ -12,13 +12,9 @@ spec:
   secretTemplate:
     annotations:
       replicator.v1.mittwald.de/replicate-to: 'media,home,kube-system,monitoring,flux-system'
-  commonName: "${SECRET_DOMAIN_CASA}"
+  commonName: "*.${SECRET_DOMAIN_CASA}"
   dnsNames:
-    - "${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN}"
-    - "*.local.${SECRET_DOMAIN}"
     - "*.${SECRET_DOMAIN_CASA}"
-    - "*.local.${SECRET_DOMAIN_CASA}"
     - "*.${SECRET_DOMAIN_INTERNAL}"
     - "*.k8s.${SECRET_DOMAIN_INTERNAL}"
-    - "${SECRET_DOMAIN_INTERNAL}"
