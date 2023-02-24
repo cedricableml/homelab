@@ -52,7 +52,7 @@ spec:
       mode: "kubernetes"
 
     ingressController:
-      enabled: false
+      enabled: true
       loadbalancerMode: shared
 
 #      not yet merged?
