@@ -51,6 +51,13 @@ spec:
     ipam:
       mode: "kubernetes"
 
+    ingressController:
+      enabled: true
+      loadbalancerMode: dedicated
+      service:
+        annotations:
+          metallb.universe.tf/loadBalancerIPs: "${SVC_CILIUM_INGRESS_ADDRESS}"
+
     operator:
       rollOutPods: true
 
