@@ -74,6 +74,7 @@ spec:
         tls:
           - hosts:
               - *hostinternal
+            secretName: wildcard-tls
 
     podAnnotations:
       setGateway: "true"

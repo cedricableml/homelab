@@ -48,21 +48,22 @@ spec:
       main:
         primary: true
         enabled: true
-        ingressClassName: "traefik"
+        ingressClassName: cilium
         annotations:
           external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
           external-dns.alpha.kubernetes.io/target: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}.cfargotunnel.com"
         hosts:
-          - host: &host "bazarr.${SECRET_DOMAIN_CASA}"
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN_CASA}"
             paths:
               - path: /
                 pathType: Prefix
         tls:
           - hosts:
               - *host
+            secretName: wildcard-tls
       local:
         enabled: true
-        ingressClassName: traefik
+        ingressClassName: cilium
         hosts:
           - host: &hostinternal "{{ .Release.Name }}.k8s.${SECRET_DOMAIN_INTERNAL}"
             paths:
@@ -71,6 +72,7 @@ spec:
         tls:
           - hosts:
               - *hostinternal
+            secretName: wildcard-tls
 
     persistence:
       config:
