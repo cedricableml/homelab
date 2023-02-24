@@ -38,14 +38,14 @@ spec:
           service: https://traefik.networking
           originRequest:
             noTLSVerify: true
-#        - hostname: "*.${SECRET_DOMAIN_CASA}"
-#          service: https://cilium-ingress.kube-system
-#          originRequest:
-#            noTLSVerify: true
-#        - hostname: "*.${SECRET_DOMAIN}"
-#          service: https://cilium-ingress.kube-system
-#          originRequest:
-#            noTLSVerify: true
+        - hostname: "*.${SECRET_DOMAIN_CASA}"
+          service: https://cilium-ingress.kube-system
+          originRequest:
+            noTLSVerify: true
+        - hostname: "*.${SECRET_DOMAIN}"
+          service: https://cilium-ingress.kube-system
+          originRequest:
+            noTLSVerify: true
         - service: http_status:404
     affinity:
       podAntiAffinity:
