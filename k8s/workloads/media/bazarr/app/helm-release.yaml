@@ -64,7 +64,7 @@ spec:
         enabled: true
         ingressClassName: cilium
         hosts:
-          - host: &hostinternal "{{ .Release.Name }}.${SECRET_DOMAIN_INTERNAL}"
+          - host: &hostinternal "{{ .Release.Name }}.k8s.${SECRET_DOMAIN_INTERNAL}"
             paths:
               - path: /
                 pathType: Prefix
