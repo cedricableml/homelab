@@ -63,6 +63,18 @@ spec:
           - hosts:
               - *host
 
+      local:
+        enabled: true
+        ingressClassName: cilium
+        hosts:
+          - host: &hostinternal "{{ .Release.Name }}.k8s.${SECRET_DOMAIN_INTERNAL}"
+            paths:
+              - path: /
+                pathType: Prefix
+        tls:
+          - hosts:
+              - *hostinternal
+
     podAnnotations:
       setGateway: "true"
 

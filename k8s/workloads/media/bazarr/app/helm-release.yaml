@@ -62,7 +62,7 @@ spec:
               - *host
       local:
         enabled: true
-        ingressClassName: cilium
+        ingressClassName: traefik
         hosts:
           - host: &hostinternal "{{ .Release.Name }}.k8s.${SECRET_DOMAIN_INTERNAL}"
             paths:
