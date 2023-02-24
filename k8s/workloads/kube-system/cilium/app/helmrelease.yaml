@@ -52,7 +52,7 @@ spec:
       mode: "kubernetes"
 
     ingressController:
-      enabled: false
+      enabled: true
 
     operator:
       rollOutPods: true
