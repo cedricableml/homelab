@@ -33,7 +33,7 @@ metadata:
   name: sabnzbd
   namespace: media
 spec:
-  sourcePVC: sabnzbd-config-v1
+  sourcePVC: sabnzbd-config-0
   trigger:
     schedule: "0 0 * * *"
   restic:
