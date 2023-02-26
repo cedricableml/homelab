@@ -24,10 +24,11 @@ spec:
       retries: 100
   values:
     image:
-      repository: docker.io/blakeblackshear/frigate
-      tag: 0.11.0-rc3
+      repository: ghcr.io/blakeblackshear/frigate
+      tag: 0.12.0-beta8
 
     env:
+      LIBVA_DRIVER_NAME: i965
       TZ: "${TZ}"
 
     podSecurityContext:
@@ -144,13 +145,16 @@ spec:
       limits:
         memory: 16Gi
         gpu.intel.com/i915: "1"
-    nodeSelector:
-      kubernetes.io/hostname: nuc3
-#    nodeAffinity:
-#      requiredDuringSchedulingIgnoredDuringExecution:
-#        nodeSelectorTerms:
-#          - matchExpressions:
-#              - key: feature.node.kubernetes.io/custom-coral-tpu
-#                operator: In
-#                values:
-#                  - "true"
+    tolerations:
+      - key: "nuc"
+        operator: "Equal"
+        value: "true"
+        effect: "NoSchedule"
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: google.feature.node.kubernetes.io/coral
+                operator: In
+                values:
+                  - "true"
