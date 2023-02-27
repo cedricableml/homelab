@@ -20,8 +20,8 @@ spec:
   values:
     replicaCount: 3
     image:
-      repository: raspbernetes/cloudflared
-      tag: "2022.8.2"
+      repository: cloudflare/cloudflared
+      tag: "2023.2.1"
     cloudflared:
       # Tunnel ID should be unique per instance of running cloudflared
       tunnelID: "${SECRET_CLOUDFLARE_TUNNEL_ID_2}"
