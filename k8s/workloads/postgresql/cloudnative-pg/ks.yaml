@@ -6,7 +6,7 @@ metadata:
   name: cluster-workloads-cloudnative-pg
   namespace: flux-system
 spec:
-  path: ./k8s/workloads/default/cloudnative-pg/app
+  path: ./k8s/workloads/postgresql/cloudnative-pg/app
   prune: true
   sourceRef:
     kind: GitRepository
@@ -30,7 +30,7 @@ spec:
   dependsOn:
     - name: cluster-workloads-cloudnative-pg
     - name: cluster-workloads-external-secrets-stores
-  path: ./k8s/workloads/default/cloudnative-pg/cluster
+  path: ./k8s/workloads/postgresql/cloudnative-pg/cluster
   prune: true
   sourceRef:
     kind: GitRepository
