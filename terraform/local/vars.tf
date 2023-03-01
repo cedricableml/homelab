@@ -33,13 +33,13 @@ variable "control_plane_node_memory" {
 variable "iso_image_location" {
     description = "The location of the Talos iso image on the proxmox host (<storage pool>:<content type>/<file name>.iso)."
     type = string
-    default = "zfs-iso:iso/talos-amd64.iso"
+    default = "cephfs:iso/talos-amd64.iso"
 }
 
 variable "boot_disk_storage_pool" {
     description = "The name of the storage pool where boot disks for the cluster nodes will be stored."
     type = string
-    default = "ceph"
+    default = "ceph_erasure_default"
 }
 
 variable "boot_disk_size" {
