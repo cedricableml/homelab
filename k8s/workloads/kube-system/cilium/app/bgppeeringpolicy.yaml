@@ -7,5 +7,5 @@ spec:
     - localASN: 64513
       exportPodCIDR: true
       neighbors:   # []CiliumBGPNeighbor
-        - peerAddress: "${SVC_GATEWAY_ADDR}"
+        - peerAddress: "${GATEWAY_ADDRESS}/32"
           peerASN: 64513
