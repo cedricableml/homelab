@@ -412,7 +412,7 @@ data:
   disable-cnp-status-updates: "true"
   disable-endpoint-crd: "false"
   enable-auto-protect-node-port-range: "true"
-  enable-bgp-control-plane: "false"
+  enable-bgp-control-plane: "true"
   enable-bpf-clock-probe: "true"
   enable-endpoint-health-checking: "true"
   enable-health-check-nodeport: "true"
@@ -607,7 +607,7 @@ spec:
   template:
     metadata:
       annotations:
-        cilium.io/cilium-configmap-checksum: 06519db791cc50880816dcc3d44c6702406a257dd9a1b78a754ea599400c5cf6
+        cilium.io/cilium-configmap-checksum: b5d99ee24ef91b4259e27b2f17839d0cdadea73c70b77220c5af204af2fa89c7
         meta.helm.sh/release-name: cilium
         meta.helm.sh/release-namespace: kube-system
       labels:

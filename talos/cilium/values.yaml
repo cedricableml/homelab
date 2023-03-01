@@ -28,6 +28,8 @@ ipam:
 # nativeRoutingCIDR: 10.1.1.0/24
 
 # Cilium leverages MetalLB's simplified BGP announcement system for service type: LoadBalancer
+bgpControlPlane:
+  enabled: true
 bgp:
   enabled: true
   announce:

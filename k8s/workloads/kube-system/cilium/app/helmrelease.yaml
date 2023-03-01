@@ -106,9 +106,9 @@ spec:
             - hosts:
                 - *host
 
+    bgpControlPlane:
+      enabled: true
     bgp:
       enabled: true
-      bgpControlPlane:
-        enabled: false
       announce:
         loadbalancerIP: true
