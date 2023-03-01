@@ -109,6 +109,6 @@ spec:
     bgp:
       enabled: true
       bgpControlPlane:
-        enabled: true
+        enabled: false
       announce:
         loadbalancerIP: true
