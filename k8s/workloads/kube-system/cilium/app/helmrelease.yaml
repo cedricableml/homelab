@@ -106,6 +106,9 @@ spec:
             - hosts:
                 - *host
 
+    encryption:
+      enabled: true
+
     bgpControlPlane:
       enabled: true
     bgp:
