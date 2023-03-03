@@ -82,6 +82,10 @@ spec:
         enabled: true
         existingClaim: media-nfs
         mountPath: /media
+      media-canfail:
+        enabled: true
+        existingClaim: media-nfs-canfail
+        mountPath: /media-canfail
       backup:
         enabled: true
         type: custom

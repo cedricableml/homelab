@@ -94,6 +94,10 @@ spec:
         enabled: true
         existingClaim: media-nfs
         mountPath: /data
+      media-canfail:
+        enabled: true
+        existingClaim: media-nfs-canfail
+        mountPath: /media-canfail
       transcode:
         enabled: true
         type: emptyDir
