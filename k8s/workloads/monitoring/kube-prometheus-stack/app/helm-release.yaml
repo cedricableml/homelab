@@ -189,36 +189,6 @@ spec:
             etcd:
               enabled: true
 
-    additionalScrapeConfigs:
-      - job_name: ceph-exporter
-        scrape_interval: 1m
-        scrape_timeout: 10s
-        honor_timestamps: true
-        static_configs:
-          - targets:
-              - "nuc1.${SECRET_DOMAIN_INTERNAL}:9283"
-              - "nuc2.${SECRET_DOMAIN_INTERNAL}:9283"
-              - "nuc3.${SECRET_DOMAIN_INTERNAL}:9283"
-              - "pve-lilslim.${SECRET_DOMAIN_INTERNAL}:9283"
-              - "pve-fatman.${SECRET_DOMAIN_INTERNAL}:9283"
-      - job_name: pve-node-exporter
-        scrape_interval: 1m
-        scrape_timeout: 10s
-        honor_timestamps: true
-        static_configs:
-          - targets:
-              - "nuc1.${SECRET_DOMAIN_INTERNAL}:9100"
-              - "nuc2.${SECRET_DOMAIN_INTERNAL}:9100"
-              - "nuc3.${SECRET_DOMAIN_INTERNAL}:9100"
-              - "pve-lilslim.${SECRET_DOMAIN_INTERNAL}:9100"
-              - "pve-fatman.${SECRET_DOMAIN_INTERNAL}:9100"
-      - job_name: opnsense-node-exporter
-        scrape_interval: 1m
-        scrape_timeout: 10s
-        honor_timestamps: true
-        static_configs:
-          - targets:
-              - "opnsense.${SECRET_DOMAIN_INTERNAL}:9100"
     prometheusOperator:
       prometheusConfigReloader:
         resources:
@@ -278,3 +248,33 @@ spec:
               resources:
                 requests:
                   storage: 20Gi
+        additionalScrapeConfigs:
+          - job_name: ceph-exporter
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "nuc1.${SECRET_DOMAIN_INTERNAL}:9283"
+                  - "nuc2.${SECRET_DOMAIN_INTERNAL}:9283"
+                  - "nuc3.${SECRET_DOMAIN_INTERNAL}:9283"
+                  - "pve-lilslim.${SECRET_DOMAIN_INTERNAL}:9283"
+                  - "pve-fatman.${SECRET_DOMAIN_INTERNAL}:9283"
+          - job_name: pve-node-exporter
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "nuc1.${SECRET_DOMAIN_INTERNAL}:9100"
+                  - "nuc2.${SECRET_DOMAIN_INTERNAL}:9100"
+                  - "nuc3.${SECRET_DOMAIN_INTERNAL}:9100"
+                  - "pve-lilslim.${SECRET_DOMAIN_INTERNAL}:9100"
+                  - "pve-fatman.${SECRET_DOMAIN_INTERNAL}:9100"
+          - job_name: opnsense-node-exporter
+            scrape_interval: 1m
+            scrape_timeout: 10s
+            honor_timestamps: true
+            static_configs:
+              - targets:
+                  - "opnsense.${SECRET_DOMAIN_INTERNAL}:9100"
