@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - media-nfs.yaml
   - media-nfs-canfail.yaml
+  - media-cephfs.yaml
