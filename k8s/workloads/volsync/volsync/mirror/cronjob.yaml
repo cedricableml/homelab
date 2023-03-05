@@ -20,18 +20,7 @@ spec:
                 - |
                   mc alias set pve $S3_INTERNAL_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
                   mc alias set wasabi https://s3.eu-central-1.wasabisys.com $S3_ACCESS_KEY $S3_SECRET_KEY
-                  declare -a buckets=("bazarr"
-                                      "calibre"
-                                      "calibre-web"
-                                      "home-assistant"
-                                      "jellyfin"
-                                      "plex"
-                                      "qbittorrent"
-                                      "sabnzbd" )
-                  for b in "${buckets[@]}"; do
-                    echo $b
-                    mc mirror pve/$b wasabi/volsync-backups/$b
-                  done
+                  mc mirror pve/volsync wasabi/volsync-backups/
               env:
                 - name: TZ
                   value: ${TZ}
