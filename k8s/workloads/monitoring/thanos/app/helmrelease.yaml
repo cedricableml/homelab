@@ -34,7 +34,7 @@ spec:
     objstoreConfig:
       type: s3
       config:
-        signature_version2: true
+#        signature_version2: true
         insecure: false
     queryFrontend:
       enabled: false
