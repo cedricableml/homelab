@@ -1,10 +1,5 @@
-output "cloudflare_argo_tunnel_1" {
-  value     = cloudflare_tunnel.tunnel1
-  sensitive = true
-}
-
-output "cloudflare_argo_tunnel_2" {
-  value     = cloudflare_tunnel.tunnel2
+output "cloudflare_tunnel" {
+  value     = cloudflare_tunnel.talos0
   sensitive = true
 }
 
