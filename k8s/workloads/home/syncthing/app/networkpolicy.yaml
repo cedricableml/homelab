@@ -8,13 +8,13 @@ spec:
     matchLabels:
       app: syncthing
   ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app: traefik
-            io.kubernetes.pod.namespace: networking
-      toPorts:
-        - ports:
-            - port: "8384"
+#    - fromEndpoints:
+#        - matchLabels:
+#            app: traefik
+#            io.kubernetes.pod.namespace: networking
+#      toPorts:
+#        - ports:
+#            - port: "8384"
     - fromEntities:
         - world
       toPorts:
