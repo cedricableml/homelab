@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: syncthing-data-0
+  namespace: home
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 400Gi
+  storageClassName: rook-cephfs-media
