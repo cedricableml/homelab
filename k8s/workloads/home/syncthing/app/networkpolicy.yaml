@@ -1,0 +1,27 @@
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: syncthing
+  namespace: home
+spec:
+  endpointSelector:
+    matchLabels:
+      app: syncthing
+  ingress:
+    - fromEndpoints:
+        - matchLabels:
+            app: traefik
+            io.kubernetes.pod.namespace: networking
+      toPorts:
+        - ports:
+            - port: "8384"
+    - fromEntities:
+        - world
+      toPorts:
+        - ports:
+            - port: "22000"
+        - ports:
+            - port: "21027"
+  egress:
+    - toEntities:
+        - world

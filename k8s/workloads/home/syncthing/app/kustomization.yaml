@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - pvc.yaml
   - helm-release.yaml
+  - networkpolicy.yaml
 #  - volsync.yaml
 labels:
   - pairs:
