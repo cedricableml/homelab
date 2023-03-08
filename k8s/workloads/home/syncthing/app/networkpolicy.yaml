@@ -8,13 +8,6 @@ spec:
     matchLabels:
       app.kubernetes.io/name: syncthing
   ingress:
-    - fromEndpoints:
-        - matchLabels:
-            app.kubernetes.io/name: traefik
-            io.kubernetes.pod.namespace: networking
-      toPorts:
-        - ports:
-            - port: "8384"
     - fromEntities:
         - world
       toPorts:
@@ -22,6 +15,28 @@ spec:
             - port: "22000"
         - ports:
             - port: "21027"
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: networking
+      toPorts:
+        - ports:
+            - port: "8384"
   egress:
-    - toEntities:
-        - world
+    - toCIDRSet:
+        - cidr: 10.0.0.0/8
+    - toCIDRSet:
+        - cidr: 100.0.0.0/8
+    - toCIDRSet:
+        - cidr: 192.168.0.0/16
+    - toEndpoints:
+        - matchLabels:
+            io.kubernetes.pod.namespace: kube-system
+            k8s-app: kube-dns
+      toPorts:
+        - ports:
+            - port: "53"
+              protocol: UDP
+          rules:
+            dns:
+              - matchPattern: "*"
