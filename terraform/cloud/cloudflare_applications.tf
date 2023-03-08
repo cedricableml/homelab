@@ -115,6 +115,11 @@ locals {
       type      = "self_hosted"
       gsuite    = true
     },
+    {
+      subdomain = "syncthing"
+      type      = "self_hosted"
+      gsuite    = true
+    },
   ]
   apps_secondary = [
     {
