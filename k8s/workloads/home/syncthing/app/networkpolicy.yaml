@@ -6,15 +6,15 @@ metadata:
 spec:
   endpointSelector:
     matchLabels:
-      app: syncthing
+      app.kubernetes.io/name: syncthing
   ingress:
-#    - fromEndpoints:
-#        - matchLabels:
-#            app: traefik
-#            io.kubernetes.pod.namespace: networking
-#      toPorts:
-#        - ports:
-#            - port: "8384"
+    - fromEndpoints:
+        - matchLabels:
+            app.kubernetes.io/name: traefik
+            io.kubernetes.pod.namespace: networking
+      toPorts:
+        - ports:
+            - port: "8384"
     - fromEntities:
         - world
       toPorts:
