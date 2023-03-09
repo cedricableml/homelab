@@ -33,12 +33,12 @@
   ],
   "flux": {
     "fileMatch": [
-      "k8s/clusters/.+\\.ya?ml$"
+      "k8s/.+\\.ya?ml$"
     ]
   },
   "helm-values": {
     "fileMatch": [
-      "k8s/clusters/.+/helm-release\\.yaml$",
+      "k8s/.+/helm-release\\.yaml$",
     ],
   },
   "helmv3": {
@@ -48,17 +48,17 @@
   },
   "kubernetes": {
     "fileMatch": [
-      "k8s/clusters/.+\\.yaml$",
+      "k8s/.+\\.yaml$",
     ],
-    "ignorePaths": [
-      "k8s/clusters/.+/flux",
-    ],
+//    "ignorePaths": [
+//      "k8s//.+/flux",
+//    ],
   },
   "regexManagers": [
     // regexManager to read and process HelmRelease files
     {
       "fileMatch": [
-        "k8s/clusters/.+\\.yaml$"
+        "k8s/.+\\.yaml$"
       ],
       "matchStrings": [
         // helm releases
@@ -69,7 +69,7 @@
     // regexManager to read and process cert-manager CRD's
     {
       "fileMatch": [
-        "k8s/clusters/.+/crds/cert-manager/.+\\.yaml$"
+        "k8s/.+/crds/cert-manager/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n.*\\/(?<currentValue>.*?)\\/",
@@ -79,8 +79,8 @@
     // regexManager to read and process kube-prometheus-stack CRD's
     {
       "fileMatch": [
-        "k8s/clusters/.+/crds/kube-prometheus-stack/.+\\.yaml$",
-        "k8s/clusters/.+/crds/velero/.+\\.yaml$"
+        "k8s/.+/crds/kube-prometheus-stack/.+\\.yaml$",
+        "k8s/.+/crds/velero/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?)\n *tag: (?<depName>[a-zA-Z-]+)-(?<currentValue>.*)\n",
@@ -90,7 +90,7 @@
     // regexManager to read and process Traefik CRD's
     {
       "fileMatch": [
-        "k8s/clusters/.+/crds/traefik/.+\\.yaml$"
+        "k8s/.+/crds/traefik/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: v(?<currentValue>.*)\n",
@@ -100,7 +100,7 @@
     // regexManager to read and process Rook-Ceph CRD's
     {
       "fileMatch": [
-        "k8s/clusters/.+/crds/rook-ceph/.+\\.yaml$"
+        "k8s/.+/crds/rook-ceph/.+\\.yaml$"
       ],
       "matchStrings": [
         "registryUrl=(?<registryUrl>.*?) chart=(?<depName>.*?)\n *tag: (?<currentValue>.*)\n"
@@ -109,8 +109,8 @@
     },
     {
       "fileMatch": [
-        "k8s/clusters/.+/crds/external-snapshotter/.+\\.yaml$",
-        "k8s/clusters/.+/crds/external-dns/.+\\.yaml$"
+        "k8s/.+/crds/external-snapshotter/.+\\.yaml$",
+        "k8s/.+/crds/external-dns/.+\\.yaml$"
       ],
       "matchStrings": [
         "url: https:\/\/github\\.com\/(?<depName>.*?)\\.git\n *ref:\n *tag: (?<currentValue>.*)\n"
