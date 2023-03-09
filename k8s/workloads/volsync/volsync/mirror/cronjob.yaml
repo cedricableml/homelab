@@ -5,7 +5,7 @@ metadata:
   name: volsync-mirror-wasabi
   namespace: volsync
 spec:
-  schedule: "0 2 * * *"
+  schedule: "0 5 * * *"
   jobTemplate:
     spec:
       template:
@@ -20,7 +20,7 @@ spec:
                 - |
                   mc alias set pve $S3_INTERNAL_ENDPOINT $AWS_ACCESS_KEY_ID $AWS_SECRET_ACCESS_KEY
                   mc alias set wasabi https://s3.eu-central-1.wasabisys.com $S3_ACCESS_KEY $S3_SECRET_KEY
-                  mc mirror pve/volsync wasabi/volsync-backups/
+                  mc mirror --overwrite pve/volsync wasabi/volsync-backups/
               env:
                 - name: TZ
                   value: ${TZ}
