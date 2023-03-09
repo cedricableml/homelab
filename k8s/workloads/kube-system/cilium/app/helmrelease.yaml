@@ -133,4 +133,4 @@ spec:
       enabled: true
       announce:
         loadbalancerIP: true
-        podCIDR: true
+        podCIDR: false
