@@ -128,7 +128,7 @@ spec:
                 - *host
 
     bgpControlPlane:
-      enabled: true
+      enabled: false
     bgp:
       enabled: true
       announce:
