@@ -5,7 +5,7 @@
         "docker",
         "github-tags"
       ],
-      "automerge": true,
+      "automerge": false,
       "automergeType": "pr",
       "requiredStatusChecks": null,
       "matchUpdateTypes": [
@@ -20,6 +20,15 @@
         "ghcr.io/onedr0p/sonarr",
         "ghcr.io/onedr0p/readarr",
         "ghcr.io/onedr0p/tautulli",
+        "ghcr.io/onedr0p/prowlarr",
+        "ghcr.io/onedr0p/sonarr-develop",
+        "ghcr.io/onedr0p/radarr-develop",
+        "ghcr.io/bjw-s/calibre-web",
+        "ghcr.io/bjw-s/tautulli",
+        "ghcr.io/onedr0p/readarr",
+        "ghcr.io/onedr0p/readarr-nightly",
+        "ghcr.io/onedr0p/prowlarr",
+        "ghcr.io/taxel/plextraktsync",
         "renovatebot/github-action",
         "radarr",
         "readarr",
@@ -41,6 +50,23 @@
         "app-template",
         "jellyfin",
         "intel-gpu-plugin"
+      ]
+    },
+    {
+      "matchDatasources": ["helm"],
+      "automerge": false,
+      "automergeType": "branch",
+      "requiredStatusChecks": null,
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchPackageNames": [
+        "kube-prometheus-stack",
+        "traefik",
+        "external-dns",
+        "grafana",
+        "velero",
+        "kured",
+        "nri-bundle",
+        "loki"
       ]
     }
   ]

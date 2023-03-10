@@ -186,43 +186,6 @@
         "ghcr.io/onedr0p/qbittorrent"
       ]
     },
-    // enable auto-merge
-    {
-      "matchDatasources": ["docker"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
-        "ghcr.io/onedr0p/prowlarr",
-        "ghcr.io/onedr0p/sonarr-develop",
-        "ghcr.io/onedr0p/radarr-develop",
-        "ghcr.io/bjw-s/calibre-web",
-        "ghcr.io/bjw-s/tautulli",
-        "ghcr.io/onedr0p/readarr",
-        "ghcr.io/onedr0p/readarr-nightly",
-        "ghcr.io/onedr0p/prowlarr",
-        "ghcr.io/taxel/plextraktsync",
-        "raspbernetes/cloudflared"
-      ]
-    },
-    {
-      "matchDatasources": ["helm"],
-      "automerge": true,
-      "automergeType": "branch",
-      "requiredStatusChecks": null,
-      "matchUpdateTypes": ["minor", "patch"],
-      "matchPackageNames": [
-        "kube-prometheus-stack",
-        "traefik",
-        "external-dns",
-        "grafana",
-        "velero",
-        "kured",
-        "nri-bundle",
-        "loki"
-      ]
-    },
     // group packages
     {
       "matchDatasources": ["helm", "docker"],
