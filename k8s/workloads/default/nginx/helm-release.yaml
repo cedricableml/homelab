@@ -2,7 +2,7 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: ingress-test
+  name: nginx
   namespace: default
 spec:
   interval: 30m
@@ -17,6 +17,9 @@ spec:
       interval: 30m
   values:
     controller:
+      service:
+        loadBalancerIP: "${SVC_NGINX_ADDR}"
+
       replicaCount: 3
 
       updateStrategy:
@@ -26,7 +29,7 @@ spec:
         enabled: true
 
       ingressClassResource:
-        default: true
+        default: false
 
       config:
         client-header-timeout: 120
