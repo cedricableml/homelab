@@ -13,9 +13,6 @@ spec:
         - {}
     - fromCIDRSet:
         - cidr: "${TRAEFIK_ALLOWED_EXT_ADDR}/32"
-      toPorts:
-        - ports:
-            - port: "443"
     - fromCIDRSet:
         - cidr: 10.0.0.0/8
     - fromCIDRSet:
